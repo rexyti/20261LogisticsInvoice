@@ -1,8 +1,6 @@
 StakeHolders Actores:
 - Modulo de rutas y flotas.
   informa el cierre de ruta.
-- Empresa transportadora:
-  Empresa aliada que presta el servicio logístico y recibe pagos globales por operación.
 - Transportador:
   Actor que recibe la compensación económica por la ejecución de rutas.
 - Proovedores de pago(?):
