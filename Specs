@@ -1,0 +1,208 @@
+Feature Specification: Informar cierre de ruta
+Created: 21/02/2026
+User Scenarios & Testing (mandatory)
+Dado un cierre de ruta informado por el módulo de rutas y flotas, el sistema debe registrar el evento y permitir su consulta en el módulo correspondiente.
+
+User Story 1 – Registrar cierre de ruta automáticamente (Priority: P1)
+Como módulo de gestión de rutas, quiero que el sistema registre automáticamente el cierre de una ruta para garantizar la consistencia de la información y su disponibilidad para consulta.
+Why this priority: Mantiene la funcionalidad de todo el sistema ya que, sin registrar un cierre, no mantiene una MVP.
+Independent Test: Enviar un evento de cierre de ruta desde el módulo de Rutas y Flotas y verificar que el sistema lo registre correctamente en la base de datos, dejándolo disponible para consulta.
+Acceptance Scenarios:
+1.	Scenario: registrar ruta cerrada de manera exitosa
+o	Given Ruta existente activa .
+o	When El modulo de rutas y paquetes envía un informe de cierre de ruta.
+o	Then El sistema registra el evento de cierre de ruta y lo deja en el sistema para visualizar.
+2.	Scenario: Evento de ruta cerrada duplicado
+o	Given Una ruta cerrada
+o	When Se recibe nuevamente el evento de cierre
+o	Then El sistema no debe registrar nuevamente la ruta cerrada
+________________________________________
+User Story 2 – Visualizar informe de ruta cerrada(Priority: P2)
+ Como gestor de tarifa, quiero poder visualizar que una ruta fue cerrada y consultar sus datos de cierre.
+Why this priority: Permite la visualización de los datos, dando información al gestor de tarifas
+Independent Test: Se puede probar consultando una ruta previamente cerrada y validando que el estado de la ruta sea cerrado 
+Acceptance Scenarios:
+1.	Scenario: Consultar la ruta cerrada
+o	Given Ruta cerrada
+o	When El usuario, consulta los datos de la ruta 
+o	Then El sistema muestra los datos 
+________________________________________
+User Story 3 – Auditoría de cierre de ruta (Priority: P3)
+Como administrador del sistema, quiero que cada cierre de ruta quede registrado en un historial de auditoría para garantizar la trazabilidad y el control de cambios de estado.
+Why this priority:  Permite mantener la trazabilidad de las diferentes rutas que se informaron como cerradas 
+Independent Test: Consultar el historial de auditoría de una ruta previamente cerrada y verificar que el sistema muestre correctamente su fecha y hora de cierre 
+Acceptance Scenarios:
+1.	Scenario: Consultar historial de auditoría
+o	Given Una ruta que fue cerrada 
+o	When El administrador consulta el historial de la ruta 
+o	Then El sistema muestra todos los registros asociados a esa ruta 
+________________________________________
+
+Edge Cases
+•	What happens when se recibe un evento de cierre para una ruta inexistente?
+•	How does system handle Debe rechazar el evento y registrar un error
+•	¿Qué ocurre cuando la base de datos no está disponible en el momento de registrar el cierre?
+•	El sistema debe generar un fallo técnico y mantener el evento en cola.
+Requirements (mandatory)
+Functional Requirements
+•	FR-001: System MUST registrar automáticamente un evento de cierre de ruta cuando lo reciba del modulo de rutas y flotas.
+•	FR-002: System MUST Validar que la ruta este en estado “Activa” antes de permiter su cierre.
+•	FR-003: Users MUST be able to almacenar fechas y hora del cierre.
+•	FR-004: System MUST evitar registros duplicados de cierre para la misma ruta.
+•	FR-005: System MUST permitir la consulta de rutas cerradas desde le modulo correspondiente
+Key Entities (include if feature involves data)
+•	Ruta : Representa una ruta operativa del sistema. (idRuta, estado, fechaCreacion, fechaCierre )
+•	EventeCierreRuta: Representa el evento recibido desde el módulo externo. ( se relaciona a la ruta, permitiendo una relación de one to one)
+Success Criteria (mandatory)
+Measurable Outcomes
+•	SC-001: El 100% de los eventos válidos de cierre de ruta son registrados correctamente.
+•	SC-002: El sistema Evita el 100% de los registros duplicados
+•	SC-003: Se reduce a 0 los incidentes por inconsistencias de estados de rutas cerradas.
+
+
+Feature Specification: Registrar modelo de contratación 
+Created: 23/02/2026
+User Scenarios & Testing (mandatory)
+Dado por el ingreso de un modelo de contratación creado por el gestor de tarifas, el sistema debe permitir registrar la informacion del contrato y dejarlo disponible para su consulta 
+y gestión.
+
+User Story 1 - Registrar el contrato (Priority: P1)
+Como gestor de tarifas, quiero registrar un nuevo contrato en el sistema para formalizar y controlar los procesos contractuales.
+Why this priority: Por funcionalidad crítica, ya que sin el registro de contratos el módulo no cumple su propósito.
+Independent Test:  Se puede probar creando un contrato con datos válidos y verificar que el sistema lo almacene correctamente y deje disponible para consulta.
+Acceptance Scenarios:
+1.	Scenario: registrar contrato de manera exitosa
+o	Given El usuario tiene permisos de gestor de tarifas.
+o	When Ingresa la información obligatoria del contrato
+o	Then El sistema registra el contrato 
+2.	Scenario: registrar un contrato con datos incompletos 
+o	Given Faltan campos obligatorios del contrato
+o	When El usuario intenta registrar el contrato
+o	Then El sistema rechaza la operación 
+3.  Scenario: registro duplicado 
+o	Given Ya existe un contrato con el mismo identificador externo
+o	When Se intenta registrar nuevamente 
+o	Then El sistema debe evitar el registro duplicado 
+________________________________________
+User Story 2 – Consultar contrato(Priority: P2)
+Como gestor de tarifas, quiero consultar los contratos registrados para revisar su informacion y estado.
+Why this priority: Permite la visualización de los datos, facilitando el seguimiento y validación del proceso de contratación.
+Independent Test: Se puede probar consultando un contrato previamente registrado y verificar que el sistema muestre correctamente 
+todos sus datos, incluyendo el estado actual.
+Acceptance Scenarios:
+1.	Scenario: Consultar contrato existente
+o	Given Un contrato previamente registrado en el sistema.
+o	When El usuario realiza una búsqueda por identificador o criterio válido.
+o	Then El sistema muestra la información completa del contrato. 
+2.	Scenario: Consultar contrato inexistente 
+o	Given No existe el contrato con el identificador ingresado.
+o	When El usuario realiaza la búsqueda.
+o	Then El sistema informa que no se encontraron resultados.
+3.  Scenario: Filtrar contratos por estados.
+o	Given Múltiples contratos registrados con diferentes estados.
+o	When El usuario aplica un filtro por estado.
+o	Then El sistema muestra únicamente los contratos que coinciden con el criterio seleccionado. 
+________________________________________
+User Story 3 – Notificación automática (Priority: P3)
+Como gestor, quiero recibir una notificación cuando un contrato cambie de estado.
+Why this priority:  Permite un seguimiento de los diferentes contratos.
+Independent Test: Un contrato se completa, el sistema mandara una notificación de que el contrato paso de estar vigente a completado. 
+Acceptance Scenarios:
+1.	Scenario: Notificación enviada al cambiar el estado del contrato
+o	Given Un contrato registrado en el sistema.
+o	When El cambio de estado es confirmado en el sistema. 
+o	Then El sistema envía automaticamente una notificación al usuario configurado.
+________________________________________
+Edge Cases
+•	What happens when Se registra un contrato con informacion incompleta 
+•	How does system handle Debe rechazar el registro y mostrar los campos faltantes
+•	¿Qué ocurre si la fecha de finalización es anterior a la fecha de inicio?
+•	El sistema debe impedir el registro y mostrar error de validación.
+Requirements (mandatory)
+Functional Requirements
+•	FR-001: System MUST registrar correctamente la información del contrato.
+•	FR-002: System MUST Validar que el contrato tenga todos los campos obligatorios con información.
+•	FR-003: Users MUST be able to consultar los datos de los diferentes contratos.
+•	FR-004: System MUST evitar registros duplicados de contratos con el mismo identificador externo.
+•	FR-005: System MUST permitir la consulta de los diferentes contratos.
+Key Entities (include if feature involves data)
+•	Contrato : Representa un contrato entre la empresa y el trasportista. (idContrato, estado, fechaCreacion, fechaCierre )
+Measurable Outcomes
+•	SC-001: El 100% de los contratos son registrados correctamente en el sistema.
+•	SC-002: El sistema Evita el 100% de los registros duplicados
+•	SC-003: Se reduce a 0 los incidentes por inconsistencias en los campos obligatorios del contrato.
+
+
+Feature Specification: Calcular liquidación 
+Created: 23/02/2026
+User Scenarios & Testing (mandatory)
+Dado un contrato que ha finalizado o está próximo a finalizar, el sistema debe calcular automáticamente la liquidación correspondiente, considerando los valores contractuales,
+pagos realizados, penalizaciones y ajustes aplicables.
+
+User Story 1 - Calcular liquidación automaticamente (Priority: P1)
+Como gestor de contratación, quiero que el sistema calcule automáticamente la liquidación de un contrato para obtener el valor final a pagar o cobrar.
+Why this priority: Es la funcionalidad principal del módulo. Sin el cálculo de liquidación, el módulo no cumple su propósito.
+Independent Test:  Seleccionar un contrato finalizado con pagos registrados y verificar que el sistema genere correctamente el valor de liquidación.
+Acceptance Scenarios:
+1.	Scenario: Cálculo exitoso de liquidación.
+o	Given Un contrato en estado "finalizado"
+o	When El usuario solicita el cálculo de liquidación.
+o	Then El sistema calcula el valor total contractual
+2.	Scenario: Contrato sin pagos registrados.
+o	Given Un contrato finaliza sin pagos registrados.
+o	When Se ejecuta el calculo.
+o	Then El sistema calcula la liquidación considerando el valor total como saldo pendiente.
+3.  Scenario: Intentar liquidar contrato no finalizado.
+o	Given Un contrato en estado "En ejecución"
+o	When El usuario intenta calcular la liquidación. 
+o	Then El sistema debe impedir el cálculo
+________________________________________
+User Story 2 – Visualizar detalle de liquidación(Priority: P2)
+Como gestor de contratación, quiero visualizar el detalle del cálculo de liquidación para entender cómo se obtuvo el valor final.
+Why this priority: Permite la visualización de los datos, facilitando el seguimiento y validación del proceso de liquidación.
+Independent Test: Para probarla,  se selecciona un contrato en estado "Finalizado" con pagos y ajustes registrados, ejecutando
+el cálculo de liquidación y verificando que el sistema genere correctamente el valor final.
+Acceptance Scenarios:
+1.	Scenario: Ver detalle completo
+o	Given Una liquidación ya calculada
+o	When El usuario consulta el detalle de la liquidación.
+o	Then El sistema muestra la información correspondiente: sus penalizaciones aplicadas, ajustes adicionales y valor final. 
+2.	Scenario: Intentar consultar liquidación inexistente
+o	Given Un contrato sin liquidación calculada.
+o	When El usuario consulta.
+o	Then El sistema indica que no existe liquidación registrada.
+________________________________________
+User Story 3 – Recalcular liquidación (Priority: P3)
+Como gestor de contratación, quiero recalcular la liquidación si se registran nuevos pagos o ajustes para mantener la información actualizada.
+Why this priority:  Permite la información actualizada cuando se registra nuevos pagos o ajustes posteriores.
+Independent Test: Se puede probar agregar un nuevo pago o ajuste de pago y ejecutando la opción de recalculo.
+el sistema debe actualizar correctamente el valor final y conservar el historial del cálculo anterior.
+Acceptance Scenarios:
+1.	Scenario: Recalcular por nuevo pago.
+o	Given Una liquidación ya calculado.
+o	When El usuario solicita recalcular. 
+o	Then El sistema actualiza el valor final.
+________________________________________
+
+Edge Cases
+•	What happens when  
+•	How does system handle Debe rechazar el registro y mostrar los campos faltantes
+•	¿Qué ocurre si la fecha de finalización es anterior a la fecha de inicio?
+•	El sistema debe impedir el registro y mostrar error de validación.
+Requirements (mandatory)
+Functional Requirements
+•	FR-001: System MUST calcular automáticamente la liquidación de un contrato finalizado.
+•	FR-002: System MUST Considerar pagos registrados en el cálculo.
+•	FR-003: System MUST validar  el estadp del contrato antes de calcular.
+•	FR-004: System MUST aplicar penalizaciones y ajustes configurados.
+•	FR-005: System MUST Registrar auditoría del cálculo y recálculo.
+Key Entities (include if feature involves data)
+•	Contrato : Representa un contrato entre la empresa y el trasportista. (idContrato, estado, fechaCreacion, fechaCierre )
+• pago : Representa los pagos recibidos del contrato (idPago, idContrato, monto, fecha)
+• Liquidación : Representa el valor de la liquidación (idLiquidacion, idContrato, valorFinal, fechaCalculo) 
+• Ajustes/Penalización : Representa las penalizaciones del pago (idAjuste, tipo, monto)
+Measurable Outcomes
+•	SC-001: El 100% de los contratos finalizados pueden ser liquidados correctamente.
+•	SC-002: No existen inconsistencias entre pagos registrados y valor liquidado.
+•	SC-003: El sistema evitan el 100% de liquidaciones duplicadas.
+
