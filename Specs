@@ -29,8 +29,8 @@ o	Then El sistema muestra los datos
 ________________________________________
 User Story 3 – Auditoría de cierre de ruta (Priority: P3)
 Como administrador del sistema, quiero que cada cierre de ruta quede registrado en un historial de auditoría para garantizar la trazabilidad y el control de cambios de estado.
-Why this priority:  Permite mantener la trazabilidad de las diferentes rutas que se informaron como cerradas 
-Independent Test: Consultar el historial de auditoría de una ruta previamente cerrada y verificar que el sistema muestre correctamente su fecha y hora de cierre 
+Why this priority:  Permite mantener la trazabilidad de las diferentes rutas que se informaron como cerradas. 
+Independent Test: Consultar el historial de auditoría de una ruta previamente cerrada y verificar que el sistema muestre correctamente su fecha y hora de cierre. 
 Acceptance Scenarios:
 1.	Scenario: Consultar historial de auditoría
 o	Given Una ruta que fue cerrada 
@@ -157,22 +157,7 @@ o	Given Un contrato en estado "En ejecución"
 o	When El usuario intenta calcular la liquidación. 
 o	Then El sistema debe impedir el cálculo
 ________________________________________
-User Story 2 – Visualizar detalle de liquidación(Priority: P2)
-Como gestor de contratación, quiero visualizar el detalle del cálculo de liquidación para entender cómo se obtuvo el valor final.
-Why this priority: Permite la visualización de los datos, facilitando el seguimiento y validación del proceso de liquidación.
-Independent Test: Para probarla,  se selecciona un contrato en estado "Finalizado" con pagos y ajustes registrados, ejecutando
-el cálculo de liquidación y verificando que el sistema genere correctamente el valor final.
-Acceptance Scenarios:
-1.	Scenario: Ver detalle completo
-o	Given Una liquidación ya calculada
-o	When El usuario consulta el detalle de la liquidación.
-o	Then El sistema muestra la información correspondiente: sus penalizaciones aplicadas, ajustes adicionales y valor final. 
-2.	Scenario: Intentar consultar liquidación inexistente
-o	Given Un contrato sin liquidación calculada.
-o	When El usuario consulta.
-o	Then El sistema indica que no existe liquidación registrada.
-________________________________________
-User Story 3 – Recalcular liquidación (Priority: P3)
+User Story 2 – Recalcular liquidación (Priority: P3)
 Como gestor de contratación, quiero recalcular la liquidación si se registran nuevos pagos o ajustes para mantener la información actualizada.
 Why this priority:  Permite la información actualizada cuando se registra nuevos pagos o ajustes posteriores.
 Independent Test: Se puede probar agregar un nuevo pago o ajuste de pago y ejecutando la opción de recalculo.
