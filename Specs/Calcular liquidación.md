@@ -1,109 +1,80 @@
-# Feature Specification: [FEATURE NAME]
+# Feature Specification: Calcular liquidación
 
-**Created**: [DATE]  
+**Created**: 23/02/2026  
 
 ## User Scenarios & Testing *(mandatory)*
 
-<!--
-  IMPORTANT: User stories should be PRIORITIZED as user journeys ordered by importance.
-  Each user story/journey must be INDEPENDENTLY TESTABLE - meaning if you implement just ONE of them,
-  you should still have a viable MVP (Minimum Viable Product) that delivers value.
-  
-  Assign priorities (P1, P2, P3, etc.) to each story, where P1 is the most critical.
-  Think of each story as a standalone slice of functionality that can be:
-  - Developed independently
-  - Tested independently
-  - Deployed independently
-  - Demonstrated to users independently
--->
+Dado un contrato  y se tiene el informe del estado del paquete que se ha creado, el sistema debe calcular automáticamente la liquidación correspondiente, considerando los valores contractuales,
+pagos realizados, penalizaciones y ajustes aplicables.
 
-### User Story 1 - [Brief Title] (Priority: P1)
 
-[Describe this user journey in plain language]
+### User Story 1 - Calcular liquidación automaticamente (Priority: P1)
 
-**Why this priority**: [Explain the value and why it has this priority level]
+Como gestor de tarifas, quiero que el sistema calcule automáticamente la liquidación de un contrato para obtener el valor final a pagar o cobrar.
 
-**Independent Test**: [Describe how this can be tested independently - e.g., "Can be fully tested by [specific action] and delivers [specific value]"]
+
+**Why this priority**: Es la funcionalidad principal del módulo. Sin el cálculo de liquidación, el módulo no cumple su propósito.
+
+**Independent Test**:  Seleccionar un contrato finalizado con pagos  y verificar que el sistema genere correctamente el valor de liquidación.
 
 **Acceptance Scenarios**:
 
-1. **Scenario**: [Descriptive scenario name]
-   - **Given** [initial state]
-   - **When** [action]
-   - **Then** [expected outcome]
+1. **Scenario**: Cálculo exitoso de liquidación.]
+   - **Given** Un contrato creado y el informe del estado del paquete
+   - **When** El usuario solicita el cálculo de liquidación.
+   - **Then** sistema calcula el valor total contractual
 
-2. **Scenario**: [Descriptive scenario name]
-   - **Given** [initial state]
-   - **When** [action]
-   - **Then** [expected outcome]
-
+    
 ---
 
-### User Story 2 - [Brief Title] (Priority: P2)
+### User Story 2 - Recalcular liquidación (Priority: P2)
 
-[Describe this user journey in plain language]
+Como gestor de contratación, quiero recalcular la liquidación si se registran nuevos  ajustes para mantener la información actualizada.
 
-**Why this priority**: [Explain the value and why it has this priority level]
+**Why this priority**: Permite la información actualizada cuando se registra nuevos pagos o ajustes posteriores.
 
-**Independent Test**: [Describe how this can be tested independently]
+**Independent Test**:Se puede probar agregar un nuevo ajuste de pago y ejecutando la opción de recalculo.
 
 **Acceptance Scenarios**:
 
-1. **Scenario**: [Descriptive scenario name]
-   - **Given** [initial state]
-   - **When** [action]
-   - **Then** [expected outcome]
+1. **Scenario**: Recalcular por nueva liquidación.
+   - **Given** Una liquidación ya calculado.
+   - **When** El usuario solicita recalcular.
+   - **Then** Then El sistema actualiza el valor final.
 
 ---
 
-[Add more user stories as needed, each with an assigned priority]
+
 
 ### Edge Cases
 
-<!--
-  ACTION REQUIRED: The content in this section represents placeholders.
-  Fill them out with the right edge cases.
--->
-
-- What happens when [boundary condition]?
-- How does system handle [error scenario]?
+- What happens when existe el contrato en una ruta no existente?
+- How does system handle Debe reportar un fallo tecnico en la base de datos ?
+- What happens when si la fecha de finalización es anterior a la fecha de inicio]?
+- How does system handle El sistema debe impedir el registro y mostrar error de validación.?
 
 ## Requirements *(mandatory)*
 
-<!--
-  ACTION REQUIRED: The content in this section represents placeholders.
-  Fill them out with the right functional requirements.
--->
-
 ### Functional Requirements
 
-- **FR-001**: System MUST [specific capability, e.g., "allow users to create accounts"]
-- **FR-002**: System MUST [specific capability, e.g., "validate email addresses"]  
-- **FR-003**: Users MUST be able to [key interaction, e.g., "reset their password"]
-- **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
-- **FR-005**: System MUST [behavior, e.g., "log all security events"]
+- **FR-001**: System MUST calcular automáticamente la liquidación de un contrato.
+- **FR-002**: System MUST aplicar penalizaciones y ajustes configurados.  
+- **FR-003**: System MUST Registrar auditoría del cálculo y recálculo.
 
-*Example of marking unclear requirements:*
+### Key Entities 
 
-- **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
-- **FR-007**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
-
-### Key Entities *(include if feature involves data)*
-
-- **[Entity 1]**: [What it represents, key attributes without implementation]
-- **[Entity 2]**: [What it represents, relationships to other entities]
+- **[Contrato]**:Representa un contrato entre la empresa y el trasportista.
+- **[liquidación]**: Representa el valor de la liquidación (idLiquidacion, idContrato, valorFinal, fechaCalculo) 
+- **[Estado del paquete]**: Representa los estados finales de los paquetes y los motivos de su estado final (idPaquete, novedades, estadoFinal)
+- **[Ajustes/penalización]**: Representa los ajustes del pago final de la liquidación, esta existe para relacionar los diferentes estados que puede estar el paquete (idAjuste, tipo, monton, razón) 
 
 ## Success Criteria *(mandatory)*
 
-<!--
-  ACTION REQUIRED: Define measurable success criteria.
-  These must be technology-agnostic and measurable.
--->
+
 
 ### Measurable Outcomes
 
-- **SC-001**: [Measurable metric, e.g., "Users can complete account creation in under 2 minutes"]
-- **SC-002**: [Measurable metric, e.g., "System handles 1000 concurrent users without degradation"]
-- **SC-003**: [User satisfaction metric, e.g., "90% of users successfully complete primary task on first attempt"]
-- **SC-004**: [Business metric, e.g., "Reduce support tickets related to [X] by 50%"]
+- **SC-001**: El 100% de los contratos pueden ser liquidados correctamente.
+- **SC-002**: No existen discrepancias entre valor calculado y valor mostrado.
+- **SC-003**: [User satisEl sistema evitan el 100% de liquidaciones duplicadas.
 

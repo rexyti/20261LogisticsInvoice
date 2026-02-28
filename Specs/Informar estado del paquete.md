@@ -1,109 +1,66 @@
-# Feature Specification: [FEATURE NAME]
+# Feature Specification: Informar estado del paquete
 
-**Created**: [DATE]  
+**Created**: 23/02/2026  
 
 ## User Scenarios & Testing *(mandatory)*
 
-<!--
-  IMPORTANT: User stories should be PRIORITIZED as user journeys ordered by importance.
-  Each user story/journey must be INDEPENDENTLY TESTABLE - meaning if you implement just ONE of them,
-  you should still have a viable MVP (Minimum Viable Product) that delivers value.
-  
-  Assign priorities (P1, P2, P3, etc.) to each story, where P1 is the most critical.
-  Think of each story as a standalone slice of functionality that can be:
-  - Developed independently
-  - Tested independently
-  - Deployed independently
-  - Demonstrated to users independently
--->
+Dado un informe del estado final de un paquete informado por el módulo de gestión de paquetes, el sistema debe registrar el evento y permitir su consulta en el módulo correspondiente.
 
-### User Story 1 - [Brief Title] (Priority: P1)
 
-[Describe this user journey in plain language]
+### User Story 1 - Registrar estado del paquete (Priority: P1)
 
-**Why this priority**: [Explain the value and why it has this priority level]
+Como módulo de logística, quiero informar el estado de un paquete para controlar el estado final del paquete en el sistema.
 
-**Independent Test**: [Describe how this can be tested independently - e.g., "Can be fully tested by [specific action] and delivers [specific value]"]
+
+**Why this priority**:  Esta funcionalidad es prioritaria porque permite reflejar el estado real del paquete en cada etapa del proceso logístico.
+
+**Independent Test**: Enviar un estado para un paquete existente y verificar que el sistema, registre el estado y guarde la fecha y hora del mismo.
 
 **Acceptance Scenarios**:
 
-1. **Scenario**: [Descriptive scenario name]
-   - **Given** [initial state]
-   - **When** [action]
-   - **Then** [expected outcome]
+1. **Scenario**: Actualización exitosa de estado
+   - **Given** Un paquete registrado en el sistema.
+   - **When** Se recibe una actualización del estado
+   - **Then** El sistema registra el nuevo estado (fecha y hora).
 
-2. **Scenario**: [Descriptive scenario name]
-   - **Given** [initial state]
-   - **When** [action]
-   - **Then** [expected outcome]
-
+2. **Scenario**: Paquete inexistente
+   - **Given** Un identificador de paquete no registrado
+   - **When** Se recibe una actualización de estado
+   - **Then** El sistema rechaza la actualización.
+3. **Scenario**: Estado duplicado.
+   - **Given** Un paquete con "x" estado.
+    - **When** Se recibe el mismo estado.
+    - **Then** El sistema no genera un nuevo registro innecesario.
 ---
-
-### User Story 2 - [Brief Title] (Priority: P2)
-
-[Describe this user journey in plain language]
-
-**Why this priority**: [Explain the value and why it has this priority level]
-
-**Independent Test**: [Describe how this can be tested independently]
-
-**Acceptance Scenarios**:
-
-1. **Scenario**: [Descriptive scenario name]
-   - **Given** [initial state]
-   - **When** [action]
-   - **Then** [expected outcome]
-
----
-
-[Add more user stories as needed, each with an assigned priority]
 
 ### Edge Cases
 
-<!--
-  ACTION REQUIRED: The content in this section represents placeholders.
-  Fill them out with the right edge cases.
--->
 
-- What happens when [boundary condition]?
-- How does system handle [error scenario]?
+- What happens when se recibe un estado invalido?
+- How does system handle Debe reportar un fallo al momento de ingresar el estado?
+- What happens when el sistema no puede persistir el cambioboundary condition?
+- How does system handle un fallo en la actualización y se registra el error.
 
 ## Requirements *(mandatory)*
 
-<!--
-  ACTION REQUIRED: The content in this section represents placeholders.
-  Fill them out with the right functional requirements.
--->
 
 ### Functional Requirements
 
-- **FR-001**: System MUST [specific capability, e.g., "allow users to create accounts"]
-- **FR-002**: System MUST [specific capability, e.g., "validate email addresses"]  
-- **FR-003**: Users MUST be able to [key interaction, e.g., "reset their password"]
-- **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
-- **FR-005**: System MUST [behavior, e.g., "log all security events"]
+- **FR-001**: System MUST registrar actualizaciones de estado para paquetes existentes.
+- **FR-002**: System MUST validar transiciones de estado permitidas. 
+- **FR-003**: System MUST evitar duplicaciones innecesarias de estado.s"]
 
-*Example of marking unclear requirements:*
+### Key Entities 
 
-- **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
-- **FR-007**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
-
-### Key Entities *(include if feature involves data)*
-
-- **[Entity 1]**: [What it represents, key attributes without implementation]
-- **[Entity 2]**: [What it represents, relationships to other entities]
+- **[Paquete]**: Representa un paquete (idPaquete, estadoActual, fechaCreacion)
+- **[EstadoPaquete]**: Representa el estado actual del paquete (idEstado, idPaquete, estado, fechaActualizacion)
+- **[HistorialEstado]**: Representa los diferentes cambios de estado de los paquetes (idHistorial, estadoAnterior, estadoNuevo, fechaCambio)
 
 ## Success Criteria *(mandatory)*
 
-<!--
-  ACTION REQUIRED: Define measurable success criteria.
-  These must be technology-agnostic and measurable.
--->
-
 ### Measurable Outcomes
 
-- **SC-001**: [Measurable metric, e.g., "Users can complete account creation in under 2 minutes"]
-- **SC-002**: [Measurable metric, e.g., "System handles 1000 concurrent users without degradation"]
-- **SC-003**: [User satisfaction metric, e.g., "90% of users successfully complete primary task on first attempt"]
-- **SC-004**: [Business metric, e.g., "Reduce support tickets related to [X] by 50%"]
+- **SC-001**: El 100% de las actualizaciones válidas son registradas correctamente.
+- **SC-002**: El sistema evita el 100% de actualizaciones duplicadas.
+- **SC-003**: No existen inconsistencias entre estado actual e historial.
 

@@ -183,8 +183,8 @@ Acceptance Scenarios:
 1.	Scenario: Recalcular por nueva liquidación.
 o	Given Una liquidación ya calculado.
 o	When El usuario solicita recalcular. 
-o	Then El sistema actualiza el valor final.
-________________________________________
+_o	Then El sistema actualiza el valor final.
+_________________________________________
 
 Edge Cases
 •	What happens when existe el contrato en una ruta no existente
