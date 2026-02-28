@@ -292,7 +292,7 @@ Functional Requirements
 •	FR-003: Users MUST Mostrar un mensaje cuando se trate de buscar una lista no existente.
 •	FR-004: Users MUST Mostrar un mensaje cuando se trate de buscar una lista que no pertence al transportista que realiza la petición.
 Key Entities (include if feature involves data)
-•	Ruta : Representa una ruta operativa del sistema. (idLiquidación, fechaCreacion, MontodePago, Penalidad).
+•	Liquidación : Representa una liuqidación del sistema. (idLiquidación, fechaCreacion, MontodePago, Penalidad).
 Success Criteria (mandatory)
 Measurable Outcomes
 •	SC-001: El 100% de los eventos válidos de visualización de liquidación son registrados correctamente.
@@ -342,7 +342,7 @@ Functional Requirements
 •	FR-003: Users MUST Mostrar un mensaje cuando se trate de registrar un estado de pago ya existente.
 •	FR-004: Users MUST Mostrar un mensaje cuando se trate de actualizar un estado de pago para una liquidación pagada.
 Key Entities (include if feature involves data)
-•	Ruta : Representa una ruta operativa del sistema. (idPago, estado).
+•	Pago : Representa el pago de una liquidación. (idPago, estado, idLiquidación).
 Success Criteria (mandatory)
 Measurable Outcomes
 •	SC-001: El 100% de los eventos válidos de registro de pago son registrados correctamente.
@@ -397,7 +397,7 @@ Functional Requirements
 •	FR-003: Users MUST Mostrar un mensaje cuando se trate de buscar una liquidación no existente.
 •	FR-004: Users MUST Mostrar un mensaje cuando se trate de buscar una liquidación que no pertence al transportista que realiza la petición.
 Key Entities (include if feature involves data)
-•	Ruta : Representa una ruta operativa del sistema. (idLiquidación, estado).
+•	Pago : Representa el pago de una liquidación. (idPago, estado, idLiquidación).
 Success Criteria (mandatory)
 Measurable Outcomes
 •	SC-001: El 100% de los eventos válidos de visualización de estado de pago son registrados correctamente.
