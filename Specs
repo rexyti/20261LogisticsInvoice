@@ -1,4 +1,4 @@
-Feature Specification: Informar cierre de ruta
+1) Feature Specification: Informar cierre de ruta
 Created: 21/02/2026
 User Scenarios & Testing (mandatory)
 Dado un cierre de ruta informado por el módulo de rutas y flotas, el sistema debe registrar el evento y permitir su consulta en el módulo correspondiente.
@@ -17,7 +17,6 @@ o	Given Una ruta cerrada
 o	When Se recibe nuevamente el evento de cierre
 o	Then El sistema no debe registrar nuevamente la ruta cerrada
 _______________________________________
-
 Edge Cases
 •	What happens when se recibe un evento de cierre para una ruta inexistente?
 •	How does system handle Debe rechazar el evento y registrar un error
@@ -39,8 +38,9 @@ Measurable Outcomes
 •	SC-002: El sistema Evita el 100% de los registros duplicados
 •	SC-003: Se reduce a 0 los incidentes por inconsistencias de estados de rutas cerradas.
 
+_______________________________________________________________________________________________________________
 
-Feature Specification: Visualizar cierre de ruta.
+2) Feature Specification: Visualizar cierre de ruta.
 Created: 21/02/2026
 User Scenarios & Testing (mandatory)
 Dado el informe de cierre de rutas, el sistema debe de permitir la visualización de los datos de este. 
@@ -81,9 +81,9 @@ Measurable Outcomes
 •	SC-002: El sistema Evita el 100% de los registros duplicados
 •	SC-003: Se reduce a 0 los incidentes por inconsistencias de estados de rutas cerradas.
 
+_______________________________________________________________________________________________________________
 
-
-Feature Specification: Registrar modelo de contratación 
+3) Feature Specification: Registrar modelo de contratación 
 Created: 23/02/2026
 User Scenarios & Testing (mandatory)
 Dado el registro de un modelo de contratación creado por el gestor de tarifas, el sistema debe permitir ingresar la informacion del contrato y dejarlo disponible para su consulta 
@@ -155,8 +155,10 @@ Measurable Outcomes
 •	SC-002: El sistema Evita el 100% de los registros duplicados
 •	SC-003: Se reduce a 0 los incidentes por inconsistencias en los campos obligatorios del contrato.
 
+_______________________________________________________________________________________________________________
 
-Feature Specification: Calcular liquidación 
+
+4) Feature Specification: Calcular liquidación 
 Created: 23/02/2026
 User Scenarios & Testing (mandatory)
 Dado un contrato  y se tiene el informe del estado del paquete que se ha creado, el sistema debe calcular automáticamente la liquidación correspondiente, considerando los valores contractuales,
@@ -203,7 +205,9 @@ Measurable Outcomes
 •	SC-002: No existen discrepancias entre valor calculado y valor mostrado.
 •	SC-003: El sistema evitan el 100% de liquidaciones duplicadas.
 
-Feature Specification: Informar estado del paquete 
+_______________________________________________________________________________________________________________
+
+5) Feature Specification: Informar estado del paquete 
 Created: 23/02/2026
 User Scenarios & Testing (mandatory)
 Dado un informe del estado final de un paquete informado por el módulo de gestión de paquetes, el sistema debe registrar el evento y permitir su consulta en el módulo correspondiente.
@@ -225,7 +229,7 @@ o	Then El sistema rechaza la actualización.
 o	Given Un paquete con "x" estado.
 o	When Se recibe el mismo estado.
 o	Then El sistema no genera un nuevo registro innecesario.
-________________________________________
+_______________________________________
 
 Edge Cases
 •	What happens when si se recibe un estado invalido
@@ -246,8 +250,9 @@ Measurable Outcomes
 •	SC-002: El sistema evita el 100% de actualizaciones duplicadas.
 •	SC-003: No existen inconsistencias entre estado actual e historial.
 
+_______________________________________________________________________________________________________________
 
-Feature Specification: Visualizar liquidación
+6) Feature Specification: Visualizar liquidación
 Created: 21/02/2026
 User Scenarios & Testing (mandatory)
 Dado la visualización de un cierre de rutas, el sistema debe de enseñar de la liquidación.
@@ -293,8 +298,9 @@ Measurable Outcomes
 •	SC-001: El 100% de los eventos válidos de visualización de liquidación son registrados correctamente.
 •	SC-002: El sistema Evita el 100% de los registros duplicados.
 
+_______________________________________________________________________________________________________________
 
-Feature Specification: Registro del estado del pago
+7) Feature Specification: Registro del estado del pago
 Created: 21/02/2026
 User Scenarios & Testing (mandatory)
 Dado el registro del estado pago, el sistema debe permitir el ingreso de la estación en la que se encuentre el pago.
@@ -322,7 +328,6 @@ o	Given una liquidación que fue pagada.
 o	When Se recibe la instrucción de actualización de pago.
 o	Then El sistema debe mostrar un mensaje indicando que la liquidación ya fue pagada y no se puede realizar una actualización.
 _______________________________________
-
 Edge Cases
 •	What happens when el sistema recibe la instrucción de registrar un estado una liquidación inexistente. 
 •	How does system handle Debe rechazar cualquier registro y mostrar un mensaje de falta de liquidación.
@@ -345,7 +350,9 @@ Measurable Outcomes
 •	SC-003: El 100% de los eventos válidos de actualización de pago son registrados correctamente.
 •	SC-004: El sistema Evita el 100% de los actualizaciones solapadas.
 
-Feature Specification: Visualizar liquidación
+_______________________________________________________________________________________________________________
+
+8) Feature Specification: Visualizar liquidación
 Created: 21/02/2026
 User Scenarios & Testing (mandatory)
 Dado la visualización de un cierre de rutas, el sistema debe de enseñar de la liquidación.
