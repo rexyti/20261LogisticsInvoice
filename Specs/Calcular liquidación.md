@@ -23,6 +23,7 @@ Como gestor de tarifas, quiero que el sistema calcule automáticamente la liquid
    - **Given** Un contrato creado y el informe del estado del paquete
    - **When** El usuario solicita el cálculo de liquidación.
    - **Then** sistema calcula el valor final de la liquidación
+   - **And** registra la liquidación asociada al contrato
 
     
 ---
@@ -40,7 +41,8 @@ Como gestor de contratación, quiero recalcular la liquidación si se registran 
 1. **Scenario**: Recalcular por nueva liquidación.
    - **Given** Una liquidación ya calculada.
    - **When** El usuario solicita recalcular.
-   - **Then** Then El sistema actualiza el valor final.
+   - **Then** El sistema actualiza valor final de la liquidación 
+   - **And** Registra auditoria del recalculo.
 
 ---
 
@@ -57,7 +59,7 @@ Como gestor de contratación, quiero recalcular la liquidación si se registran 
 
 ### Functional Requirements
 
-- **FR-001**: System MUST calcular automáticamente la liquidación de un contrato.
+- **FR-001**: System MUST calcular automáticamente la liquidación cuando el contrato se encuentra finalizado y el usuario confirma la acción de cálculo.
 - **FR-002**: System MUST aplicar penalizaciones y ajustes configurados.  
 - **FR-003**: System MUST Registrar auditoría del cálculo y recálculo.
 - **FR-004**: System MUST evitar la generación de liquidaciones duplicadas para un mismo contrato.
@@ -65,7 +67,7 @@ Como gestor de contratación, quiero recalcular la liquidación si se registran 
 ### Key Entities 
 
 - **[Contrato]**:Representa un contrato entre la empresa y el trasportista.
-- **[liquidación]**: Representa el valor de la liquidación (idLiquidacion, idContrato, valorFinal, fechaCalculo) 
+- **[liquidación]**: Representa el valor de la liquidación (idLiquidacion, idContrato, estadoLiquidación ,valorFinal, fechaCalculo) 
 - **[Estado del paquete]**: Representa los estados finales de los paquetes y los motivos de su estado final (idPaquete, novedades, estadoFinal)
 - **[Ajustes/penalización]**: Representa los ajustes del pago final de la liquidación, esta existe para relacionar los diferentes estados que puede estar el paquete (idAjuste, tipo, monto, razón) 
 
@@ -76,6 +78,6 @@ Como gestor de contratación, quiero recalcular la liquidación si se registran 
 ### Measurable Outcomes
 
 - **SC-001**: El 100% de los contratos pueden ser liquidados correctamente.
-- **SC-002**: No existen discrepancias entre valor calculado y valor mostrado.
+- **SC-002**: No existen discrepancias entre valor calculado y valor almacenado y mostrado.
 - **SC-003**: El sistema evita el 100% de liquidaciones duplicadas.
 
