@@ -13,13 +13,13 @@ Como gestor de tarifas, quiero registrar un nuevo contrato en el sistema para fo
 
 **Why this priority**:Por funcionalidad crítica, ya que sin el registro de contratos el módulo no cumple su propósito.
 
-**Independent Test**: Se puede probar creando un contrato con datos válidos (idContrato, tipo de contrato, nombre del conductor, Paradas, tipo de vehiculo, estadoContrato) y verificar que el sistema lo almacene correctamente y deje disponible para consulta.
+**Independent Test**: Se puede probar creando un contrato con datos válidos (idContrato, tipo de contrato, nombre del conductor, Paradas, tipo de vehiculo, estadoContrato, fecha inicio, fecha final) y verificar que el sistema lo almacene correctamente y deje disponible para consulta.
 
 **Acceptance Scenarios**:
 
 1. **Scenario**: Registrar contrato de manera exitosa
    - **Given** El usuario tiene permisos de gestor de tarifas.
-   - **When** Ingresa la información obligatoria (idContrato, tipo de contrato, nombre del conductor, tipo de vehiculo, Paradas, estadoContrato) del contrato.
+   - **When** Ingresa la información obligatoria (idContrato, tipo de contrato, nombre del conductor, tipo de vehiculo, Paradas, estadoContrato, fecha inicio, fecha final) del contrato.
    - **Then** El sistema registra el contrato.
 
 2. **Scenario**: Registrar un contrato con datos incompletos
@@ -80,6 +80,7 @@ Como gestor, quiero recibir una notificación cuando un contrato cambie de estad
 - How does system handle Debe rechazar el registro y mostrar los campos faltantes.
 - What happens when la fecha de finalización es anterior a la fecha de inicio?
 - How does system handle El sistema debe impedir el registro y mostrar error de validación.
+
 ## Requirements *(mandatory)*
 
 ### Functional Requirements
@@ -88,13 +89,12 @@ Como gestor, quiero recibir una notificación cuando un contrato cambie de estad
 - **FR-002**: System MUST Validar que el contrato tenga todos los campos  con información. 
 - **FR-003**: Users MUST be able to  consultar los datos de los diferentes contratos.
 - **FR-004**: System MUST evitar registros duplicados de contratos con el mismo identificador externo.
-- **FR-005**: System MUST permitir la consulta de los diferentes contratos.
 
 
 ### Key Entities 
 
-- **[Contrato]**: Representa un contrato entre la empresa y el trasportista. (idContrato, estado, fechaCreacion, fechaCierre, horaCierre, novedades) 
-- **[Usuario]**: Representa el trasportista. (idContrato,idUsuario , nombre)
+- **[Contrato]**: Representa un contrato entre la empresa y el trasportista. (idContrato, TipoContrato, estado, fechaCreacion, fechaCierre, horaCierre, novedades) 
+- **[Usuario]**: Representa un actor que manejara el sistema. (idContrato,idUsuario , nombre)
 - **[vehiculo]**: Representa el vehiculo que usara el trasportista. (idVehiculo, idUsuario, tipo)
 
 ## Success Criteria *(mandatory)*
