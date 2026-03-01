@@ -47,6 +47,8 @@ Como miembro del equipo de gestión de tarifas, quiero que el sistema me permita
 - **FR-001**: System MUST Mostrar las rutas almacenadas en forma de lista organizada.
 - **FR-002**: System MUST be able to buscar una ruta especifica. 
 - **FR-003**: Users MUST be able to Mostrar un mensaje cuando se trate de buscar una ruta no existente.
+- **FR-004**: System MUST mostrar la información en un esquema Master-Detail
+- **FR-005**: System MUST permitir paginación o carga progresiva de rutas.
 
 ### Key Entities 
 
@@ -61,7 +63,7 @@ Como miembro del equipo de gestión de tarifas, quiero que el sistema me permita
 
 ### Measurable Outcomes
 
-- **SC-001**: El 100% de los eventos válidos de cierre de ruta son registrados correctamente.
-- **SC-002**: El sistema Evita el 100% de los registros duplicados
-- **SC-003**: Se reduce a 0 los incidentes por inconsistencias de estados de rutas cerradas.
+- **SC-001**: El usuario puede consultar una ruta cerrada en menos de 3 segundos.
+- **SC-002**: El 100% de las rutas cerradas muestran información completa.
+- **SC-003**: El sistema muestra mensajes claros cuando no existen resultados.
 
