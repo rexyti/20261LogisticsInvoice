@@ -93,7 +93,7 @@ Como gestor, quiero recibir una notificación cuando un contrato cambie de estad
 
 ### Key Entities 
 
-- **[Contrato]**: Representa un contrato entre la empresa y el trasportista. (idContrato, TipoContrato, estado, fechaCreacion, fechaCierre, horaCierre, novedades) 
+- **[Contrato]**: Representa un contrato entre la empresa y el trasportista. (idContrato, tipo de contrato, nombre del conductor, Paradas, tipo de vehiculo, estadoContrato, fecha inicio, fecha final)
 - **[Usuario]**: Representa un actor que manejara el sistema. (idContrato,idUsuario , nombre)
 - **[vehiculo]**: Representa el vehiculo que usara el trasportista. (idVehiculo, idUsuario, tipo)
 
