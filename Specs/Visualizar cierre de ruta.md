@@ -54,8 +54,10 @@ Como miembro del equipo de gestión de tarifas, quiero que el sistema me permita
 
 
 - **[Ruta]**: Representa una ruta operativa del sistema. (idRuta, estado, fechaCreacion, fechaCierre )
-- **[EventeCierreRuta]**: Representa el evento recibido desde el módulo externo. ( se relaciona a la ruta, permitiendo una relación de one to one)
+- **[EventoCierreRuta]**: Representa el evento recibido desde el módulo externo. ( se relaciona a la ruta, permitiendo una relación de one to one)
 - **[Parada]**:  Representa los diferentes puntos donde se para el vehiculo para entregar un paquete. (idRuta, nombre)
+- **[NovedadRuta]**:  Representa las novedades que presente una ruta. (idNovedad, idRuta, descripcion)
+
 
 ## Success Criteria *(mandatory)*
 
@@ -65,5 +67,5 @@ Como miembro del equipo de gestión de tarifas, quiero que el sistema me permita
 
 - **SC-001**: El usuario puede consultar una ruta cerrada en menos de 3 segundos.
 - **SC-002**: El 100% de las rutas cerradas muestran información completa.
-- **SC-003**: El sistema muestra mensajes claros cuando no existen resultados.
+- **SC-003**: El sistema muestra mensajes claros cuando no existen resultados de busqueda.
 
