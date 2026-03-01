@@ -19,10 +19,10 @@ Como gestor de tarifas, quiero que el sistema calcule automáticamente la liquid
 
 **Acceptance Scenarios**:
 
-1. **Scenario**: Cálculo exitoso de liquidación.]
+1. **Scenario**: Cálculo exitoso de liquidación.
    - **Given** Un contrato creado y el informe del estado del paquete
    - **When** El usuario solicita el cálculo de liquidación.
-   - **Then** sistema calcula el valor total contractual
+   - **Then** sistema calcula el valor final de la liquidación
 
     
 ---
@@ -38,7 +38,7 @@ Como gestor de contratación, quiero recalcular la liquidación si se registran 
 **Acceptance Scenarios**:
 
 1. **Scenario**: Recalcular por nueva liquidación.
-   - **Given** Una liquidación ya calculado.
+   - **Given** Una liquidación ya calculada.
    - **When** El usuario solicita recalcular.
    - **Then** Then El sistema actualiza el valor final.
 
@@ -49,9 +49,9 @@ Como gestor de contratación, quiero recalcular la liquidación si se registran 
 ### Edge Cases
 
 - What happens when existe el contrato en una ruta no existente?
-- How does system handle Debe reportar un fallo tecnico en la base de datos ?
-- What happens when si la fecha de finalización es anterior a la fecha de inicio]?
-- How does system handle El sistema debe impedir el registro y mostrar error de validación.?
+- How does system handle Debe reportar un fallo tecnico en la base de datos 
+- What happens when si la fecha de finalización es anterior a la fecha de inicio?
+- How does system handle El sistema debe impedir el registro y mostrar error de validación.
 
 ## Requirements *(mandatory)*
 
@@ -60,13 +60,14 @@ Como gestor de contratación, quiero recalcular la liquidación si se registran 
 - **FR-001**: System MUST calcular automáticamente la liquidación de un contrato.
 - **FR-002**: System MUST aplicar penalizaciones y ajustes configurados.  
 - **FR-003**: System MUST Registrar auditoría del cálculo y recálculo.
+- **FR-004**: System MUST evitar la generación de liquidaciones duplicadas para un mismo contrato.
 
 ### Key Entities 
 
 - **[Contrato]**:Representa un contrato entre la empresa y el trasportista.
 - **[liquidación]**: Representa el valor de la liquidación (idLiquidacion, idContrato, valorFinal, fechaCalculo) 
 - **[Estado del paquete]**: Representa los estados finales de los paquetes y los motivos de su estado final (idPaquete, novedades, estadoFinal)
-- **[Ajustes/penalización]**: Representa los ajustes del pago final de la liquidación, esta existe para relacionar los diferentes estados que puede estar el paquete (idAjuste, tipo, monton, razón) 
+- **[Ajustes/penalización]**: Representa los ajustes del pago final de la liquidación, esta existe para relacionar los diferentes estados que puede estar el paquete (idAjuste, tipo, monto, razón) 
 
 ## Success Criteria *(mandatory)*
 
@@ -76,5 +77,5 @@ Como gestor de contratación, quiero recalcular la liquidación si se registran 
 
 - **SC-001**: El 100% de los contratos pueden ser liquidados correctamente.
 - **SC-002**: No existen discrepancias entre valor calculado y valor mostrado.
-- **SC-003**: [User satisEl sistema evitan el 100% de liquidaciones duplicadas.
+- **SC-003**: El sistema evita el 100% de liquidaciones duplicadas.
 
