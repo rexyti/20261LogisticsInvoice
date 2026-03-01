@@ -22,7 +22,7 @@ Como gestor de tarifas, quiero que el sistema calcule automáticamente la liquid
 1. **Scenario**: Cálculo exitoso de liquidación.
    - **Given** Un contrato creado y el informe del estado del paquete
    - **When** El usuario solicita el cálculo de liquidación.
-   - **Then** sistema calcula el valor final de la liquidación
+   - **Then**  El sistema calcula el valor final de la liquidación
    - **And** registra la liquidación asociada al contrato
 
     
@@ -67,7 +67,7 @@ Como gestor de contratación, quiero recalcular la liquidación si se registran 
 ### Key Entities 
 
 - **[Contrato]**:Representa un contrato entre la empresa y el trasportista.
-- **[liquidación]**: Representa el valor de la liquidación (idLiquidacion, idContrato, estadoLiquidación ,valorFinal, fechaCalculo) 
+- **[liquidación]**: Representa el valor de la liquidación (idLiquidacion, idContrato, estadoLiquidacion, valorFinal, fechaCalculo, usuarioCalculo)
 - **[Estado del paquete]**: Representa los estados finales de los paquetes y los motivos de su estado final (idPaquete, novedades, estadoFinal)
 - **[Ajustes/penalización]**: Representa los ajustes del pago final de la liquidación, esta existe para relacionar los diferentes estados que puede estar el paquete (idAjuste, tipo, monto, razón) 
 
