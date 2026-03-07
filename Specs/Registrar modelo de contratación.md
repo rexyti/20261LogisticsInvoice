@@ -17,7 +17,7 @@ Como gestor de tarifas, quiero registrar un nuevo contrato en el sistema para fo
 
 **Acceptance Scenarios**:
 
-1. **Scenario**: Registrar contrato de manera exitosa
+1. **Scenario**: Guardar contrato de manera exitosa
    - **Given** El usuario tiene permisos de gestor de tarifas.
    - **When** Ingresa la información obligatoria (idContrato, tipo de contrato, nombre del conductor, tipo de vehículo, Precio por parada, fecha inicio, fecha final, Seguro) del contrato.
    - **Then** El sistema guarda un modelo de contratación.

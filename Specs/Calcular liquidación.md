@@ -15,22 +15,22 @@ Como gestor de tarifas, quiero que el sistema calcule automáticamente la liquid
 
 **Why this priority**: Es la funcionalidad principal del módulo. Sin el cálculo de liquidación, el módulo no cumple su propósito.
 
-**Independent Test**:  Seleccionar un contrato finalizado con pagos  y verificar que el sistema genere correctamente el valor de liquidación.
+**Independent Test**: Seleccionar una ruta finalizada (IdRuta), modelo de contratación (IdContrato, Tipo de modelo de contratación), paquete (IdPaquete, novedades, estadoFinal)y verificar que el sistema genere correctamente el valor de liquidación.
 
 **Acceptance Scenarios**:
 
 1. **Scenario**: Cálculo exitoso de liquidación.
-   - **Given** Un contrato creado y el informe del estado del paquete
+   - **Given** Un modelo de contratación creado, el informe del estado del paquete e informe de cierre de ruta.
    - **When** El usuario solicita el cálculo de liquidación.
    - **Then**  El sistema calcula el valor final de la liquidación
-   - **And** registra la liquidación asociada al contrato
+   - **And** registra la liquidación asociada a la ruta.
 
     
 ---
 
 ### User Story 2 - Recalcular liquidación (Priority: P2)
 
-Como gestor de contratación, quiero recalcular la liquidación si se registran nuevos  ajustes para mantener la información actualizada.
+Como gestor de contratación, quiero recalcular la liquidación si se registran nuevos ajustes para mantener la información actualizada.
 
 **Why this priority**: Permite la información actualizada cuando se registra nuevos pagos o ajustes posteriores.
 
@@ -50,7 +50,7 @@ Como gestor de contratación, quiero recalcular la liquidación si se registran 
 
 ### Edge Cases
 
-- What happens when existe el contrato en una ruta no existente?
+- What happens when existe el modelo de contratación en una ruta no existente?
 - How does system handle Debe reportar un fallo tecnico en la base de datos 
 - What happens when si la fecha de finalización es anterior a la fecha de inicio?
 - How does system handle El sistema debe impedir el registro y mostrar error de validación.
@@ -66,10 +66,11 @@ Como gestor de contratación, quiero recalcular la liquidación si se registran 
 
 ### Key Entities 
 
-- **[Contrato]**:Representa un contrato entre la empresa y el trasportista.
-- **[liquidación]**: Representa el valor de la liquidación (idLiquidacion, idContrato, estadoLiquidacion, valorFinal, fechaCalculo, usuarioCalculo)
+- **[Contrato]**:Representa un contrato entre la empresa y el trasportista (IdContrato, Tipo de contratación).
+- **[Ruta]**:Representa una ruta que debe ser liquidada (IdRuta, FechaInicio, FechaCierre).
+- **[liquidación]**: Representa el valor de la liquidación (idLiquidacion, idContrato, idRuta, estadoLiquidacion, valorFinal, fechaCalculo, idPenalidad, estadoPenalidad)
 - **[Estado del paquete]**: Representa los estados finales de los paquetes y los motivos de su estado final (idPaquete, novedades, estadoFinal)
-- **[Ajustes/penalización]**: Representa los ajustes del pago final de la liquidación, esta existe para relacionar los diferentes estados que puede estar el paquete (idAjuste, tipo, monto, razón) 
+- **[Ajustes/penalización]**: Representa los ajustes del pago final de la liquidación, esta existe para relacionar los diferentes estados que puede estar el paquete (idPenalización, tipo, monto, razón) 
 
 ## Success Criteria *(mandatory)*
 

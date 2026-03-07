@@ -9,11 +9,11 @@ Dada una liquidación previamente calculada y almacenada en el sistema, el siste
 
 ### User Story 1 - Visualizar liquidación (Priority: P1)
 
-Como miembro de la entidad financiera ó transporador, quiero que el sistema me permita buscar una liquidación especifica, dependiendo del rol, y visualizar la información registrada para garantizar la trazabilidad de los datos financieros.
+Como miembro de la entidad financiera, quiero que el sistema me permita buscar una liquidación específica, y visualizar la información registrada para garantizar la trazabilidad de los datos financieros.
 
 **Why this priority**: Permite mantener una trazabilidad de las diferentes liquidaciones fueron previamente calculadas.
 
-**Independent Test**: Consultar desde una lista las liquidaciones previamente calculadas y verificar que el sistema muestre únicamente aquellas permitidas según el rol del usuario. (Fecha de salida de la liquidación, monto de pago a transportista, penalidad).
+**Independent Test**: Consultar desde una lista las liquidaciones previamente calculadas y verificar que el sistema las enseñe. (IdRutas, FechaInicio, FechaCierre, IdLiquidación, Idpenalidad, tipo de vehiculo, PrecioParada, Número de paradas, Monto Bruto, MontoNeto, estadoliquidación, FechaCalculo).
 
 **Acceptance Scenarios**:
 
@@ -31,13 +31,8 @@ Como miembro de la entidad financiera ó transporador, quiero que el sistema me 
     - **Given** una lista de liquidaciones
     - **When** Se recibe la liquidación que no exista
     - **Then** El sistema debe mostrar un mensaje indicando que la liquidación es inexistente dentro del registro.
-      
-4. **Scenario**: buscar una liquidación, siendo transportista, de otro transportista.
-    - **Given** una lista de liquidaciones.
-    - **When** Se pide una liquidación no perteneciente al transportista que realiza la petición.
-    - **Then** El sistema debe mostrar un mensaje indicando que la liquidación es inexistente para el transportista.
 
-5. **Scenario**: Liquidación no disponible
+4. **Scenario**: Liquidación no disponible
    - **Given** El contrato no posee liquidación calculada
    - **When** El usuario intenta consultarla
    - **Then**n El sistema muestra mensaje indicando que la liquidación aún no existe.
@@ -58,12 +53,15 @@ Como miembro de la entidad financiera ó transporador, quiero que el sistema me 
 - **FR-001**: System MUST Mostrar las liquidaciones almacenadas en forma de lista organizada.
 - **FR-002**: System MUST be able to buscar una liquidación especifica.
 - **FR-003**: System MUST Mostrar un mensaje cuando se trate de buscar una liquidación no existente.
-- **FR-004**: System MUST Mostrar un mensaje cuando se trate de buscar una liquidación que no pertence al transportista que realiza la petición.
 
 
 ### Key Entities 
 
-- **[Liquidación ]**: Representa una liquidación del sistema. (idLiquidación, idContrato, fechaCalculo, monto, Penalidad).
+- **[Contrato]**:Representa un contrato entre la empresa y el trasportista (IdContrato, Tipo de contratación).
+- **[Ruta]**:Representa una ruta que debe ser liquidada (IdRuta, FechaInicio, FechaCierre).
+- **[liquidación]**: Representa el valor de la liquidación (idLiquidacion, idContrato, idRuta, estadoLiquidacion, valorFinal, fechaCalculo, idPenalidad, estadoPenalidad)
+- **[Estado del paquete]**: Representa los estados finales de los paquetes y los motivos de su estado final (idPaquete, novedades, estadoFinal)
+- **[Ajustes/penalización]**: Representa los ajustes del pago final de la liquidación, esta existe para relacionar los diferentes estados que puede estar el paquete (idPenalización, tipo, monto, razón)
 
 ## Success Criteria *(mandatory)*
 
@@ -71,5 +69,5 @@ Como miembro de la entidad financiera ó transporador, quiero que el sistema me 
 ### Measurable Outcomes
 
 - **SC-001**: El 100% de las liquidaciones autorizadas son visualizadas correctamente.
-- **SC-002**:  El sistema restringe el acceso no autorizado en el 100% de los intentos.
+- **SC-002**: El sistema restringe el acceso no autorizado en el 100% de los intentos.
 

@@ -13,7 +13,7 @@ Como usuario deseo visualizar el estado actual de mi pago asociado a una liquida
 
 **Why this priority**: Es una funcionalidad crítica porque permite al usuario confirmar si recibirá el dinero o si debe realizar alguna acción adicional.
 
-**Independent Test**: Puede probarse consultando el estado de un pago previamente registrado, verificando que el sistema muestre correctamente su estado.
+**Independent Test**: Puede probarse consultando el estado de un pago previamente registrado(IdRuta, MontodePago, Fecha de Pago, Estado), verificando que el sistema muestre correctamente su estado.
 
 **Acceptance Scenarios**:
 
@@ -38,18 +38,22 @@ Como usuario deseo visualizar el estado actual de mi pago asociado a una liquida
 
 ### User Story 2 - Consultar detalle del pago (Priority: P2)
 
-Como usuario deseo visualizar informacion detallada del pago incluyendo ajustes y penalizaciones aplicadas, para entender valores, fechas y métodos utilizados.
+Como usuario deseo visualizar información detallada del pago incluyendo ajustes y penalizaciones aplicadas, para entender valores, fechas y métodos utilizados.
 
 **Why this priority**: Aporta transparencia al proceso financiero y evita reclamos por desconocimiento del monto
 
-**Independent Test**: Puede probarse seleccionando un pago específico y verificando que el sistema despliegue toda la información relacionada al pago.
+**Independent Test**: Puede probarse seleccionando un pago específico y verificando que el sistema despliegue toda la información relacionada al mismo(IdPago,idUsuario,  MontoBase, fecha, IdPenalidad, MontoNeto, idRuta).
 
 **Acceptance Scenarios**:
 
 1. **Scenario**: Visualización del detalle del pago
    - **Given** Existe un pago asociado al usuario
    - **When** Consulta los detalles del pago.
-   - **Then** el sistema muestra monto, fecha, Ajustes/penalidades y estado del pago
+   - **Then** el sistema muestra MontoBase,MontoNeto, fecha, Ajustes/penalidades y estado del pago
+1. **Scenario**: Descargar la factura del detalle del pago
+    - **Given** Existe un pago asociado al usuario
+    - **When** Descarga la factura.
+    - **Then** el sistema instala un PDF con los apartados de IDRuta, Fecha de Emisión, MontoBase, MontoNeto y ajustes de penalidad.
 
 ---
 
@@ -77,10 +81,12 @@ Como usuario deseo visualizar informacion detallada del pago incluyendo ajustes 
 
 ### Key Entities *(include if feature involves data)*
 
-- **[Pago ]**: Representa la transacción económica realizada (IdPago,idUsuario,  monto, método de pago, fecha)
-- **[Usuario]**: Persona que recibe o consulta el pago. Se relaciona con uno o varios pagos (idUser, nombre)
+- **[Pago ]**: Representa la transacción económica realizada (IdPago,idUsuario, MontoBasae, fecha, IdPenalidad, MontoNeto)
+- **[Penalidad]**:Representa la penalidad que puede cometer un transportista (IdPenalidad, TipoPenalidad)
+- **[Usuario]**: Persona que recibe o consulta el pago. Se relaciona con uno o varios pagos (idUser, nombre,TotalPagado,PagosPendientes)
 - **[EstadoPago]**: Representa la condición actual del pago (IdEstadoPago, idPago, estado)
-
+- **[IdRuta]**:Representa la ruta que será pagada al transportista (IdRuta).
+- **[Contraro]**:Representa el modelo de contratación asociado a la ruta(IdContrato, Tipo de contrato).
 ## Success Criteria *(mandatory)*
 
 
