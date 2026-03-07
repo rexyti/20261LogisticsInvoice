@@ -32,7 +32,7 @@ Como usuario deseo visualizar el estado actual de mi pago asociado a una liquida
    - **Given** El pago fue rechazado
    - **When** El usuario consulta el estado del pago
    - **Then** El sistema muestra el estado "Rechazado"
-   - **And** muestra el motivo del rechazo.
+   - **And** Muestra el motivo del rechazo.
 
 ---
 
@@ -72,12 +72,12 @@ Como usuario deseo visualizar informacion detallada del pago incluyendo ajustes 
 - **FR-002**: System MUST mostrar estados válidos del pago. 
 - **FR-003**: Users MUST be able to visualizar el detalle completo de pago
 - **FR-004**: System MUST asociar cada pago a un usuario especifico.
-- **FR-005**: System MUST restringir la visualización únicamente al propetario del pago.
+- **FR-005**: System MUST restringir la visualización únicamente al propietario del pago.
 
 
 ### Key Entities *(include if feature involves data)*
 
-- **[Pago ]**: Representa la transacción economica realizada (IdPago,idUsuario,  monton, método de pago, fecha)
+- **[Pago ]**: Representa la transacción económica realizada (IdPago,idUsuario,  monto, método de pago, fecha)
 - **[Usuario]**: Persona que recibe o consulta el pago. Se relaciona con uno o varios pagos (idUser, nombre)
 - **[EstadoPago]**: Representa la condición actual del pago (IdEstadoPago, idPago, estado)
 

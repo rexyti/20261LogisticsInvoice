@@ -13,13 +13,13 @@ Como gestor de tarifas, quiero registrar un nuevo contrato en el sistema para fo
 
 **Why this priority**:Por funcionalidad crítica, ya que sin el registro de contratos el módulo no cumple su propósito.
 
-**Independent Test**: Se puede probar creando un contrato con datos válidos (idContrato, tipo de contrato, nombre del conductor, Precio por parada, tipo de vehiculo, fecha inicio, fecha final, Seguro Activo) y verificar que el sistema lo almacene correctamente y deje disponible para consulta.
+**Independent Test**: Se puede probar creando un contrato con datos válidos (idContrato, tipo de contrato, nombre del conductor, Precio por parada, tipo de vehiculo, fecha inicio, fecha final, Seguro) y verificar que el sistema lo almacene correctamente y deje disponible para consulta.
 
 **Acceptance Scenarios**:
 
 1. **Scenario**: Registrar contrato de manera exitosa
    - **Given** El usuario tiene permisos de gestor de tarifas.
-   - **When** Ingresa la información obligatoria (idContrato, tipo de contrato, nombre del conductor, tipo de vehículo, Precio por parada, fecha inicio, fecha final, Seguro Activo) del contrato.
+   - **When** Ingresa la información obligatoria (idContrato, tipo de contrato, nombre del conductor, tipo de vehículo, Precio por parada, fecha inicio, fecha final, Seguro) del contrato.
    - **Then** El sistema guarda un modelo de contratación.
 2. **Scenario**: Registrar un contrato con datos incompletos
     - **Given** Faltan campos de información del contrato.
@@ -66,13 +66,13 @@ Como gestor, quiero recibir una notificación cuando un contrato cambie de estad
 1. **Scenario**: Notificación enviada al cambiar el estado del contrato
     - **Given** Un contrato registrado en el sistema.
     - **When** El cambio de estado es confirmado en el sistema.
-    - **Then** El sistema envía automaticamente una notificación al usuario configurado.
+    - **Then** El sistema envía automáticamente una notificación al usuario configurado.
 
 
 ---
 ### Edge Cases
 
-- What happens when Se registra un contrato con informacion incompleta
+- What happens when Se registra un contrato con información incompleta
 - How does system handle Debe rechazar el registro y mostrar los campos faltantes.
 - What happens when la fecha de finalización es anterior a la fecha de inicio?
 - How does system handle El sistema debe impedir el registro y mostrar error de validación.
@@ -89,9 +89,10 @@ Como gestor, quiero recibir una notificación cuando un contrato cambie de estad
 
 ### Key Entities 
 
-- **[Contrato]**: Representa un contrato entre la empresa y el trasportista. (idContrato, tipo de contrato, nombre del conductor, Paradas, tipo de vehiculo, estadoContrato, fecha inicio, fecha final)
+- **[Contrato]**: Representa un modelo de contratación entre la empresa y el trasportista. (idContrato, tipo de contrato, nombre del conductor, PrecioParadas, tipo de vehículo, fecha inicio, fecha final)
 - **[Usuario]**: Representa un actor que manejara el sistema. (idContrato,idUsuario , nombre)
 - **[vehiculo]**: Representa el vehiculo que usara el trasportista. (idVehiculo, idUsuario, tipo)
+- **[seguro]**: Representa el seguro del transportista. (idSeguro, idUsuario, Estado)
 
 ## Success Criteria *(mandatory)*
 
