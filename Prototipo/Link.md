@@ -1,0 +1,1 @@
+https://www.figma.com/design/GMwGj3ONBI42hm80ls6CVh/Pantalla-Sistema-financiero?node-id=68-937&t=P8srzYaiA7zc4r8e-1
