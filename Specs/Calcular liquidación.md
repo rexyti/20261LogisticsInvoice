@@ -15,7 +15,7 @@ Como gestor de tarifas, quiero que el sistema calcule automáticamente la liquid
 
 **Why this priority**: Es la funcionalidad principal del módulo. Sin el cálculo de liquidación, el módulo no cumple su propósito.
 
-**Independent Test**: Seleccionar una ruta finalizada (IdRuta), modelo de contratación (IdContrato, Tipo de modelo de contratación), paquete (IdPaquete, novedades, estadoFinal)y verificar que el sistema genere correctamente el valor de liquidación.
+**Independent Test**: Seleccionar una ruta finalizada (IdRuta), modelo de contratación (IdContrato, Tipo de modelo de contratación), paquete (IdPaquete, novedades, estadoFinal) y verificar que el sistema genere correctamente el valor de liquidación.
 
 **Acceptance Scenarios**:
 

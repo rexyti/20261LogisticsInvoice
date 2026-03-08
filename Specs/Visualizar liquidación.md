@@ -1,4 +1,4 @@
-# Feature Specification: Visualizar liquidación
+  # Feature Specification: Visualizar liquidación
 
 **Created**: 21/02/2026  
 
@@ -13,7 +13,7 @@ Como miembro de la entidad financiera, quiero que el sistema me permita buscar u
 
 **Why this priority**: Permite mantener una trazabilidad de las diferentes liquidaciones fueron previamente calculadas.
 
-**Independent Test**: Consultar desde una lista las liquidaciones previamente calculadas y verificar que el sistema las enseñe. (IdRutas, FechaInicio, FechaCierre, IdLiquidación, Idpenalidad, tipo de vehiculo, PrecioParada, Número de paradas, Monto Bruto, MontoNeto, estadoliquidación, FechaCalculo).
+**Independent Test**: Consultar desde una lista las liquidaciones previamente calculadas y verificar que el sistema las enseñe. (IdRutas, FechaInicio, FechaCierre, IdLiquidación, Ajustes(tipo, monto, razón), tipo de vehiculo, PrecioParada, Número de paradas, Monto Bruto, MontoNeto, estadoliquidación, FechaCalculo).
 
 **Acceptance Scenarios**:
 
@@ -61,7 +61,7 @@ Como miembro de la entidad financiera, quiero que el sistema me permita buscar u
 - **[Ruta]**:Representa una ruta que debe ser liquidada (IdRuta, FechaInicio, FechaCierre).
 - **[liquidación]**: Representa el valor de la liquidación (idLiquidacion, idContrato, idRuta, estadoLiquidacion, valorFinal, fechaCalculo, idPenalidad, estadoPenalidad)
 - **[Estado del paquete]**: Representa los estados finales de los paquetes y los motivos de su estado final (idPaquete, novedades, estadoFinal)
-- **[Ajustes/penalización]**: Representa los ajustes del pago final de la liquidación, esta existe para relacionar los diferentes estados que puede estar el paquete (idPenalización, tipo, monto, razón)
+- **[Ajustes/penalización]**: Representa los ajustes del pago final de la liquidación, esta existe para relacionar los diferentes estados que puede estar el paquetes y las razones por la que falla la entrega (idAjustes, tipo, monto, razón)
 
 ## Success Criteria *(mandatory)*
 
