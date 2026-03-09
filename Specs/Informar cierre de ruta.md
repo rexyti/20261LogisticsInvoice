@@ -1,4 +1,4 @@
-# Feature Specification: Informar cierre de ruta
+# Feature Specification: Cierre de ruta
 
 **Created**: 21/02/2026  
 
@@ -29,6 +29,43 @@ Como módulo de gestión de rutas, quiero que el sistema registre automáticamen
    - **When** El modulo de rutas y paquetes envía nuevamente un informe de cierre de ruta.
    - **Then** El sistema rechaza el registro duplicado.
 
+### Evento asíncrono con el modulo de rutas y flotas:
+**Tipo:** Evento asíncrono (sin respuesta esperada)  
+**Disparador:** Cierre de ruta (manual, automático o forzado por despachador)  
+**Descripción:** El Módulo 3 recibe del Módulo 2 el resumen completo de la ruta para que se calcule la liquidación del conductor.
+
+```json
+{
+  "tipo_evento": "RUTA_CERRADA",
+  "ruta_id": "UUID",
+  "tipo_cierre": "MANUAL | AUTOMATICO | FORZADO_DESPACHADOR",
+  "fecha_hora_inicio_transito": "2026-03-06T07:45:00",
+  "fecha_hora_cierre": "2026-03-06T18:00:00",
+  "conductor": {
+  "conductor_id": "UUID",
+  "nombre": "Juan Pérez"
+  },
+  "vehiculo": {
+    "vehiculo_id": "UUID",
+    "tipo": "MOTO | VAN | NHR | TURBO"
+  },
+  "resumen": {
+    "total_paradas": 15,
+    "exitosas": 11,
+    "fallidas_culpa_cliente": 2,
+    "fallidas_culpa_conductor": 1,
+    "novedades_graves": 1
+  },
+  "paradas": [
+    {
+      "paquete_id": "UUID",
+      "estado_final": "ENTREGADO | FALLIDO | NOVEDAD | SIN_GESTION_CONDUCTOR",
+      "motivo_novedad": "string | null",
+      "fecha_hora_gestion": "2026-03-06T10:15:00 | null"
+    }
+  ]
+}
+```
 ---
 
 ### Edge Cases
@@ -54,9 +91,11 @@ Como módulo de gestión de rutas, quiero que el sistema registre automáticamen
 
 ### Key Entities 
 
-- **[Ruta]**: Representa una ruta operativa del sistema. (idRuta, estado, fechaCreacion, fechaCierre )
-- **[EventeCierreRuta]**: Representa el evento recibido desde el módulo externo. (idEventoCierre, idRuta, fechaEvento)
-- **[Parada]**:  Representa los diferentes puntos donde se para el vehiculo para entregar un paquete. (idRuta, nombre)
+- **[Ruta]**: Representa una ruta operativa del sistema. (idRuta, estado, fechaInicioTransito, fechaCierre, idTransportista)
+- **[EventoCierreRuta]**: Representa el evento recibido desde el módulo externo. (idEventoCierre, idRuta, fechaEvento)
+- **[Parada]**:  Representa los diferentes puntos donde se para el vehiculo para entregar un paquete. (idParada, idRuta, EstadoFinal, Novedad)
+- **[transportista]:** Representa el transportista que realiza la ruta. (idTransportista, nombre)
+- **[Vehiculo]:** Representa el transportista que realiza la ruta. (idVehiculo, tipoVehiculo) 
 ## Success Criteria *(mandatory)*
 
 ### Measurable Outcomes
