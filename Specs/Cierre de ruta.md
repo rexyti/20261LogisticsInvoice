@@ -31,7 +31,7 @@ Como Módulo Financiero, quiero recibir el resumen detallado de la ruta (vehícu
 ### Evento asíncrono con el modulo de rutas y flotas:
 **Tipo:** Evento asíncrono (sin respuesta esperada)  
 **Disparador:** Cierre de ruta (manual, automático o forzado por despachador)  
-**Descripción:** El Módulo 3 recibe del Módulo 2 el resumen completo de la ruta para que se calcule la liquidación del conductor.
+**Descripción:** El Módulo de facturación y liquidacíon recibe del Módulo de planificación de rutas el resumen completo de la ruta para que se calcule la liquidación del conductor.
 
 ```json
 {
