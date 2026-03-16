@@ -46,6 +46,21 @@ Como gestor de contratación, quiero recalcular la liquidación si se registran 
 
 ---
 
+# Proceso de Cálculo de Liquidación
+
+| Fase | Entradas del Sistema | Lógica del Proceso | Salida / Resultado |
+| :--- | :--- | :--- | :--- |
+| **1. Recolección de Datos** | - Informe de cierre de ruta<br>- Estado de los paquetes<br>- Modelo de contratación | El sistema carga la información de la ruta, asocia el estado final de cada paquete e identifica el modelo de pago del repartidor. | Base de datos preparada con la ruta, paquetes y tipo de liquidación. |
+| **2. Validación y Tarifas** | - Datos de paquetes y paradas<br>- Tarifas del contrato | Se aplican las reglas de negocio para determinar qué paquetes/paradas son entregas válidas y se consulta la tarifa a aplicar. | Cantidad de paradas válidas y tarifa definida. |
+| **3. Cálculo y Ajustes** | - Paradas válidas / Ruta confirmada<br>- Subtotal calculado | **1.** Se calcula el subtotal (multiplicando paradas x tarifa o verificando ruta completa).<br>**2.** Se aplican ajustes adicionales (bonos, penalizaciones). | Valor final y exacto de la liquidación. |
+| **4. Registro Final** | - Valor final calculado | El sistema genera y guarda el registro oficial del cálculo para el repartidor. | Liquidación registrada y lista para el proceso de pago. |
+
+**Resultados Finales del Sistema:**
+* Valor total a pagar al repartidor.
+* Registro formal de la liquidación.
+* Detalle desglosado del cálculo del pago.
+
+---
 
 
 ### Edge Cases
