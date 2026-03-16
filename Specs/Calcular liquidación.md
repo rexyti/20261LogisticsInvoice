@@ -21,7 +21,7 @@ Como gestor de tarifas, quiero que el sistema calcule automáticamente la liquid
 
 1. **Scenario**: Cálculo exitoso de liquidación.
    - **Given** Un modelo de contratación creado, el informe del estado del paquete e informe de cierre de ruta.
-   - **When** El usuario solicita el cálculo de liquidación.
+   - **When** El sistema reciba toda esa información.
    - **Then**  El sistema calcula el valor final de la liquidación
    - **And** registra la liquidación asociada a la ruta.
 
