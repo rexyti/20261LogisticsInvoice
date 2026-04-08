@@ -29,6 +29,7 @@ Como gestor de tarifas, quiero registrar un nuevo contrato en el sistema para fo
     - **Given** Ya existe un contrato con el mismo identificador externo
     - **When** Se intenta registrar nuevamente.
     - **Then** El sistema debe evitar el registro duplicado.
+    - **And** El sistema muestra un mensaje de error mencionando que el contrato ya existe
 
 ---
 
@@ -54,22 +55,7 @@ todos sus datos.
 
 ---
 
-### User Story 3 - Notificación automática (Priority: P3)
 
-Como gestor, quiero recibir una notificación cuando un contrato cambie de estado.
-
-**Why this priority**: Permite un seguimiento de los diferentes contratos.
-
-**Independent Test**: Un contrato se completa, el sistema manda una notificación de que el contrato paso de estar vigente a completado.
-
-**Acceptance Scenarios**:
-1. **Scenario**: Notificación enviada al cambiar el estado del contrato
-    - **Given** Un contrato registrado en el sistema.
-    - **When** El cambio de estado es confirmado en el sistema.
-    - **Then** El sistema envía automáticamente una notificación al usuario configurado.
-
-
----
 ### Edge Cases
 
 - What happens when Se registra un contrato con información incompleta
@@ -89,7 +75,7 @@ Como gestor, quiero recibir una notificación cuando un contrato cambie de estad
 
 ### Key Entities 
 
-- **[Contrato]**: Representa un modelo de contratación entre la empresa y el trasportista. (idContrato, tipo de contrato, nombre del conductor, PrecioParadas, tipo de vehículo, fecha inicio, fecha final)
+- **[Contrato]**: Representa un modelo de contratación entre la empresa y el trasportista. (idContrato, tipo de contrato, nombre del conductor, PrecioParadas/Precio (el precio  por parada solo existe si el modelo de contrato es por parada en caso contrario pasa a ser Precio), tipo de vehículo, fecha inicio, fecha final)
 - **[Usuario]**: Representa un actor que manejara el sistema. (idContrato,idUsuario , nombre)
 - **[vehiculo]**: Representa el vehiculo que usara el trasportista. (idVehiculo, idUsuario, tipo)
 - **[seguro]**: Representa el seguro del transportista. (idSeguro, idUsuario, Estado)

@@ -35,7 +35,7 @@ Como miembro de la entidad financiera, quiero que el sistema me permita buscar u
 4. **Scenario**: Liquidación no disponible
    - **Given** El contrato no posee liquidación calculada
    - **When** El usuario intenta consultarla
-   - **Then**n El sistema muestra mensaje indicando que la liquidación aún no existe.
+   - **Then** El sistema muestra mensaje indicando que la liquidación aún no existe.
 
 ---
 
@@ -53,7 +53,7 @@ Como miembro de la entidad financiera, quiero que el sistema me permita buscar u
 - **FR-001**: System MUST Mostrar las liquidaciones almacenadas en forma de lista organizada.
 - **FR-002**: System MUST be able to buscar una liquidación especifica.
 - **FR-003**: System MUST Mostrar un mensaje cuando se trate de buscar una liquidación no existente.
-
+- **FR-004**: System Must Verificar si el identificador del usuario cuenta con los permisos necesarios para visualizar liquidaciones de otros usuarios o únicamente las propias.
 
 ### Key Entities 
 

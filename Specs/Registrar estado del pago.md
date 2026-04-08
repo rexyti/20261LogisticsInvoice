@@ -19,7 +19,7 @@ Como sistema de la entidad financiera, quiero enviar informacion y notificacione
 1. **Scenario**: Registrar el estado inicial de un pago recibido asíncronamente.
    - **Given** Una liquidación calculada y pendiente de iniciar pago.
    - **When** El sistema recibe un evento asíncrono del banco indicando el inicio del pago.
-   - **Then** El sistema procesa el evento en segundo plano, registra el estado inicial del pago y lo asocia a la liquidación correspondiente (idLiquidacion, idPago, estado. 
+   - **Then** El sistema procesa el evento en segundo plano, registra el estado inicial del pago y lo asocia a la liquidación correspondiente (idLiquidacion, idPago, estado). 
    - **And** Responde a la entidad financiera con un código de éxito (ej. HTTP 202 Accepted) confirmando la recepción del evento.
 
 2. **Scenario**: Registrar el estado de pago de una liquidación previamente registrada (Duplicidad de evento).
@@ -45,6 +45,8 @@ Como sistema de la entidad financiera, quiero enviar informacion y notificacione
 - How does system handle El sistema debe evaluar el timestamp o la secuencia del evento emitido por el banco para garantizar que un estado definitivo ("Pagado") no sea sobrescrito por un estado transitorio retrasado ("En proceso").
 - What happens when se intenta actualizar el estado con el mismo valor actual?
 - How does system handle El sistema procesa el evento y responde con éxito a la entidad financiera para confirmar la recepción, pero a nivel de base de datos no realiza cambios (Idempotencia garantizada).
+- what happens when El sistema recibe un estado desconocido de pago?
+- how does system handle El sistema manda debe mandar "Error: estado invalido" y registrar el fallo en los logs del sistema.
 
 ## Requirements *(mandatory)*
 
@@ -68,7 +70,7 @@ Como sistema de la entidad financiera, quiero enviar informacion y notificacione
 
 ### Measurable Outcomes
 
-- **SC-001**: El 100% de los eventos válidos de registro de pago enviados por el banco son procesados y registrados correctamente en un tiempo menor a "X" segundos.
+- **SC-001**: El 100% de los eventos válidos de registro de pago enviados por el banco son procesados y registrados correctamente en un tiempo menor a 120 segundos.
 - **SC-002**: El sistema evita el 100% de los registros duplicados manejando la idempotencia de los eventos asíncronos.
 - **SC-003**: El 100% de los eventos válidos de actualización de pago son registrados correctamente.
 - **SC-004**: El sistema evita el 100% de las actualizaciones solapadas o desordenadas gracias al control de timestamps o secuenciales.

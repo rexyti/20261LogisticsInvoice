@@ -64,7 +64,7 @@ Como usuario deseo visualizar información detallada del pago incluyendo ajustes
 - What happens when el pago no existe o fue eliminado?
 - How does system handle muestra un mensaje indicando que no se encontró información del pago.
 - What happens when el usuario intenta visualizar un pago que no le pertenece?
-- How does system handle debe bloquear el acceso al usuario.
+- How does system handle debe bloquear el acceso al usuario y se registra el intento  como un evento de seguridad.
 
 ## Requirements *(mandatory)*
 
@@ -77,6 +77,7 @@ Como usuario deseo visualizar información detallada del pago incluyendo ajustes
 - **FR-003**: Users MUST be able to visualizar el detalle completo de pago
 - **FR-004**: System MUST asociar cada pago a un usuario especifico.
 - **FR-005**: System MUST restringir la visualización únicamente al propietario del pago.
+- **FR-006**: System MUST Generar un vaucher relacionado con el pago que debe recibir el conductor.
 
 
 ### Key Entities *(include if feature involves data)*

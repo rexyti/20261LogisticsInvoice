@@ -30,11 +30,11 @@ Como Módulo Financiero, quiero recibir el resumen detallado de la ruta (vehícu
   
  #### Clasificación de Fallos en Entrega (Novedades)
 
-| Tipo de Fallo | Responsable | Ejemplos Comunes |
-| :--- | :--- | :--- |
-| **Fallo por el Cliente** | Destinatario / Cliente final | Dirección incorrecta o incompleta, cliente ausente en el domicilio, rechaza recibir el paquete, local cerrado. |
-| **Fallo por el Transportador** | Repartidor / Conductor | Paquete dañado por mal manejo, no visitó la dirección reportada, pérdida del paquete, retraso injustificado. |
-| **Fuerza Mayor / Operativo** | Factores externos o la Empresa | Cierre de vías (paros/accidentes), clima extremo, falla mecánica grave, error de etiquetado o despacho desde bodega. |
+| Tipo de Fallo                  | Responsable                                                        | Ejemplos Comunes                                                                                               |
+|:-------------------------------|:-------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------|
+| **Fallo por el Cliente**       | Destinatario / Cliente final <br/> **% de pago entre 30% - 50%**   | Dirección incorrecta o incompleta, cliente ausente en el domicilio, rechaza recibir el paquete, local cerrado. |
+| **Fallo por el Transportador** | Repartidor / Conductor<br/> **% de pago nulo sufre una penalidad** | Paquete dañado por mal manejo, no visitó la dirección reportada, pérdida del paquete, retraso injustificado.   |
+| **Dañado en ruta**             | Repartidor / Conductor <br/>**% de pago nulo**                  | Daño de mercancia durante el envio, Daños por mala conservación                                                |
 
 ### Evento asíncrono con el modulo de rutas y flotas:
 **Tipo:** Evento asíncrono (sin respuesta esperada)  
@@ -56,11 +56,13 @@ Como Módulo Financiero, quiero recibir el resumen detallado de la ruta (vehícu
     "vehiculo_id": "UUID",
     "tipo": "MOTO | VAN | NHR | TURBO"
   },
-  "paradas": {
+  "paradas": [
+    {
     "parada_id": "UUID",
     "estado": "EXITOSA | FALLIDA",
     "motivo_no_entrega": "DIRECCIÓN_ERRONEA | CLIENTE_AUSENTE | RECHAZADO | ZONA DE DIFÍCIL ACESSO / ORDEN PÚBLICO"
-  }
+    }
+  ]
 }
 ```
 ---
