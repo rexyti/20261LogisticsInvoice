@@ -1,6 +1,10 @@
 package com.logistica.infrastructure.persistence.entities;
 
+import com.logistica.domain.enums.EstadoLiquidacion;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -8,6 +12,8 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "liquidaciones")
+@Getter
+@Setter
 public class LiquidacionEntity {
 
     @Id
@@ -19,8 +25,12 @@ public class LiquidacionEntity {
     @Column(name = "id_contrato", nullable = false)
     private UUID idContrato;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 50)
-    private String estado;
+    private EstadoLiquidacion estado;
+
+    @Column(name = "valor_base", nullable = false, precision = 19, scale = 4)
+    private BigDecimal valorBase;
 
     @Column(name = "valor_final", nullable = false, precision = 19, scale = 4)
     private BigDecimal valorFinal;
@@ -52,86 +62,5 @@ public class LiquidacionEntity {
     @PreUpdate
     protected void onUpdate() {
         updatedAt = OffsetDateTime.now();
-    }
-    
-    // Getters y Setters
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public UUID getIdRuta() {
-        return idRuta;
-    }
-
-    public void setIdRuta(UUID idRuta) {
-        this.idRuta = idRuta;
-    }
-
-    public UUID getIdContrato() {
-        return idContrato;
-    }
-
-    public void setIdContrato(UUID idContrato) {
-        this.idContrato = idContrato;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public BigDecimal getValorFinal() {
-        return valorFinal;
-    }
-
-    public void setValorFinal(BigDecimal valorFinal) {
-        this.valorFinal = valorFinal;
-    }
-
-    public OffsetDateTime getFechaCalculo() {
-        return fechaCalculo;
-    }
-
-    public void setFechaCalculo(OffsetDateTime fechaCalculo) {
-        this.fechaCalculo = fechaCalculo;
-    }
-
-    public boolean isSolicitudRevisionAceptada() {
-        return solicitudRevisionAceptada;
-    }
-
-    public void setSolicitudRevisionAceptada(boolean solicitudRevisionAceptada) {
-        this.solicitudRevisionAceptada = solicitudRevisionAceptada;
-    }
-
-    public List<AjusteEntity> getAjustes() {
-        return ajustes;
-    }
-
-    public void setAjustes(List<AjusteEntity> ajustes) {
-        this.ajustes = ajustes;
-    }
-
-    public OffsetDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(OffsetDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public OffsetDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(OffsetDateTime updatedAt) {
-        this.updatedAt = updatedAt;
     }
 }

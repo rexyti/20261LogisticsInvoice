@@ -1,12 +1,18 @@
 package com.logistica.infrastructure.persistence.entities;
 
+import com.logistica.domain.enums.TipoOperacion;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @Entity
 @Table(name = "auditoria_liquidacion")
+@Getter
+@Setter
 public class AuditoriaLiquidacionEntity {
 
     @Id
@@ -15,8 +21,9 @@ public class AuditoriaLiquidacionEntity {
     @Column(name = "id_liquidacion", nullable = false)
     private UUID idLiquidacion;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 50)
-    private String operacion;
+    private TipoOperacion operacion;
 
     @Column(name = "valor_anterior", precision = 19, scale = 4)
     private BigDecimal valorAnterior;
@@ -39,70 +46,5 @@ public class AuditoriaLiquidacionEntity {
         if (id == null) {
             id = UUID.randomUUID();
         }
-    }
-
-    // Getters y Setters
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public UUID getIdLiquidacion() {
-        return idLiquidacion;
-    }
-
-    public void setIdLiquidacion(UUID idLiquidacion) {
-        this.idLiquidacion = idLiquidacion;
-    }
-
-    public String getOperacion() {
-        return operacion;
-    }
-
-    public void setOperacion(String operacion) {
-        this.operacion = operacion;
-    }
-
-    public BigDecimal getValorAnterior() {
-        return valorAnterior;
-    }
-
-    public void setValorAnterior(BigDecimal valorAnterior) {
-        this.valorAnterior = valorAnterior;
-    }
-
-    public BigDecimal getValorNuevo() {
-        return valorNuevo;
-    }
-
-    public void setValorNuevo(BigDecimal valorNuevo) {
-        this.valorNuevo = valorNuevo;
-    }
-
-    public OffsetDateTime getFechaOperacion() {
-        return fechaOperacion;
-    }
-
-    public void setFechaOperacion(OffsetDateTime fechaOperacion) {
-        this.fechaOperacion = fechaOperacion;
-    }
-
-    public String getResponsable() {
-        return responsable;
-    }
-
-    public void setResponsable(String responsable) {
-        this.responsable = responsable;
-    }
-    
-    public OffsetDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(OffsetDateTime createdAt) {
-        this.createdAt = createdAt;
     }
 }

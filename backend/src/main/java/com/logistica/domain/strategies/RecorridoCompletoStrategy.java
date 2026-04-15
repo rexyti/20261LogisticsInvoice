@@ -9,16 +9,29 @@ public class RecorridoCompletoStrategy implements LiquidacionStrategy {
 
     @Override
     public BigDecimal calcular(Ruta ruta, Contrato contrato) {
-        // Asume que si la ruta se considera "completa", se paga la tarifa completa.
-        // La lógica para determinar si una ruta está "completa" puede ser más compleja
-        // y podría necesitar más datos del modelo Ruta.
-        boolean rutaCompleta = ruta.getPaquetes().stream()
-                .allMatch(p -> "ENTREGADO".equals(p.getEstadoFinal()));
 
-        if (rutaCompleta) {
-            return contrato.getTarifa();
-        } else {
+        validarContrato(contrato);
+        validarRuta(ruta);
+
+        if (!ruta.fueCompletada()) {
             return BigDecimal.ZERO;
+        }
+
+        return contrato.getTarifaSegura();
+    }
+
+    private void validarRuta(Ruta ruta) {
+        if (ruta == null) {
+            throw new IllegalArgumentException("La ruta no puede ser null");
+        }
+
+        if (!ruta.tienePaquetes()) {
+            throw new IllegalArgumentException("La ruta no tiene paquetes para calcular");
+        }
+    }
+    private void validarContrato(Contrato contrato) {
+        if ( contrato == null || !contrato.esRecorridoCompleto()) {
+            throw new IllegalArgumentException("El contrato no es de tipo RECORRIDO_COMPLETO");
         }
     }
 }

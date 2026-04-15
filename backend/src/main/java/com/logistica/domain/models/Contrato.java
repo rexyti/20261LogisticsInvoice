@@ -15,22 +15,35 @@ public class Contrato {
     private final TipoContratacion tipoContratacion;
     private final BigDecimal tarifa;
 
-    public Contrato(UUID id, TipoContratacion tipoContratacion, BigDecimal tarifa) {
-        if (id == null) {
-            throw new IllegalArgumentException("El id del contrato no puede ser null");
-        }
+    public static class ContratoBuilder {
+        public Contrato build() {
+            if (id == null) {
+                throw new IllegalArgumentException("El id del contrato no puede ser null");
+            }
 
-        if (tipoContratacion == null) {
-            throw new IllegalArgumentException("El tipo de contratación es obligatorio");
-        }
+            if (tipoContratacion == null) {
+                throw new IllegalArgumentException("El tipo de contratación es obligatorio");
+            }
 
-        if (tarifa == null || tarifa.compareTo(BigDecimal.ZERO) <= 0) {
-            throw new IllegalArgumentException("La tarifa debe ser mayor a 0");
-        }
+            if (tarifa == null || tarifa.compareTo(BigDecimal.ZERO) <= 0) {
+                throw new IllegalArgumentException("La tarifa debe ser mayor a 0");
+            }
 
+            return new Contrato(id, tipoContratacion, tarifa);
+        }
+    }
+
+    private Contrato(UUID id, TipoContratacion tipoContratacion, BigDecimal tarifa) {
         this.id = id;
         this.tipoContratacion = tipoContratacion;
         this.tarifa = tarifa;
+    }
+
+    public BigDecimal getTarifaSegura() {
+        if (tarifa == null || tarifa.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalStateException("El contrato no tiene una tarifa válida configurada");
+        }
+        return tarifa;
     }
 
     public boolean esPorParada() {

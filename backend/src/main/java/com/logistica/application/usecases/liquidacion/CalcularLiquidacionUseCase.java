@@ -28,31 +28,24 @@ public class CalcularLiquidacionUseCase {
 
     @Transactional
     public Liquidacion execute(Ruta ruta, UUID idContrato) {
-        // 1. Validar fechas de la ruta
-        if (ruta.getFechaInicio() != null && ruta.getFechaCierre() != null && ruta.getFechaCierre().isBefore(ruta.getFechaInicio())) {
-            throw new IllegalArgumentException("La fecha de cierre no puede ser anterior a la fecha de inicio de la ruta.");
-        }
-
-        // 2. Validar que no exista una liquidación duplicada
+        // 1. Validar que no exista una liquidación duplicada
         if (liquidacionRepository.existsByIdRuta(ruta.getId())) {
             throw new LiquidacionDuplicadaException("Ya existe una liquidación para la ruta con ID: " + ruta.getId());
         }
 
-        // 3. Obtener el contrato desde la base de datos
+        // 2. Obtener el contrato desde la base de datos
         Contrato contrato = contratoRepository.findById(idContrato)
                 .orElseThrow(() -> new ContratoNotFoundException("No se encontró el contrato con ID: " + idContrato));
 
-        // 4. Seleccionar la estrategia y calcular el valor base
+        // 3. Seleccionar la estrategia y calcular el valor base
         LiquidacionStrategy strategy = strategyFactory.getStrategy(contrato.getTipoContratacion());
         BigDecimal valorBase = strategy.calcular(ruta, contrato);
 
-        // 5. Crear la liquidación usando la regla de negocio del modelo
+        // 4. Crear la liquidación usando la regla de negocio del modelo
         Liquidacion liquidacion = Liquidacion.crear(ruta.getId(), contrato.getId(), valorBase);
-        
-        // El repositorio se encargará de guardar la liquidación y sus relaciones
         Liquidacion savedLiquidacion = liquidacionRepository.save(liquidacion);
 
-        // 6. Registrar auditoría inicial
+        // 5. Registrar auditoría inicial
         AuditoriaLiquidacion auditoria = AuditoriaLiquidacion.crearCalculo(savedLiquidacion.getId(), valorBase);
         auditoriaRepository.save(auditoria);
 

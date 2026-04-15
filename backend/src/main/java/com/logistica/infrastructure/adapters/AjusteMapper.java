@@ -15,7 +15,6 @@ public class AjusteMapper {
 
         AjusteEntity entity = new AjusteEntity();
         entity.setId(model.getId());
-        // El 'liquidacion' se establece en el LiquidacionMapper para evitar la dependencia circular
         entity.setTipo(model.getTipo());
         entity.setMonto(model.getMonto());
         entity.setMotivo(model.getMotivo());
@@ -27,13 +26,13 @@ public class AjusteMapper {
             return null;
         }
 
-        return new Ajuste(
-                entity.getId(),
-                entity.getLiquidacion() != null ? entity.getLiquidacion().getId() : null,
-                entity.getTipo(),
-                entity.getMonto(),
-                entity.getMotivo()
-        );
+        return Ajuste.builder()
+                .id(entity.getId())
+                .idLiquidacion(entity.getLiquidacion() != null ? entity.getLiquidacion().getId() : null)
+                .tipo(entity.getTipo())
+                .monto(entity.getMonto())
+                .motivo(entity.getMotivo())
+                .build();
     }
 
     public AjusteDTO toResponseDTO(Ajuste model) {
@@ -43,7 +42,7 @@ public class AjusteMapper {
 
         AjusteDTO dto = new AjusteDTO();
         dto.setId(model.getId());
-        dto.setTipo(model.getTipo());
+        dto.setTipo(model.getTipo().name());
         dto.setMonto(model.getMonto());
         dto.setMotivo(model.getMotivo());
         return dto;

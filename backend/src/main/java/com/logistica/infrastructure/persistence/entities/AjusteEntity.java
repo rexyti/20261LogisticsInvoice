@@ -1,12 +1,18 @@
 package com.logistica.infrastructure.persistence.entities;
 
+import com.logistica.domain.enums.TipoAjuste;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @Entity
 @Table(name = "ajustes")
+@Getter
+@Setter
 public class AjusteEntity {
 
     @Id
@@ -16,8 +22,9 @@ public class AjusteEntity {
     @JoinColumn(name = "id_liquidacion", nullable = false)
     private LiquidacionEntity liquidacion;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 50)
-    private String tipo;
+    private TipoAjuste tipo;
 
     @Column(nullable = false, precision = 19, scale = 4)
     private BigDecimal monto;
@@ -43,62 +50,5 @@ public class AjusteEntity {
     @PreUpdate
     protected void onUpdate() {
         updatedAt = OffsetDateTime.now();
-    }
-
-    // Getters y Setters
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public LiquidacionEntity getLiquidacion() {
-        return liquidacion;
-    }
-
-    public void setLiquidacion(LiquidacionEntity liquidacion) {
-        this.liquidacion = liquidacion;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public BigDecimal getMonto() {
-        return monto;
-    }
-
-    public void setMonto(BigDecimal monto) {
-        this.monto = monto;
-    }
-
-    public String getMotivo() {
-        return motivo;
-    }
-
-    public void setMotivo(String motivo) {
-        this.motivo = motivo;
-    }
-    
-    public OffsetDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(OffsetDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public OffsetDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(OffsetDateTime updatedAt) {
-        this.updatedAt = updatedAt;
     }
 }
