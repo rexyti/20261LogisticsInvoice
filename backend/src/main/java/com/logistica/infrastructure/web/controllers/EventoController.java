@@ -6,7 +6,7 @@ import com.logistica.application.usecases.liquidacion.CalcularLiquidacionUseCase
 import com.logistica.domain.models.Liquidacion;
 import com.logistica.domain.models.Paquete;
 import com.logistica.domain.models.Ruta;
-import com.logistica.infrastructure.adapters.LiquidacionMapper;
+import com.logistica.infrastructure.persistence.mapper.LiquidacionMapper;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

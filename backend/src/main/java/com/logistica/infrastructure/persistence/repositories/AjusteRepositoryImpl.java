@@ -2,7 +2,7 @@ package com.logistica.infrastructure.persistence.repositories;
 
 import com.logistica.domain.models.Ajuste;
 import com.logistica.domain.repositories.AjusteRepository;
-import com.logistica.infrastructure.adapters.AjusteMapper;
+import com.logistica.infrastructure.persistence.mapper.AjusteMapper;
 import com.logistica.infrastructure.persistence.entities.AjusteEntity;
 import org.springframework.stereotype.Repository;
 
@@ -40,7 +40,7 @@ public class AjusteRepositoryImpl implements AjusteRepository {
 
     @Override
     public List<Ajuste> findByIdLiquidacion(UUID liquidacionId) {
-        return jpaRepository.findByLiquidacionId(liquidacionId).stream()
+        return jpaRepository.findByLiquidacion_Id(liquidacionId).stream()
                 .map(mapper::toModel)
                 .collect(Collectors.toList());
     }

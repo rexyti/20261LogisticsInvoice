@@ -1,6 +1,7 @@
 package com.logistica.infrastructure.persistence.entities;
 
 import com.logistica.domain.enums.TipoOperacion;
+import com.logistica.domain.enums.TipoResponsable;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,10 +14,7 @@ import java.util.UUID;
 @Table(name = "auditoria_liquidacion")
 @Getter
 @Setter
-public class AuditoriaLiquidacionEntity {
-
-    @Id
-    private UUID id;
+public class AuditoriaLiquidacionEntity  extends InmutableBaseEntity {
 
     @Column(name = "id_liquidacion", nullable = false)
     private UUID idLiquidacion;
@@ -34,17 +32,11 @@ public class AuditoriaLiquidacionEntity {
     @Column(name = "fecha_operacion", nullable = false)
     private OffsetDateTime fechaOperacion;
 
-    @Column(nullable = false, length = 100)
-    private String responsable;
-    
-    @Column(name = "created_at", updatable = false)
-    private OffsetDateTime createdAt;
-    
-    @PrePersist
-    protected void onCreate() {
-        createdAt = OffsetDateTime.now();
-        if (id == null) {
-            id = UUID.randomUUID();
-        }
-    }
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipo_responsable", nullable = false, length = 50)
+    private TipoResponsable tipoResponsable;
+
+    @Column(name = "id_responsable", nullable = false)
+    private String idResponsable;
+
 }

@@ -10,20 +10,26 @@ import java.util.List;
 import java.util.UUID;
 
 @Getter
-@Builder
+@Builder(toBuilder = true)
+@AllArgsConstructor
 public class Liquidacion {
 
-    private UUID id;
-    private UUID idRuta;
-    private UUID idContrato;
+    private final UUID id;
+    private final UUID idRuta;
+    private final UUID idContrato;
     private EstadoLiquidacion estado;
     private BigDecimal valorBase;
     private BigDecimal valorFinal;
-    private OffsetDateTime fechaCalculo;
+    private final OffsetDateTime fechaCalculo;
     @Builder.Default
     private List<Ajuste> ajustes = new ArrayList<>();
     @Builder.Default
     private boolean solicitudRevisionAceptada = false;
+    
+    private final UUID idAdminRevisor;
+    private final OffsetDateTime fechaAceptacionRevision;
+    private final OffsetDateTime createdAt;
+    private final OffsetDateTime updatedAt;
 
     public static Liquidacion crear(UUID idRuta, UUID idContrato, BigDecimal valorBase) {
         return Liquidacion.builder()
@@ -61,9 +67,7 @@ public class Liquidacion {
         this.valorBase = nuevoBase;
         this.ajustes.clear();
         if (nuevosAjustes != null){
-
-        this.ajustes.addAll(nuevosAjustes);
-
+            this.ajustes.addAll(nuevosAjustes);
         }
 
         aplicarAjustes();

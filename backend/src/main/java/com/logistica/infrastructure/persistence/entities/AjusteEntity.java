@@ -13,10 +13,8 @@ import java.util.UUID;
 @Table(name = "ajustes")
 @Getter
 @Setter
-public class AjusteEntity {
+public class AjusteEntity extends BaseEntity {
 
-    @Id
-    private UUID id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_liquidacion", nullable = false)
@@ -32,23 +30,5 @@ public class AjusteEntity {
     @Column(nullable = false)
     private String motivo;
     
-    @Column(name = "created_at", updatable = false)
-    private OffsetDateTime createdAt;
 
-    @Column(name = "updated_at")
-    private OffsetDateTime updatedAt;
-
-    @PrePersist
-    protected void onCreate() {
-        createdAt = OffsetDateTime.now();
-        updatedAt = OffsetDateTime.now();
-        if (id == null) {
-            id = UUID.randomUUID();
-        }
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        updatedAt = OffsetDateTime.now();
-    }
 }

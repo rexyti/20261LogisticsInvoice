@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 import java.math.BigDecimal;
+import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @Getter
@@ -16,6 +17,8 @@ public class Ajuste {
     private final TipoAjuste tipo;
     private final BigDecimal monto;
     private final String motivo;
+    private final OffsetDateTime createdAt;
+    private final OffsetDateTime updatedAt;
 
     public static class AjusteBuilder {
         public Ajuste build() {
@@ -40,16 +43,18 @@ public class Ajuste {
                 throw new IllegalArgumentException("El motivo es obligatorio");
             }
 
-            return new Ajuste(id, idLiquidacion, tipo, monto, motivo);
+            return new Ajuste(id, idLiquidacion, tipo, monto, motivo, createdAt, updatedAt);
         }
     }
 
-    private Ajuste(UUID id, UUID idLiquidacion, TipoAjuste tipo, BigDecimal monto, String motivo) {
+    private Ajuste(UUID id, UUID idLiquidacion, TipoAjuste tipo, BigDecimal monto, String motivo, OffsetDateTime createdAt, OffsetDateTime updatedAt) {
         this.id = id;
         this.idLiquidacion = idLiquidacion;
         this.tipo = tipo;
         this.monto = monto;
         this.motivo = motivo;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public BigDecimal aplicar(BigDecimal base) {
@@ -75,6 +80,8 @@ public class Ajuste {
                 .tipo(this.tipo)
                 .monto(this.monto)
                 .motivo(this.motivo)
+                .createdAt(this.createdAt)
+                .updatedAt(this.updatedAt)
                 .build();
     }
 }

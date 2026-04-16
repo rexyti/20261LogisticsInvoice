@@ -9,5 +9,5 @@ import java.util.UUID;
 
 @Repository
 public interface AjusteJpaRepository extends JpaRepository<AjusteEntity, UUID> {
-    List<AjusteEntity> findByLiquidacionId(UUID liquidacionId);
+    List<AjusteEntity> findByLiquidacion_Id(UUID liquidacionId);
 }

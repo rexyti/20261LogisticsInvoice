@@ -4,7 +4,7 @@ import com.logistica.application.dtos.request.RecalcularLiquidacionRequestDTO;
 import com.logistica.application.dtos.response.LiquidacionResponseDTO;
 import com.logistica.application.usecases.liquidacion.RecalcularLiquidacionUseCase;
 import com.logistica.domain.models.Ajuste;
-import com.logistica.infrastructure.adapters.LiquidacionMapper;
+import com.logistica.infrastructure.persistence.mapper.LiquidacionMapper;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

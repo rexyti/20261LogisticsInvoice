@@ -1,5 +1,6 @@
 package com.logistica.domain.models;
 
+import com.logistica.domain.enums.TipoResponsable;
 import lombok.Builder;
 import lombok.Getter;
 import com.logistica.domain.enums.TipoOperacion;
@@ -18,7 +19,9 @@ public class AuditoriaLiquidacion {
     private final BigDecimal valorAnterior;
     private final BigDecimal valorNuevo;
     private final OffsetDateTime fechaOperacion;
-    private final String responsable;
+    private final TipoResponsable tipoResponsable;
+    private final String idResponsable;
+    private final OffsetDateTime createdAt;
 
 
     public static AuditoriaLiquidacion crearCalculo(
@@ -35,7 +38,8 @@ public class AuditoriaLiquidacion {
                 .valorAnterior(null)
                 .valorNuevo(valorNuevo)
                 .fechaOperacion(OffsetDateTime.now())
-                .responsable("SISTEMA")
+                .tipoResponsable(TipoResponsable.SISTEMA)
+                .idResponsable("SYSTEM")
                 .build();
     }
 
@@ -44,7 +48,8 @@ public class AuditoriaLiquidacion {
             UUID idLiquidacion,
             BigDecimal valorAnterior,
             BigDecimal valorNuevo,
-            String responsable // a futuro debe ser un usuario o tipo de usuario
+            TipoResponsable tipoResponsable,
+            String idResponsable
     ) {
         if (idLiquidacion == null) {
             throw new IllegalArgumentException("El id de la liquidación no puede ser null");
@@ -58,8 +63,12 @@ public class AuditoriaLiquidacion {
             throw new IllegalArgumentException("El valor anterior no puede ser null");
         }
 
-        if (responsable == null || responsable.isBlank()) {
-            throw new IllegalArgumentException("El responsable es obligatorio");
+        if (tipoResponsable == null) {
+            throw new IllegalArgumentException("El tipo de responsable es obligatorio");
+        }
+
+        if (idResponsable == null || idResponsable.isBlank()) {
+            throw new IllegalArgumentException("El ID del responsable es obligatorio");
         }
 
         return AuditoriaLiquidacion.builder()
@@ -69,7 +78,8 @@ public class AuditoriaLiquidacion {
                 .valorAnterior(valorAnterior)
                 .valorNuevo(valorNuevo)
                 .fechaOperacion(OffsetDateTime.now())
-                .responsable(responsable)
+                .tipoResponsable(tipoResponsable)
+                .idResponsable(idResponsable)
                 .build();
     }
 }

@@ -2,7 +2,7 @@ package com.logistica.infrastructure.persistence.repositories;
 
 import com.logistica.domain.models.AuditoriaLiquidacion;
 import com.logistica.domain.repositories.AuditoriaLiquidacionRepository;
-import com.logistica.infrastructure.adapters.AuditoriaLiquidacionMapper;
+import com.logistica.infrastructure.persistence.mapper.AuditoriaLiquidacionMapper;
 import com.logistica.infrastructure.persistence.entities.AuditoriaLiquidacionEntity;
 import org.springframework.stereotype.Repository;
 

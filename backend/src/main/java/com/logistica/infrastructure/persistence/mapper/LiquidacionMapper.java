@@ -1,4 +1,4 @@
-package com.logistica.infrastructure.adapters;
+package com.logistica.infrastructure.persistence.mapper;
 
 import com.logistica.application.dtos.response.AjusteResponseDTO;
 import com.logistica.application.dtos.response.LiquidacionResponseDTO;
@@ -6,9 +6,7 @@ import com.logistica.domain.models.Liquidacion;
 import com.logistica.infrastructure.persistence.entities.LiquidacionEntity;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 public class LiquidacionMapper {
@@ -20,9 +18,7 @@ public class LiquidacionMapper {
     }
 
     public LiquidacionEntity toEntity(Liquidacion model) {
-        if (model == null) {
-            return null;
-        }
+        if (model == null) return null;
 
         LiquidacionEntity entity = new LiquidacionEntity();
         entity.setId(model.getId());
@@ -33,24 +29,20 @@ public class LiquidacionMapper {
         entity.setValorFinal(model.getValorFinal());
         entity.setFechaCalculo(model.getFechaCalculo());
         entity.setSolicitudRevisionAceptada(model.isSolicitudRevisionAceptada());
+        entity.setIdAdminRevisor(model.getIdAdminRevisor());
+        entity.setFechaAceptacionRevision(model.getFechaAceptacionRevision());
 
         if (model.getAjustes() != null) {
             entity.setAjustes(model.getAjustes().stream()
-                    .map(ajuste -> {
-                        var e = ajusteMapper.toEntity(ajuste);
-                        e.setLiquidacion(entity);
-                        return e;
-                    })
-                    .collect(Collectors.toList()));
+                    .map(ajuste -> ajusteMapper.toEntity(ajuste, entity))
+                    .toList());
         }
 
         return entity;
     }
 
     public Liquidacion toModel(LiquidacionEntity entity) {
-        if (entity == null) {
-            return null;
-        }
+        if (entity == null) return null;
 
         return Liquidacion.builder()
                 .id(entity.getId())
@@ -61,31 +53,38 @@ public class LiquidacionMapper {
                 .valorFinal(entity.getValorFinal())
                 .fechaCalculo(entity.getFechaCalculo())
                 .solicitudRevisionAceptada(entity.isSolicitudRevisionAceptada())
+                .idAdminRevisor(entity.getIdAdminRevisor())
+                .fechaAceptacionRevision(entity.getFechaAceptacionRevision())
+                .createdAt(entity.getCreatedAt())
+                .updatedAt(entity.getUpdatedAt())
                 .ajustes(entity.getAjustes() != null
                         ? entity.getAjustes().stream()
                         .map(ajusteMapper::toModel)
-                        .collect(Collectors.toList())
-                        : new ArrayList<>())
+                        .toList()
+                        : List.of())
                 .build();
     }
 
     public LiquidacionResponseDTO toResponseDTO(Liquidacion model) {
-        if (model == null) {
-            return null;
-        }
+        if (model == null) return null;
 
         List<AjusteResponseDTO> ajustesDto = model.getAjustes() != null
                 ? model.getAjustes().stream()
                 .map(ajusteMapper::toResponseDTO)
-                .collect(Collectors.toList())
+                .toList()
                 : List.of();
 
         return LiquidacionResponseDTO.builder()
                 .id(model.getId())
                 .idRuta(model.getIdRuta())
-                .estado(model.getEstado().name())
+                .idContrato(model.getIdContrato())
+                .estado(model.getEstado())
+                .valorBase(model.getValorBase())
                 .valorFinal(model.getValorFinal())
                 .fechaCalculo(model.getFechaCalculo())
+                .idAdminRevisor(model.getIdAdminRevisor())
+                .fechaAceptacionRevision(model.getFechaAceptacionRevision())
+                .creadoEn(model.getCreatedAt())
                 .ajustes(ajustesDto)
                 .build();
     }

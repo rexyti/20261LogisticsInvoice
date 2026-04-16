@@ -14,10 +14,8 @@ import java.util.UUID;
 @Table(name = "liquidaciones")
 @Getter
 @Setter
-public class LiquidacionEntity {
+public class LiquidacionEntity extends BaseEntity {
 
-    @Id
-    private UUID id;
 
     @Column(name = "id_ruta", nullable = false, unique = true)
     private UUID idRuta;
@@ -38,29 +36,21 @@ public class LiquidacionEntity {
     @Column(name = "fecha_calculo", nullable = false)
     private OffsetDateTime fechaCalculo;
 
+
     @Column(name = "solicitud_revision_aceptada", nullable = false)
-    private boolean solicitudRevisionAceptada;
+    private boolean solicitudRevisionAceptada = false;
+
+    @Column(name = "id_admin_revisor")
+    private UUID idAdminRevisor;
+
+    @Column(name = "fecha_aceptacion_revision")
+    private OffsetDateTime fechaAceptacionRevision;
+
+    @Version
+    private Long version;
 
     @OneToMany(mappedBy = "liquidacion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<AjusteEntity> ajustes;
 
-    @Column(name = "created_at", updatable = false)
-    private OffsetDateTime createdAt;
 
-    @Column(name = "updated_at")
-    private OffsetDateTime updatedAt;
-
-    @PrePersist
-    protected void onCreate() {
-        createdAt = OffsetDateTime.now();
-        updatedAt = OffsetDateTime.now();
-        if (id == null) {
-            id = UUID.randomUUID();
-        }
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        updatedAt = OffsetDateTime.now();
-    }
 }
