@@ -1,4 +1,4 @@
-package com.logistica.application.usecases.liquidacion;
+package com.logistica.application.usecases;
 
 import com.logistica.domain.enums.TipoContratacion;
 import com.logistica.domain.strategies.LiquidacionStrategy;

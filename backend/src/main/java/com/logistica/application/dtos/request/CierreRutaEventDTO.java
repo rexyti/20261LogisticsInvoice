@@ -17,6 +17,9 @@ public class CierreRutaEventDTO {
     private UUID idContrato;
 
     @NotNull
+    private OffsetDateTime fechaInicio;
+
+    @NotNull
     private OffsetDateTime fechaCierre;
 
     @NotEmpty

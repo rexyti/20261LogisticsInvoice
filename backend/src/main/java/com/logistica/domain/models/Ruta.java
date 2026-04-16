@@ -23,8 +23,8 @@ public class Ruta {
                 throw new IllegalArgumentException("El id de la ruta no puede ser null");
             }
 
-            if (fechaInicio == null) {
-                throw new IllegalArgumentException("La fecha de inicio es obligatoria");
+            if (fechaInicio != null && fechaCierre.isBefore(fechaInicio)) {
+                throw new IllegalArgumentException("La fecha de cierre no puede ser anterior a la fecha de inicio");
             }
 
             if (fechaCierre == null) {

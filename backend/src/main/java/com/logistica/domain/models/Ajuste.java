@@ -27,9 +27,6 @@ public class Ajuste {
                 throw new IllegalArgumentException("El id del ajuste no puede ser null");
             }
 
-            if (idLiquidacion == null) {
-                throw new IllegalArgumentException("El id de la liquidación es obligatorio");
-            }
 
             if (tipo == null) {
                 throw new IllegalArgumentException("El tipo de ajuste es obligatorio");

@@ -1,5 +1,6 @@
-package com.logistica.application.usecases.liquidacion;
+package com.logistica.application.usecases;
 
+import com.logistica.domain.enums.TipoResponsable;
 import com.logistica.domain.exceptions.LiquidacionNotFoundException;
 import com.logistica.domain.models.Ajuste;
 import com.logistica.domain.models.AuditoriaLiquidacion;
@@ -24,7 +25,7 @@ public class RecalcularLiquidacionUseCase {
     private final AuditoriaLiquidacionRepository auditoriaRepository;
 
     @Transactional
-    public Liquidacion execute(UUID liquidacionId, List<Ajuste> nuevosAjustes, String responsable) {
+    public Liquidacion execute(UUID liquidacionId, List<Ajuste> nuevosAjustes, String responsableId) {
 
         // 1. Buscar liquidación
         Liquidacion liquidacion = liquidacionRepository.findById(liquidacionId)
@@ -42,7 +43,6 @@ public class RecalcularLiquidacionUseCase {
                 .toList();
 
         // 3. Recalcular (dominio)
-        // 3. Recalcular (dominio)
         liquidacion.recalcular(liquidacion.getValorBase(), ajustesAsociados);
 
         // 4. Persistir
@@ -54,7 +54,8 @@ public class RecalcularLiquidacionUseCase {
                 liquidacionId,
                 valorAnterior,
                 liquidacionActualizada.getValorFinal(),
-                responsable
+                TipoResponsable.ADMINISTRADOR, // Asumimos que quien recalcula es un admin
+                responsableId
         );
 
         auditoriaRepository.save(auditoria);

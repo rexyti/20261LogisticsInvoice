@@ -1,4 +1,4 @@
-package com.logistica.application.usecases.liquidacion;
+package com.logistica.application.usecases;
 
 import com.logistica.domain.exceptions.ContratoNotFoundException;
 import com.logistica.domain.exceptions.LiquidacionDuplicadaException;

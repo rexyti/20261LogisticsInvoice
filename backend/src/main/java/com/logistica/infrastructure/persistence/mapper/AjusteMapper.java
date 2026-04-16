@@ -1,10 +1,14 @@
 package com.logistica.infrastructure.persistence.mapper;
 
+import com.logistica.application.dtos.request.AjusteDTO;
 import com.logistica.application.dtos.response.AjusteResponseDTO;
 import com.logistica.domain.models.Ajuste;
 import com.logistica.infrastructure.persistence.entities.AjusteEntity;
 import com.logistica.infrastructure.persistence.entities.LiquidacionEntity;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.UUID;
 
 @Component
 public class AjusteMapper {
@@ -78,5 +82,24 @@ public class AjusteMapper {
                 .motivo(model.getMotivo())
                 .creadoEn(model.getCreatedAt())
                 .build();
+    }
+    public Ajuste toModel(AjusteDTO dto) {
+        if (dto == null) return null;
+
+        return Ajuste.builder()
+                .id(dto.getId() != null ? dto.getId() : UUID.randomUUID())
+                .idLiquidacion(null)
+                .tipo(dto.getTipo())
+                .monto(dto.getMonto())
+                .motivo(dto.getMotivo())
+                .build();
+    }
+
+    public List<Ajuste> toModelList(List<AjusteDTO> dtos) {
+        if (dtos == null) return List.of();
+
+        return dtos.stream()
+                .map(this::toModel)
+                .toList();
     }
 }

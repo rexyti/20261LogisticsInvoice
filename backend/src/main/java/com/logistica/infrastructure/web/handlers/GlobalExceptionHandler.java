@@ -32,6 +32,10 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ProblemDetail> handleGeneral(Exception ex) {
         return buildResponse("Error interno del servidor", HttpStatus.INTERNAL_SERVER_ERROR);
     }
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ProblemDetail> handleIllegalArgument(IllegalArgumentException ex) {
+        return buildResponse(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
 
     private ResponseEntity<ProblemDetail> buildResponse(String message, HttpStatus status) {
         ProblemDetail body = ProblemDetail.forStatusAndDetail(status, message);
