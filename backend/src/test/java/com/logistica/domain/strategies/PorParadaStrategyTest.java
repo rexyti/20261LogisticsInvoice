@@ -1,16 +1,19 @@
 package com.logistica.domain.strategies;
 
+import com.logistica.domain.enums.EstadoPaquete;
+import com.logistica.domain.enums.TipoContratacion;
 import com.logistica.domain.models.Contrato;
 import com.logistica.domain.models.Paquete;
 import com.logistica.domain.models.Ruta;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
+import java.time.OffsetDateTime;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class PorParadaStrategyTest {
 
@@ -20,64 +23,104 @@ class PorParadaStrategyTest {
     @BeforeEach
     void setUp() {
         strategy = new PorParadaStrategy();
-        contrato = new Contrato(UUID.randomUUID(), "POR_PARADA", new BigDecimal("10.00")); // Tarifa de $10 por parada
+        contrato = Contrato.builder()
+                .id(UUID.randomUUID())
+                .tipoContratacion(TipoContratacion.POR_PARADA)
+                .tarifa(new BigDecimal("10.00"))
+                .build();
     }
 
     @Test
     void testCalcularConParadasExitosas() {
-        Ruta ruta = new Ruta(UUID.randomUUID(), null, null, Arrays.asList(
-                new Paquete(UUID.randomUUID(), "ENTREGADO", ""),
-                new Paquete(UUID.randomUUID(), "ENTREGADO", "")
-        ));
+        Ruta ruta = Ruta.builder()
+                .id(UUID.randomUUID())
+                .fechaInicio(OffsetDateTime.now().minusHours(1))
+                .fechaCierre(OffsetDateTime.now())
+                .paquetes(Arrays.asList(
+                        Paquete.builder().id(UUID.randomUUID()).estadoFinal(EstadoPaquete.ENTREGADO).build(),
+                        Paquete.builder().id(UUID.randomUUID()).estadoFinal(EstadoPaquete.ENTREGADO).build()
+                ))
+                .build();
+        
         BigDecimal resultado = strategy.calcular(ruta, contrato);
-        assertEquals(new BigDecimal("20.00"), resultado, "Debe sumar el 100% de la tarifa por 2 paradas exitosas.");
+        assertEquals(0, new BigDecimal("20.00").compareTo(resultado), "Debe sumar el 100% de la tarifa por 2 paradas exitosas.");
     }
 
     @Test
     void testCalcularConParadasFallidasPorCliente() {
-        Ruta ruta = new Ruta(UUID.randomUUID(), null, null, Arrays.asList(
-                new Paquete(UUID.randomUUID(), "FALLIDO_CLIENTE", ""),
-                new Paquete(UUID.randomUUID(), "FALLIDO_CLIENTE", "")
-        ));
+        Ruta ruta = Ruta.builder()
+                .id(UUID.randomUUID())
+                .fechaInicio(OffsetDateTime.now().minusHours(1))
+                .fechaCierre(OffsetDateTime.now())
+                .paquetes(Arrays.asList(
+                        Paquete.builder().id(UUID.randomUUID()).estadoFinal(EstadoPaquete.FALLIDO_CLIENTE).build(),
+                        Paquete.builder().id(UUID.randomUUID()).estadoFinal(EstadoPaquete.FALLIDO_CLIENTE).build()
+                ))
+                .build();
+        
         BigDecimal resultado = strategy.calcular(ruta, contrato);
-        assertEquals(new BigDecimal("10.00"), resultado, "Debe sumar el 50% de la tarifa por 2 paradas fallidas por cliente.");
+        // 10 * 0.5 + 10 * 0.5 = 10.00
+        assertEquals(0, new BigDecimal("10.00").compareTo(resultado), "Debe sumar el 50% de la tarifa por 2 paradas fallidas por cliente.");
     }
 
     @Test
     void testCalcularConParadasFallidasPorTransportista() {
-        Ruta ruta = new Ruta(UUID.randomUUID(), null, null, Arrays.asList(
-                new Paquete(UUID.randomUUID(), "FALLIDO_TRANSPORTISTA", "")
-        ));
+        Ruta ruta = Ruta.builder()
+                .id(UUID.randomUUID())
+                .fechaInicio(OffsetDateTime.now().minusHours(1))
+                .fechaCierre(OffsetDateTime.now())
+                .paquetes(Arrays.asList(
+                        Paquete.builder().id(UUID.randomUUID()).estadoFinal(EstadoPaquete.FALLIDO_TRANSPORTISTA).build()
+                ))
+                .build();
+        
         BigDecimal resultado = strategy.calcular(ruta, contrato);
-        assertEquals(BigDecimal.ZERO, resultado, "Debe ser 0 para paradas fallidas por el transportista.");
+        assertEquals(0, BigDecimal.ZERO.compareTo(resultado), "Debe ser 0 para paradas fallidas por el transportista.");
     }
 
     @Test
     void testCalcularConMezclaDeEstados() {
-        Ruta ruta = new Ruta(UUID.randomUUID(), null, null, Arrays.asList(
-                new Paquete(UUID.randomUUID(), "ENTREGADO", ""), // +10.00
-                new Paquete(UUID.randomUUID(), "ENTREGADO", ""), // +10.00
-                new Paquete(UUID.randomUUID(), "FALLIDO_CLIENTE", ""), // +5.00
-                new Paquete(UUID.randomUUID(), "FALLIDO_TRANSPORTISTA", "") // +0.00
-        ));
+        Ruta ruta = Ruta.builder()
+                .id(UUID.randomUUID())
+                .fechaInicio(OffsetDateTime.now().minusHours(1))
+                .fechaCierre(OffsetDateTime.now())
+                .paquetes(Arrays.asList(
+                        Paquete.builder().id(UUID.randomUUID()).estadoFinal(EstadoPaquete.ENTREGADO).build(), // 10
+                        Paquete.builder().id(UUID.randomUUID()).estadoFinal(EstadoPaquete.FALLIDO_CLIENTE).build() // 5
+                ))
+                .build();
+        
         BigDecimal resultado = strategy.calcular(ruta, contrato);
-        assertEquals(new BigDecimal("25.00"), resultado, "Debe calcular la suma correcta para una mezcla de estados.");
+        assertEquals(0, new BigDecimal("15.00").compareTo(resultado));
     }
 
     @Test
-    void testCalcularConRutaVacia() {
-        Ruta ruta = new Ruta(UUID.randomUUID(), null, null, Collections.emptyList());
-        BigDecimal resultado = strategy.calcular(ruta, contrato);
-        assertEquals(BigDecimal.ZERO, resultado, "El resultado debe ser 0 si no hay paquetes en la ruta.");
+    void testCalcularConRutaSinPaquetesLanzaExcepcion() {
+        Ruta ruta = Ruta.builder()
+                .id(UUID.randomUUID())
+                .fechaInicio(OffsetDateTime.now().minusHours(1))
+                .fechaCierre(OffsetDateTime.now())
+                .paquetes(java.util.Collections.emptyList())
+                .build();
+        
+        assertThrows(IllegalArgumentException.class, () -> strategy.calcular(ruta, contrato));
     }
 
     @Test
-    void testCalcularConEstadoDePaqueteDesconocido() {
-        Ruta ruta = new Ruta(UUID.randomUUID(), null, null, Arrays.asList(
-                new Paquete(UUID.randomUUID(), "ENTREGADO", ""), // +10.00
-                new Paquete(UUID.randomUUID(), "ESTADO_INEXISTENTE", "") // +0.00
-        ));
-        BigDecimal resultado = strategy.calcular(ruta, contrato);
-        assertEquals(new BigDecimal("10.00"), resultado, "Debe ignorar (valor 0) los paquetes con estados no reconocidos.");
+    void testCalcularConContratoInvalidoLanzaExcepcion() {
+        Contrato contratoInvalido = Contrato.builder()
+                .id(UUID.randomUUID())
+                .tipoContratacion(TipoContratacion.RECORRIDO_COMPLETO)
+                .tarifa(new BigDecimal("100.00"))
+                .build();
+
+        Ruta ruta = Ruta.builder()
+                .id(UUID.randomUUID())
+                .fechaInicio(OffsetDateTime.now().minusHours(1))
+                .fechaCierre(OffsetDateTime.now())
+                .paquetes(Arrays.asList(Paquete.builder().id(UUID.randomUUID()).estadoFinal(EstadoPaquete.ENTREGADO).build()))
+                .build();
+
+        assertThrows(IllegalArgumentException.class, () -> strategy.calcular(ruta, contratoInvalido));
     }
 }
