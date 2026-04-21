@@ -61,46 +61,92 @@ backend/
 │   │   │   ├── liquidacion/
 │   │   │   │   ├── CalcularLiquidacionUseCase.java
 │   │   │   │   ├── RecalcularLiquidacionUseCase.java
-│   │   │   │   └── CerrarRutaUseCase.java
+│   │   │   │   └── LiquidacionStrategyFactoty.java
 │   │   │
 │   │   └── dtos/                    # DTOs de entrada/salida
 │   │       ├── request/
+│   │       │   ├── AjusteDto
+│   │       │   ├── CierreRutaEventDTO
+│   │       │   ├── PaqueteDto
+│   │       │   └── RecalcularLiquidacionRequestDTO
 │   │       └── response/
-│
+│   │           ├── AjusteResponseDto
+│   │           └── RecalcularLiquidacionRequestDTO
 │   ├── domain/                      # Núcleo del negocio (LO MÁS IMPORTANTE)
 │   │   ├── models/                  # Entidades de negocio (sin JPA si quieres pureza)
-│   │   │   ├── Liquidacion.java
 │   │   │   ├── Ajuste.java
+│   │   │   ├── Contrato.java
+│   │   │   ├── Liquidacion.java
+│   │   │   ├── Paquete.java
+│   │   │   ├── Ruta.java
 │   │   │   └── AuditoriaLiquidacion.java
+│   │   │
+│   │   ├── enums/ 
+│   │   │   ├── EstadoLiquidacion.java
+│   │   │   ├── EstadoPaquete.java
+│   │   │   ├── TipoAjuste.java
+│   │   │   ├── TipoContratacion.java
+│   │   │   ├── TipoOperacion.java
+│   │   │   └── TipoResponsable.java
 │   │   │
 │   │   ├── exceptions/              # Excepciones de negocio
 │   │   │   ├── ContratoNotFoundException.java
+│   │   │   ├── DomainException.java
+│   │   │   ├── LiquidacionNotFoundException.java
 │   │   │   └── LiquidacionDuplicadaException.java
 │   │   │
 │   │   ├── repositories/            # Interfaces (puertos)
 │   │   │   ├── LiquidacionRepository.java
+│   │   │   ├── AjusteRepository.java
+│   │   │   ├── AuditoriaLiquidacionRepository.java
 │   │   │   └── AjusteRepository.java
 │   │   │
 │   │   └── strategies/              # Reglas de negocio (core)
 │   │       ├── LiquidacionStrategy.java
 │   │       ├── PorParadaStrategy.java
 │   │       └── RecorridoCompletoStrategy.java
-│
+│   │      
 │   ├── infrastructure/              # Implementaciones técnicas
 │   │   ├── persistence/
 │   │   │   ├── entities/            # Entidades JPA (separadas del dominio)
-│   │   │   ├── repositories/        # Spring Data JPA
+│   │   │   │    ├── AjusteEntity.java
+│   │   │   │    ├── ContratoEntity.java
+│   │   │   │    ├── LiquidacionEntity.java
+│   │   │   │    ├── InmutableBaseEntity.java
+│   │   │   │    ├── BaseEntity.java
+│   │   │   │    └── AuditoriaLiquidacionEntity.java  
+│   │   │   │
+│   │   │   ├── repositories/          # Spring Data JPA
+│   │   │   │    ├── AjusteJpaRepository.java
+│   │   │   │    ├── AjusteRepositoryImpl.java
+│   │   │   │    ├── AuditoriaLiquidacionJpaRepository.java
+│   │   │   │    ├── AuditoriaLiquidacionRepositoryImpl.java
+│   │   │   │    ├── ContratoJpaRepository.java
+│   │   │   │    ├── ContratoRepositoryImpl.java
+│   │   │   │    ├── LiquidacionJpaRepository.java
+│   │   │   │    └── LiquidacionRepositoryImpl.java
+│   │   │   │
+│   │   │   └── mapper/ 
+│   │   │       ├── AjusteMapper.java
+│   │   │       ├── ContratoMapper.java
+│   │   │       ├── LiquidacionMapper.java
+│   │   │       ├── RutaMapper.java
+│   │   │       └── AuditoriaLiquidacionMapper.java
 │   │   │
 │   │   ├── web/
 │   │   │   ├── controllers/         # REST controllers
+│   │   │   │     ├── EventoController.java
+│   │   │   │     └── LiquidacionController.java
+│   │   │   │ 
 │   │   │   └── handlers/            # Manejo global de errores
+│   │   │       └── GlobalExceptionHandler.java
 │   │   │
-│   │   ├── config/                  # Seguridad, CORS, etc
-│   │   └── adapters/                # Mappers (DTO ↔ dominio)
+│   │   └── config/                  # Seguridad, CORS, etc
+│   │       ├── JwtAuthenticationFilter.java
+│   │       ├── JwtService.java
+│   │       └── SecurityConfig.java
+│   
 │
-│   └── shared/                      # Utilidades comunes
-│       ├── utils/
-│       └── constants/
 │
 ├── src/main/resources/
 │   ├── db/migration/

@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: "logisticaapplication"
+  r2dbc:
+    url: "r2dbc:postgresql://localhost:5432/logistica"7
+
+    username: "luis"
+    password: "123456789"
+
+server:
+  port: 8080
