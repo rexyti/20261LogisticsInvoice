@@ -44,92 +44,61 @@ project/
 ├── backend/
 │   ├── src/main/java/com/logistica/
 │   │
-│   │   ├── application/                             # Casos de uso (orquestación)
+│   │   ├── application/                             # Casos de uso (queries)
 │   │   │   ├── usecases/
-│   │   │   │   ├── pago/
-│   │   │   │   │   ├── ProcesarWebhookPagoUseCase.java
-│   │   │   │   │   ├── RegistrarEventoPagoUseCase.java
-│   │   │   │   │   └── ConsultarEstadoPagoUseCase.java
+│   │   │   │   ├── liquidacion/
+│   │   │   │   │   ├── ListarLiquidacionesUseCase.java
+│   │   │   │   │   ├── ObtenerDetalleLiquidacionUseCase.java
+│   │   │   │   │   └── BuscarLiquidacionesUseCase.java
 │   │   │   │
 │   │   │   └── dtos/
 │   │   │       ├── request/
-│   │   │       │   └── WebhookPagoRequestDTO.java
+│   │   │       │   └── FiltroLiquidacionDTO.java
 │   │   │       │
 │   │   │       └── response/
-│   │   │           ├── EstadoPagoResponseDTO.java
-│   │   │           └── EventoProcesadoResponseDTO.java
+│   │   │           ├── LiquidacionListItemDTO.java
+│   │   │           ├── LiquidacionDetalleDTO.java
+│   │   │           └── PaginacionResponseDTO.java
 │   │
 │   │   ├── domain/                                  # Núcleo del negocio
 │   │   │   ├── models/
-│   │   │   │   ├── Pago.java
-│   │   │   │   ├── EstadoPago.java
-│   │   │   │   ├── EventoTransaccion.java
-│   │   │   │   └── Penalidad.java
-│   │   │   │
-│   │   │   ├── enums/
-│   │   │   │   ├── EstadoPagoEnum.java
-│   │   │   │   └── TipoEventoPago.java
+│   │   │   │   └── Liquidacion.java                 # Modelo existente
 │   │   │   │
 │   │   │   ├── repositories/                        # Puertos
-│   │   │   │   ├── PagoRepository.java
-│   │   │   │   ├── EstadoPagoRepository.java
-│   │   │   │   └── EventoRepository.java
-│   │   │   │
-│   │   │   ├── services/                            # Lógica de dominio crítica
-│   │   │   │   ├── ProcesadorEstadoPagoService.java
-│   │   │   │   ├── IdempotenciaService.java
-│   │   │   │   └── AuditoriaPagoService.java
-│   │   │   │
-│   │   │   ├── validators/                          # Reglas de negocio
-│   │   │   │   └── TransicionEstadoValidator.java
-│   │   │   │
-│   │   │   ├── events/                              # Eventos de dominio (🔥 pro)
-│   │   │   │   └── PagoProcesadoEvent.java
+│   │   │   │   └── LiquidacionRepository.java
 │   │   │   │
 │   │   │   └── exceptions/
-│   │   │       ├── EventoDuplicadoException.java
-│   │   │       ├── TransicionInvalidaException.java
-│   │   │       └── PagoNoEncontradoException.java
+│   │   │       ├── LiquidacionNoEncontradaException.java
+│   │   │       └── AccesoDenegadoException.java
 │   │
 │   │   ├── infrastructure/                          # Implementación técnica
 │   │   │   ├── persistence/
-│   │   │   │   ├── entities/
-│   │   │   │   │   ├── PagoEntity.java
-│   │   │   │   │   ├── EstadoPagoEntity.java
-│   │   │   │   │   └── EventoEntity.java
-│   │   │   │   │
-│   │   │   │   └── repositories/
+│   │   │   │   ├── entities/                        # JPA (reutilizadas)
+│   │   │   │   └── repositories/                    # Spring Data + queries
+│   │   │   │       └── LiquidacionJpaRepository.java
 │   │   │   │
 │   │   │   ├── web/
 │   │   │   │   ├── controllers/
-│   │   │   │   │   └── WebhookPagoController.java
+│   │   │   │   │   └── LiquidacionController.java
 │   │   │   │   │
 │   │   │   │   └── handlers/
 │   │   │   │       └── GlobalExceptionHandler.java
 │   │   │   │
-│   │   │   ├── async/                              # Procesamiento asíncrono
-│   │   │   │   ├── AsyncConfig.java
-│   │   │   │   └── TaskExecutorConfig.java
-│   │   │   │
-│   │   │   ├── messaging/                          # (opcional) eventos externos
-│   │   │   │   └── EventPublisher.java
-│   │   │   │
-│   │   │   ├── security/
-│   │   │   │   └── WebhookSecurityConfig.java
-│   │   │   │
-│   │   │   ├── adapters/
-│   │   │   │   └── PagoMapper.java
+│   │   │   ├── adapters/                            # Mappers
+│   │   │   │   └── LiquidacionMapper.java
 │   │   │   │
 │   │   │   └── config/
+│   │   │       ├── WebConfig.java                   # CORS
+│   │   │       ├── SecurityConfig.java              # Seguridad
+│   │   │       └── PaginationConfig.java            # Default page/size
 │   │
 │   │   └── shared/
 │   │       ├── utils/
-│   │       ├── constants/
-│   │       └── logging/
+│   │       └── constants/
 │
 │   ├── src/main/resources/
 │   │   ├── db/migration/
-│   │   │   └── Vx__registro_estado_pago.sql
+│   │   │   └── Vx__indexes_visualizacion_liquidacion.sql
 │   │   │
 │   │   └── application.yml
 │   │
@@ -139,18 +108,18 @@ project/
 ├── frontend/
 │   ├── src/
 │   │
-│   │   ├── app/
+│   │   ├── app/                                  # Router, config global
 │   │
-│   │   ├── modules/
-│   │   │   ├── pagos/
-│   │   │   │   ├── components/                  # Estado, timeline, mensajes async
-│   │   │   │   ├── pages/                       # Seguimiento de pago
+│   │   ├── modules/                              # Feature-based
+│   │   │   ├── liquidaciones/
+│   │   │   │   ├── components/                  # Tabla, buscador, alerts
+│   │   │   │   ├── pages/                       # Listado y detalle
 │   │   │   │   ├── services/                    # Axios calls
-│   │   │   │   └── hooks/                       # Polling, refresh automático
+│   │   │   │   └── hooks/                       # Manejo de filtros/paginación
 │   │   │
 │   │   ├── shared/
-│   │   │   ├── components/
-│   │   │   ├── services/
+│   │   │   ├── components/                      # Tabla genérica, loaders, empty states
+│   │   │   ├── services/                        # Axios base config
 │   │   │   └── utils/
 │   │
 │   │   ├── assets/
