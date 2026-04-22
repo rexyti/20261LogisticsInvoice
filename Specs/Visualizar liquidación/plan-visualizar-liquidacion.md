@@ -2,7 +2,7 @@
 
 **Date**: 2026-04-10
 **Spec**: [Visualizar liquidación.md]
-
+git 
 ## Summary
 
 El objetivo de esta funcionalidad es permitir la consulta segura, trazable y ordenada de las liquidaciones previamente calculadas y almacenadas en el sistema. La solución debe mostrar las liquidaciones en forma de lista organizada, permitir la búsqueda de una liquidación específica, mostrar mensajes claros cuando la liquidación no exista o aún no haya sido generada, y aplicar control de acceso para que cada usuario visualice únicamente la información que tiene permitido consultar según su rol.
