@@ -46,65 +46,97 @@ specs/visualizar-estado-pago/
 ### Source Code (repository root)
 
 ```text
+```text
 project/
 ├── backend/
 │   ├── src/main/java/com/logistica/
 │   │
-│   │   ├── application/                             # Casos de uso (queries)
+│   │   ├── application/                             # Casos de uso (orquestación)
 │   │   │   ├── usecases/
-│   │   │   │   ├── liquidacion/
-│   │   │   │   │   ├── ListarLiquidacionesUseCase.java
-│   │   │   │   │   ├── ObtenerDetalleLiquidacionUseCase.java
-│   │   │   │   │   └── BuscarLiquidacionesUseCase.java
+│   │   │   │   ├── pago/
+│   │   │   │   │   ├── ProcesarWebhookPagoUseCase.java
+│   │   │   │   │   ├── RegistrarEventoPagoUseCase.java
+│   │   │   │   │   └── ConsultarEstadoPagoUseCase.java
 │   │   │   │
 │   │   │   └── dtos/
 │   │   │       ├── request/
-│   │   │       │   └── FiltroLiquidacionDTO.java
+│   │   │       │   └── WebhookPagoRequestDTO.java
 │   │   │       │
 │   │   │       └── response/
-│   │   │           ├── LiquidacionListItemDTO.java
-│   │   │           ├── LiquidacionDetalleDTO.java
-│   │   │           └── PaginacionResponseDTO.java
+│   │   │           ├── EstadoPagoResponseDTO.java
+│   │   │           └── EventoProcesadoResponseDTO.java
 │   │
 │   │   ├── domain/                                  # Núcleo del negocio
 │   │   │   ├── models/
-│   │   │   │   └── Liquidacion.java                 # Modelo existente
+│   │   │   │   ├── Pago.java
+│   │   │   │   ├── EstadoPago.java
+│   │   │   │   ├── EventoTransaccion.java
+│   │   │   │   └── Penalidad.java
+│   │   │   │
+│   │   │   ├── enums/
+│   │   │   │   ├── EstadoPagoEnum.java
+│   │   │   │   └── TipoEventoPago.java
 │   │   │   │
 │   │   │   ├── repositories/                        # Puertos
-│   │   │   │   └── LiquidacionRepository.java
+│   │   │   │   ├── PagoRepository.java
+│   │   │   │   ├── EstadoPagoRepository.java
+│   │   │   │   └── EventoRepository.java
+│   │   │   │
+│   │   │   ├── services/                            # Lógica de dominio crítica
+│   │   │   │   ├── ProcesadorEstadoPagoService.java
+│   │   │   │   ├── IdempotenciaService.java
+│   │   │   │   └── AuditoriaPagoService.java
+│   │   │   │
+│   │   │   ├── validators/                          # Reglas de negocio
+│   │   │   │   └── TransicionEstadoValidator.java
+│   │   │   │
+│   │   │   ├── events/                              # Eventos de dominio (🔥 pro)
+│   │   │   │   └── PagoProcesadoEvent.java
 │   │   │   │
 │   │   │   └── exceptions/
-│   │   │       ├── LiquidacionNoEncontradaException.java
-│   │   │       └── AccesoDenegadoException.java
+│   │   │       ├── EventoDuplicadoException.java
+│   │   │       ├── TransicionInvalidaException.java
+│   │   │       └── PagoNoEncontradoException.java
 │   │
 │   │   ├── infrastructure/                          # Implementación técnica
 │   │   │   ├── persistence/
-│   │   │   │   ├── entities/                        # JPA (reutilizadas)
-│   │   │   │   └── repositories/                    # Spring Data + queries
-│   │   │   │       └── LiquidacionJpaRepository.java
+│   │   │   │   ├── entities/
+│   │   │   │   │   ├── PagoEntity.java
+│   │   │   │   │   ├── EstadoPagoEntity.java
+│   │   │   │   │   └── EventoEntity.java
+│   │   │   │   │
+│   │   │   │   └── repositories/
 │   │   │   │
 │   │   │   ├── web/
 │   │   │   │   ├── controllers/
-│   │   │   │   │   └── LiquidacionController.java
+│   │   │   │   │   └── WebhookPagoController.java
 │   │   │   │   │
 │   │   │   │   └── handlers/
 │   │   │   │       └── GlobalExceptionHandler.java
 │   │   │   │
-│   │   │   ├── adapters/                            # Mappers
-│   │   │   │   └── LiquidacionMapper.java
+│   │   │   ├── async/                              # Procesamiento asíncrono
+│   │   │   │   ├── AsyncConfig.java
+│   │   │   │   └── TaskExecutorConfig.java
+│   │   │   │
+│   │   │   ├── messaging/                          # (opcional) eventos externos
+│   │   │   │   └── EventPublisher.java
+│   │   │   │
+│   │   │   ├── security/
+│   │   │   │   └── WebhookSecurityConfig.java
+│   │   │   │
+│   │   │   ├── adapters/
+│   │   │   │   └── PagoMapper.java
 │   │   │   │
 │   │   │   └── config/
-│   │   │       ├── WebConfig.java                   # CORS
-│   │   │       ├── SecurityConfig.java              # Seguridad
-│   │   │       └── PaginationConfig.java            # Default page/size
 │   │
 │   │   └── shared/
 │   │       ├── utils/
-│   │       └── constants/
+│   │       ├── constants/
+│   │       └── logging/
 │
 │   ├── src/main/resources/
 │   │   ├── db/migration/
-│   │   │   └── Vx__indexes_visualizacion_liquidacion.sql
+│   │   │   └── Vx__registro_estado_pago.sql
 │   │   │
 │   │   └── application.yml
 │   │
@@ -114,18 +146,18 @@ project/
 ├── frontend/
 │   ├── src/
 │   │
-│   │   ├── app/                                  # Router, config global
+│   │   ├── app/
 │   │
-│   │   ├── modules/                              # Feature-based
-│   │   │   ├── liquidaciones/
-│   │   │   │   ├── components/                  # Tabla, buscador, alerts
-│   │   │   │   ├── pages/                       # Listado y detalle
+│   │   ├── modules/
+│   │   │   ├── pagos/
+│   │   │   │   ├── components/                  # Estado, timeline, mensajes async
+│   │   │   │   ├── pages/                       # Seguimiento de pago
 │   │   │   │   ├── services/                    # Axios calls
-│   │   │   │   └── hooks/                       # Manejo de filtros/paginación
+│   │   │   │   └── hooks/                       # Polling, refresh automático
 │   │   │
 │   │   ├── shared/
-│   │   │   ├── components/                      # Tabla genérica, loaders, empty states
-│   │   │   ├── services/                        # Axios base config
+│   │   │   ├── components/
+│   │   │   ├── services/
 │   │   │   └── utils/
 │   │
 │   │   ├── assets/
@@ -133,6 +165,8 @@ project/
 │
 │   └── package.json
 ```
+
+
 
 **Structure Decision**: Se utiliza una arquitectura desacoplada con separación entre repositorios, servicios, controladores y DTOs de lectura. La validación de permisos se centraliza en la capa de servicio. El registro de intentos de acceso no autorizado se implementa en la misma capa de seguridad para garantizar trazabilidad. La generación del comprobante se implementa en una utilidad de backend para mantener el documento consistente con la información persistida.
 
