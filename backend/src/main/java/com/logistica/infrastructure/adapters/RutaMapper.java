@@ -2,26 +2,26 @@ package com.logistica.infrastructure.adapters;
 
 import com.logistica.domain.models.Parada;
 import com.logistica.domain.models.Ruta;
-import com.logistica.domain.models.Transportista;
 import com.logistica.infrastructure.persistence.entities.ParadaEntity;
 import com.logistica.infrastructure.persistence.entities.RutaEntity;
-import com.logistica.infrastructure.persistence.entities.TransportistaEntity;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
+@RequiredArgsConstructor
 public class RutaMapper {
 
+    private final TransportistaMapper transportistaMapper;
+    private final ParadaMapper paradaMapper;
+
     public RutaEntity toEntity(Ruta ruta) {
-        TransportistaEntity transportistaEntity = TransportistaEntity.builder()
-                .conductorId(ruta.getTransportista().getConductorId())
-                .nombre(ruta.getTransportista().getNombre())
-                .build();
+        if (ruta == null) return null;
 
         RutaEntity rutaEntity = RutaEntity.builder()
                 .rutaId(ruta.getRutaId())
-                .transportista(transportistaEntity)
+                .transportista(transportistaMapper.toEntity(ruta.getTransportista()))
                 .tipoVehiculo(ruta.getTipoVehiculo())
                 .modeloContrato(ruta.getModeloContrato())
                 .fechaInicioTransito(ruta.getFechaInicioTransito())
@@ -29,38 +29,30 @@ public class RutaMapper {
                 .estadoProcesamiento(ruta.getEstadoProcesamiento())
                 .build();
 
-        List<ParadaEntity> paradaEntities = ruta.getParadas().stream()
-                .map(p -> ParadaEntity.builder()
-                        .paradaId(p.getParadaId())
-                        .ruta(rutaEntity)
-                        .estado(p.getEstado())
-                        .motivoFalla(p.getMotivoFalla())
-                        .responsable(p.getResponsable())
-                        .build())
+        List<ParadaEntity> paradas = (ruta.getParadas() == null ? List.<Parada>of() : ruta.getParadas())
+                .stream()
+                .map(paradaMapper::toEntity)
                 .toList();
 
-        rutaEntity.setParadas(paradaEntities);
+        // mantener relación bidireccional
+        paradas.forEach(rutaEntity::addParada);
+
+        rutaEntity.setParadas(paradas);
+
         return rutaEntity;
     }
 
     public Ruta toDomain(RutaEntity entity) {
-        Transportista transportista = Transportista.builder()
-                .conductorId(entity.getTransportista().getConductorId())
-                .nombre(entity.getTransportista().getNombre())
-                .build();
+        if (entity == null) return null;
 
-        List<Parada> paradas = entity.getParadas().stream()
-                .map(p -> Parada.builder()
-                        .paradaId(p.getParadaId())
-                        .estado(p.getEstado())
-                        .motivoFalla(p.getMotivoFalla())
-                        .responsable(p.getResponsable())
-                        .build())
+        List<Parada> paradas = (entity.getParadas() == null ? List.<ParadaEntity>of() : entity.getParadas())
+                .stream()
+                .map(paradaMapper::toDomain)
                 .toList();
 
         return Ruta.builder()
                 .rutaId(entity.getRutaId())
-                .transportista(transportista)
+                .transportista(transportistaMapper.toDomain(entity.getTransportista()))
                 .tipoVehiculo(entity.getTipoVehiculo())
                 .modeloContrato(entity.getModeloContrato())
                 .fechaInicioTransito(entity.getFechaInicioTransito())

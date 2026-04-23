@@ -1,5 +1,6 @@
 package com.logistica.domain.enums;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -7,17 +8,27 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum MotivoFalla {
 
-    DIRECCION_ERRONEA("DIRECCIÓN_ERRONEA", ResponsableFalla.CLIENTE, "30%-50%"),
-    CLIENTE_AUSENTE("CLIENTE_AUSENTE", ResponsableFalla.CLIENTE, "30%-50%"),
-    RECHAZADO("RECHAZADO", ResponsableFalla.CLIENTE, "30%-50%"),
-    ZONA_DIFICIL_ACCESO("ZONA DE DIFÍCIL ACESSO / ORDEN PÚBLICO", ResponsableFalla.EMPRESA, "Por definir"),
-    PAQUETE_DANADO("PAQUETE_DAÑADO", ResponsableFalla.TRANSPORTISTA, "0% + penalidad"),
-    PERDIDA_PAQUETE("PÉRDIDA_PAQUETE", ResponsableFalla.TRANSPORTISTA, "0% + penalidad");
+    DIRECCION_ERRONEA("DIRECCIÓN_ERRONEA", ResponsableFalla.CLIENTE, 0.30, 0.50, false),
+    CLIENTE_AUSENTE("CLIENTE_AUSENTE", ResponsableFalla.CLIENTE, 0.30, 0.50, false),
+    RECHAZADO("RECHAZADO", ResponsableFalla.CLIENTE, 0.30, 0.50, false),
+    PAQUETE_DANADO("PAQUETE_DAÑADO", ResponsableFalla.TRANSPORTISTA, 0.0, 0.0, false),
+    PERDIDA_PAQUETE("PÉRDIDA_PAQUETE", ResponsableFalla.TRANSPORTISTA, 0.0, 0.0, false),
+
+    ZONA_DIFICIL_ACCESO(
+            "ZONA DE DIFÍCIL ACCESO / ORDEN PÚBLICO",
+            ResponsableFalla.EMPRESA,
+            0.0,
+            0.0,
+            true
+    );
 
     private final String valorJson;
     private final ResponsableFalla responsable;
-    private final String porcentajePago;
+    private final double porcentajeMinimo;
+    private final double porcentajeMaximo;
+    private final boolean porcentajePendiente;
 
+    @JsonCreator
     public static MotivoFalla fromValue(String valor) {
         if (valor == null) return null;
         for (MotivoFalla m : values()) {

@@ -1,12 +1,24 @@
 package com.logistica.application.dtos.request;
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.logistica.domain.enums.EstadoParada;
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 public class ParadaEventDTO {
+
+    @NotNull
+    @JsonProperty("parada_id")
     private UUID paradaId;
-    private String estado;
+
+    @NotNull
+    private EstadoParada estado;
+
+    @JsonProperty("motivo_no_entrega")
     private String motivoNoEntrega;
 }

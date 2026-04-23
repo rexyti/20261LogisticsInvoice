@@ -16,12 +16,5 @@ public class RutaValidator {
                 + " recibidas=" + ruta.getParadas().size()
             );
         }
-        for (Parada parada : ruta.getParadas()) {
-            if (EstadoParada.FALLIDA.equals(parada.getEstado()) && parada.getMotivoFalla() == null) {
-                throw new DomainException(
-                    "Parada FALLIDA sin motivo_no_entrega: paradaId=" + parada.getParadaId()
-                );
-            }
-        }
     }
 }

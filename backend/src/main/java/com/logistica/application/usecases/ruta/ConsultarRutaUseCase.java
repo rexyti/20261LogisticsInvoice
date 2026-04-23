@@ -3,6 +3,7 @@ package com.logistica.application.usecases.ruta;
 import com.logistica.application.dtos.response.ParadaResponseDTO;
 import com.logistica.application.dtos.response.RutaProcesadaResponseDTO;
 import com.logistica.application.dtos.response.TransportistaResponseDTO;
+import com.logistica.application.mappers.RutaResponseMapper;
 import com.logistica.domain.exceptions.RutaNotFoundException;
 import com.logistica.domain.models.Ruta;
 import com.logistica.domain.repositories.RutaRepository;
@@ -15,44 +16,22 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class ConsultarRutaUseCase {
 
     private final RutaRepository rutaRepository;
+    private final RutaResponseMapper rutaResponseMapper;
 
-    @Transactional(readOnly = true)
     public RutaProcesadaResponseDTO ejecutar(UUID rutaId) {
         Ruta ruta = rutaRepository.buscarPorRutaId(rutaId)
                 .orElseThrow(() -> new RutaNotFoundException(rutaId));
-        return toResponseDTO(ruta);
+
+        return rutaResponseMapper.toResponse(ruta);
     }
 
-    @Transactional(readOnly = true)
     public List<RutaProcesadaResponseDTO> listarTodas() {
         return rutaRepository.listarTodas().stream()
-                .map(this::toResponseDTO)
+                .map(rutaResponseMapper::toResponse)
                 .toList();
-    }
-
-    private RutaProcesadaResponseDTO toResponseDTO(Ruta ruta) {
-        return RutaProcesadaResponseDTO.builder()
-                .rutaId(ruta.getRutaId())
-                .tipoVehiculo(ruta.getTipoVehiculo())
-                .modeloContrato(ruta.getModeloContrato())
-                .estadoProcesamiento(ruta.getEstadoProcesamiento().name())
-                .fechaInicioTransito(ruta.getFechaInicioTransito())
-                .fechaCierre(ruta.getFechaCierre())
-                .transportista(TransportistaResponseDTO.builder()
-                        .conductorId(ruta.getTransportista().getConductorId())
-                        .nombre(ruta.getTransportista().getNombre())
-                        .build())
-                .paradas(ruta.getParadas().stream()
-                        .map(p -> ParadaResponseDTO.builder()
-                                .paradaId(p.getParadaId())
-                                .estado(p.getEstado().name())
-                                .motivoFalla(p.getMotivoFalla() != null ? p.getMotivoFalla().name() : null)
-                                .responsable(p.getResponsable() != null ? p.getResponsable().name() : null)
-                                .build())
-                        .toList())
-                .build();
     }
 }

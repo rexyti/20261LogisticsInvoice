@@ -48,4 +48,9 @@ public class RutaEntity {
     @OneToMany(mappedBy = "ruta", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @Builder.Default
     private List<ParadaEntity> paradas = new ArrayList<>();
+
+    public  void addParada(ParadaEntity parada){
+        parada.setRuta(this);
+        this.paradas.add(parada);
+    }
 }

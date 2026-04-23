@@ -1,5 +1,8 @@
 package com.logistica.domain.enums;
 
+
+import java.util.Arrays;
+
 public enum TipoVehiculo {
     MOTO,
     VAN,
@@ -8,9 +11,7 @@ public enum TipoVehiculo {
 
     public static boolean isKnown(String tipo) {
         if (tipo == null) return false;
-        for (TipoVehiculo t : values()) {
-            if (t.name().equalsIgnoreCase(tipo)) return true;
-        }
-        return false;
+        return Arrays.stream(values())
+                .anyMatch(t -> t.name().equalsIgnoreCase(tipo));
     }
 }
