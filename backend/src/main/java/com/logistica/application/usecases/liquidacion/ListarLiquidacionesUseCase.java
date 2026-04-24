@@ -2,10 +2,10 @@ package com.logistica.application.usecases.liquidacion;
 
 import com.logistica.application.dtos.response.LiquidacionListItemDTO;
 import com.logistica.application.dtos.response.LiquidacionListResponseDTO;
+import com.logistica.application.mappers.LiquidacionDTOMapper;
 import com.logistica.application.security.UsuarioAutenticado;
 import com.logistica.domain.models.Liquidacion;
 import com.logistica.domain.repositories.LiquidacionRepository;
-import com.logistica.infrastructure.adapters.LiquidacionMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -18,9 +18,9 @@ import java.util.List;
 public class ListarLiquidacionesUseCase {
 
     private final LiquidacionRepository repository;
-    private final LiquidacionMapper mapper;
+    private final LiquidacionDTOMapper mapper;
 
-    public ListarLiquidacionesUseCase(LiquidacionRepository repository, LiquidacionMapper mapper) {
+    public ListarLiquidacionesUseCase(LiquidacionRepository repository, LiquidacionDTOMapper mapper) {
         this.repository = repository;
         this.mapper = mapper;
     }

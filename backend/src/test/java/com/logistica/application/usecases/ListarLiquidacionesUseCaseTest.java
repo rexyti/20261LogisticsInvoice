@@ -8,7 +8,7 @@ import com.logistica.domain.enums.EstadoLiquidacion;
 import com.logistica.domain.models.Liquidacion;
 import com.logistica.domain.models.Ruta;
 import com.logistica.domain.repositories.LiquidacionRepository;
-import com.logistica.infrastructure.adapters.LiquidacionMapper;
+import com.logistica.application.mappers.LiquidacionDTOMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -40,7 +40,7 @@ class ListarLiquidacionesUseCaseTest {
     private LiquidacionRepository repository;
 
     @Mock
-    private LiquidacionMapper mapper;
+    private LiquidacionDTOMapper mapper;
 
     @InjectMocks
     private ListarLiquidacionesUseCase useCase;

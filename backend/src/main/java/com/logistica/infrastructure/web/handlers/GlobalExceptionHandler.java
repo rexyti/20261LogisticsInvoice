@@ -3,6 +3,8 @@ package com.logistica.infrastructure.web.handlers;
 import com.logistica.domain.exceptions.AccesoDenegadoException;
 import com.logistica.domain.exceptions.LiquidacionAunNoCalculadaException;
 import com.logistica.domain.exceptions.LiquidacionNoEncontradaException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessResourceFailureException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,8 @@ import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
+    private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     @ExceptionHandler(LiquidacionNoEncontradaException.class)
     public ResponseEntity<ErrorResponseDTO> handleLiquidacionNoEncontrada(LiquidacionNoEncontradaException ex) {
@@ -61,6 +65,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponseDTO> handleGeneric(Exception ex) {
+        log.error("Error inesperado no manejado", ex);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(new ErrorResponseDTO("ERROR_INTERNO",
                         "Ha ocurrido un error inesperado. Contacte al administrador.", LocalDateTime.now()));

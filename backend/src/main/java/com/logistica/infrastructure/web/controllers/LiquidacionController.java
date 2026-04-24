@@ -15,11 +15,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Set;
 import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/liquidaciones")
 public class LiquidacionController {
+
+    private static final Set<String> CAMPOS_ORDENABLES =
+            Set.of("fechaCalculo", "montoBruto", "montoNeto", "estadoLiquidacion");
+    private static final String CAMPO_ORDEN_DEFAULT = "fechaCalculo";
 
     private final ListarLiquidacionesUseCase listarUseCase;
     private final ObtenerDetalleLiquidacionUseCase obtenerDetalleUseCase;
@@ -41,9 +46,10 @@ public class LiquidacionController {
             @RequestParam(defaultValue = "desc") String sortDir,
             Authentication authentication) {
 
+        String campoOrden = CAMPOS_ORDENABLES.contains(sortBy) ? sortBy : CAMPO_ORDEN_DEFAULT;
         Sort sort = sortDir.equalsIgnoreCase("asc")
-                ? Sort.by(sortBy).ascending()
-                : Sort.by(sortBy).descending();
+                ? Sort.by(campoOrden).ascending()
+                : Sort.by(campoOrden).descending();
         Pageable pageable = PageRequest.of(page, size, sort);
 
         UsuarioAutenticado usuario = UsuarioAutenticado.from(authentication);

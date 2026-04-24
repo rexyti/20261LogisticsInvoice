@@ -2,15 +2,16 @@ package com.logistica.application.usecases;
 
 import com.logistica.application.dtos.request.FiltroLiquidacionDTO;
 import com.logistica.application.dtos.response.LiquidacionDetalleDTO;
+import com.logistica.application.mappers.LiquidacionDTOMapper;
 import com.logistica.application.security.UsuarioAutenticado;
 import com.logistica.application.usecases.liquidacion.BuscarLiquidacionesUseCase;
 import com.logistica.domain.enums.EstadoLiquidacion;
 import com.logistica.domain.exceptions.LiquidacionAunNoCalculadaException;
 import com.logistica.domain.exceptions.LiquidacionNoEncontradaException;
 import com.logistica.domain.models.Liquidacion;
+import com.logistica.domain.models.ResultadoBusquedaPorRuta;
 import com.logistica.domain.models.Ruta;
 import com.logistica.domain.repositories.LiquidacionRepository;
-import com.logistica.infrastructure.adapters.LiquidacionMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -40,7 +41,7 @@ class BuscarLiquidacionesUseCaseTest {
     private LiquidacionRepository repository;
 
     @Mock
-    private LiquidacionMapper mapper;
+    private LiquidacionDTOMapper mapper;
 
     @InjectMocks
     private BuscarLiquidacionesUseCase useCase;
@@ -91,7 +92,8 @@ class BuscarLiquidacionesUseCaseTest {
         FiltroLiquidacionDTO filtro = new FiltroLiquidacionDTO();
         filtro.setIdRuta(idRuta);
 
-        when(repository.buscarPorIdRuta(idRuta)).thenReturn(Optional.of(liquidacion));
+        when(repository.buscarPorIdRuta(idRuta))
+                .thenReturn(new ResultadoBusquedaPorRuta.Encontrada(liquidacion));
         when(mapper.toDetalle(liquidacion)).thenReturn(detalleEsperado);
 
         UsuarioAutenticado gestor = usuarioConRol("ROLE_GESTOR_FINANCIERO", "gestor-001");
@@ -124,8 +126,8 @@ class BuscarLiquidacionesUseCaseTest {
         FiltroLiquidacionDTO filtro = new FiltroLiquidacionDTO();
         filtro.setIdRuta(idRutaInexistente);
 
-        when(repository.buscarPorIdRuta(idRutaInexistente)).thenReturn(Optional.empty());
-        when(repository.existeRuta(idRutaInexistente)).thenReturn(false);
+        when(repository.buscarPorIdRuta(idRutaInexistente))
+                .thenReturn(new ResultadoBusquedaPorRuta.RutaNoExiste());
 
         UsuarioAutenticado gestor = usuarioConRol("ROLE_GESTOR_FINANCIERO", "gestor-001");
 
@@ -140,8 +142,8 @@ class BuscarLiquidacionesUseCaseTest {
         FiltroLiquidacionDTO filtro = new FiltroLiquidacionDTO();
         filtro.setIdRuta(idRutaExistente);
 
-        when(repository.buscarPorIdRuta(idRutaExistente)).thenReturn(Optional.empty());
-        when(repository.existeRuta(idRutaExistente)).thenReturn(true);
+        when(repository.buscarPorIdRuta(idRutaExistente))
+                .thenReturn(new ResultadoBusquedaPorRuta.RutaSinLiquidacion());
 
         UsuarioAutenticado gestor = usuarioConRol("ROLE_GESTOR_FINANCIERO", "gestor-001");
 

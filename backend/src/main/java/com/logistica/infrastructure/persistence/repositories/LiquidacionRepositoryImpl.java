@@ -1,9 +1,9 @@
 package com.logistica.infrastructure.persistence.repositories;
 
 import com.logistica.domain.models.Liquidacion;
+import com.logistica.domain.models.ResultadoBusquedaPorRuta;
 import com.logistica.domain.repositories.LiquidacionRepository;
 import com.logistica.infrastructure.adapters.LiquidacionMapper;
-import com.logistica.infrastructure.persistence.entities.LiquidacionEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
@@ -42,12 +42,12 @@ public class LiquidacionRepositoryImpl implements LiquidacionRepository {
     }
 
     @Override
-    public Optional<Liquidacion> buscarPorIdRuta(UUID idRuta) {
-        return jpaRepository.findByRuta_Id(idRuta).map(mapper::toDomain);
-    }
-
-    @Override
-    public boolean existeRuta(UUID idRuta) {
-        return rutaJpaRepository.existsById(idRuta);
+    public ResultadoBusquedaPorRuta buscarPorIdRuta(UUID idRuta) {
+        return jpaRepository.findByRuta_Id(idRuta)
+                .<ResultadoBusquedaPorRuta>map(entity ->
+                        new ResultadoBusquedaPorRuta.Encontrada(mapper.toDomain(entity)))
+                .orElseGet(() -> rutaJpaRepository.existsById(idRuta)
+                        ? new ResultadoBusquedaPorRuta.RutaSinLiquidacion()
+                        : new ResultadoBusquedaPorRuta.RutaNoExiste());
     }
 }
