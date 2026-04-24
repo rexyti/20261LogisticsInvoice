@@ -1,10 +1,11 @@
 package com.logistica.domain.strategies;
 
-import com.logistica.domain.enums.EstadoPaquete;
-import com.logistica.domain.enums.TipoContratacion;
-import com.logistica.domain.models.Contrato;
-import com.logistica.domain.models.Paquete;
-import com.logistica.domain.models.Ruta;
+import com.logistica.liquidacion.domain.enums.EstadoPaquete;
+import com.logistica.liquidacion.domain.enums.TipoContratacion;
+import com.logistica.liquidacion.domain.models.Contrato;
+import com.logistica.liquidacion.domain.models.Paquete;
+import com.logistica.liquidacion.domain.models.Ruta;
+import com.logistica.liquidacion.domain.strategies.PorParadaStrategy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;

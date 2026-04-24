@@ -1,17 +1,17 @@
 package com.logistica.infrastructure.web.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.logistica.application.dtos.request.AjusteDTO;
-import com.logistica.application.dtos.request.RecalcularLiquidacionRequestDTO;
-import com.logistica.application.dtos.response.LiquidacionResponseDTO;
-import com.logistica.application.usecases.RecalcularLiquidacionUseCase;
-import com.logistica.domain.enums.EstadoLiquidacion;
-import com.logistica.domain.enums.TipoAjuste;
-import com.logistica.domain.models.Liquidacion;
-import com.logistica.infrastructure.config.JwtAuthenticationFilter;
-import com.logistica.infrastructure.config.JwtService;
-import com.logistica.infrastructure.persistence.mapper.AjusteMapper;
-import com.logistica.infrastructure.persistence.mapper.LiquidacionMapper;
+import com.logistica.liquidacion.application.dtos.request.AjusteDTO;
+import com.logistica.liquidacion.application.dtos.request.RecalcularLiquidacionRequestDTO;
+import com.logistica.liquidacion.application.dtos.response.LiquidacionResponseDTO;
+import com.logistica.liquidacion.application.usecases.RecalcularLiquidacionUseCase;
+import com.logistica.liquidacion.domain.enums.EstadoLiquidacion;
+import com.logistica.liquidacion.domain.enums.TipoAjuste;
+import com.logistica.liquidacion.domain.models.Liquidacion;
+import com.logistica.liquidacion.infrastructure.config.JwtService;
+import com.logistica.liquidacion.infrastructure.persistence.mapper.AjusteMapper;
+import com.logistica.liquidacion.infrastructure.persistence.mapper.LiquidacionMapper;
+import com.logistica.liquidacion.infrastructure.web.controllers.LiquidacionController;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -32,7 +32,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import com.logistica.infrastructure.config.SecurityConfig;
+import com.logistica.liquidacion.infrastructure.config.SecurityConfig;
 
 @WebMvcTest(LiquidacionController.class)
 @Import(SecurityConfig.class)

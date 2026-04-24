@@ -1,9 +1,10 @@
 package com.logistica.infrastructure.persistence.repositories;
 
-import com.logistica.domain.enums.EstadoLiquidacion;
-import com.logistica.domain.enums.TipoContratacion;
-import com.logistica.infrastructure.persistence.entities.ContratoEntity;
-import com.logistica.infrastructure.persistence.entities.LiquidacionEntity;
+import com.logistica.liquidacion.domain.enums.EstadoLiquidacion;
+import com.logistica.liquidacion.domain.enums.TipoContratacion;
+import com.logistica.liquidacion.infrastructure.persistence.entities.ContratoEntity;
+import com.logistica.liquidacion.infrastructure.persistence.entities.LiquidacionEntity;
+import com.logistica.liquidacion.infrastructure.persistence.repositories.LiquidacionJpaRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
