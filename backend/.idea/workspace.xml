@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e457e06d-640c-4ef3-9102-be912fd740e3" name="Changes" comment="cambios finales, agregacion de test (funcionales), mejora de logica y arquitectura, se expandio ciertas cosas para la creacion de un puerto que se recibe con jackson, implementacion total de cierre de ruta" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Enum" />
+        <option value="Exception" />
+        <option value="Record" />
+        <option value="Class" />
+        <option value="JUnit5 Test Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="feature/mod3-Cierre-Ruta" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;luifdo&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/InsoftUnimag/20261LogisticsInvoice.git&quot;,
+    &quot;accountId&quot;: &quot;4f7a8a8e-b34a-4ce6-9648-f01755d0504f&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="3CkuX4CKN6rdX5zHdZEdUFsrbAb" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.ClasificacionRutaServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ClasificacionRutaServiceTest.lanzaExcepcionCuandoParadaEsNull.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ProcesarRutaCerradaUseCaseTest.debe_publicar_evento_por_contrato_nulo.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ProcesarRutaCerradaUseCaseTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ProcesarRutaCerradaUseCaseTest.lanza_excepcion_si_dto_es_null.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.RutaCerradaEventDTOMappingTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.RutaCerradaEventDTOMappingTest.paradas_se_deserializa_como_lista_correcta.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.RutaControllerTest.debe_obtener_ruta_ok.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.RutaControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.RutaValidatorTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.RutaValidatorTest.lanza_excepcion_si_parada_es_null_en_lista.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/LUIS/IdeaProjects/20261LogisticsInvoice/backend&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.logistica.infrastructure.web.controllers" />
+      <recent name="com.logistica.domain.models" />
+      <recent name="com.logistica.domain.validators" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Gradle.RutaControllerTest.debe_obtener_ruta_ok">
+    <configuration name="ProcesarRutaCerradaUseCaseTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.logistica.application.usecases.ProcesarRutaCerradaUseCaseTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="ProcesarRutaCerradaUseCaseTest.debe_publicar_evento_por_contrato_nulo" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.logistica.application.usecases.ProcesarRutaCerradaUseCaseTest.debe_publicar_evento_por_contrato_nulo&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="ProcesarRutaCerradaUseCaseTest.lanza_excepcion_si_dto_es_null" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.logistica.application.usecases.ProcesarRutaCerradaUseCaseTest.lanza_excepcion_si_dto_es_null&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="RutaControllerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.logistica.infrastructure.web.controllers.RutaControllerTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="RutaControllerTest.debe_obtener_ruta_ok" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.logistica.infrastructure.web.controllers.RutaControllerTest.debe_obtener_ruta_ok&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="LogisticaApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="logistica-backend.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.logistica.LogisticaApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.RutaControllerTest.debe_obtener_ruta_ok" />
+        <item itemvalue="Gradle.RutaControllerTest" />
+        <item itemvalue="Gradle.ProcesarRutaCerradaUseCaseTest" />
+        <item itemvalue="Gradle.ProcesarRutaCerradaUseCaseTest.debe_publicar_evento_por_contrato_nulo" />
+        <item itemvalue="Gradle.ProcesarRutaCerradaUseCaseTest.lanza_excepcion_si_dto_es_null" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.28539.33" />
+        <option value="bundled-js-predefined-d6986cc7102b-a71380e98a7c-JavaScript-IU-252.28539.33" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e457e06d-640c-4ef3-9102-be912fd740e3" name="Changes" comment="" />
+      <created>1776941925474</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1776941925474</updated>
+      <workItem from="1776941926988" duration="8010000" />
+      <workItem from="1776979968099" duration="1230000" />
+      <workItem from="1776981484760" duration="11005000" />
+    </task>
+    <task id="LOCAL-00001" summary="mejora de logica, delegar mappers (no toda la logica en solo un mapper), mejora de logica, dominio listo(posible mejoras depende de otros apartados)">
+      <option name="closed" value="true" />
+      <created>1776969700552</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1776969700552</updated>
+    </task>
+    <task id="LOCAL-00002" summary="detalles minimos (libreria&#10;)">
+      <option name="closed" value="true" />
+      <created>1776969798840</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1776969798840</updated>
+    </task>
+    <task id="LOCAL-00003" summary="cambios finales, agregacion de test (funcionales), mejora de logica y arquitectura, se expandio ciertas cosas para la creacion de un puerto que se recibe con jackson, implementacion total de cierre de ruta">
+      <option name="closed" value="true" />
+      <created>1776991379419</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1776991379420</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="mejora de logica, delegar mappers (no toda la logica en solo un mapper), mejora de logica, dominio listo(posible mejoras depende de otros apartados)" />
+    <MESSAGE value="detalles minimos (libreria&#10;)" />
+    <MESSAGE value="cambios finales, agregacion de test (funcionales), mejora de logica y arquitectura, se expandio ciertas cosas para la creacion de un puerto que se recibe con jackson, implementacion total de cierre de ruta" />
+    <option name="LAST_COMMIT_MESSAGE" value="cambios finales, agregacion de test (funcionales), mejora de logica y arquitectura, se expandio ciertas cosas para la creacion de un puerto que se recibe con jackson, implementacion total de cierre de ruta" />
+  </component>
+</project>
