@@ -1,6 +1,7 @@
 package com.logistica.application.mappers;
 
 import com.logistica.application.dtos.request.ParadaEventDTO;
+import com.logistica.domain.enums.EstadoParada;
 import com.logistica.domain.enums.MotivoFalla;
 import com.logistica.domain.models.Parada;
 import org.springframework.stereotype.Component;
@@ -9,7 +10,20 @@ import org.springframework.stereotype.Component;
 public class ParadaEventMapper {
 
     public Parada toDomain(ParadaEventDTO dto) {
-        if (dto == null) return null;
+        if (dto == null) {
+            throw new IllegalArgumentException("Parada no puede ser null");
+        }
+
+        if (dto.getParadaId() == null) {
+            throw new IllegalArgumentException("paradaId es obligatorio");
+        }
+
+        EstadoParada estado;
+        try {
+            estado = EstadoParada.valueOf(String.valueOf(dto.getEstado()));
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Estado inválido: " + dto.getEstado());
+        }
 
         MotivoFalla motivo = null;
 
@@ -17,11 +31,11 @@ public class ParadaEventMapper {
             motivo = MotivoFalla.fromValue(dto.getMotivoNoEntrega());
         }
 
-        return Parada.builder()
-                .paradaId(dto.getParadaId())
-                .estado(dto.getEstado())
-                .motivoFalla(motivo)
-                // responsable se calcula después en dominio/service
-                .build();
+
+        return Parada.crear(
+                dto.getParadaId(),
+                estado,
+                motivo
+        );
     }
 }

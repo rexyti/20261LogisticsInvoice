@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.logistica.infrastructure.web.controllers.RutaControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-04-24T00:40:37" hostname="LAPTOP-8UJSA6QU" time="0.533">
+  <properties/>
+  <testcase name="Debe retornar 200 y la ruta cuando existe" classname="com.logistica.infrastructure.web.controllers.RutaControllerTest" time="0.533"/>
+  <system-out><![CDATA[19:40:29.231 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.logistica.infrastructure.web.controllers.RutaControllerTest]: RutaControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+19:40:29.562 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.logistica.LogisticaApplication for test class com.logistica.infrastructure.web.controllers.RutaControllerTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.4)
+
+2026-04-23T19:40:30.361-05:00  INFO 7032 --- [    Test worker] c.l.i.w.controllers.RutaControllerTest   : Starting RutaControllerTest using Java 21.0.10 with PID 7032 (started by LUIS in C:\Users\LUIS\IdeaProjects\20261LogisticsInvoice\backend)
+2026-04-23T19:40:30.363-05:00  INFO 7032 --- [    Test worker] c.l.i.w.controllers.RutaControllerTest   : No active profile set, falling back to 1 default profile: "default"
+2026-04-23T19:40:37.281-05:00  WARN 7032 --- [    Test worker] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: bd941f35-288a-4406-a68a-857ff9dbcecc
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-04-23T19:40:37.562-05:00  INFO 7032 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@35ceec81, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@d13379e, org.springframework.security.web.context.SecurityContextHolderFilter@4152bd0f, org.springframework.security.web.header.HeaderWriterFilter@10a0a1e, org.springframework.web.filter.CorsFilter@7c8df667, org.springframework.security.web.csrf.CsrfFilter@11015ca0, org.springframework.security.web.authentication.logout.LogoutFilter@4c41a177, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@62158991, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@1da5c19d, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@498e41a4, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@3221588e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@e4b54d3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@62883f8a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@be616f0, org.springframework.security.web.access.ExceptionTranslationFilter@3cead673, org.springframework.security.web.access.intercept.AuthorizationFilter@38e7860c]
+2026-04-23T19:40:37.640-05:00  INFO 7032 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-04-23T19:40:37.640-05:00  INFO 7032 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-04-23T19:40:37.644-05:00  INFO 7032 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+2026-04-23T19:40:37.705-05:00  INFO 7032 --- [    Test worker] c.l.i.w.controllers.RutaControllerTest   : Started RutaControllerTest in 7.972 seconds (process running for 10.438)
+]]></system-out>
+  <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (C:\Users\LUIS\.gradle\caches\modules-2\files-2.1\net.bytebuddy\byte-buddy-agent\1.14.9\dfb8707031008535048bad2b69735f46d0b6c5e5\byte-buddy-agent-1.14.9.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>

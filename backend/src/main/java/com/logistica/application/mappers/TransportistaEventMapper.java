@@ -8,7 +8,13 @@ import org.springframework.stereotype.Component;
 public class TransportistaEventMapper {
 
     public Transportista toDomain(ConductorEventDTO dto) {
-        if (dto == null) return null;
+        if (dto == null) {
+            throw new IllegalArgumentException("Conductor es obligatorio en el evento");
+        }
+
+        if (dto.getConductorId() == null) {
+            throw new IllegalArgumentException("conductorId es obligatorio");
+        }
 
         return Transportista.builder()
                 .transportistaId(dto.getConductorId())

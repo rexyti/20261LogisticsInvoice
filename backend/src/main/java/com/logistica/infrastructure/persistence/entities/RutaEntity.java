@@ -20,12 +20,12 @@ public class RutaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    private UUID id;// Id tecnico
 
     @Column(name = "ruta_id", nullable = false, unique = true)
-    private UUID rutaId;
+    private UUID rutaId; // Id de negocio
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "transportista_id", nullable = false)
     private TransportistaEntity transportista;
 
@@ -45,11 +45,15 @@ public class RutaEntity {
     @Column(name = "estado_procesamiento", nullable = false)
     private EstadoProcesamiento estadoProcesamiento;
 
-    @OneToMany(mappedBy = "ruta", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "ruta",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            orphanRemoval = true)
     @Builder.Default
     private List<ParadaEntity> paradas = new ArrayList<>();
 
     public  void addParada(ParadaEntity parada){
+        if(parada == null) return;
         parada.setRuta(this);
         this.paradas.add(parada);
     }

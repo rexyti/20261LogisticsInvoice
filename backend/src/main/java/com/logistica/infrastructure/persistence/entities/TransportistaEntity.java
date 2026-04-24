@@ -16,7 +16,7 @@ public class TransportistaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    private UUID id; // ID tecnico
 
     @Column(name = "conductor_id", nullable = false, unique = true)
     private UUID conductorId;

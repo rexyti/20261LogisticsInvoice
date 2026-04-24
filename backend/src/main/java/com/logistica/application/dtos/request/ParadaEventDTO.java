@@ -13,12 +13,12 @@ import java.util.UUID;
 public class ParadaEventDTO {
 
     @NotNull
-    @JsonProperty("parada_id")
+
     private UUID paradaId;
 
     @NotNull
     private EstadoParada estado;
 
-    @JsonProperty("motivo_no_entrega")
+
     private String motivoNoEntrega;
 }

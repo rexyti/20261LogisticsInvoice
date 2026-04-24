@@ -18,20 +18,19 @@ import java.util.UUID;
 @Setter
 public class RutaCerradaEventDTO {
     @NotBlank
-    @JsonProperty("tipo_evento")
+
     private String tipoEvento;
 
     @NotNull
-    @JsonProperty("ruta_id")
+
     private UUID rutaId;
 
     @NotNull
-    @JsonProperty("fecha_hora_inicio_transito")
+
     private LocalDateTime fechaHoraInicioTransito;
 
     @NotNull
-    @JsonProperty("fecha_hora_cierre")
-    @JsonFormat(pattern = "yyyy-MM-dd 'T'HH:mm:ss")
+
     private LocalDateTime fechaHoraCierre;
 
     @Valid

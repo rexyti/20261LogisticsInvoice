@@ -1,5 +1,6 @@
 package com.logistica.application.dtos.request;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -10,6 +11,7 @@ import java.util.UUID;
 public class ConductorEventDTO {
 
     @NotNull
+
     private UUID conductorId;
 
     @NotBlank

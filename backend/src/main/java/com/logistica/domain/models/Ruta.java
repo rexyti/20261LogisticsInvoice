@@ -7,6 +7,7 @@ import lombok.Setter;
 import lombok.Singular;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,6 +24,6 @@ public class Ruta {
     private LocalDateTime fechaCierre;
     private EstadoProcesamiento estadoProcesamiento;
 
-    @Singular
-    private List<Parada> paradas;
+    @Builder.Default
+    private List<Parada> paradas = new ArrayList<>();
 }

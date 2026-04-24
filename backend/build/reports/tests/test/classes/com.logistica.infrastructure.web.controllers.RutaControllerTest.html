@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - RutaControllerTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>RutaControllerTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/com.logistica.infrastructure.web.controllers.html">com.logistica.infrastructure.web.controllers</a> &gt; RutaControllerTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">1</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.533s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+<li>
+<a href="#tab2">Standard error</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Method name</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">Debe retornar 200 y la ruta cuando existe</td>
+<td class="success">debe_obtener_ruta_ok()</td>
+<td class="success">0.533s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>19:40:29.231 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.logistica.infrastructure.web.controllers.RutaControllerTest]: RutaControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+19:40:29.562 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.logistica.LogisticaApplication for test class com.logistica.infrastructure.web.controllers.RutaControllerTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.4)
+
+2026-04-23T19:40:30.361-05:00  INFO 7032 --- [    Test worker] c.l.i.w.controllers.RutaControllerTest   : Starting RutaControllerTest using Java 21.0.10 with PID 7032 (started by LUIS in C:\Users\LUIS\IdeaProjects\20261LogisticsInvoice\backend)
+2026-04-23T19:40:30.363-05:00  INFO 7032 --- [    Test worker] c.l.i.w.controllers.RutaControllerTest   : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2026-04-23T19:40:37.281-05:00  WARN 7032 --- [    Test worker] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: bd941f35-288a-4406-a68a-857ff9dbcecc
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-04-23T19:40:37.562-05:00  INFO 7032 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@35ceec81, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@d13379e, org.springframework.security.web.context.SecurityContextHolderFilter@4152bd0f, org.springframework.security.web.header.HeaderWriterFilter@10a0a1e, org.springframework.web.filter.CorsFilter@7c8df667, org.springframework.security.web.csrf.CsrfFilter@11015ca0, org.springframework.security.web.authentication.logout.LogoutFilter@4c41a177, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@62158991, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@1da5c19d, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@498e41a4, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@3221588e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@e4b54d3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@62883f8a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@be616f0, org.springframework.security.web.access.ExceptionTranslationFilter@3cead673, org.springframework.security.web.access.intercept.AuthorizationFilter@38e7860c]
+2026-04-23T19:40:37.640-05:00  INFO 7032 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-04-23T19:40:37.640-05:00  INFO 7032 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-04-23T19:40:37.644-05:00  INFO 7032 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+2026-04-23T19:40:37.705-05:00  INFO 7032 --- [    Test worker] c.l.i.w.controllers.RutaControllerTest   : Started RutaControllerTest in 7.972 seconds (process running for 10.438)
+</pre>
+</span>
+</div>
+<div id="tab2" class="tab">
+<h2>Standard error</h2>
+<span class="code">
+<pre>WARNING: A Java agent has been loaded dynamically (C:\Users\LUIS\.gradle\caches\modules-2\files-2.1\net.bytebuddy\byte-buddy-agent\1.14.9\dfb8707031008535048bad2b69735f46d0b6c5e5\byte-buddy-agent-1.14.9.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 8.6</a> at 23/04/2026, 7:40:38 p. m.</p>
+</div>
+</div>
+</body>
+</html>

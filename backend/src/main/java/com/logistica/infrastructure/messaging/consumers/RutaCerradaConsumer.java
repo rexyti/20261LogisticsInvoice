@@ -1,10 +1,9 @@
 package com.logistica.infrastructure.messaging.consumers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.logistica.application.dtos.request.RutaCerradaEventDTO;
 import com.logistica.application.usecases.ruta.ProcesarRutaCerradaUseCase;
 import io.awspring.cloud.sqs.annotation.SqsListener;
+import io.awspring.cloud.sqs.listener.acknowledgement.Acknowledgement;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -14,18 +13,30 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class RutaCerradaConsumer {
 
-    private final ProcesarRutaCerradaUseCase procesarRutaCerradaUseCase;
-    private final ObjectMapper objectMapper;
+    private final ProcesarRutaCerradaUseCase useCase;
 
     @SqsListener("${app.sqs.queue.ruta-cerrada}")
-    public void consumir(String mensaje) {
+    public void consumir(RutaCerradaEventDTO evento,
+                         Acknowledgement ack) {
+
+        log.info("Evento RUTA_CERRADA recibido para ruta_id: {}", evento.getRutaId());
+
         try {
-            RutaCerradaEventDTO evento = objectMapper.readValue(mensaje, RutaCerradaEventDTO.class);
-            log.info("Evento RUTA_CERRADA recibido para ruta_id: {}", evento.getRutaId());
-            procesarRutaCerradaUseCase.ejecutar(evento);
-        } catch (JsonProcessingException e) {
-            log.error("JSON malformado en evento RUTA_CERRADA — enviando a DLQ: {}", e.getMessage());
-            throw new RuntimeException("JSON inválido", e);
+            useCase.ejecutar(evento);
+
+            ack.acknowledge();
+
+        } catch (IllegalArgumentException e) {
+
+            log.error("Error de validación en ruta {}: {}", evento.getRutaId(), e.getMessage());
+
+            ack.acknowledge(); // se descarta el mensaje
+
+        } catch (Exception e) {
+
+            log.error("Error procesando ruta {}. Se reintentará.", evento.getRutaId(), e);
+
+            throw e; // SQS reintenta automáticamente
         }
     }
 }

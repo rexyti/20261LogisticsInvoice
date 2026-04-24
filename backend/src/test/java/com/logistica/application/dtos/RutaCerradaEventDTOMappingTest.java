@@ -1,6 +1,7 @@
 package com.logistica.application.dtos;
 
 import com.logistica.application.dtos.request.RutaCerradaEventDTO;
+import com.logistica.domain.enums.EstadoParada;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
@@ -11,35 +12,64 @@ import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-/**
- * T010 — Verifica que el JSON del contrato se deserializa correctamente al DTO,
- * incluyendo que el campo paradas se mapea como List y no como objeto único.
- */
 @JsonTest
 class RutaCerradaEventDTOMappingTest {
 
     @Autowired
     private JacksonTester<RutaCerradaEventDTO> json;
 
-    @Test
-    void deserializaEventoCompleto() throws IOException {
-        var result = json.read("/evento_ruta_cerrada.json");
 
-        assertThat(result).extractingJsonPathStringValue("$.tipo_evento").isEqualTo("RUTA_CERRADA");
-        assertThat(result.getObject().getRutaId())
-                .isEqualTo(UUID.fromString("550e8400-e29b-41d4-a716-446655440000"));
-        assertThat(result.getObject().getConductor().getNombre()).isEqualTo("Juan Pérez");
-        assertThat(result.getObject().getVehiculo().getTipo()).isEqualTo("MOTO");
+    private RutaCerradaEventDTO load() throws IOException {
+        return json.read("/evento_ruta_cerrada.json").getObject();
     }
 
-    @Test
-    void paradasSeDeserializaComoLista() throws IOException {
-        var result = json.read("/evento_ruta_cerrada.json");
 
-        assertThat(result.getObject().getParadas()).hasSize(2);
-        assertThat(result.getObject().getParadas().get(0).getEstado()).isEqualTo("FALLIDA");
-        assertThat(result.getObject().getParadas().get(0).getMotivoNoEntrega()).isEqualTo("CLIENTE_AUSENTE");
-        assertThat(result.getObject().getParadas().get(1).getEstado()).isEqualTo("EXITOSA");
-        assertThat(result.getObject().getParadas().get(1).getMotivoNoEntrega()).isNull();
+    @Test
+    void deserializa_evento_completo_correctamente() throws IOException {
+
+        var dto = load();
+
+        assertThat(dto.getTipoEvento())
+                .isEqualTo("RUTA_CERRADA");
+
+        assertThat(dto.getRutaId())
+                .isEqualTo(UUID.fromString("550e8400-e29b-41d4-a716-446655440000"));
+
+        assertThat(dto.getFechaHoraInicioTransito())
+                .isNotNull();
+
+        assertThat(dto.getFechaHoraCierre())
+                .isNotNull();
+
+        assertThat(dto.getConductor())
+                .isNotNull();
+
+        assertThat(dto.getConductor().getNombre())
+                .isEqualTo("Juan Pérez");
+
+        assertThat(dto.getVehiculo())
+                .isNotNull();
+
+        assertThat(dto.getVehiculo().getTipo())
+                .isEqualTo("MOTO");
+    }
+
+
+    @Test
+    void paradas_se_deserializa_como_lista_correcta() throws IOException {
+
+        var dto = load();
+
+        assertThat(dto.getParadas())
+                .isNotNull()
+                .hasSize(2);
+
+        var parada1 = dto.getParadas().get(0);
+        assertThat(parada1.getEstado()).isEqualTo(EstadoParada.FALLIDA);
+        assertThat(parada1.getMotivoNoEntrega()).isEqualTo("CLIENTE_AUSENTE");
+
+        var parada2 = dto.getParadas().get(1);
+        assertThat(parada2.getEstado()).isEqualTo(EstadoParada.EXITOSA);
+        assertThat(parada2.getMotivoNoEntrega()).isNull();
     }
 }

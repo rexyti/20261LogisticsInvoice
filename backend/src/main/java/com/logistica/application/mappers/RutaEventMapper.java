@@ -3,10 +3,12 @@ package com.logistica.application.mappers;
 import com.logistica.application.dtos.request.RutaCerradaEventDTO;
 import com.logistica.domain.models.Parada;
 import com.logistica.domain.models.Ruta;
+import com.logistica.domain.models.Transportista;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Objects;
 
 @Component
 @RequiredArgsConstructor
@@ -16,22 +18,50 @@ public class RutaEventMapper {
     private final ParadaEventMapper paradaMapper;
 
     public Ruta toDomain(RutaCerradaEventDTO dto) {
-        if (dto == null) return null;
+        if (dto == null) {
+            throw new IllegalArgumentException("Evento RutaCerradaEventDTO no puede ser null");
+        }
 
-        List<Parada> paradas = dto.getParadas() == null
-                ? List.of()
-                : dto.getParadas().stream()
-                .map(paradaMapper::toDomain)
-                .toList();
+        if (dto.getRutaId() == null) {
+            throw new IllegalArgumentException("rutaId es obligatorio");
+        }
+
+        List<Parada> paradas = mapParadas(dto);
 
         return Ruta.builder()
                 .rutaId(dto.getRutaId())
-                .transportista(transportistaMapper.toDomain(dto.getConductor()))
-                .tipoVehiculo(dto.getVehiculo() != null ? dto.getVehiculo().getTipo() : null)
-                .modeloContrato(dto.getConductor() != null ? dto.getConductor().getModeloContrato() : null)
+                .transportista(mapTransportista(dto))
+                .tipoVehiculo(mapTipoVehiculo(dto))
+                .modeloContrato(mapModeloContrato(dto))
                 .fechaInicioTransito(dto.getFechaHoraInicioTransito())
                 .fechaCierre(dto.getFechaHoraCierre())
                 .paradas(paradas)
                 .build();
+    }
+
+    private List<Parada> mapParadas(RutaCerradaEventDTO dto) {
+        if (dto.getParadas() == null || dto.getParadas().isEmpty()) {
+            return List.of();
+        }
+
+        return dto.getParadas().stream()
+                .filter(Objects::nonNull)
+                .map(paradaMapper::toDomain)
+                .toList();
+    }
+
+    private Transportista mapTransportista(RutaCerradaEventDTO dto) {
+        if (dto.getConductor() == null) return null;
+        return transportistaMapper.toDomain(dto.getConductor());
+    }
+
+    private String mapTipoVehiculo(RutaCerradaEventDTO dto) {
+        if (dto.getVehiculo() == null) return null;
+        return dto.getVehiculo().getTipo();
+    }
+
+    private String mapModeloContrato(RutaCerradaEventDTO dto) {
+        if (dto.getConductor() == null) return null;
+        return dto.getConductor().getModeloContrato();
     }
 }

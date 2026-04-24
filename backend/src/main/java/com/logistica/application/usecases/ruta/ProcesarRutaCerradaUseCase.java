@@ -4,7 +4,6 @@ import com.logistica.application.dtos.request.RutaCerradaEventDTO;
 import com.logistica.application.mappers.RutaEventMapper;
 import com.logistica.domain.enums.EstadoProcesamiento;
 import com.logistica.domain.enums.TipoAlertaRuta;
-import com.logistica.domain.enums.TipoVehiculo;
 import com.logistica.domain.events.RutaCerradaProcesadaEvent;
 import com.logistica.domain.models.Ruta;
 import com.logistica.domain.repositories.RutaRepository;
@@ -16,6 +15,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Objects;
 import java.util.UUID;
 
 @Slf4j
@@ -32,14 +32,17 @@ public class ProcesarRutaCerradaUseCase {
     @Transactional
     public void ejecutar(RutaCerradaEventDTO evento) {
 
+
+        Objects.requireNonNull(evento, "Evento de ruta no puede ser null");
+
         UUID rutaId = evento.getRutaId();
         long inicio = System.currentTimeMillis();
 
-        log.info("Iniciando procesamiento de RUTA_CERRADA for ruta_id: {}", rutaId);
+        log.info("Iniciando procesamiento de RUTA_CERRADA para ruta_id: {}", rutaId);
 
-        // 1. Idempotencia
+
         if (rutaRepository.existsByRutaId(rutaId)) {
-            log.info("Evento duplicado ignorado for ruta_id: {}", rutaId);
+            log.info("Evento duplicado ignorado para ruta_id: {}", rutaId);
             return;
         }
 
@@ -47,41 +50,69 @@ public class ProcesarRutaCerradaUseCase {
         Ruta ruta = rutaEventMapper.toDomain(evento);
 
 
-        EstadoProcesamiento estado = EstadoProcesamiento.OK;
-
-
         if (ruta.getModeloContrato() == null) {
-            log.warn("Contrato nulo for ruta_id: {}", rutaId);
-            eventPublisher.publishEvent(
-                    new RutaCerradaProcesadaEvent(rutaId, EstadoProcesamiento.REQUIERE_REVISION, TipoAlertaRuta.CONTRATO_NULO, null, evento.getFechaHoraCierre())
+            handleError(
+                    ruta,
+                    rutaId,
+                    EstadoProcesamiento.REQUIERE_REVISION,
+                    TipoAlertaRuta.CONTRATO_NULO,
+                    "El modelo de contrato no fue encontrado",
+                    evento
             );
-            estado = EstadoProcesamiento.REQUIERE_REVISION;
+            return;
         }
-
 
         if (ruta.getTipoVehiculo() == null || ruta.getTipoVehiculo().isBlank()) {
-            log.warn("Tipo de vehículo no encontrado en ruta_id: {}", rutaId);
-
-            eventPublisher.publishEvent(
-                    new RutaCerradaProcesadaEvent(rutaId, EstadoProcesamiento.REQUIERE_REVISION, TipoAlertaRuta.VEHICULO_DESCONOCIDO, ruta.getTipoVehiculo(), evento.getFechaHoraCierre())
+            handleError(
+                    ruta,
+                    rutaId,
+                    EstadoProcesamiento.REQUIERE_REVISION,
+                    TipoAlertaRuta.VEHICULO_DESCONOCIDO,
+                    "El tipo de vehículo es inválido: " + ruta.getTipoVehiculo(),
+                    evento
             );
-
-            estado = EstadoProcesamiento.REQUIERE_REVISION;
+            return;
         }
 
-        // 5. Lógica de negocio (delegada)
         clasificacionRutaService.clasificar(ruta);
 
-        // 6. Set estado final
-        ruta.setEstadoProcesamiento(estado);
 
-        // 7. Validación final
-        rutaValidator.validar(ruta, ruta.getParadas().size());
+        ruta.setEstadoProcesamiento(EstadoProcesamiento.OK);
 
-        // 8. Persistencia
+
+        int totalParadas = ruta.getParadas() == null ? 0 : ruta.getParadas().size();
+        rutaValidator.validar(ruta, totalParadas);
+
+
         rutaRepository.guardar(ruta);
 
         long duracion = System.currentTimeMillis() - inicio;
-        log.info("Ruta {} procesada con estado {} en {}ms", rutaId, estado, duracion);
+        log.info("Ruta {} procesada correctamente en {}ms", rutaId, duracion);
+    }
+
+    private void handleError(
+            Ruta ruta,
+            UUID rutaId,
+            EstadoProcesamiento estado,
+            TipoAlertaRuta tipoAlerta,
+            String detalle,
+            RutaCerradaEventDTO evento
+    ) {
+
+        log.warn("Error en ruta_id {}: {}", rutaId, detalle);
+
+        ruta.setEstadoProcesamiento(estado);
+
+        eventPublisher.publishEvent(
+                new RutaCerradaProcesadaEvent(
+                        rutaId,
+                        estado,
+                        tipoAlerta,
+                        detalle,
+                        evento.getFechaHoraCierre()
+                )
+        );
+
+        rutaRepository.guardar(ruta);
     }
 }
