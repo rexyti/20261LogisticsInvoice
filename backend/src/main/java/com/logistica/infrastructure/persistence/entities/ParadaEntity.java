@@ -29,6 +29,9 @@ public class ParadaEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;                          // ID técnico
 
+    @Column(name = "paquete_id")
+    private UUID paqueteId;
+
     @Column(name = "parada_id", nullable = false)
     private UUID paradaId;                    // ID de negocio
 

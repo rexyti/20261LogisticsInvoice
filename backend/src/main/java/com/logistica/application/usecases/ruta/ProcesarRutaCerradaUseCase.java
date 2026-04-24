@@ -8,6 +8,7 @@ import com.logistica.domain.enums.TipoVehiculo;
 import com.logistica.domain.events.RutaCerradaProcesadaEvent;
 import com.logistica.domain.models.Ruta;
 import com.logistica.domain.repositories.RutaRepository;
+import com.logistica.domain.repositories.TarifaRepository;
 import com.logistica.domain.services.ClasificacionRutaService;
 import com.logistica.domain.validators.RutaValidator;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,7 @@ import java.util.UUID;
 public class ProcesarRutaCerradaUseCase {
 
     private final RutaRepository rutaRepository;
+    private final TarifaRepository tarifaRepository;
     private final RutaEventMapper rutaEventMapper;
     private final RutaValidator rutaValidator;
     private final ClasificacionRutaService clasificacionRutaService;
@@ -32,6 +34,10 @@ public class ProcesarRutaCerradaUseCase {
 
     @Transactional
     public void ejecutar(RutaCerradaEventDTO evento) {
+
+        if (evento == null) {
+            throw new IllegalArgumentException("Evento no puede ser null");
+        }
 
         UUID rutaId = evento.getRutaId();
         long inicio = System.currentTimeMillis();

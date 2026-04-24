@@ -20,18 +20,13 @@ public class RutaResponseMapper {
 
         return RutaProcesadaResponseDTO.builder()
                 .rutaId(ruta.getRutaId())
+                .vehiculoId(ruta.getVehiculoId())
                 .tipoVehiculo(ruta.getTipoVehiculo())
                 .modeloContrato(ruta.getModeloContrato())
-                .estadoProcesamiento(
-                        ruta.getEstadoProcesamiento() != null
-                                ? ruta.getEstadoProcesamiento().name()
-                                : null
-                )
+                .estadoProcesamiento(ruta.getEstadoProcesamiento())
                 .fechaInicioTransito(ruta.getFechaInicioTransito())
                 .fechaCierre(ruta.getFechaCierre())
-                .transportista(
-                        transportistaMapper.toResponse(ruta.getTransportista())
-                )
+                .transportista(transportistaMapper.toResponse(ruta.getTransportista()))
                 .paradas(
                         Optional.ofNullable(ruta.getParadas())
                                 .orElse(List.of())

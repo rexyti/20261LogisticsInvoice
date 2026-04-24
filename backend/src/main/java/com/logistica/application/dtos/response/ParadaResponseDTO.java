@@ -12,6 +12,7 @@ import java.util.UUID;
 @Builder
 public class ParadaResponseDTO {
     private UUID paradaId;
+    private UUID paqueteId;
     private EstadoParada estado;
     private MotivoFalla motivoFalla;
     private ResponsableFalla responsable;

@@ -26,6 +26,7 @@ public class RutaValidator {
             throw new RutaInvalidaException("Ruta sin lista de paradas, debe tener");
 
         }
+
     }
 
     private void validarConsistenciaParadas(Ruta ruta, int totalParadasEsperadas) {
@@ -56,11 +57,19 @@ public class RutaValidator {
                 );
             }
 
+
             if (parada.getEstado() == EstadoParada.FALLIDA
                     && parada.getMotivoFalla() == null) {
-
                 throw new RutaInvalidaException(
                         "Parada fallida sin motivo. paradaId: " + parada.getParadaId()
+                );
+            }
+
+
+            if (parada.getPaqueteId() == null) {
+                throw new RutaInvalidaException(
+                        "Parada sin paqueteId. paradaId: " + parada.getParadaId()
+                                + " en rutaId: " + ruta.getRutaId()
                 );
             }
         }

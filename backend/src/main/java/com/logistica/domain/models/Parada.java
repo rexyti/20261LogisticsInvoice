@@ -15,6 +15,7 @@ import java.util.UUID;
 public class Parada {
 
     private UUID paradaId;
+    private UUID paqueteId;
     private EstadoParada estado;
     private MotivoFalla motivoFalla;
 

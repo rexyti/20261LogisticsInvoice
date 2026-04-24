@@ -14,7 +14,6 @@ public class ParadaMapper {
                 .paradaId(parada.getParadaId())
                 .estado(parada.getEstado())
                 .motivoFalla(parada.getMotivoFalla())
-                .responsable(parada.getResponsable())
                 .build();
     }
 

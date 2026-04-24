@@ -26,4 +26,6 @@ public class Ruta {
 
     @Builder.Default
     private List<Parada> paradas = new ArrayList<>();
+
+
 }

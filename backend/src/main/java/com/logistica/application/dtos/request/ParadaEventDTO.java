@@ -18,6 +18,9 @@ public class ParadaEventDTO {
     private UUID paradaId;
 
     @NotNull
+    private UUID paqueteId;
+
+    @NotNull
     private EstadoParada estado;
 
 
