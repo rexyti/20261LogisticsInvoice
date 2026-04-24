@@ -1,9 +1,12 @@
 package com.logistica.infrastructure.persistence.repositories;
 
+import com.logistica.domain.enums.EstadoProcesamiento;
 import com.logistica.domain.models.Ruta;
 import com.logistica.domain.repositories.RutaRepository;
 import com.logistica.infrastructure.adapters.RutaMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -39,5 +42,11 @@ public class RutaRepositoryImpl implements RutaRepository {
         return jpaRepository.findAll().stream()
                 .map(rutaMapper::toDomain)
                 .toList();
+    }
+
+    @Override
+    public Page<Ruta> listarPorEstado(EstadoProcesamiento estado, Pageable pageable) {
+        return jpaRepository.findByEstadoProcesamiento(estado, pageable)
+                .map(rutaMapper::toDomain);
     }
 }

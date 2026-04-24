@@ -28,9 +28,9 @@ public class RutaCerradaConsumer {
 
         } catch (IllegalArgumentException e) {
 
-            log.error("Error de validación en ruta {}: {}", evento.getRutaId(), e.getMessage());
-
-            ack.acknowledge(); // se descarta el mensaje
+            log.error("Error de validación no recuperable en ruta {}: {}",
+                    evento.getRutaId(), e.getMessage());
+            throw e;
 
         } catch (Exception e) {
 

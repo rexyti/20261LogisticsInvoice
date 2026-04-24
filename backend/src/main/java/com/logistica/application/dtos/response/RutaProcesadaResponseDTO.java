@@ -1,6 +1,7 @@
 package com.logistica.application.dtos.response;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+
+import com.logistica.domain.enums.EstadoProcesamiento;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -14,14 +15,16 @@ public class RutaProcesadaResponseDTO {
 
     private UUID rutaId;
 
+    private  UUID vehiculoId;
+
     private String tipoVehiculo;
     private String modeloContrato;
-    private String estadoProcesamiento;
+    private EstadoProcesamiento estadoProcesamiento;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+
     private LocalDateTime fechaInicioTransito;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+
     private LocalDateTime fechaCierre;
 
     private TransportistaResponseDTO transportista;

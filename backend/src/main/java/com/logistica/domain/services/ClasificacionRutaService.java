@@ -8,12 +8,13 @@ import com.logistica.domain.models.Ruta;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class ClasificacionRutaService {
 
     public void clasificar(Ruta ruta) {
-        if (ruta == null || ruta.getParadas().isEmpty()) return;
+        if (ruta == null || ruta.getParadas() == null) return;
 
         ruta.getParadas().forEach(this::procesarParada);
     }
@@ -39,7 +40,8 @@ public class ClasificacionRutaService {
         if (paradas == null || paradas.isEmpty()) return 0;
 
         return paradas.stream()
-                .filter(p -> p != null && p.getMotivoFalla() != null)
+                .filter(Objects::nonNull)
+                .filter(p -> p.getMotivoFalla() != null)
                 .filter(p -> p.getEstado() == EstadoParada.FALLIDA)
                 .filter(p -> p.getMotivoFalla().getResponsable() == responsable)
                 .count();

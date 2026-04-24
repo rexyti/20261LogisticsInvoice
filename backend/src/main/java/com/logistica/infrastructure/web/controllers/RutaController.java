@@ -2,12 +2,15 @@ package com.logistica.infrastructure.web.controllers;
 
 import com.logistica.application.dtos.response.RutaProcesadaResponseDTO;
 import com.logistica.application.usecases.ruta.ConsultarRutaUseCase;
-import com.logistica.domain.exceptions.RutaNotFoundException;
+import com.logistica.domain.enums.EstadoProcesamiento;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -19,19 +22,14 @@ public class RutaController {
 
     @GetMapping("/{id}")
     public ResponseEntity<RutaProcesadaResponseDTO> obtenerRuta(@PathVariable UUID id) {
-        RutaProcesadaResponseDTO ruta = consultarRutaUseCase.ejecutar(id);
-        return ResponseEntity.ok(ruta);
+        return ResponseEntity.ok(consultarRutaUseCase.ejecutar(id));
     }
 
     @GetMapping
-    public ResponseEntity<List<RutaProcesadaResponseDTO>> listarRutas() {
-        List<RutaProcesadaResponseDTO> rutas = consultarRutaUseCase.listarTodas();
-        return ResponseEntity.ok(rutas);
-    }
-
-
-    @ExceptionHandler(RutaNotFoundException.class)
-    public ResponseEntity<String> handleRutaNotFound(RutaNotFoundException ex) {
-        return ResponseEntity.status(404).body(ex.getMessage());
+    public ResponseEntity<Page<RutaProcesadaResponseDTO>> listarRutas(
+            @RequestParam(required = false) EstadoProcesamiento estado,
+            @PageableDefault(size = 20, sort = "fechaCierre", direction = Sort.Direction.DESC)
+            Pageable pageable) {
+        return ResponseEntity.ok(consultarRutaUseCase.listarTodas(estado, pageable));
     }
 }

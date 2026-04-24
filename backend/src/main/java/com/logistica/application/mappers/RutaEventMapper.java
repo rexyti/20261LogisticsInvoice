@@ -1,14 +1,17 @@
 package com.logistica.application.mappers;
 
 import com.logistica.application.dtos.request.RutaCerradaEventDTO;
+import com.logistica.domain.enums.EstadoProcesamiento;
 import com.logistica.domain.models.Parada;
 import com.logistica.domain.models.Ruta;
 import com.logistica.domain.models.Transportista;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
@@ -31,17 +34,19 @@ public class RutaEventMapper {
         return Ruta.builder()
                 .rutaId(dto.getRutaId())
                 .transportista(mapTransportista(dto))
+                .vehiculoId(mapVehiculoId(dto))
                 .tipoVehiculo(mapTipoVehiculo(dto))
                 .modeloContrato(mapModeloContrato(dto))
                 .fechaInicioTransito(dto.getFechaHoraInicioTransito())
                 .fechaCierre(dto.getFechaHoraCierre())
+                .estadoProcesamiento(EstadoProcesamiento.OK)
                 .paradas(paradas)
                 .build();
     }
 
     private List<Parada> mapParadas(RutaCerradaEventDTO dto) {
         if (dto.getParadas() == null || dto.getParadas().isEmpty()) {
-            return List.of();
+            return Collections.emptyList();
         }
 
         return dto.getParadas().stream()
@@ -63,5 +68,9 @@ public class RutaEventMapper {
     private String mapModeloContrato(RutaCerradaEventDTO dto) {
         if (dto.getConductor() == null) return null;
         return dto.getConductor().getModeloContrato();
+    }
+    private UUID mapVehiculoId(RutaCerradaEventDTO dto) {
+        if (dto.getVehiculo() == null) return null;
+        return dto.getVehiculo().getVehiculoId();
     }
 }

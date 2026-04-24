@@ -8,6 +8,6 @@ import java.util.UUID;
 @Getter
 @Builder
 public class TransportistaResponseDTO {
-    private UUID conductorId;
+    private UUID TransportistaId;
     private String nombre;
 }

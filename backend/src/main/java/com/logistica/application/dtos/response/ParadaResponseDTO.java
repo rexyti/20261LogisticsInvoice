@@ -1,5 +1,8 @@
 package com.logistica.application.dtos.response;
 
+import com.logistica.domain.enums.EstadoParada;
+import com.logistica.domain.enums.MotivoFalla;
+import com.logistica.domain.enums.ResponsableFalla;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -9,7 +12,7 @@ import java.util.UUID;
 @Builder
 public class ParadaResponseDTO {
     private UUID paradaId;
-    private String estado;
-    private String motivoFalla;
-    private String responsable;
+    private EstadoParada estado;
+    private MotivoFalla motivoFalla;
+    private ResponsableFalla responsable;
 }

@@ -2,33 +2,38 @@ package com.logistica.infrastructure.persistence.entities;
 
 import com.logistica.domain.enums.EstadoParada;
 import com.logistica.domain.enums.MotivoFalla;
-import com.logistica.domain.enums.ResponsableFalla;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.UUID;
 
 @Entity
-@Table(name = "parada",
+@Table(
+        name = "parada",
         uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"parada_id", "ruta_entity_id"})
-        })
+                @UniqueConstraint(
+                        name = "uk_parada_parada_id_ruta_id",
+                        columnNames = {"parada_id", "ruta_id"}
+                )
+        }
+)
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(of = "paradaId")          // ← basado en ID de negocio
 public class ParadaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id; // ID tecnico
+    private UUID id;                          // ID técnico
 
     @Column(name = "parada_id", nullable = false)
-    private UUID paradaId; // ID negocio
+    private UUID paradaId;                    // ID de negocio
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ruta_entity_id", nullable = false)
+    @JoinColumn(name = "ruta_id", nullable = false)    // ← semántico, no "ruta_entity_id"
     private RutaEntity ruta;
 
     @Enumerated(EnumType.STRING)
@@ -39,7 +44,5 @@ public class ParadaEntity {
     @Column(name = "motivo_falla")
     private MotivoFalla motivoFalla;
 
-    @Enumerated(EnumType.STRING)
-    @Column
-    private ResponsableFalla responsable;
+
 }

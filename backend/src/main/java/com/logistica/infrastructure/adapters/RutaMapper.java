@@ -22,6 +22,7 @@ public class RutaMapper {
         RutaEntity rutaEntity = RutaEntity.builder()
                 .rutaId(ruta.getRutaId())
                 .transportista(transportistaMapper.toEntity(ruta.getTransportista()))
+                .vehiculoId(ruta.getVehiculoId())
                 .tipoVehiculo(ruta.getTipoVehiculo())
                 .modeloContrato(ruta.getModeloContrato())
                 .fechaInicioTransito(ruta.getFechaInicioTransito())
@@ -34,10 +35,8 @@ public class RutaMapper {
                 .map(paradaMapper::toEntity)
                 .toList();
 
-        // mantener relación bidireccional
-        paradas.forEach(rutaEntity::addParada);
 
-        rutaEntity.setParadas(paradas);
+        paradas.forEach(rutaEntity::addParada);
 
         return rutaEntity;
     }

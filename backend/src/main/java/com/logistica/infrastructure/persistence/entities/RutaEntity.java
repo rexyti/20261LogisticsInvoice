@@ -10,7 +10,10 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "ruta")
+@Table(
+        name = "ruta",
+        uniqueConstraints = @UniqueConstraint(name = "uk_ruta_ruta_id", columnNames = "ruta_id")
+)
 @Getter
 @Setter
 @Builder
@@ -29,10 +32,13 @@ public class RutaEntity {
     @JoinColumn(name = "transportista_id", nullable = false)
     private TransportistaEntity transportista;
 
-    @Column(name = "tipo_vehiculo")
+    @Column(name = "vehiculo_id")
+    private UUID vehiculoId;
+
+    @Column(name = "tipo_vehiculo", length = 50)
     private String tipoVehiculo;
 
-    @Column(name = "modelo_contrato")
+    @Column(name = "modelo_contrato", length = 100)
     private String modeloContrato;
 
     @Column(name = "fecha_inicio_transito", nullable = false)
@@ -49,11 +55,13 @@ public class RutaEntity {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             orphanRemoval = true)
+
     @Builder.Default
     private List<ParadaEntity> paradas = new ArrayList<>();
 
     public  void addParada(ParadaEntity parada){
         if(parada == null) return;
+        if (this.paradas.contains(parada)) return;
         parada.setRuta(this);
         this.paradas.add(parada);
     }

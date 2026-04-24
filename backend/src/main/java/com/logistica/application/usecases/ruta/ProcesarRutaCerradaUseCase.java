@@ -4,6 +4,7 @@ import com.logistica.application.dtos.request.RutaCerradaEventDTO;
 import com.logistica.application.mappers.RutaEventMapper;
 import com.logistica.domain.enums.EstadoProcesamiento;
 import com.logistica.domain.enums.TipoAlertaRuta;
+import com.logistica.domain.enums.TipoVehiculo;
 import com.logistica.domain.events.RutaCerradaProcesadaEvent;
 import com.logistica.domain.models.Ruta;
 import com.logistica.domain.repositories.RutaRepository;
@@ -15,7 +16,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Objects;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Slf4j
@@ -32,9 +33,6 @@ public class ProcesarRutaCerradaUseCase {
     @Transactional
     public void ejecutar(RutaCerradaEventDTO evento) {
 
-
-        Objects.requireNonNull(evento, "Evento de ruta no puede ser null");
-
         UUID rutaId = evento.getRutaId();
         long inicio = System.currentTimeMillis();
 
@@ -50,69 +48,53 @@ public class ProcesarRutaCerradaUseCase {
         Ruta ruta = rutaEventMapper.toDomain(evento);
 
 
+        EstadoProcesamiento estado = EstadoProcesamiento.OK;
+
+
         if (ruta.getModeloContrato() == null) {
-            handleError(
-                    ruta,
-                    rutaId,
-                    EstadoProcesamiento.REQUIERE_REVISION,
-                    TipoAlertaRuta.CONTRATO_NULO,
-                    "El modelo de contrato no fue encontrado",
-                    evento
+            log.warn("Contrato nulo para ruta_id: {}", rutaId);
+            eventPublisher.publishEvent(
+                    new RutaCerradaProcesadaEvent(
+                            rutaId,
+                            EstadoProcesamiento.REQUIERE_REVISION,
+                            TipoAlertaRuta.CONTRATO_NULO,
+                            "El modelo de contrato no fue encontrado",
+                            LocalDateTime.now()
+                    )
             );
-            return;
+            estado = EstadoProcesamiento.REQUIERE_REVISION;
         }
 
-        if (ruta.getTipoVehiculo() == null || ruta.getTipoVehiculo().isBlank()) {
-            handleError(
-                    ruta,
-                    rutaId,
-                    EstadoProcesamiento.REQUIERE_REVISION,
-                    TipoAlertaRuta.VEHICULO_DESCONOCIDO,
-                    "El tipo de vehículo es inválido: " + ruta.getTipoVehiculo(),
-                    evento
+
+        if (ruta.getTipoVehiculo() == null || !TipoVehiculo.isKnown(ruta.getTipoVehiculo())) {
+            log.warn("Tipo de vehículo no reconocido o nulo en ruta_id: {}", rutaId);
+
+            eventPublisher.publishEvent(
+                    new RutaCerradaProcesadaEvent(
+                            rutaId,
+                            EstadoProcesamiento.REQUIERE_REVISION,
+                            TipoAlertaRuta.VEHICULO_DESCONOCIDO,
+                            "El tipo de vehículo es desconocido o nulo: " + ruta.getTipoVehiculo(),
+                            LocalDateTime.now()
+                    )
             );
-            return;
+
+            estado = EstadoProcesamiento.REQUIERE_REVISION;
         }
+
 
         clasificacionRutaService.clasificar(ruta);
 
 
-        ruta.setEstadoProcesamiento(EstadoProcesamiento.OK);
+        ruta.setEstadoProcesamiento(estado);
 
 
-        int totalParadas = ruta.getParadas() == null ? 0 : ruta.getParadas().size();
-        rutaValidator.validar(ruta, totalParadas);
+        rutaValidator.validar(ruta, ruta.getParadas().size());
 
 
         rutaRepository.guardar(ruta);
 
         long duracion = System.currentTimeMillis() - inicio;
-        log.info("Ruta {} procesada correctamente en {}ms", rutaId, duracion);
-    }
-
-    private void handleError(
-            Ruta ruta,
-            UUID rutaId,
-            EstadoProcesamiento estado,
-            TipoAlertaRuta tipoAlerta,
-            String detalle,
-            RutaCerradaEventDTO evento
-    ) {
-
-        log.warn("Error en ruta_id {}: {}", rutaId, detalle);
-
-        ruta.setEstadoProcesamiento(estado);
-
-        eventPublisher.publishEvent(
-                new RutaCerradaProcesadaEvent(
-                        rutaId,
-                        estado,
-                        tipoAlerta,
-                        detalle,
-                        evento.getFechaHoraCierre()
-                )
-        );
-
-        rutaRepository.guardar(ruta);
+        log.info("Ruta {} procesada con estado {} en {}ms", rutaId, estado, duracion);
     }
 }
