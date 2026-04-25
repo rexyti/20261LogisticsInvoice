@@ -10,6 +10,9 @@ import java.util.Optional;
 public class GestionPaqueteMapper {
 
     public Optional<EstadoPaquete> mapearEstado(GestionPaqueteDTO dto) {
+        if (dto == null) {
+            return Optional.empty();
+        }
         return EstadoPaquete.fromString(dto.estado());
     }
 }

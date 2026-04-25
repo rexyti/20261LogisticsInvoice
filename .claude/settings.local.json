@@ -2,7 +2,16 @@
   "permissions": {
     "allow": [
       "Bash(git add *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(git ls-tree *)",
+      "Bash(grep -E \"\\\\.java$|\\\\.kt$\")",
+      "Bash(grep -E \"\\\\.java$\")",
+      "Bash(./gradlew test *)",
+      "Bash(gradle --version)",
+      "PowerShell(Get-Command *)",
+      "Bash(/c/Users/Sebastian/.gradle/wrapper/dists/gradle-8.14-bin/38aieal9i53h9rfe7vjup95b9/gradle-8.14/bin/gradle test *)",
+      "Bash(xargs grep *)",
+      "Bash(awk -F'\"' '{sum+=$2} END {print \"Total tests:\", sum}')"
     ]
   }
 }

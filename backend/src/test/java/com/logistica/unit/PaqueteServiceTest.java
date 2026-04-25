@@ -1,22 +1,22 @@
 package com.logistica.unit;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.logistica.application.dtos.response.SincronizacionResultadoDTO;
+import com.logistica.application.ports.GestionPaquetePort;
 import com.logistica.application.usecases.paquete.PaqueteService;
 import com.logistica.domain.enums.EstadoPaquete;
+import com.logistica.domain.models.GestionPaquete;
 import com.logistica.domain.models.Paquete;
 import com.logistica.domain.repositories.HistorialRepository;
 import com.logistica.domain.repositories.LogSincronizacionRepository;
 import com.logistica.domain.repositories.PaqueteRepository;
-import com.logistica.infrastructure.http.clients.PackageApiClient;
-import com.logistica.infrastructure.http.dto.GestionPaqueteDTO;
-import com.logistica.infrastructure.http.mappers.GestionPaqueteMapper;
+import com.logistica.domain.services.EstadoPaqueteService;
 import com.logistica.shared.exceptions.PaqueteNoEncontradoException;
 import com.logistica.shared.exceptions.PendienteSincronizacionException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -24,21 +24,23 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.lenient;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class PaqueteServiceTest {
 
-    @Mock private PackageApiClient packageApiClient;
+    @Mock private GestionPaquetePort gestionPaquetePort;
     @Mock private PaqueteRepository paqueteRepository;
     @Mock private HistorialRepository historialRepository;
     @Mock private LogSincronizacionRepository logRepository;
-    @Mock private GestionPaqueteMapper gestionPaqueteMapper;
 
-    @InjectMocks
     private PaqueteService service;
 
     private UUID idRuta;
@@ -46,8 +48,17 @@ class PaqueteServiceTest {
 
     @BeforeEach
     void setUp() {
-        idRuta    = UUID.randomUUID();
+        idRuta = UUID.randomUUID();
         idPaquete = UUID.randomUUID();
+
+        service = new PaqueteService(
+                gestionPaquetePort,
+                paqueteRepository,
+                historialRepository,
+                logRepository,
+                new EstadoPaqueteService(),
+                new ObjectMapper()
+        );
 
         when(logRepository.save(any())).thenAnswer(inv -> inv.getArgument(0));
         lenient().when(paqueteRepository.save(any())).thenAnswer(inv -> inv.getArgument(0));
@@ -55,13 +66,11 @@ class PaqueteServiceTest {
         lenient().when(paqueteRepository.findById(idPaquete)).thenReturn(Optional.empty());
     }
 
-    // T009: estadoActual guardado en Paquete coincide con el estado recibido (SC-001)
     @Test
     void sincronizarEstado_exitoso_guardaEstadoActualConsistente() throws Exception {
-        GestionPaqueteDTO dto = new GestionPaqueteDTO(idPaquete.toString(), "ENTREGADO");
-        when(packageApiClient.consultarEstado(idRuta, idPaquete))
+        GestionPaquete dto = new GestionPaquete(idPaquete.toString(), "ENTREGADO");
+        when(gestionPaquetePort.consultarEstado(idRuta, idPaquete))
                 .thenReturn(CompletableFuture.completedFuture(dto));
-        when(gestionPaqueteMapper.mapearEstado(dto)).thenReturn(Optional.of(EstadoPaquete.ENTREGADO));
 
         SincronizacionResultadoDTO resultado = service.sincronizarEstado(idRuta, idPaquete);
 
@@ -75,36 +84,46 @@ class PaqueteServiceTest {
         verify(logRepository).save(any());
     }
 
-    // T010: dos sincronizaciones sucesivas agregan entrada en historial sin sobrescribir la anterior
+    @Test
+    void sincronizarEstado_estadoIgual_noDuplicaHistorial() throws Exception {
+        GestionPaquete dto = new GestionPaquete(idPaquete.toString(), "ENTREGADO");
+        when(gestionPaquetePort.consultarEstado(idRuta, idPaquete))
+                .thenReturn(CompletableFuture.completedFuture(dto));
+        when(paqueteRepository.findById(idPaquete))
+                .thenReturn(Optional.of(new Paquete(idPaquete, idRuta, EstadoPaquete.ENTREGADO, 1L)));
+
+        SincronizacionResultadoDTO resultado = service.sincronizarEstado(idRuta, idPaquete);
+
+        assertEquals("ENTREGADO", resultado.estado());
+        verify(paqueteRepository, never()).save(any());
+        verify(historialRepository, never()).save(any());
+        verify(logRepository).save(any());
+    }
+
     @Test
     void sincronizarEstado_dosVeces_agregaEntradaEnHistorialSinSobrescribir() throws Exception {
-        GestionPaqueteDTO dto1 = new GestionPaqueteDTO(idPaquete.toString(), "DEVUELTO");
-        GestionPaqueteDTO dto2 = new GestionPaqueteDTO(idPaquete.toString(), "ENTREGADO");
+        GestionPaquete dto1 = new GestionPaquete(idPaquete.toString(), "DEVUELTO");
+        GestionPaquete dto2 = new GestionPaquete(idPaquete.toString(), "ENTREGADO");
 
-        when(packageApiClient.consultarEstado(idRuta, idPaquete))
+        when(gestionPaquetePort.consultarEstado(idRuta, idPaquete))
                 .thenReturn(CompletableFuture.completedFuture(dto1))
                 .thenReturn(CompletableFuture.completedFuture(dto2));
-        when(gestionPaqueteMapper.mapearEstado(dto1)).thenReturn(Optional.of(EstadoPaquete.DEVUELTO));
-        when(gestionPaqueteMapper.mapearEstado(dto2)).thenReturn(Optional.of(EstadoPaquete.ENTREGADO));
         when(paqueteRepository.findById(idPaquete))
                 .thenReturn(Optional.empty())
-                .thenReturn(Optional.of(new Paquete(idPaquete, idRuta, EstadoPaquete.DEVUELTO)));
+                .thenReturn(Optional.of(new Paquete(idPaquete, idRuta, EstadoPaquete.DEVUELTO, 1L)));
 
         service.sincronizarEstado(idRuta, idPaquete);
         service.sincronizarEstado(idRuta, idPaquete);
 
-        // Dos inserciones en historial (no sobrescritura)
         verify(historialRepository, times(2)).save(any());
-        // La segunda sincronización actualiza estadoActual a ENTREGADO
         ArgumentCaptor<Paquete> captor = ArgumentCaptor.forClass(Paquete.class);
         verify(paqueteRepository, times(2)).save(captor.capture());
         assertEquals(EstadoPaquete.ENTREGADO, captor.getAllValues().get(1).estadoActual());
     }
 
-    // T011: HTTP 404 → registra error en LogSincronizacion, detiene cálculo
     @Test
     void sincronizarEstado_paqueteNoEncontrado_registraErrorYNoInsertaHistorial() throws Exception {
-        when(packageApiClient.consultarEstado(idRuta, idPaquete))
+        when(gestionPaquetePort.consultarEstado(idRuta, idPaquete))
                 .thenReturn(CompletableFuture.failedFuture(new PaqueteNoEncontradoException(idPaquete)));
 
         SincronizacionResultadoDTO resultado = service.sincronizarEstado(idRuta, idPaquete);
@@ -114,10 +133,9 @@ class PaqueteServiceTest {
         verify(historialRepository, never()).save(any());
     }
 
-    // T012: timeout / reintentos agotados → marca PENDIENTE_SINCRONIZACION
     @Test
     void sincronizarEstado_timeout_marcaPendienteSincronizacion() throws Exception {
-        when(packageApiClient.consultarEstado(idRuta, idPaquete))
+        when(gestionPaquetePort.consultarEstado(idRuta, idPaquete))
                 .thenReturn(CompletableFuture.failedFuture(
                         new PendienteSincronizacionException(idPaquete, new RuntimeException("timeout"))));
 
@@ -130,19 +148,30 @@ class PaqueteServiceTest {
         assertEquals(EstadoPaquete.PENDIENTE_SINCRONIZACION, captor.getValue().estadoActual());
     }
 
-    // T013: estado no mapeado → omite cálculo de pago, registra en LogSincronizacion
     @Test
     void sincronizarEstado_estadoNoMapeado_omiteCalculoYRegistraLog() throws Exception {
-        GestionPaqueteDTO dto = new GestionPaqueteDTO(idPaquete.toString(), "EN_INSPECCION");
-        when(packageApiClient.consultarEstado(idRuta, idPaquete))
+        GestionPaquete dto = new GestionPaquete(idPaquete.toString(), "EN_INSPECCION");
+        when(gestionPaquetePort.consultarEstado(idRuta, idPaquete))
                 .thenReturn(CompletableFuture.completedFuture(dto));
-        when(gestionPaqueteMapper.mapearEstado(dto)).thenReturn(Optional.empty());
 
         SincronizacionResultadoDTO resultado = service.sincronizarEstado(idRuta, idPaquete);
 
         assertEquals("ESTADO_NO_MAPEADO", resultado.estado());
         assertNull(resultado.porcentajePago());
         verify(logRepository).save(any());
+        verify(historialRepository, never()).save(any());
+    }
+
+    @Test
+    void sincronizarEstado_idPaqueteNoCoincide_marcaPendiente() throws Exception {
+        GestionPaquete dto = new GestionPaquete(UUID.randomUUID().toString(), "ENTREGADO");
+        when(gestionPaquetePort.consultarEstado(idRuta, idPaquete))
+                .thenReturn(CompletableFuture.completedFuture(dto));
+
+        SincronizacionResultadoDTO resultado = service.sincronizarEstado(idRuta, idPaquete);
+
+        assertEquals("PENDIENTE_SINCRONIZACION", resultado.estado());
+        verify(paqueteRepository).save(any());
         verify(historialRepository, never()).save(any());
     }
 }

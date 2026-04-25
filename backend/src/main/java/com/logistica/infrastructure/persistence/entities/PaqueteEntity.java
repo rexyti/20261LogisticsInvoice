@@ -1,7 +1,13 @@
 package com.logistica.infrastructure.persistence.entities;
 
 import com.logistica.domain.enums.EstadoPaquete;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,6 +31,10 @@ public class PaqueteEntity {
     private UUID idRuta;
 
     @Enumerated(EnumType.STRING)
-    @Column(length = 50)
+    @Column(length = 50, nullable = false)
     private EstadoPaquete estadoActual;
+
+    @Version
+    @Column(nullable = false)
+    private Long version;
 }

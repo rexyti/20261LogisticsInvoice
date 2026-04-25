@@ -7,5 +7,5 @@ import java.util.List;
 import java.util.UUID;
 
 public interface LogSincronizacionJpaRepository extends JpaRepository<LogSincronizacionEntity, UUID> {
-    List<LogSincronizacionEntity> findByIdPaquete(UUID idPaquete);
+    List<LogSincronizacionEntity> findByIdPaqueteOrderByTimestampDesc(UUID idPaquete);
 }

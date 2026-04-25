@@ -12,11 +12,21 @@ import org.springframework.stereotype.Component;
 public class PaqueteMapper {
 
     public Paquete toDomain(PaqueteEntity entity) {
-        return new Paquete(entity.getIdPaquete(), entity.getIdRuta(), entity.getEstadoActual());
+        return new Paquete(
+                entity.getIdPaquete(),
+                entity.getIdRuta(),
+                entity.getEstadoActual(),
+                entity.getVersion()
+        );
     }
 
     public PaqueteEntity toEntity(Paquete domain) {
-        return new PaqueteEntity(domain.idPaquete(), domain.idRuta(), domain.estadoActual());
+        return new PaqueteEntity(
+                domain.idPaquete(),
+                domain.idRuta(),
+                domain.estadoActual(),
+                domain.version()
+        );
     }
 
     public HistorialEstado toDomain(HistorialEstadoEntity entity) {
@@ -37,3 +47,4 @@ public class PaqueteMapper {
                 domain.codigoRespuestaHTTP(), domain.jsonRecibido(), domain.timestamp());
     }
 }
+

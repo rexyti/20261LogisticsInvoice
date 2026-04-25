@@ -1,22 +1,25 @@
 package com.logistica.application.usecases.paquete;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.logistica.application.dtos.response.HistorialEstadoResponseDTO;
 import com.logistica.application.dtos.response.LogSincronizacionResponseDTO;
 import com.logistica.application.dtos.response.SincronizacionResultadoDTO;
+import com.logistica.application.ports.GestionPaquetePort;
 import com.logistica.domain.enums.EstadoPaquete;
+import com.logistica.domain.models.GestionPaquete;
 import com.logistica.domain.models.HistorialEstado;
 import com.logistica.domain.models.LogSincronizacion;
 import com.logistica.domain.models.Paquete;
 import com.logistica.domain.repositories.HistorialRepository;
 import com.logistica.domain.repositories.LogSincronizacionRepository;
 import com.logistica.domain.repositories.PaqueteRepository;
-import com.logistica.infrastructure.http.clients.PackageApiClient;
-import com.logistica.infrastructure.http.dto.GestionPaqueteDTO;
-import com.logistica.infrastructure.http.mappers.GestionPaqueteMapper;
+import com.logistica.domain.services.EstadoPaqueteService;
 import com.logistica.shared.constants.AppConstants;
 import com.logistica.shared.exceptions.PaqueteNoEncontradoException;
 import com.logistica.shared.exceptions.PendienteSincronizacionException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -24,99 +27,97 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
+import java.util.concurrent.CompletionException;
 import java.util.concurrent.ExecutionException;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class PaqueteService implements SincronizarPaqueteUseCase, ObtenerHistorialUseCase, ObtenerLogsSincronizacionUseCase {
 
-    private final PackageApiClient packageApiClient;
+    private final GestionPaquetePort gestionPaquetePort;
     private final PaqueteRepository paqueteRepository;
     private final HistorialRepository historialRepository;
     private final LogSincronizacionRepository logRepository;
-    private final GestionPaqueteMapper gestionPaqueteMapper;
+    private final EstadoPaqueteService estadoPaqueteService;
+    private final ObjectMapper objectMapper;
 
-    /**
-     * Sincroniza el estado de un paquete consultando al Módulo de Gestión.
-     * Toda la interacción con BD es atómica: si cualquier operación falla, todas se revierten (SC-001, FR-003).
-     */
     @Override
     @Transactional
     public SincronizacionResultadoDTO sincronizarEstado(UUID idRuta, UUID idPaquete) {
-        GestionPaqueteDTO respuesta = null;
-        int httpStatus = AppConstants.HTTP_ERROR_GENERICO;
-        String jsonRecibido = null;
+        GestionPaquete respuesta;
 
-        // Paso 1: consulta HTTP sincrónica al Módulo de Gestión
         try {
-            respuesta = packageApiClient.consultarEstado(idRuta, idPaquete).get();
-            httpStatus = AppConstants.HTTP_OK;
-            jsonRecibido = toJson(respuesta);
-
-        } catch (ExecutionException ex) {
-            Throwable causa = ex.getCause();
-
-            // Paquete inexistente (FR-002, Scenario 2): registrar y detener este paquete
-            if (causa instanceof PaqueteNoEncontradoException) {
-                httpStatus = AppConstants.HTTP_NOT_FOUND;
-                jsonRecibido = "Paquete no encontrado: " + idPaquete;
-                registrarLog(idPaquete, httpStatus, jsonRecibido);
-                return SincronizacionResultadoDTO.noEncontrado(idPaquete.toString());
-            }
-
-            // Timeout / reintentos agotados (edge case): marcar como PENDIENTE_SINCRONIZACION
-            if (causa instanceof PendienteSincronizacionException) {
-                jsonRecibido = "Fallo de sincronización: " + causa.getMessage();
-                registrarLog(idPaquete, AppConstants.HTTP_ERROR_GENERICO, jsonRecibido);
-                marcarPendiente(idRuta, idPaquete);
-                return SincronizacionResultadoDTO.pendiente(idPaquete.toString());
-            }
-
-            // Cualquier otro error HTTP distinto a 200 (SC-002)
-            jsonRecibido = "Error inesperado: " + causa.getMessage();
-            registrarLog(idPaquete, AppConstants.HTTP_ERROR_GENERICO, jsonRecibido);
-            marcarPendiente(idRuta, idPaquete);
-            return SincronizacionResultadoDTO.pendiente(idPaquete.toString());
-
+            respuesta = gestionPaquetePort.consultarEstado(idRuta, idPaquete).get();
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
             registrarLog(idPaquete, AppConstants.HTTP_ERROR_GENERICO, "Hilo interrumpido durante sincronización");
             marcarPendiente(idRuta, idPaquete);
             return SincronizacionResultadoDTO.pendiente(idPaquete.toString());
+        } catch (ExecutionException | CompletionException ex) {
+            return manejarErrorConsulta(idRuta, idPaquete, causaRaiz(ex));
         }
 
-        // Paso 2: registrar la respuesta HTTP en auditoría (SC-002, FR-003)
-        registrarLog(idPaquete, httpStatus, jsonRecibido);
+        registrarLog(idPaquete, AppConstants.HTTP_OK, toJson(respuesta));
 
-        // Paso 3: mapear el estado recibido a las reglas financieras (FR-002)
-        Optional<EstadoPaquete> estadoMapeado = gestionPaqueteMapper.mapearEstado(respuesta);
-        if (estadoMapeado.isEmpty()) {
-            // Estado no reconocido: omitir cálculo pero conservar el log (edge case)
-            return SincronizacionResultadoDTO.estadoNoMapeado(respuesta.estado());
+        if (!idPaquete.toString().equalsIgnoreCase(respuesta.idPaquete())) {
+            String mensaje = "El idPaquete recibido no coincide con el solicitado. solicitado="
+                    + idPaquete + ", recibido=" + respuesta.idPaquete();
+            log.warn(mensaje);
+            registrarLog(idPaquete, AppConstants.HTTP_ERROR_GENERICO, mensaje);
+            marcarPendiente(idRuta, idPaquete);
+            return SincronizacionResultadoDTO.pendiente(idPaquete.toString());
         }
 
-        EstadoPaquete estado = estadoMapeado.get();
+        return estadoPaqueteService.mapearEstado(respuesta.estado())
+                .map(estado -> sincronizarEstadoValido(idRuta, idPaquete, estado))
+                .orElseGet(() -> SincronizacionResultadoDTO.estadoNoMapeado(respuesta.estado()));
+    }
 
-        // Paso 4: actualizar estadoActual en Paquete y agregar entrada en HistorialEstado (FR-004, SC-001)
-        Paquete paquete = paqueteRepository.findById(idPaquete)
-                .map(p -> new Paquete(p.idPaquete(), p.idRuta(), estado))
+    private SincronizacionResultadoDTO sincronizarEstadoValido(UUID idRuta, UUID idPaquete, EstadoPaquete estado) {
+        Paquete paqueteActual = paqueteRepository.findById(idPaquete)
                 .orElse(new Paquete(idPaquete, idRuta, estado));
-        paqueteRepository.save(paquete);
 
+        if (paqueteActual.tieneMismoEstado(estado)) {
+            return SincronizacionResultadoDTO.exitoso(estado.getPorcentajePago(), estado.name());
+        }
+
+        Paquete paqueteActualizado = paqueteActual.actualizarEstado(estado);
+        paqueteRepository.save(paqueteActualizado);
         historialRepository.save(new HistorialEstado(null, idPaquete, estado, Instant.now()));
 
         return SincronizacionResultadoDTO.exitoso(estado.getPorcentajePago(), estado.name());
     }
 
+    private SincronizacionResultadoDTO manejarErrorConsulta(UUID idRuta, UUID idPaquete, Throwable causa) {
+        if (causa instanceof PaqueteNoEncontradoException) {
+            registrarLog(idPaquete, AppConstants.HTTP_NOT_FOUND, "Paquete no encontrado: " + idPaquete);
+            return SincronizacionResultadoDTO.noEncontrado(idPaquete.toString());
+        }
+
+        if (causa instanceof PendienteSincronizacionException) {
+            registrarLog(idPaquete, AppConstants.HTTP_ERROR_GENERICO,
+                    "Fallo de sincronización: " + mensajeSeguro(causa));
+            marcarPendiente(idRuta, idPaquete);
+            return SincronizacionResultadoDTO.pendiente(idPaquete.toString());
+        }
+
+        registrarLog(idPaquete, AppConstants.HTTP_ERROR_GENERICO,
+                "Error inesperado: " + mensajeSeguro(causa));
+        marcarPendiente(idRuta, idPaquete);
+        return SincronizacionResultadoDTO.pendiente(idPaquete.toString());
+    }
+
     @Override
+    @Transactional(readOnly = true)
     public Page<HistorialEstadoResponseDTO> obtenerHistorial(UUID idPaquete, Pageable pageable) {
         return historialRepository.findByIdPaquete(idPaquete, pageable)
                 .map(h -> new HistorialEstadoResponseDTO(h.id(), h.idPaquete(), h.estado(), h.fecha()));
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<LogSincronizacionResponseDTO> obtenerLogs(UUID idPaquete) {
         return logRepository.findByIdPaquete(idPaquete).stream()
                 .map(l -> new LogSincronizacionResponseDTO(
@@ -130,12 +131,29 @@ public class PaqueteService implements SincronizarPaqueteUseCase, ObtenerHistori
 
     private void marcarPendiente(UUID idRuta, UUID idPaquete) {
         Paquete paquete = paqueteRepository.findById(idPaquete)
-                .map(p -> new Paquete(p.idPaquete(), p.idRuta(), EstadoPaquete.PENDIENTE_SINCRONIZACION))
+                .map(p -> p.actualizarEstado(EstadoPaquete.PENDIENTE_SINCRONIZACION))
                 .orElse(new Paquete(idPaquete, idRuta, EstadoPaquete.PENDIENTE_SINCRONIZACION));
         paqueteRepository.save(paquete);
     }
 
-    private String toJson(GestionPaqueteDTO dto) {
-        return "{\"idPaquete\":\"" + dto.idPaquete() + "\",\"estado\":\"" + dto.estado() + "\"}";
+    private String toJson(GestionPaquete dto) {
+        try {
+            return objectMapper.writeValueAsString(dto);
+        } catch (JsonProcessingException ex) {
+            return "{\"idPaquete\":\"" + dto.idPaquete() + "\",\"estado\":\"" + dto.estado() + "\"}";
+        }
+    }
+
+    private Throwable causaRaiz(Throwable throwable) {
+        Throwable actual = throwable;
+        while (actual.getCause() != null
+                && (actual instanceof ExecutionException || actual instanceof CompletionException)) {
+            actual = actual.getCause();
+        }
+        return actual;
+    }
+
+    private String mensajeSeguro(Throwable throwable) {
+        return throwable.getMessage() != null ? throwable.getMessage() : throwable.getClass().getSimpleName();
     }
 }

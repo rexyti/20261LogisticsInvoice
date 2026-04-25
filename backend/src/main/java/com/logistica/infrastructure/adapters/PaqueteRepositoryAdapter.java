@@ -2,6 +2,7 @@ package com.logistica.infrastructure.adapters;
 
 import com.logistica.domain.models.Paquete;
 import com.logistica.domain.repositories.PaqueteRepository;
+import com.logistica.infrastructure.persistence.entities.PaqueteEntity;
 import com.logistica.infrastructure.persistence.repositories.PaqueteJpaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -23,6 +24,12 @@ public class PaqueteRepositoryAdapter implements PaqueteRepository {
 
     @Override
     public Paquete save(Paquete paquete) {
-        return mapper.toDomain(jpaRepository.save(mapper.toEntity(paquete)));
+        PaqueteEntity entity = jpaRepository.findById(paquete.idPaquete())
+                .orElseGet(() -> mapper.toEntity(paquete));
+
+        entity.setIdRuta(paquete.idRuta());
+        entity.setEstadoActual(paquete.estadoActual());
+
+        return mapper.toDomain(jpaRepository.save(entity));
     }
 }

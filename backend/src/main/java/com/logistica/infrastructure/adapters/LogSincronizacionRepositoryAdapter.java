@@ -23,7 +23,7 @@ public class LogSincronizacionRepositoryAdapter implements LogSincronizacionRepo
 
     @Override
     public List<LogSincronizacion> findByIdPaquete(UUID idPaquete) {
-        return jpaRepository.findByIdPaquete(idPaquete).stream()
+        return jpaRepository.findByIdPaqueteOrderByTimestampDesc(idPaquete).stream()
                 .map(mapper::toDomain)
                 .toList();
     }
