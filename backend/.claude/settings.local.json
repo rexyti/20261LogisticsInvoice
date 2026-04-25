@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./gradlew test *)",
+      "Bash(gradle --version)",
+      "Bash(/c/Users/LUIS/.gradle/wrapper/dists/gradle-8.6-bin/afr5mpiioh2wthjmwnkmdsd5w/gradle-8.6/bin/gradle test *)",
+      "Bash(xargs grep *)"
+    ]
+  }
+}
