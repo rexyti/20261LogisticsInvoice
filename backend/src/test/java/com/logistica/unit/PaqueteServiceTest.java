@@ -27,6 +27,7 @@ import java.util.concurrent.CompletableFuture;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.lenient;
 
 @ExtendWith(MockitoExtension.class)
 class PaqueteServiceTest {
@@ -49,9 +50,9 @@ class PaqueteServiceTest {
         idPaquete = UUID.randomUUID();
 
         when(logRepository.save(any())).thenAnswer(inv -> inv.getArgument(0));
-        when(paqueteRepository.save(any())).thenAnswer(inv -> inv.getArgument(0));
-        when(historialRepository.save(any())).thenAnswer(inv -> inv.getArgument(0));
-        when(paqueteRepository.findById(idPaquete)).thenReturn(Optional.empty());
+        lenient().when(paqueteRepository.save(any())).thenAnswer(inv -> inv.getArgument(0));
+        lenient().when(historialRepository.save(any())).thenAnswer(inv -> inv.getArgument(0));
+        lenient().when(paqueteRepository.findById(idPaquete)).thenReturn(Optional.empty());
     }
 
     // T009: estadoActual guardado en Paquete coincide con el estado recibido (SC-001)
