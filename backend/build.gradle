@@ -24,7 +24,8 @@ dependencies {
 
 tasks.withType(JavaCompile) {
     options.compilerArgs = [
-            '-Aproject.root=' + project.projectDir
+            '-Aproject.root=' + project.projectDir,
+            '-parameters'
     ]
 }
 

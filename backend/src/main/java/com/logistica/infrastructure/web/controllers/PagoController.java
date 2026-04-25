@@ -19,7 +19,7 @@ public class PagoController {
     private ConsultarEstadoPagoUseCase consultarEstadoPagoUseCase;
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> obtenerEstadoPago(@PathVariable UUID id) {
+    public ResponseEntity<?> obtenerEstadoPago(@PathVariable("id") UUID id) {
         try {
             var estadoPago = consultarEstadoPagoUseCase.ejecutar(id);
             return ResponseEntity.ok(estadoPago);
