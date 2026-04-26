@@ -108,74 +108,88 @@ backend/src/main/java/com/logistica/
 │
 ├── application/
 │   ├── dtos/
+│   │   ├── request/
+│   │   │   ├── EventoEstadoPagoRequestDTO.java
+│   │   │   └── ActualizarEstadoPagoRequestDTO.java
+│   │   │
 │   │   └── response/
-│   │       ├── HistorialEstadoResponseDTO.java
-│   │       ├── LogSincronizacionResponseDTO.java
-│   │       ├── PaqueteResponseDTO.java
-│   │       └── SincronizacionResultadoDTO.java
+│   │       ├── EstadoPagoResponseDTO.java
+│   │       ├── EventoTransaccionResponseDTO.java
+│   │       ├── PagoResponseDTO.java
+│   │       └── RecepcionEventoPagoResponseDTO.java
 │   │
 │   └── usecases/
-│       └── paquete/
-│           ├── ObtenerHistorialUseCase.java
-│           ├── ObtenerLogsSincronizacionUseCase.java
-│           ├── PaqueteService.java
-│           └── SincronizarPaqueteUseCase.java
+│       └── pago/
+│           ├── RecibirEventoPagoUseCase.java
+│           ├── ProcesarEventoPagoUseCase.java
+│           ├── RegistrarEstadoPagoUseCase.java
+│           ├── ActualizarEstadoPagoUseCase.java
+│           ├── ObtenerEstadoPagoUseCase.java
+│           ├── ObtenerEventosTransaccionUseCase.java
+│           └── PagoService.java
 │
 ├── domain/
 │   ├── enums/
-│   │   └── EstadoPaquete.java
+│   │   ├── EstadoPagoEnum.java
+│   │   ├── EstadoEventoTransaccion.java
+│   │   └── TipoEventoPago.java
 │   │
 │   ├── models/
-│   │   ├── HistorialEstado.java
-│   │   ├── LogSincronizacion.java
-│   │   └── Paquete.java
+│   │   ├── Pago.java
+│   │   ├── EstadoPago.java
+│   │   ├── EventoTransaccion.java
+│   │   └── LiquidacionReferencia.java
 │   │
 │   ├── repositories/
-│   │   ├── HistorialRepository.java
-│   │   ├── LogSincronizacionRepository.java
-│   │   └── PaqueteRepository.java
+│   │   ├── PagoRepository.java
+│   │   ├── EstadoPagoRepository.java
+│   │   ├── EventoTransaccionRepository.java
+│   │   └── LiquidacionRepository.java
 │   │
 │   └── services/
-│       └── EstadoPaqueteService.java
+│       ├── EstadoPagoDomainService.java
+│       ├── IdempotenciaEventoPagoService.java
+│       └── TransicionEstadoPagoService.java
 │
 ├── infrastructure/
 │   ├── adapters/
-│   │   ├── HistorialRepositoryAdapter.java
-│   │   ├── LogSincronizacionRepositoryAdapter.java
-│   │   ├── PaqueteMapper.java
-│   │   └── PaqueteRepositoryAdapter.java
+│   │   ├── PagoRepositoryAdapter.java
+│   │   ├── EstadoPagoRepositoryAdapter.java
+│   │   ├── EventoTransaccionRepositoryAdapter.java
+│   │   ├── LiquidacionRepositoryAdapter.java
+│   │   └── PagoMapper.java
+│   │
+│   ├── async/
+│   │   ├── config/
+│   │   │   └── AsyncPagoConfig.java
+│   │   │
+│   │   ├── listeners/
+│   │   │   └── EventoPagoListener.java
+│   │   │
+│   │   └── processors/
+│   │       └── EventoPagoProcessor.java
 │   │
 │   ├── config/
-│   │   └── FeignConfig.java
-│   │
-│   ├── http/
-│   │   ├── clients/
-│   │   │   ├── GestionClient.java
-│   │   │   └── PackageApiClient.java
-│   │   │
-│   │   ├── dto/
-│   │   │   └── GestionPaqueteDTO.java
-│   │   │
-│   │   └── mappers/
-│   │       └── GestionPaqueteMapper.java
+│   │   ├── JpaConfig.java
+│   │   └── WebhookConfig.java
 │   │
 │   ├── persistence/
 │   │   ├── entities/
-│   │   │   ├── HistorialEstadoEntity.java
-│   │   │   ├── LogSincronizacionEntity.java
-│   │   │   └── PaqueteEntity.java
+│   │   │   ├── PagoEntity.java
+│   │   │   ├── EstadoPagoEntity.java
+│   │   │   ├── EventoTransaccionEntity.java
+│   │   │   └── LiquidacionReferenciaEntity.java
 │   │   │
 │   │   └── repositories/
-│   │       ├── HistorialEstadoJpaRepository.java
-│   │       ├── LogSincronizacionJpaRepository.java
-│   │       └── PaqueteJpaRepository.java
-│   │
-│   ├── resilience/
-│   │   └── ResilienceConfig.java
+│   │       ├── PagoJpaRepository.java
+│   │       ├── EstadoPagoJpaRepository.java
+│   │       ├── EventoTransaccionJpaRepository.java
+│   │       └── LiquidacionJpaRepository.java
 │   │
 │   └── web/
 │       ├── controllers/
-│       │   └── PaqueteController.java
+│       │   ├── WebhookPagoController.java
+│       │   └── PagoController.java
 │       │
 │       └── handlers/
 │           └── GlobalExceptionHandler.java
@@ -185,9 +199,14 @@ backend/src/main/java/com/logistica/
     │   └── AppConstants.java
     │
     └── exceptions/
-        ├── PaqueteNoEncontradoException.java
-        └── PendienteSincronizacionException.java
-```
+        ├── LiquidacionNoEncontradaException.java
+        ├── PagoNoEncontradoException.java
+        ├── EstadoPagoInvalidoException.java
+        ├── TransicionEstadoPagoInvalidaException.java
+        ├── EventoDuplicadoException.java
+        └── EventoPagoNoProcesableException.java
+        
+        
 
 ### Backend test structure
 
@@ -196,18 +215,22 @@ backend/src/test/java/com/logistica/
 ├── infrastructure/
 │   └── web/
 │       └── controllers/
-│           └── PaqueteControllerTest.java
+│           ├── WebhookPagoControllerTest.java
+│           └── PagoControllerTest.java
 │
 ├── integration/
-│   └── PaqueteSincronizacionIntegrationTest.java
+│   ├── RegistroEstadoPagoIntegrationTest.java
+│   ├── ActualizacionEstadoPagoIntegrationTest.java
+│   ├── IdempotenciaEventoPagoIntegrationTest.java
+│   └── EventoPagoAsincronoIntegrationTest.java
 │
 └── unit/
-    ├── EstadoPaqueteServiceTest.java
-    ├── EstadoPaqueteTest.java
-    ├── GestionPaqueteMapperTest.java
-    └── PaqueteServiceTest.java
-```
-
+    ├── EstadoPagoDomainServiceTest.java
+    ├── TransicionEstadoPagoServiceTest.java
+    ├── IdempotenciaEventoPagoServiceTest.java
+    ├── PagoServiceTest.java
+    ├── EventoPagoProcessorTest.java
+    └── PagoMapperTest.java
 ### Backend resources
 
 ```text
@@ -220,191 +243,887 @@ backend/src/test/resources/
 
 ## Structure Decision
 
-La estructura real ya expresa una arquitectura limpia en cuatro zonas principales:
+La estructura del backend debe orientarse al flujo financiero definido por el spec de registro asíncrono del estado del pago, no al flujo operativo de paquetes.
 
-1. `domain`: núcleo del negocio, modelos, enum de estados y reglas de transición.
-2. `application`: casos de uso del módulo de paquete y DTOs de salida.
-3. `infrastructure`: adaptadores JPA, clientes Feign, configuración, resiliencia y controladores REST.
-4. `shared`: constantes y excepciones comunes.
+El spec exige que el sistema reciba eventos provenientes de la entidad financiera, responda de inmediato la recepción del evento y procese la creación o actualización del estado de pago en segundo plano. Por tanto, la estructura debe incluir explícitamente:
 
-Por esa razón, este plan elimina la estructura anterior basada en `Pago`, `EstadoPago`, `EventoTransaccion`, `WebhookPagoController` y frontend React, porque esos archivos no existen en el backend actual. La implementación debe evolucionar sobre `Paquete`, `HistorialEstado` y `LogSincronizacion`.
+1. `Pago`: agregado principal asociado a una liquidación previamente calculada.
+2. `EstadoPago`: modelo que representa la condición actual del pago.
+3. `EventoTransaccion`: registro técnico y funcional de cada evento recibido desde el banco.
+4. `LiquidacionReferencia`: referencia necesaria para validar que la liquidación exista antes de modificar el pago.
+5. Servicios de dominio para validar estados, controlar transiciones e impedir modificaciones inválidas sobre estados finales.
+6. Infraestructura asíncrona para desacoplar la recepción del webhook del procesamiento real del evento.
+7. Repositorios separados para pago, estado de pago, eventos de transacción y liquidación.
+
 
 ---
-
 ## Phase 1: Setup & Infrastructure Alignment
 
-**Purpose**: Consolidar la infraestructura actual del backend sin introducir paquetes inexistentes.
+**Purpose**: Consolidar la infraestructura necesaria para recibir eventos asíncronos de estado de pago, procesarlos en segundo plano y persistir la trazabilidad del evento sin acoplar la lógica de negocio a controladores, entidades JPA o mecanismos externos de mensajería.
 
-- [ ] T001 Verificar `backend/build.gradle` con Java 21, Spring Boot, JPA, PostgreSQL, OpenFeign, Validation, Lombok, Resilience4j y dependencias de test.
-- [ ] T002 Verificar `backend/settings.gradle` para que el módulo Gradle mantenga el nombre real del backend.
-- [ ] T003 Verificar `backend/src/main/resources/application.yml` con conexión PostgreSQL, URL base del servicio externo de gestión de paquetes y configuración JPA.
-- [ ] T004 Verificar `backend/src/test/resources/application-test.yml` con H2 o configuración aislada de pruebas.
+- [ ] T001 Verificar `backend/build.gradle` con Java 21, Spring Boot, Spring Web, Spring Data JPA, PostgreSQL Driver, Validation, Lombok y dependencias de test.
+- [ ] T002 Verificar que el proyecto mantenga Spring Boot y Gradle correctamente configurados para compilar y ejecutar el backend desde IntelliJ o terminal.
+- [ ] T003 Verificar `backend/src/main/resources/application.yml` con conexión PostgreSQL, configuración JPA y propiedades necesarias para el procesamiento asíncrono de eventos de pago.
+- [ ] T004 Verificar `backend/src/test/resources/application-test.yml` con H2 o una configuración aislada para pruebas de persistencia, idempotencia y procesamiento de eventos.
 - [ ] T005 Mantener `LogisticaApplication.java` como punto único de arranque del backend.
-- [ ] T006 Mantener `FeignConfig.java` y `ResilienceConfig.java` como infraestructura transversal de comunicación externa y tolerancia a fallos.
+- [ ] T006 Incorporar o verificar configuración asíncrona mediante `AsyncPagoConfig.java` o configuración equivalente con `@EnableAsync`, `TaskExecutor` y manejo controlado de errores.
+- [ ] T007 Verificar que la recepción del evento pueda responder inmediatamente con `202 Accepted`, sin esperar a que finalice la actualización real del estado de pago.
+- [ ] T008 Mantener la infraestructura externa aislada en `infrastructure`, evitando que `application` o `domain` dependan de Spring Web, JPA, controladores o detalles técnicos de mensajería.
 
-**Checkpoint**: El proyecto compila y arranca desde IntelliJ o Gradle sin requerir cambios de estructura.
+**Checkpoint**: El backend compila, arranca y tiene la infraestructura mínima para recibir eventos de pago, responder inmediatamente y delegar su procesamiento en segundo plano.
 
 ---
 
 ## Phase 2: Domain & Data Integrity
 
-**Purpose**: Garantizar que el dominio del estado de paquete tenga reglas claras, trazabilidad e integridad persistente.
+**Purpose**: Definir el núcleo de dominio del registro de estado de pago, garantizando consistencia, validación de estados, idempotencia, control de transiciones y protección frente a eventos duplicados, inválidos o desordenados.
 
-- [ ] T007 Revisar `EstadoPaquete.java` para asegurar que contenga únicamente los estados válidos usados por el backend.
-- [ ] T008 Revisar `EstadoPaqueteService.java` para centralizar las reglas de transición y cálculo funcional derivado del estado.
-- [ ] T009 Revisar `Paquete.java` para que represente el agregado principal del flujo de sincronización.
-- [ ] T010 Revisar `HistorialEstado.java` para que represente cada cambio real de estado del paquete.
-- [ ] T011 Revisar `LogSincronizacion.java` para registrar cada intento de sincronización, exitoso o fallido.
-- [ ] T012 Revisar `PaqueteEntity.java` para confirmar que tenga `@Version` y así proteger actualizaciones concurrentes.
-- [ ] T013 Revisar `HistorialEstadoEntity.java` para asegurar relación correcta con el paquete y fecha del cambio.
-- [ ] T014 Revisar `LogSincronizacionEntity.java` para asegurar relación correcta con el paquete, código de respuesta, mensaje y fecha.
-- [ ] T015 Revisar `PaqueteRepository.java`, `HistorialRepository.java` y `LogSincronizacionRepository.java` como puertos de dominio.
-- [ ] T016 Revisar los repositorios JPA en `infrastructure/persistence/repositories` para que mantengan métodos de consulta por `idPaquete`, orden por fecha y persistencia sin lógica de negocio.
+- [ ] T009 Crear o revisar `EstadoPagoEnum.java` para representar únicamente los estados válidos del pago:
+    - `PENDIENTE`
+    - `EN_PROCESO`
+    - `PAGADO`
+    - `RECHAZADO`
 
-**Checkpoint**: El dominio controla los estados y la persistencia queda aislada detrás de puertos y adaptadores.
+- [ ] T010 Crear o revisar `EstadoEventoTransaccion.java` para representar el resultado técnico del evento recibido:
+    - `RECIBIDO`
+    - `PROCESADO`
+    - `DUPLICADO`
+    - `RECHAZADO`
+    - `ERROR`
+
+- [ ] T011 Crear o revisar `TipoEventoPago.java` para clasificar el evento recibido:
+    - `REGISTRO_INICIAL`
+    - `ACTUALIZACION_ESTADO`
+
+- [ ] T012 Crear o revisar `Pago.java` como agregado principal de la transacción económica, incluyendo como mínimo:
+    - `idPago`
+    - `idUsuario`
+    - `montoBase`
+    - `fecha`
+    - `idPenalidad`
+    - `montoNeto`
+    - `idLiquidacion`
+    - `estadoActual`
+    - `fechaUltimaActualizacion`
+    - `ultimaSecuenciaProcesada`
+
+- [ ] T013 Crear o revisar `EstadoPago.java` para representar el estado actual o histórico del pago, incluyendo:
+    - `idEstadoPago`
+    - `idPago`
+    - `estado`
+    - `fechaRegistro`
+    - `fechaEventoBanco`
+    - `secuenciaEvento`
+    - `idEventoTransaccion`
+
+- [ ] T014 Crear o revisar `EventoTransaccion.java` para registrar cada comunicación recibida desde la entidad financiera, incluyendo:
+    - `idEvento`
+    - `idTransaccionBanco`
+    - `idPago`
+    - `idLiquidacion`
+    - `payloadRecibido`
+    - `fechaRecepcion`
+    - `fechaEventoBanco`
+    - `secuencia`
+    - `estadoProcesamiento`
+    - `mensajeError`
+    - `procesado`
+
+- [ ] T015 Crear o revisar `LiquidacionReferencia.java` como modelo mínimo para validar que la liquidación previamente calculada existe antes de registrar o actualizar el estado del pago.
+- [ ] T016 Crear o revisar `PagoRepository.java` como puerto de dominio para consultar y persistir pagos.
+- [ ] T017 Crear o revisar `EstadoPagoRepository.java` como puerto de dominio para registrar y consultar estados de pago.
+- [ ] T018 Crear o revisar `EventoTransaccionRepository.java` como puerto de dominio para persistir eventos, consultar duplicados por `idTransaccionBanco` y mantener trazabilidad.
+- [ ] T019 Crear o revisar `LiquidacionRepository.java` como puerto de dominio para validar existencia de la liquidación asociada al evento.
+- [ ] T020 Crear o revisar `EstadoPagoDomainService.java` para validar estados conocidos y reglas generales del estado de pago.
+- [ ] T021 Crear o revisar `IdempotenciaEventoPagoService.java` para detectar eventos duplicados con el mismo `idTransaccionBanco`.
+- [ ] T022 Crear o revisar `TransicionEstadoPagoService.java` para impedir transiciones inválidas, especialmente cuando el pago ya esté en estado final `PAGADO` o `RECHAZADO`.
+- [ ] T023 Asegurar que un evento con estado desconocido sea rechazado con error funcional controlado y registrado como evento fallido.
+- [ ] T024 Asegurar que un evento sobre una liquidación inexistente no modifique datos de pago y quede registrado como evento rechazado o con error.
+- [ ] T025 Asegurar que un evento con el mismo estado actual no genere cambios innecesarios en base de datos, pero sí confirme la recepción y preserve la idempotencia.
+- [ ] T026 Asegurar que eventos desordenados sean evaluados mediante `fechaEventoBanco` o `secuencia`, evitando que un estado transitorio atrasado sobrescriba un estado final o más reciente.
+
+**Checkpoint**: El dominio controla los estados válidos de pago, la idempotencia, las transiciones permitidas, los eventos duplicados, los eventos inválidos y la trazabilidad funcional.
 
 ---
 
 ## Phase 3: Application Use Cases
 
-**Purpose**: Mantener los casos de uso como orquestadores del flujo, sin depender directamente de controladores ni entidades JPA.
+**Purpose**: Implementar casos de uso orientados al flujo real del spec: recibir eventos de pago, responder inmediatamente, procesar en segundo plano, registrar el evento, validar liquidación, crear o actualizar el estado del pago y consultar la trazabilidad.
 
-- [ ] T017 Revisar `SincronizarPaqueteUseCase.java` como contrato principal para sincronizar un paquete por `idRuta` e `idPaquete`.
-- [ ] T018 Revisar `ObtenerHistorialUseCase.java` como contrato para consultar historial por paquete.
-- [ ] T019 Revisar `ObtenerLogsSincronizacionUseCase.java` como contrato para consultar logs por paquete.
-- [ ] T020 Revisar `PaqueteService.java` para que implemente los tres casos de uso anteriores.
-- [ ] T021 Asegurar que `PaqueteService.java` use puertos de dominio y no manipule directamente `JpaRepository` ni entidades JPA.
-- [ ] T022 Asegurar que `PaqueteService.java` delegue reglas de estado en `EstadoPaqueteService.java`.
-- [ ] T023 Asegurar que el servicio no cree historial duplicado cuando el estado sincronizado sea igual al estado actual.
-- [ ] T024 Asegurar que el servicio registre `LogSincronizacion` tanto en éxito como en fallos controlados.
-- [ ] T025 Asegurar que los DTOs de respuesta sean inmutables o controlados mediante `@Builder`/constructores, sin exponer entidades internas.
+- [ ] T027 Crear o revisar `RecibirEventoPagoUseCase.java` como contrato para recibir el evento enviado por la entidad financiera.
+- [ ] T028 Crear o revisar `ProcesarEventoPagoUseCase.java` como contrato para procesar en segundo plano el evento recibido.
+- [ ] T029 Crear o revisar `RegistrarEstadoPagoUseCase.java` como contrato para registrar el estado inicial del pago cuando la entidad financiera informe el inicio del proceso.
+- [ ] T030 Crear o revisar `ActualizarEstadoPagoUseCase.java` como contrato para actualizar el estado del pago a `EN_PROCESO`, `PAGADO` o `RECHAZADO`.
+- [ ] T031 Crear o revisar `ObtenerEstadoPagoUseCase.java` como contrato para consultar el estado actual de un pago.
+- [ ] T032 Crear o revisar `ObtenerEventosTransaccionUseCase.java` como contrato para consultar los eventos recibidos y procesados para un pago.
+- [ ] T033 Crear o revisar `PagoService.java` como implementación de los casos de uso anteriores.
+- [ ] T034 Asegurar que `PagoService.java` use únicamente puertos de dominio y no manipule directamente `JpaRepository`, entidades JPA ni clases de controladores.
+- [ ] T035 Asegurar que `PagoService.java` registre primero el `EventoTransaccion` recibido antes de intentar modificar el estado del pago.
+- [ ] T036 Asegurar que `PagoService.java` valide la existencia de la liquidación antes de crear o actualizar un estado de pago.
+- [ ] T037 Asegurar que `PagoService.java` consulte duplicados por `idTransaccionBanco` antes de procesar el evento.
+- [ ] T038 Asegurar que `PagoService.java` delegue reglas de transición en `TransicionEstadoPagoService.java`.
+- [ ] T039 Asegurar que `PagoService.java` delegue validaciones de estado en `EstadoPagoDomainService.java`.
+- [ ] T040 Asegurar que `PagoService.java` delegue la detección de duplicados en `IdempotenciaEventoPagoService.java`.
+- [ ] T041 Asegurar que el procesamiento de eventos sea transaccional en la operación crítica de actualización de pago y registro de estado.
+- [ ] T042 Asegurar que, cuando el evento sea duplicado, el sistema no cree un nuevo `EstadoPago` ni modifique el pago existente.
+- [ ] T043 Asegurar que, cuando el pago ya esté en estado final, el sistema ignore o rechace transiciones inválidas y registre el intento en `EventoTransaccion`.
+- [ ] T044 Asegurar que los DTOs de respuesta sean inmutables o controlados mediante `@Builder`, constructores o `record`, sin exponer entidades internas.
 
-**Checkpoint**: La capa de aplicación orquesta sincronización, historial y logs sin mezclar detalles HTTP, Feign o JPA.
+**Checkpoint**: La capa de aplicación orquesta el flujo completo de registro y actualización de estado de pago sin mezclar lógica de negocio con detalles HTTP, JPA o asincronía.
 
 ---
 
 ## Phase 4: Infrastructure Adapters
 
-**Purpose**: Mantener los detalles técnicos aislados de la lógica de negocio.
+**Purpose**: Implementar los detalles técnicos de persistencia, mapeo, recepción asíncrona y procesamiento desacoplado sin contaminar el dominio ni los casos de uso.
 
-- [ ] T026 Revisar `PaqueteRepositoryAdapter.java` para mapear entre `PaqueteEntity` y `Paquete` mediante `PaqueteMapper`.
-- [ ] T027 Revisar `HistorialRepositoryAdapter.java` para mapear entidades de historial hacia modelos de dominio.
-- [ ] T028 Revisar `LogSincronizacionRepositoryAdapter.java` para mapear logs persistentes hacia modelos de dominio.
-- [ ] T029 Revisar `PaqueteMapper.java` para que no pierda campos críticos como `idPaquete`, estado, fecha y versión.
-- [ ] T030 Revisar `GestionClient.java` y `PackageApiClient.java` para confirmar que las llamadas externas queden aisladas en `infrastructure/http/clients`.
-- [ ] T031 Revisar `GestionPaqueteDTO.java` como DTO exclusivo de integración externa, sin usarlo como modelo de dominio.
-- [ ] T032 Revisar `GestionPaqueteMapper.java` para convertir respuestas externas a modelos/datos aceptables para la aplicación.
-- [ ] T033 Revisar `ResilienceConfig.java` para timeouts, retry/circuit breaker y degradación controlada.
+- [ ] T045 Crear o revisar `PagoRepositoryAdapter.java` para adaptar `PagoRepository` usando `PagoJpaRepository`.
+- [ ] T046 Crear o revisar `EstadoPagoRepositoryAdapter.java` para adaptar `EstadoPagoRepository` usando `EstadoPagoJpaRepository`.
+- [ ] T047 Crear o revisar `EventoTransaccionRepositoryAdapter.java` para adaptar `EventoTransaccionRepository` usando `EventoTransaccionJpaRepository`.
+- [ ] T048 Crear o revisar `LiquidacionRepositoryAdapter.java` para adaptar `LiquidacionRepository` usando `LiquidacionJpaRepository`.
+- [ ] T049 Crear o revisar `PagoMapper.java` para convertir entre modelos de dominio y entidades JPA sin perder campos críticos como `idPago`, `idLiquidacion`, `estadoActual`, `fechaUltimaActualizacion`, `ultimaSecuenciaProcesada` y versión.
+- [ ] T050 Crear o revisar `PagoEntity.java` como entidad persistente de la transacción económica.
+- [ ] T051 Crear o revisar `EstadoPagoEntity.java` como entidad persistente del estado del pago.
+- [ ] T052 Crear o revisar `EventoTransaccionEntity.java` como entidad persistente del evento recibido desde la entidad financiera.
+- [ ] T053 Crear o revisar `LiquidacionReferenciaEntity.java` o adaptar la entidad de liquidación existente para validar la existencia de la liquidación previamente calculada.
+- [ ] T054 Asegurar que `PagoEntity.java` tenga control de concurrencia con `@Version` si el pago puede recibir múltiples eventos cercanos en el tiempo.
+- [ ] T055 Asegurar que `EventoTransaccionEntity.java` tenga una restricción única sobre `idTransaccionBanco` para reforzar la idempotencia a nivel de base de datos.
+- [ ] T056 Asegurar que `EstadoPagoEntity.java` tenga relación correcta con `PagoEntity`.
+- [ ] T057 Asegurar que `PagoJpaRepository.java` permita consultar pagos por `idPago` y, si aplica, por `idLiquidacion`.
+- [ ] T058 Asegurar que `EstadoPagoJpaRepository.java` permita consultar el último estado de un pago ordenado por fecha o secuencia.
+- [ ] T059 Asegurar que `EventoTransaccionJpaRepository.java` permita consultar eventos por `idTransaccionBanco`, `idPago`, `estadoProcesamiento` y fecha de recepción.
+- [ ] T060 Crear o revisar `AsyncPagoConfig.java` para declarar el executor usado por el procesamiento en segundo plano.
+- [ ] T061 Crear o revisar `EventoPagoProcessor.java` para ejecutar el caso de uso `ProcesarEventoPagoUseCase` de forma asíncrona.
+- [ ] T062 Crear o revisar `EventoPagoListener.java` sólo si el proyecto decide consumir una cola de mensajería en vez de webhook directo.
+- [ ] T063 Mantener cualquier configuración de webhook o seguridad de recepción en `WebhookConfig.java`, sin acoplarla al dominio.
 
-**Checkpoint**: Los adaptadores resuelven persistencia e integración externa sin contaminar dominio ni aplicación.
+**Checkpoint**: La infraestructura resuelve persistencia, mapeo, asincronía y recepción técnica del evento sin contaminar `domain` ni `application`.
 
 ---
 
 ## Phase 5: Web Layer & API Contract
 
-**Purpose**: Exponer los endpoints reales existentes en el backend sin inventar rutas nuevas.
+**Purpose**: Exponer una API coherente con el registro asíncrono del estado de pago, permitiendo que la entidad financiera notifique eventos de pago sin bloquear la comunicación con el sistema principal. La capa web sólo debe recibir el evento, validarlo a nivel de contrato, responder inmediatamente y delegar el procesamiento real a la capa de aplicación.
 
-- [ ] T034 Revisar `PaqueteController.java` para mantener el endpoint de sincronización:
-
-```http
-POST /api/v1/rutas/{idRuta}/paquetes/{idPaquete}/sincronizar
-```
-
-- [ ] T035 Revisar `PaqueteController.java` para mantener el endpoint de historial:
+- [ ] T064 Crear o revisar `WebhookPagoController.java` como controlador responsable de recibir eventos asíncronos provenientes de la entidad financiera.
+- [ ] T065 Exponer el endpoint principal de recepción de eventos de estado de pago:
 
 ```http
-GET /api/v1/paquetes/{idPaquete}/historial
+POST /api/v1/pagos/webhook/estado
 ```
 
-- [ ] T036 Revisar `PaqueteController.java` para mantener el endpoint de logs:
+- [ ] T066 Asegurar que el endpoint anterior reciba un `EventoEstadoPagoRequestDTO` con los campos mínimos exigidos por el flujo:
+
+```json
+{
+  "idEvento": "evt-20260426-001",
+  "idTransaccionBanco": "txn-bank-0001",
+  "idPago": "8b76a9f5-46f1-4d4f-9a5f-23b4b7cb9812",
+  "idLiquidacion": "3a8d8c2f-3322-43f1-a96d-9e7e81f62d91",
+  "estado": "EN_PROCESO",
+  "fechaEvento": "2026-04-26T10:30:00",
+  "secuencia": 1,
+  "payloadOriginal": {
+    "banco": "Entidad Financiera",
+    "canal": "webhook"
+  }
+}
+```
+
+- [ ] T067 Validar en el DTO de entrada que los siguientes campos sean obligatorios:
+    - `idEvento`
+    - `idTransaccionBanco`
+    - `idPago`
+    - `idLiquidacion`
+    - `estado`
+    - `fechaEvento`
+
+- [ ] T068 Validar que `estado` sólo acepte valores soportados por el dominio:
+    - `PENDIENTE`
+    - `EN_PROCESO`
+    - `PAGADO`
+    - `RECHAZADO`
+
+- [ ] T069 Asegurar que `WebhookPagoController.java` responda inmediatamente con `202 Accepted` cuando el evento tenga un contrato válido y haya sido recibido para procesamiento asíncrono.
+
+Respuesta esperada:
 
 ```http
-GET /api/v1/paquetes/{idPaquete}/logs
+202 Accepted
 ```
 
-- [ ] T037 Verificar que el controlador sólo dependa de casos de uso y no de repositorios JPA, clientes Feign o entidades.
-- [ ] T038 Revisar `GlobalExceptionHandler.java` para respuestas claras ante `PaqueteNoEncontradoException`, `PendienteSincronizacionException`, errores de validación y errores generales.
-- [ ] T039 Mantener los códigos HTTP coherentes: `200 OK` para consultas exitosas, `404 Not Found` para paquete no encontrado, `503 Service Unavailable` o equivalente para sincronización pendiente/fallo externo controlado, y `500 Internal Server Error` sólo para errores no controlados.
+```json
+{
+  "mensaje": "Evento de pago recibido correctamente",
+  "idEvento": "evt-20260426-001",
+  "idTransaccionBanco": "txn-bank-0001",
+  "procesamiento": "ASINCRONO"
+}
+```
 
-**Checkpoint**: La API pública coincide con el backend real y puede probarse desde Postman.
+- [ ] T070 Asegurar que el controlador no procese directamente reglas de negocio, no consulte repositorios JPA y no modifique entidades persistentes.
+- [ ] T071 Asegurar que `WebhookPagoController.java` invoque únicamente el caso de uso `RecibirEventoPagoUseCase`.
+- [ ] T072 Asegurar que `RecibirEventoPagoUseCase` registre la recepción inicial del evento o delegue inmediatamente al componente asíncrono `EventoPagoProcessor`.
+- [ ] T073 Crear o revisar `PagoController.java` para exponer endpoints de consulta relacionados con el estado de pago y su trazabilidad.
+- [ ] T074 Exponer endpoint para consultar el estado actual de un pago:
+
+```http
+GET /api/v1/pagos/{idPago}/estado
+```
+
+Respuesta esperada:
+
+```json
+{
+  "idPago": "8b76a9f5-46f1-4d4f-9a5f-23b4b7cb9812",
+  "idLiquidacion": "3a8d8c2f-3322-43f1-a96d-9e7e81f62d91",
+  "estado": "PAGADO",
+  "fechaUltimaActualizacion": "2026-04-26T10:35:00",
+  "ultimaSecuenciaProcesada": 2
+}
+```
+
+- [ ] T075 Exponer endpoint para consultar los eventos de transacción recibidos para un pago:
+
+```http
+GET /api/v1/pagos/{idPago}/eventos
+```
+
+Respuesta esperada:
+
+```json
+[
+  {
+    "idEvento": "evt-20260426-001",
+    "idTransaccionBanco": "txn-bank-0001",
+    "idPago": "8b76a9f5-46f1-4d4f-9a5f-23b4b7cb9812",
+    "idLiquidacion": "3a8d8c2f-3322-43f1-a96d-9e7e81f62d91",
+    "estadoSolicitado": "EN_PROCESO",
+    "estadoProcesamiento": "PROCESADO",
+    "fechaRecepcion": "2026-04-26T10:30:01",
+    "fechaEventoBanco": "2026-04-26T10:30:00",
+    "secuencia": 1,
+    "mensajeError": null
+  }
+]
+```
+
+- [ ] T076 Si el backend ya cuenta con una entidad o consulta de liquidación disponible, exponer endpoint complementario para consultar el estado de pago desde una liquidación:
+
+```http
+GET /api/v1/liquidaciones/{idLiquidacion}/pago/estado
+```
+
+Este endpoint sólo debe existir si el modelo de liquidación ya está disponible en el backend y si el flujo necesita consultar el estado de pago desde la liquidación.
+
+- [ ] T077 Revisar `GlobalExceptionHandler.java` para manejar respuestas claras ante:
+    - `LiquidacionNoEncontradaException`
+    - `PagoNoEncontradoException`
+    - `EstadoPagoInvalidoException`
+    - `TransicionEstadoPagoInvalidaException`
+    - `EventoDuplicadoException`
+    - `EventoPagoNoProcesableException`
+    - errores de validación de DTOs
+    - errores generales no controlados
+
+- [ ] T078 Mantener códigos HTTP coherentes con el spec:
+
+```text
+202 Accepted: evento recibido correctamente para procesamiento asíncrono.
+200 OK: consulta exitosa de estado o eventos.
+400 Bad Request: payload inválido, estado desconocido o campos obligatorios ausentes.
+404 Not Found: pago o liquidación inexistente en consultas directas.
+409 Conflict: transición inválida o evento duplicado cuando se decida rechazar explícitamente.
+500 Internal Server Error: error no controlado.
+```
+
+- [ ] T079 Asegurar que los eventos duplicados puedan responder `202 Accepted` si se decide tratarlos como idempotentes, siempre que no creen nuevos registros ni modifiquen el estado del pago.
+- [ ] T080 Asegurar que los errores funcionales ocurridos durante el procesamiento asíncrono queden registrados en `EventoTransaccion`, porque el webhook ya pudo haber respondido `202 Accepted`.
+
+**Checkpoint**: La API pública queda alineada con el spec de pago: recibe eventos asíncronos del banco, responde de inmediato, permite consultar el estado del pago y permite auditar los eventos recibidos. No conserva endpoints de paquete ni rutas de sincronización operativa.
 
 ---
 
 ## Phase 6: Testing Strategy
 
-**Purpose**: Mantener los tests alineados con los archivos reales del backend.
+**Purpose**: Validar que el backend cumple el flujo definido por el spec: recepción asíncrona del evento, respuesta inmediata, procesamiento en segundo plano, creación o actualización del estado de pago, idempotencia por ID de transacción, validación de liquidación existente, rechazo de estados inválidos y protección de estados finales.
 
 ### Unit tests
 
-- [ ] T040 Revisar `EstadoPaqueteTest.java` para validar estados soportados por `EstadoPaquete`.
-- [ ] T041 Revisar `EstadoPaqueteServiceTest.java` para validar reglas de negocio y transiciones/cálculos derivados del estado.
-- [ ] T042 Revisar `GestionPaqueteMapperTest.java` para validar conversión del DTO externo hacia el dominio/aplicación.
-- [ ] T043 Revisar `PaqueteServiceTest.java` para validar sincronización exitosa, paquete no encontrado, error externo, creación de historial, registro de logs y no duplicación de historial cuando no cambia el estado.
+- [ ] T081 Crear o revisar `EstadoPagoDomainServiceTest.java` para validar:
+    - aceptación de estados válidos;
+    - rechazo de estados desconocidos;
+    - normalización de estados si el sistema recibe valores equivalentes desde el banco;
+    - identificación de estados finales `PAGADO` y `RECHAZADO`.
+
+- [ ] T082 Crear o revisar `TransicionEstadoPagoServiceTest.java` para validar transiciones permitidas:
+
+```text
+PENDIENTE -> EN_PROCESO
+PENDIENTE -> PAGADO
+PENDIENTE -> RECHAZADO
+EN_PROCESO -> PAGADO
+EN_PROCESO -> RECHAZADO
+```
+
+- [ ] T083 Crear o revisar `TransicionEstadoPagoServiceTest.java` para validar transiciones inválidas:
+
+```text
+PAGADO -> EN_PROCESO
+PAGADO -> PENDIENTE
+PAGADO -> RECHAZADO
+RECHAZADO -> EN_PROCESO
+RECHAZADO -> PAGADO
+RECHAZADO -> PENDIENTE
+```
+
+- [ ] T084 Crear o revisar `IdempotenciaEventoPagoServiceTest.java` para validar que un evento con el mismo `idTransaccionBanco` sea detectado como duplicado.
+- [ ] T085 Crear o revisar `PagoServiceTest.java` para validar registro inicial de estado de pago cuando llega un evento válido con estado `EN_PROCESO`.
+- [ ] T086 Crear o revisar `PagoServiceTest.java` para validar actualización exitosa de estado a `PAGADO`.
+- [ ] T087 Crear o revisar `PagoServiceTest.java` para validar actualización exitosa de estado a `RECHAZADO`.
+- [ ] T088 Crear o revisar `PagoServiceTest.java` para validar que un evento con liquidación inexistente:
+    - no cree estado de pago;
+    - no actualice el pago;
+    - registre el error en `EventoTransaccion`.
+
+- [ ] T089 Crear o revisar `PagoServiceTest.java` para validar que un evento duplicado:
+    - no cree un nuevo `EstadoPago`;
+    - no actualice nuevamente el pago;
+    - preserve la trazabilidad del evento.
+
+- [ ] T090 Crear o revisar `PagoServiceTest.java` para validar que un evento con el mismo estado actual:
+    - sea tratado como idempotente;
+    - responda funcionalmente como recibido;
+    - no genere cambios innecesarios en base de datos.
+
+- [ ] T091 Crear o revisar `PagoServiceTest.java` para validar que un evento desordenado por `fechaEvento` o `secuencia` no sobrescriba un estado más reciente.
+- [ ] T092 Crear o revisar `PagoServiceTest.java` para validar que un pago en estado final `PAGADO` no pueda ser sobrescrito por un evento atrasado `EN_PROCESO`.
+- [ ] T093 Crear o revisar `EventoPagoProcessorTest.java` para validar que el procesador asíncrono:
+    - reciba el evento;
+    - invoque `ProcesarEventoPagoUseCase`;
+    - capture errores controlados;
+    - marque el evento como `PROCESADO`, `DUPLICADO`, `RECHAZADO` o `ERROR` según corresponda.
+
+- [ ] T094 Crear o revisar `PagoMapperTest.java` para validar mapeos entre:
+    - `PagoEntity` y `Pago`;
+    - `EstadoPagoEntity` y `EstadoPago`;
+    - `EventoTransaccionEntity` y `EventoTransaccion`.
 
 ### Controller tests
 
-- [ ] T044 Revisar `PaqueteControllerTest.java` para validar:
-  - `POST /api/v1/rutas/{idRuta}/paquetes/{idPaquete}/sincronizar`;
-  - `GET /api/v1/paquetes/{idPaquete}/historial`;
-  - `GET /api/v1/paquetes/{idPaquete}/logs`;
-  - manejo de excepciones del controlador.
+- [ ] T095 Crear o revisar `WebhookPagoControllerTest.java` para validar recepción exitosa de evento:
+
+```http
+POST /api/v1/pagos/webhook/estado
+```
+
+Resultado esperado:
+
+```http
+202 Accepted
+```
+
+- [ ] T096 Validar en `WebhookPagoControllerTest.java` que el endpoint rechace payloads sin campos obligatorios con:
+
+```http
+400 Bad Request
+```
+
+- [ ] T097 Validar en `WebhookPagoControllerTest.java` que un estado desconocido sea rechazado con:
+
+```http
+400 Bad Request
+```
+
+- [ ] T098 Validar en `WebhookPagoControllerTest.java` que el controlador no exponga entidades internas en la respuesta.
+- [ ] T099 Crear o revisar `PagoControllerTest.java` para validar consulta exitosa del estado actual:
+
+```http
+GET /api/v1/pagos/{idPago}/estado
+```
+
+Resultado esperado:
+
+```http
+200 OK
+```
+
+- [ ] T100 Crear o revisar `PagoControllerTest.java` para validar consulta exitosa de eventos:
+
+```http
+GET /api/v1/pagos/{idPago}/eventos
+```
+
+Resultado esperado:
+
+```http
+200 OK
+```
+
+- [ ] T101 Validar en `PagoControllerTest.java` que la consulta de un pago inexistente responda:
+
+```http
+404 Not Found
+```
 
 ### Integration tests
 
-- [ ] T045 Revisar `PaqueteSincronizacionIntegrationTest.java` para validar el flujo completo con contexto Spring:
-  - persistencia de paquete;
-  - sincronización;
-  - consulta de historial;
-  - consulta de logs;
-  - integración con perfil `application-test.yml`.
+- [ ] T102 Crear o revisar `RegistroEstadoPagoIntegrationTest.java` para validar el flujo completo:
+    - recepción del evento;
+    - persistencia de `EventoTransaccion`;
+    - creación de `EstadoPago`;
+    - asociación correcta con `Pago` y `Liquidacion`;
+    - respuesta `202 Accepted`.
 
-**Checkpoint**: Los tests cubren las capas reales del proyecto y no hacen referencia a archivos inexistentes.
+- [ ] T103 Crear o revisar `ActualizacionEstadoPagoIntegrationTest.java` para validar actualización de `EN_PROCESO` a `PAGADO`.
+- [ ] T104 Crear o revisar `ActualizacionEstadoPagoIntegrationTest.java` para validar actualización de `EN_PROCESO` a `RECHAZADO`.
+- [ ] T105 Crear o revisar `IdempotenciaEventoPagoIntegrationTest.java` para validar que dos eventos con el mismo `idTransaccionBanco` no generen registros duplicados.
+- [ ] T106 Crear o revisar `EventoPagoAsincronoIntegrationTest.java` para validar que el webhook responda `202 Accepted` antes de finalizar la actualización real del estado de pago.
+- [ ] T107 Crear o revisar `LiquidacionInexistenteEventoPagoIntegrationTest.java` para validar que un evento con `idLiquidacion` inexistente:
+    - sea registrado como evento con error o rechazado;
+    - no cree `EstadoPago`;
+    - no modifique `Pago`.
+
+- [ ] T108 Crear o revisar `EventoPagoDesordenadoIntegrationTest.java` para validar que un evento atrasado no sobrescriba un estado más reciente o final.
+- [ ] T109 Crear o revisar `EstadoPagoFinalIntegrationTest.java` para validar que un pago en estado `PAGADO` o `RECHAZADO` no acepte transiciones inválidas.
+- [ ] T110 Crear o revisar `EventoEstadoPagoInvalidoIntegrationTest.java` para validar que un estado desconocido sea rechazado y quede trazabilidad del fallo.
+
+**Checkpoint**: Los tests cubren el comportamiento pedido por el spec y eliminan cualquier referencia a paquete, historial de paquete, logs de sincronización de paquete o endpoints `/api/v1/paquetes`.
 
 ---
 
 ## Phase 7: Operational Validation with Postman
 
-**Purpose**: Validar manualmente los endpoints reales una vez el backend esté levantado.
+**Purpose**: Validar manualmente el flujo real de registro y actualización del estado de pago mediante eventos asíncronos enviados por la entidad financiera.
 
-### Request 1: Sincronizar paquete
+### Precondiciones
 
-```http
-POST http://localhost:8080/api/v1/rutas/{idRuta}/paquetes/{idPaquete}/sincronizar
-```
+Antes de ejecutar las pruebas en Postman:
 
-Ejemplo:
+- [ ] El backend debe estar corriendo en:
 
 ```http
-POST http://localhost:8080/api/v1/rutas/550e8400-e29b-41d4-a716-446655440000/paquetes/123e4567-e89b-12d3-a456-426614174000/sincronizar
+http://localhost:8080
 ```
 
-### Request 2: Consultar historial
+- [ ] PostgreSQL debe estar activo.
+- [ ] Debe existir una liquidación previamente calculada.
+- [ ] Debe existir o poder crearse un pago asociado a esa liquidación.
+- [ ] Los UUID usados en los ejemplos deben reemplazarse por datos reales existentes en la base de datos.
+- [ ] El header debe incluir:
 
 ```http
-GET http://localhost:8080/api/v1/paquetes/{idPaquete}/historial
+Content-Type: application/json
 ```
-
-Ejemplo:
-
-```http
-GET http://localhost:8080/api/v1/paquetes/123e4567-e89b-12d3-a456-426614174000/historial
-```
-
-### Request 3: Consultar logs
-
-```http
-GET http://localhost:8080/api/v1/paquetes/{idPaquete}/logs
-```
-
-Ejemplo:
-
-```http
-GET http://localhost:8080/api/v1/paquetes/123e4567-e89b-12d3-a456-426614174000/logs
-```
-
-**Checkpoint**: Postman consume las rutas reales del backend sin agregar parámetros duplicados ni incluir el método HTTP dentro de la URL.
 
 ---
+
+### Request 1: Registrar estado inicial de pago
+
+Este request simula el evento inicial enviado por la entidad financiera indicando que el pago inició su proceso.
+
+```http
+POST http://localhost:8080/api/v1/pagos/webhook/estado
+Content-Type: application/json
+```
+
+Body:
+
+```json
+{
+  "idEvento": "evt-20260426-001",
+  "idTransaccionBanco": "txn-bank-0001",
+  "idPago": "8b76a9f5-46f1-4d4f-9a5f-23b4b7cb9812",
+  "idLiquidacion": "3a8d8c2f-3322-43f1-a96d-9e7e81f62d91",
+  "estado": "EN_PROCESO",
+  "fechaEvento": "2026-04-26T10:30:00",
+  "secuencia": 1,
+  "payloadOriginal": {
+    "banco": "Entidad Financiera",
+    "canal": "webhook",
+    "descripcion": "Inicio del proceso de pago"
+  }
+}
+```
+
+Respuesta esperada:
+
+```http
+202 Accepted
+```
+
+```json
+{
+  "mensaje": "Evento de pago recibido correctamente",
+  "idEvento": "evt-20260426-001",
+  "idTransaccionBanco": "txn-bank-0001",
+  "procesamiento": "ASINCRONO"
+}
+```
+
+Validación esperada en base de datos:
+
+```text
+Debe existir un EventoTransaccion asociado al idPago.
+Debe existir un EstadoPago con estado EN_PROCESO.
+El Pago debe quedar asociado a la liquidación indicada.
+```
+
+---
+
+### Request 2: Actualizar estado de pago a PAGADO
+
+Este request simula que la entidad financiera confirma que el pago fue completado exitosamente.
+
+```http
+POST http://localhost:8080/api/v1/pagos/webhook/estado
+Content-Type: application/json
+```
+
+Body:
+
+```json
+{
+  "idEvento": "evt-20260426-002",
+  "idTransaccionBanco": "txn-bank-0002",
+  "idPago": "8b76a9f5-46f1-4d4f-9a5f-23b4b7cb9812",
+  "idLiquidacion": "3a8d8c2f-3322-43f1-a96d-9e7e81f62d91",
+  "estado": "PAGADO",
+  "fechaEvento": "2026-04-26T10:35:00",
+  "secuencia": 2,
+  "payloadOriginal": {
+    "banco": "Entidad Financiera",
+    "canal": "webhook",
+    "descripcion": "Pago finalizado exitosamente"
+  }
+}
+```
+
+Respuesta esperada:
+
+```http
+202 Accepted
+```
+
+Validación esperada:
+
+```text
+El Pago debe quedar en estado PAGADO.
+Debe crearse un nuevo EstadoPago con estado PAGADO.
+Debe registrarse el EventoTransaccion como PROCESADO.
+La ultimaSecuenciaProcesada debe quedar en 2.
+```
+
+---
+
+### Request 3: Actualizar estado de pago a RECHAZADO
+
+Este request aplica para un pago que esté en estado `PENDIENTE` o `EN_PROCESO`, no para uno que ya esté `PAGADO`.
+
+```http
+POST http://localhost:8080/api/v1/pagos/webhook/estado
+Content-Type: application/json
+```
+
+Body:
+
+```json
+{
+  "idEvento": "evt-20260426-003",
+  "idTransaccionBanco": "txn-bank-0003",
+  "idPago": "8b76a9f5-46f1-4d4f-9a5f-23b4b7cb9812",
+  "idLiquidacion": "3a8d8c2f-3322-43f1-a96d-9e7e81f62d91",
+  "estado": "RECHAZADO",
+  "fechaEvento": "2026-04-26T10:40:00",
+  "secuencia": 3,
+  "payloadOriginal": {
+    "banco": "Entidad Financiera",
+    "canal": "webhook",
+    "descripcion": "Pago rechazado por la entidad financiera"
+  }
+}
+```
+
+Respuesta esperada:
+
+```http
+202 Accepted
+```
+
+Validación esperada:
+
+```text
+El Pago debe quedar en estado RECHAZADO si la transición es válida.
+Debe crearse un EstadoPago con estado RECHAZADO.
+Debe registrarse el EventoTransaccion como PROCESADO.
+```
+
+---
+
+### Request 4: Probar idempotencia con evento duplicado
+
+Enviar exactamente el mismo evento del Request 2, conservando el mismo `idTransaccionBanco`.
+
+```http
+POST http://localhost:8080/api/v1/pagos/webhook/estado
+Content-Type: application/json
+```
+
+Body:
+
+```json
+{
+  "idEvento": "evt-20260426-002",
+  "idTransaccionBanco": "txn-bank-0002",
+  "idPago": "8b76a9f5-46f1-4d4f-9a5f-23b4b7cb9812",
+  "idLiquidacion": "3a8d8c2f-3322-43f1-a96d-9e7e81f62d91",
+  "estado": "PAGADO",
+  "fechaEvento": "2026-04-26T10:35:00",
+  "secuencia": 2,
+  "payloadOriginal": {
+    "banco": "Entidad Financiera",
+    "canal": "webhook",
+    "descripcion": "Reintento del mismo evento"
+  }
+}
+```
+
+Respuesta esperada recomendada:
+
+```http
+202 Accepted
+```
+
+Validación esperada:
+
+```text
+No debe crearse un segundo EstadoPago PAGADO.
+No debe modificarse nuevamente el Pago.
+El sistema debe reconocer el idTransaccionBanco como duplicado.
+Debe mantenerse trazabilidad del intento duplicado como DUPLICADO o evento ya recibido.
+```
+
+---
+
+### Request 5: Probar liquidación inexistente
+
+```http
+POST http://localhost:8080/api/v1/pagos/webhook/estado
+Content-Type: application/json
+```
+
+Body:
+
+```json
+{
+  "idEvento": "evt-20260426-004",
+  "idTransaccionBanco": "txn-bank-0004",
+  "idPago": "8b76a9f5-46f1-4d4f-9a5f-23b4b7cb9812",
+  "idLiquidacion": "00000000-0000-0000-0000-000000000000",
+  "estado": "EN_PROCESO",
+  "fechaEvento": "2026-04-26T10:45:00",
+  "secuencia": 4,
+  "payloadOriginal": {
+    "banco": "Entidad Financiera",
+    "canal": "webhook",
+    "descripcion": "Evento asociado a liquidación inexistente"
+  }
+}
+```
+
+Respuesta esperada del webhook:
+
+```http
+202 Accepted
+```
+
+Validación esperada:
+
+```text
+El evento debe registrarse.
+El procesamiento debe marcarse como ERROR o RECHAZADO.
+No debe crearse ni actualizarse EstadoPago.
+Debe quedar mensaje de error asociado a liquidación inexistente.
+```
+
+Nota: si la validación de existencia de liquidación se hace antes de aceptar el evento, también puede usarse `404 Not Found`; sin embargo, para respetar el comportamiento asíncrono del spec, se recomienda aceptar la recepción con `202 Accepted` y registrar el fallo durante el procesamiento.
+
+---
+
+### Request 6: Probar estado desconocido
+
+```http
+POST http://localhost:8080/api/v1/pagos/webhook/estado
+Content-Type: application/json
+```
+
+Body:
+
+```json
+{
+  "idEvento": "evt-20260426-005",
+  "idTransaccionBanco": "txn-bank-0005",
+  "idPago": "8b76a9f5-46f1-4d4f-9a5f-23b4b7cb9812",
+  "idLiquidacion": "3a8d8c2f-3322-43f1-a96d-9e7e81f62d91",
+  "estado": "APROBADO_PARCIALMENTE",
+  "fechaEvento": "2026-04-26T10:50:00",
+  "secuencia": 5,
+  "payloadOriginal": {
+    "banco": "Entidad Financiera",
+    "canal": "webhook",
+    "descripcion": "Estado no soportado"
+  }
+}
+```
+
+Respuesta esperada:
+
+```http
+400 Bad Request
+```
+
+Respuesta sugerida:
+
+```json
+{
+  "error": "estado invalido",
+  "mensaje": "El estado de pago recibido no es soportado",
+  "estadoRecibido": "APROBADO_PARCIALMENTE"
+}
+```
+
+Validación esperada:
+
+```text
+No debe modificarse el Pago.
+No debe crearse EstadoPago.
+Debe registrarse el fallo en logs o EventoTransaccion si el diseño registra eventos inválidos.
+```
+
+---
+
+### Request 7: Probar evento desordenado
+
+Este request simula que llega tarde un evento `EN_PROCESO` después de que el pago ya quedó `PAGADO`.
+
+```http
+POST http://localhost:8080/api/v1/pagos/webhook/estado
+Content-Type: application/json
+```
+
+Body:
+
+```json
+{
+  "idEvento": "evt-20260426-006",
+  "idTransaccionBanco": "txn-bank-0006",
+  "idPago": "8b76a9f5-46f1-4d4f-9a5f-23b4b7cb9812",
+  "idLiquidacion": "3a8d8c2f-3322-43f1-a96d-9e7e81f62d91",
+  "estado": "EN_PROCESO",
+  "fechaEvento": "2026-04-26T10:20:00",
+  "secuencia": 1,
+  "payloadOriginal": {
+    "banco": "Entidad Financiera",
+    "canal": "webhook",
+    "descripcion": "Evento atrasado recibido después del pago final"
+  }
+}
+```
+
+Respuesta esperada:
+
+```http
+202 Accepted
+```
+
+Validación esperada:
+
+```text
+El Pago debe permanecer en estado PAGADO.
+No debe sobrescribirse el estado final con EN_PROCESO.
+El EventoTransaccion debe quedar como RECHAZADO, IGNORADO o ERROR_CONTROLADO por evento desordenado.
+```
+
+---
+
+### Request 8: Consultar estado actual del pago
+
+```http
+GET http://localhost:8080/api/v1/pagos/8b76a9f5-46f1-4d4f-9a5f-23b4b7cb9812/estado
+```
+
+Respuesta esperada:
+
+```http
+200 OK
+```
+
+```json
+{
+  "idPago": "8b76a9f5-46f1-4d4f-9a5f-23b4b7cb9812",
+  "idLiquidacion": "3a8d8c2f-3322-43f1-a96d-9e7e81f62d91",
+  "estado": "PAGADO",
+  "fechaUltimaActualizacion": "2026-04-26T10:35:00",
+  "ultimaSecuenciaProcesada": 2
+}
+```
+
+---
+
+### Request 9: Consultar eventos recibidos para el pago
+
+```http
+GET http://localhost:8080/api/v1/pagos/8b76a9f5-46f1-4d4f-9a5f-23b4b7cb9812/eventos
+```
+
+Respuesta esperada:
+
+```http
+200 OK
+```
+
+```json
+[
+  {
+    "idEvento": "evt-20260426-001",
+    "idTransaccionBanco": "txn-bank-0001",
+    "idPago": "8b76a9f5-46f1-4d4f-9a5f-23b4b7cb9812",
+    "idLiquidacion": "3a8d8c2f-3322-43f1-a96d-9e7e81f62d91",
+    "estadoSolicitado": "EN_PROCESO",
+    "estadoProcesamiento": "PROCESADO",
+    "fechaRecepcion": "2026-04-26T10:30:01",
+    "fechaEventoBanco": "2026-04-26T10:30:00",
+    "secuencia": 1,
+    "mensajeError": null
+  },
+  {
+    "idEvento": "evt-20260426-002",
+    "idTransaccionBanco": "txn-bank-0002",
+    "idPago": "8b76a9f5-46f1-4d4f-9a5f-23b4b7cb9812",
+    "idLiquidacion": "3a8d8c2f-3322-43f1-a96d-9e7e81f62d91",
+    "estadoSolicitado": "PAGADO",
+    "estadoProcesamiento": "PROCESADO",
+    "fechaRecepcion": "2026-04-26T10:35:01",
+    "fechaEventoBanco": "2026-04-26T10:35:00",
+    "secuencia": 2,
+    "mensajeError": null
+  },
+  {
+    "idEvento": "evt-20260426-006",
+    "idTransaccionBanco": "txn-bank-0006",
+    "idPago": "8b76a9f5-46f1-4d4f-9a5f-23b4b7cb9812",
+    "idLiquidacion": "3a8d8c2f-3322-43f1-a96d-9e7e81f62d91",
+    "estadoSolicitado": "EN_PROCESO",
+    "estadoProcesamiento": "RECHAZADO",
+    "fechaRecepcion": "2026-04-26T10:55:01",
+    "fechaEventoBanco": "2026-04-26T10:20:00",
+    "secuencia": 1,
+    "mensajeError": "Evento desordenado: no se permite sobrescribir un estado final o más reciente"
+  }
+]
+```
+
+**Checkpoint**: Postman valida los escenarios principales y edge cases del spec: registro inicial, actualización a pagado o rechazado, evento duplicado, liquidación inexistente, estado desconocido, evento desordenado, consulta del estado actual y consulta de trazabilidad.
 
 ## Dependencies & Execution Order
 
