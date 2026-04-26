@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: longistica-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/logistica
+      SPRING_DATASOURCE_USERNAME: luis
+      SPRING_DATASOURCE_PASSWORD: 123456789
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
+
+  db:
+    image: postgres:15
+    container_name: postgres-db
+    environment:
+      POSTGRES_DB: logistica
+      POSTGRES_USER: luis
+      POSTGRES_PASSWORD: 123456789
+    ports:
+      - "5432:5432"

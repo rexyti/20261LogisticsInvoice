@@ -1,11 +1,17 @@
 spring:
-  application:
-    name: "logisticaapplication"
-  r2dbc:
-    url: "r2dbc:postgresql://localhost:5432/logistica"7
+  datasource:
+    url: jdbc:postgresql://db:5432/logistica
+    username: luis
+    password: 123456789
+    driver-class-name: org.postgresql.Driver
 
-    username: "luis"
-    password: "123456789"
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  main:
+    web-application-type: servlet
 
 server:
   port: 8080

@@ -28,7 +28,7 @@ dependencies {
     implementation 'org.flywaydb:flyway-core'
 
     // PostgreSQL
-    runtimeOnly 'org.postgresql:postgresql'
+    implementation 'org.postgresql:postgresql:42.7.3'
 
     // Swagger
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0'
