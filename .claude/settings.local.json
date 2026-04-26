@@ -11,7 +11,13 @@
       "PowerShell(Get-Command *)",
       "Bash(/c/Users/Sebastian/.gradle/wrapper/dists/gradle-8.14-bin/38aieal9i53h9rfe7vjup95b9/gradle-8.14/bin/gradle test *)",
       "Bash(xargs grep *)",
-      "Bash(awk -F'\"' '{sum+=$2} END {print \"Total tests:\", sum}')"
+      "Bash(awk -F'\"' '{sum+=$2} END {print \"Total tests:\", sum}')",
+      "Bash(./gradlew cleanTest test --tests \"com.logistica.integration.RegistroEstadoPagoIntegrationTest\")",
+      "Bash(./gradlew cleanTest test --tests \"com.logistica.integration.*\")",
+      "Bash(./gradlew cleanTest test --tests \"com.logistica.unit.EstadoPagoDomainServiceTest\" --tests \"com.logistica.unit.TransicionEstadoPagoServiceTest\" --tests \"com.logistica.unit.IdempotenciaEventoPagoServiceTest\" --tests \"com.logistica.unit.PagoServiceTest\" --tests \"com.logistica.unit.EventoPagoProcessorTest\" --tests \"com.logistica.unit.PagoMapperTest\" --tests \"com.logistica.infrastructure.web.controllers.WebhookPagoControllerTest\" --tests \"com.logistica.infrastructure.web.controllers.PagoControllerTest\" --tests \"com.logistica.integration.*\")",
+      "Bash(rm -f http/clients/GestionClient.java http/clients/PackageApiClient.java http/dto/GestionPaqueteDTO.java http/mappers/GestionPaqueteMapper.java resilience/ResilienceConfig.java)",
+      "Bash(rmdir --ignore-fail-on-non-empty http/clients http/dto http/mappers http resilience)",
+      "Bash(./gradlew cleanTest test --info)"
     ]
   }
 }

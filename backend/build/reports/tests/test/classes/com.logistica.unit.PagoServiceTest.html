@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - PagoServiceTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>PagoServiceTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/com.logistica.unit.html">com.logistica.unit</a> &gt; PagoServiceTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">13</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.438s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a href="#">Tests</a>
+</li>
+<li>
+<a href="#">Standard output</a>
+</li>
+</ul>
+<div class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">obtenerEstadoPagoPorLiquidacion_existente_retornaDTO()</td>
+<td class="success">0.004s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">obtenerEstadoPagoPorLiquidacion_sinPago_lanzaExcepcion()</td>
+<td class="success">0.005s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">obtenerEstadoPago_pagoExistente_retornaDTO()</td>
+<td class="success">0.003s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">obtenerEstadoPago_pagoInexistente_lanzaExcepcion()</td>
+<td class="success">0.005s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">obtenerEventos_retornaListaOrdenada()</td>
+<td class="success">0.008s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">procesarEvento_actualizacionAPagado_actualizaEstado()</td>
+<td class="success">0.014s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">procesarEvento_actualizacionARechazado_actualizaEstado()</td>
+<td class="success">0.353s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">procesarEvento_eventoDesordenado_noSobrescribeEstado()</td>
+<td class="success">0.006s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">procesarEvento_eventoDuplicado_noCreaNuevoEstadoPago()</td>
+<td class="success">0.004s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">procesarEvento_liquidacionInexistente_noCreaPago_registraError()</td>
+<td class="success">0.006s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">procesarEvento_mismoEstadoActual_esIdempotente()</td>
+<td class="success">0.006s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">procesarEvento_pagoFinalConTransicionInvalida_rechazaEvento()</td>
+<td class="success">0.009s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">procesarEvento_registroInicial_creaPagoYEstado()</td>
+<td class="success">0.015s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>2026-04-26T16:31:16.409-05:00  WARN 19860 --- [logistica-financiero] [    Test worker] c.l.a.usecases.pago.PagoService          : Transición de estado inválida: PAGADO -&gt; EN_PROCESO
+2026-04-26T16:31:16.435-05:00  INFO 19860 --- [logistica-financiero] [    Test worker] c.l.a.usecases.pago.PagoService          : Evento con mismo estado actual, idempotente: idPago=1499a17f-1725-43a0-938f-b65aa334875c, estado=EN_PROCESO
+2026-04-26T16:31:16.456-05:00  INFO 19860 --- [logistica-financiero] [    Test worker] c.l.a.usecases.pago.PagoService          : Evento duplicado ignorado: txn-001
+2026-04-26T16:31:16.464-05:00  INFO 19860 --- [logistica-financiero] [    Test worker] c.l.a.usecases.pago.PagoService          : Evento con mismo estado actual, idempotente: idPago=4e1733da-c56a-4fac-960a-2d94aa9eb9dc, estado=EN_PROCESO
+2026-04-26T16:31:16.475-05:00  WARN 19860 --- [logistica-financiero] [    Test worker] c.l.a.usecases.pago.PagoService          : Liquidación no encontrada: a6b41ab0-adbb-4cf7-a8e5-68d4f6801d0c
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="https://www.gradle.org">Gradle 8.14</a> at 26/04/2026, 4:31:16 p. m.</p>
+</div>
+</div>
+</body>
+</html>

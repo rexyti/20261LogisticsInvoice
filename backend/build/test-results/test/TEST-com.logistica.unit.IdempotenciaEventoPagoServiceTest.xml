@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.logistica.unit.IdempotenciaEventoPagoServiceTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-04-26T21:31:15.962Z" hostname="SKIPPER" time="0.051">
+  <properties/>
+  <testcase name="eventoYaProcesado_esDetectadoComoDuplicado()" classname="com.logistica.unit.IdempotenciaEventoPagoServiceTest" time="0.048"/>
+  <testcase name="eventoEnEstadoRecibido_noProcesado_noEsDuplicado()" classname="com.logistica.unit.IdempotenciaEventoPagoServiceTest" time="0.001"/>
+  <testcase name="eventoNoExistente_noEsDuplicado()" classname="com.logistica.unit.IdempotenciaEventoPagoServiceTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
