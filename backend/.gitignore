@@ -1,2 +1,30 @@
+# ====== Gradle ======
 .gradle/
-build/*
+build/
+out/
+
+# Archivos binarios de Gradle
+*.bin
+*.lock
+
+# ====== IntelliJ IDEA ======
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# ====== Logs ======
+*.log
+
+# ====== OS ======
+.DS_Store
+Thumbs.db
+
+# ====== Java ======
+*.class
+
+# ====== Environment ======
+.env
+
+# ====== Docker (opcional, dependiendo de tu caso) ======
+docker-compose.override.yml
