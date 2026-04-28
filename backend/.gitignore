@@ -1,30 +1,31 @@
 # ====== Gradle ======
 .gradle/
 build/
-out/
 
-# Archivos binarios de Gradle
+# Archivos generados por Gradle
 *.bin
 *.lock
+
+# Wrapper (ESTO SÍ se sube parcialmente)
+!gradle/wrapper/gradle-wrapper.jar
 
 # ====== IntelliJ IDEA ======
 .idea/
 *.iml
-*.ipr
-*.iws
+out/
 
 # ====== Logs ======
 *.log
 
-# ====== OS ======
+# ====== Sistema ======
 .DS_Store
 Thumbs.db
 
 # ====== Java ======
 *.class
 
-# ====== Environment ======
+# ====== Variables de entorno ======
 .env
 
-# ====== Docker (opcional, dependiendo de tu caso) ======
+# ====== Docker ======
 docker-compose.override.yml
