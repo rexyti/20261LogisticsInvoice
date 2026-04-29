@@ -1,7 +1,7 @@
 package com.logistica.application.dtos;
 
-import com.logistica.ruta.application.dtos.request.RutaCerradaEventDTO;
-import com.logistica.ruta.domain.enums.EstadoParada;
+import com.logistica.cierreRuta.application.dtos.request.RutaCerradaEventDTO;
+import com.logistica.cierreRuta.domain.enums.EstadoParada;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;

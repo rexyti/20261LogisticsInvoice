@@ -1,11 +1,11 @@
 package com.logistica.infrastructure.persistence.repositories;
 
-import com.logistica.ruta.domain.enums.EstadoParada;
-import com.logistica.ruta.domain.enums.EstadoProcesamiento;
-import com.logistica.ruta.infrastructure.persistence.entities.ParadaEntity;
-import com.logistica.ruta.infrastructure.persistence.entities.RutaEntity;
-import com.logistica.ruta.infrastructure.persistence.entities.TransportistaEntity;
-import com.logistica.ruta.infrastructure.persistence.repositories.RutaJpaRepository;
+import com.logistica.cierreRuta.domain.enums.EstadoParada;
+import com.logistica.cierreRuta.domain.enums.EstadoProcesamiento;
+import com.logistica.cierreRuta.infrastructure.persistence.entities.ParadaEntity;
+import com.logistica.cierreRuta.infrastructure.persistence.entities.RutaEntity;
+import com.logistica.cierreRuta.infrastructure.persistence.entities.TransportistaEntity;
+import com.logistica.cierreRuta.infrastructure.persistence.repositories.RutaJpaRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

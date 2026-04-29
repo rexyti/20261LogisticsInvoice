@@ -1,57 +1,51 @@
 package com.logistica.application.usecases;
 
-import com.logistica.ruta.application.dtos.request.ConductorEventDTO;
-import com.logistica.ruta.application.dtos.request.ParadaEventDTO;
-import com.logistica.ruta.application.dtos.request.RutaCerradaEventDTO;
-import com.logistica.ruta.application.dtos.request.VehiculoEventDTO;
-import com.logistica.ruta.application.mappers.RutaEventMapper;
-import com.logistica.ruta.application.usecases.ruta.ProcesarRutaCerradaUseCase;
-import com.logistica.ruta.domain.enums.EstadoParada;
-import com.logistica.ruta.domain.enums.EstadoProcesamiento;
-import com.logistica.ruta.domain.enums.TipoAlertaRuta;
-import com.logistica.ruta.domain.events.RutaCerradaProcesadaEvent;
-import com.logistica.ruta.domain.exceptions.RutaInvalidaException;
-import com.logistica.ruta.domain.models.Parada;
-import com.logistica.ruta.domain.models.Ruta;
-import com.logistica.ruta.domain.repositories.RutaRepository;
-import com.logistica.ruta.domain.repositories.TarifaRepository;
-import com.logistica.ruta.domain.services.ClasificacionRutaService;
-import com.logistica.ruta.domain.validators.RutaValidator;
+import com.logistica.cierreRuta.application.dtos.request.ConductorEventDTO;
+import com.logistica.cierreRuta.application.dtos.request.ParadaEventDTO;
+import com.logistica.cierreRuta.application.dtos.request.RutaCerradaEventDTO;
+import com.logistica.cierreRuta.application.dtos.request.VehiculoEventDTO;
+import com.logistica.cierreRuta.application.mappers.RutaEventMapper;
+import com.logistica.cierreRuta.application.usecases.ruta.ProcesarRutaCerradaUseCase;
+import com.logistica.cierreRuta.domain.enums.EstadoParada;
+import com.logistica.cierreRuta.domain.enums.EstadoProcesamiento;
+import com.logistica.cierreRuta.domain.enums.TipoAlertaRuta;
+import com.logistica.cierreRuta.domain.events.RutaCerradaProcesadaEvent;
+import com.logistica.cierreRuta.domain.exceptions.RutaInvalidaException;
+import com.logistica.cierreRuta.domain.models.Parada;
+import com.logistica.cierreRuta.domain.models.Ruta;
+import com.logistica.cierreRuta.domain.models.Transportista;
+import com.logistica.cierreRuta.domain.ports.DomainEvent;
+import com.logistica.cierreRuta.domain.ports.EventPublisher;
+import com.logistica.cierreRuta.domain.ports.TimeProvider;
+import com.logistica.cierreRuta.domain.repositories.RutaRepository;
+import com.logistica.cierreRuta.domain.repositories.TransportistaRepository;
+import com.logistica.cierreRuta.domain.services.ClasificacionRutaService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.context.ApplicationEventPublisher;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("ProcesarRutaCerradaUseCase - Tests")
 class ProcesarRutaCerradaUseCaseTest {
 
-    @Mock
-    private RutaRepository rutaRepository;
-    @Mock
-    private TarifaRepository tarifaRepository;
-    @Mock
-    private RutaEventMapper rutaEventMapper;
-    @Mock
-    private RutaValidator rutaValidator;
-    @Mock
-    private ClasificacionRutaService clasificacionRutaService;
-    @Mock
-    private ApplicationEventPublisher eventPublisher;
+    @Mock private RutaRepository rutaRepository;
+    @Mock private TransportistaRepository transportistaRepository;
+    @Mock private RutaEventMapper rutaEventMapper;
+    @Mock private TimeProvider timeProvider;
+    @Mock private ClasificacionRutaService clasificacionRutaService;
+    @Mock private EventPublisher eventPublisher;
 
     private ProcesarRutaCerradaUseCase useCase;
 
@@ -59,12 +53,13 @@ class ProcesarRutaCerradaUseCaseTest {
     void setUp() {
         useCase = new ProcesarRutaCerradaUseCase(
                 rutaRepository,
-                tarifaRepository,
+                transportistaRepository,
                 rutaEventMapper,
-                rutaValidator,
+                timeProvider,
                 clasificacionRutaService,
                 eventPublisher
         );
+        when(timeProvider.now()).thenReturn(LocalDateTime.now());
     }
 
     // ── T012: Idempotencia ─────────────────────────────────────────────────────
@@ -79,86 +74,114 @@ class ProcesarRutaCerradaUseCaseTest {
         useCase.ejecutar(dto);
 
         verify(rutaRepository, never()).guardar(any());
-        verifyNoInteractions(rutaEventMapper, rutaValidator, clasificacionRutaService, eventPublisher);
+        verifyNoInteractions(rutaEventMapper, transportistaRepository, clasificacionRutaService, eventPublisher);
     }
 
-    // ── T013: Total de paradas coincide ───────────────────────────────────────
+    // ── T013: Clasificar, procesar y persistir ────────────────────────────────
     @Test
-    @DisplayName("Debe persistir la ruta con el mismo número de paradas que el evento")
-    void debe_persistir_mismo_numero_de_paradas_que_el_evento() {
+    @DisplayName("Debe buscar el transportista, clasificar, procesar y persistir la ruta")
+    void debe_clasificar_procesar_y_persistir_la_ruta() {
         UUID rutaId = UUID.randomUUID();
-        List<Parada> domainParadas = List.of(
-                mock(Parada.class),
-                mock(Parada.class)
-        );
-        RutaCerradaEventDTO dto = buildEvento(rutaId, "Recorrido completo", "MOTO", List.of(parada("EXITOSA", null), parada("FALLIDA", "CLIENTE_AUSENTE")));
-        Ruta rutaMock = buildRutaMock(rutaId, "Recorrido completo", "MOTO", domainParadas);
+        RutaCerradaEventDTO dto = buildEvento(rutaId, "Recorrido completo", "MOTO",
+                List.of(parada("EXITOSA", null), parada("EXITOSA", null)));
+
+        Transportista transportista = transportista();
+        Ruta rutaMock = mock(Ruta.class);
+        when(rutaMock.getTransportista()).thenReturn(transportista);
+        when(rutaMock.obtenerEventos()).thenReturn(List.of());
 
         when(rutaRepository.existsByRutaId(rutaId)).thenReturn(false);
-        when(rutaEventMapper.toDomain(any(RutaCerradaEventDTO.class))).thenReturn(rutaMock);
-        when(rutaRepository.guardar(any(Ruta.class))).thenAnswer(inv -> inv.getArgument(0));
+        when(rutaEventMapper.toDomain(any())).thenReturn(rutaMock);
+        when(transportistaRepository.buscarPorTransportistaId(transportista.getTransportistaId()))
+                .thenReturn(Optional.of(transportista));
 
         useCase.ejecutar(dto);
 
-        verify(rutaRepository).guardar(argThat(ruta -> ruta.getParadas().size() == 2));
-        verify(rutaValidator).validar(eq(rutaMock), eq(2));
-        verify(clasificacionRutaService).clasificar(eq(rutaMock));
+        verify(transportistaRepository).buscarPorTransportistaId(transportista.getTransportistaId());
+        verify(rutaMock).asignarTransportista(transportista);
+        verify(clasificacionRutaService).clasificar(rutaMock);
+        verify(rutaMock).procesar(any(LocalDateTime.class));
+        verify(rutaRepository).guardar(rutaMock);
+        verifyNoInteractions(eventPublisher);
     }
 
-    // ── T014: Contrato nulo ───────────────────────────────────────────────────
+    // ── T013b: Transportista nuevo se guarda ──────────────────────────────────
     @Test
-    @DisplayName("Debe marcar revisión y publicar evento por contrato nulo")
-    void debe_marcar_revision_y_publicar_evento_por_contrato_nulo() {
+    @DisplayName("Debe guardar el transportista si no existe en el sistema")
+    void debe_guardar_transportista_si_no_existe() {
+        UUID rutaId = UUID.randomUUID();
+        RutaCerradaEventDTO dto = buildEvento(rutaId, "Recorrido completo", "MOTO", List.of());
+
+        Transportista transportista = transportista();
+        Ruta rutaMock = mock(Ruta.class);
+        when(rutaMock.getTransportista()).thenReturn(transportista);
+        when(rutaMock.obtenerEventos()).thenReturn(List.of());
+
+        when(rutaRepository.existsByRutaId(rutaId)).thenReturn(false);
+        when(rutaEventMapper.toDomain(any())).thenReturn(rutaMock);
+        when(transportistaRepository.buscarPorTransportistaId(transportista.getTransportistaId()))
+                .thenReturn(Optional.empty());
+        when(transportistaRepository.guardar(transportista)).thenReturn(transportista);
+
+        useCase.ejecutar(dto);
+
+        verify(transportistaRepository).guardar(transportista);
+        verify(rutaMock).asignarTransportista(transportista);
+    }
+
+    // ── T014: Contrato nulo → CONTRATO_NULO ──────────────────────────────────
+    @Test
+    @DisplayName("Debe publicar evento CONTRATO_NULO cuando el modelo de contrato es nulo")
+    void debe_publicar_evento_contrato_nulo() {
         UUID rutaId = UUID.randomUUID();
         RutaCerradaEventDTO dto = buildEvento(rutaId, null, "MOTO", List.of(parada("EXITOSA", null)));
-        Ruta rutaMock = buildRutaMock(rutaId, null, "MOTO", List.of(mock(Parada.class)));
+
+        DomainEvent eventoEsperado = new RutaCerradaProcesadaEvent(
+                rutaId, EstadoProcesamiento.REQUIERE_REVISION,
+                TipoAlertaRuta.CONTRATO_NULO, "Contrato no encontrado", LocalDateTime.now());
+
+        Transportista transportista = transportista();
+        Ruta rutaMock = mock(Ruta.class);
+        when(rutaMock.getTransportista()).thenReturn(transportista);
+        when(rutaMock.obtenerEventos()).thenReturn(List.of(eventoEsperado));
 
         when(rutaRepository.existsByRutaId(rutaId)).thenReturn(false);
-        when(rutaEventMapper.toDomain(any(RutaCerradaEventDTO.class))).thenReturn(rutaMock);
-        when(rutaRepository.guardar(any(Ruta.class))).thenAnswer(inv -> inv.getArgument(0));
-
-        ArgumentCaptor<RutaCerradaProcesadaEvent> eventCaptor = ArgumentCaptor.forClass(RutaCerradaProcesadaEvent.class);
+        when(rutaEventMapper.toDomain(any())).thenReturn(rutaMock);
+        when(transportistaRepository.buscarPorTransportistaId(transportista.getTransportistaId()))
+                .thenReturn(Optional.of(transportista));
 
         useCase.ejecutar(dto);
 
-        verify(eventPublisher).publishEvent(eventCaptor.capture());
-        RutaCerradaProcesadaEvent event = eventCaptor.getValue();
-
-        assertThat(event.getEstadoProcesamiento()).isEqualTo(EstadoProcesamiento.REQUIERE_REVISION);
-        assertThat(event.getTipoAlerta()).isEqualTo(TipoAlertaRuta.CONTRATO_NULO);
-        assertThat(rutaMock.getEstadoProcesamiento()).isEqualTo(EstadoProcesamiento.REQUIERE_REVISION); // Verify state change on mock
-
-        verify(rutaRepository).guardar(eq(rutaMock));
-        verify(rutaValidator).validar(eq(rutaMock), eq(1));
-        verify(clasificacionRutaService).clasificar(eq(rutaMock));
+        verify(eventPublisher).publish(eventoEsperado);
+        verify(rutaRepository).guardar(rutaMock);
     }
 
-    // ── T015: Vehículo desconocido ────────────────────────────────────────────
+    // ── T015: Vehículo nulo → VEHICULO_DESCONOCIDO ───────────────────────────
     @Test
-    @DisplayName("Debe marcar revisión y publicar evento por vehículo desconocido")
-    void debe_marcar_revision_y_publicar_evento_por_vehiculo_desconocido() {
+    @DisplayName("Debe publicar evento VEHICULO_DESCONOCIDO cuando el tipo de vehículo es nulo")
+    void debe_publicar_evento_vehiculo_desconocido() {
         UUID rutaId = UUID.randomUUID();
-        RutaCerradaEventDTO dto = buildEvento(rutaId, "Recorrido completo", "BICICLETA", List.of(parada("EXITOSA", null)));
-        Ruta rutaMock = buildRutaMock(rutaId, "Recorrido completo", "BICICLETA", List.of(mock(Parada.class)));
+        RutaCerradaEventDTO dto = buildEvento(rutaId, "Recorrido completo", null,
+                List.of(parada("EXITOSA", null)));
+
+        DomainEvent eventoEsperado = new RutaCerradaProcesadaEvent(
+                rutaId, EstadoProcesamiento.REQUIERE_REVISION,
+                TipoAlertaRuta.VEHICULO_DESCONOCIDO, "Vehículo desconocido", LocalDateTime.now());
+
+        Transportista transportista = transportista();
+        Ruta rutaMock = mock(Ruta.class);
+        when(rutaMock.getTransportista()).thenReturn(transportista);
+        when(rutaMock.obtenerEventos()).thenReturn(List.of(eventoEsperado));
 
         when(rutaRepository.existsByRutaId(rutaId)).thenReturn(false);
-        when(rutaEventMapper.toDomain(any(RutaCerradaEventDTO.class))).thenReturn(rutaMock);
-        when(rutaRepository.guardar(any(Ruta.class))).thenAnswer(inv -> inv.getArgument(0));
-
-        ArgumentCaptor<RutaCerradaProcesadaEvent> eventCaptor = ArgumentCaptor.forClass(RutaCerradaProcesadaEvent.class);
+        when(rutaEventMapper.toDomain(any())).thenReturn(rutaMock);
+        when(transportistaRepository.buscarPorTransportistaId(transportista.getTransportistaId()))
+                .thenReturn(Optional.of(transportista));
 
         useCase.ejecutar(dto);
 
-        verify(eventPublisher).publishEvent(eventCaptor.capture());
-        RutaCerradaProcesadaEvent event = eventCaptor.getValue();
-
-        assertThat(event.getEstadoProcesamiento()).isEqualTo(EstadoProcesamiento.REQUIERE_REVISION);
-        assertThat(event.getTipoAlerta()).isEqualTo(TipoAlertaRuta.VEHICULO_DESCONOCIDO);
-        assertThat(rutaMock.getEstadoProcesamiento()).isEqualTo(EstadoProcesamiento.REQUIERE_REVISION); // Verify state change on mock
-
-        verify(rutaRepository).guardar(eq(rutaMock));
-        verify(rutaValidator).validar(eq(rutaMock), eq(1));
-        verify(clasificacionRutaService).clasificar(eq(rutaMock));
+        verify(eventPublisher).publish(eventoEsperado);
+        verify(rutaRepository).guardar(rutaMock);
     }
 
     // ── T016: DTO nulo ────────────────────────────────────────────────────────
@@ -167,57 +190,49 @@ class ProcesarRutaCerradaUseCaseTest {
     void debe_lanzar_excepcion_si_dto_es_null() {
         assertThatThrownBy(() -> useCase.ejecutar(null))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("Evento no puede ser null"); // Assuming RutaEventMapper throws this
+                .hasMessageContaining("Evento no puede ser null");
     }
 
-    // ── T017: Ruta sin paquetes ───────────────────────────────────────────────
+    // ── T017: Parada sin paqueteId ────────────────────────────────────────────
     @Test
     @DisplayName("Debe lanzar RutaInvalidaException si una parada no tiene paqueteId")
     void debe_lanzar_excepcion_si_parada_no_tiene_paqueteId() {
         UUID rutaId = UUID.randomUUID();
-
-
-        ParadaEventDTO paradaDTO = new ParadaEventDTO();
-        paradaDTO.setParadaId(UUID.randomUUID());
-        paradaDTO.setEstado(EstadoParada.EXITOSA);
-
+        Transportista transportista = transportista();
 
         Parada paradaSinPaquete = Parada.builder()
-                .paradaId(paradaDTO.getParadaId())
+                .paradaId(UUID.randomUUID())
                 .paqueteId(null)
                 .estado(EstadoParada.EXITOSA)
                 .build();
 
-        Ruta rutaMock = Ruta.builder()
+        Ruta rutaReal = Ruta.builder()
                 .rutaId(rutaId)
                 .modeloContrato("Recorrido completo")
-                .tipoVehiculo("MOTO")
-                .estadoProcesamiento(EstadoProcesamiento.OK)
-                .paradas(List.of(paradaSinPaquete))
+                .transportista(transportista)
+                .parada(paradaSinPaquete)
                 .build();
 
-        RutaCerradaEventDTO dto = buildEvento(
-                rutaId, "Recorrido completo", "MOTO", List.of(paradaDTO)); // ← lista, no int
+        RutaCerradaEventDTO dto = buildEvento(rutaId, "Recorrido completo", "MOTO", List.of());
 
         when(rutaRepository.existsByRutaId(rutaId)).thenReturn(false);
-        when(rutaEventMapper.toDomain(any())).thenReturn(rutaMock);
+        when(rutaEventMapper.toDomain(any())).thenReturn(rutaReal);
+        when(transportistaRepository.buscarPorTransportistaId(transportista.getTransportistaId()))
+                .thenReturn(Optional.of(transportista));
 
-        ProcesarRutaCerradaUseCase useCaseConValidadorReal = new ProcesarRutaCerradaUseCase(
-                rutaRepository,
-                tarifaRepository,
-                rutaEventMapper,
-                new RutaValidator(),   // ← real
-                clasificacionRutaService,
-                eventPublisher
-        );
-
-        assertThatThrownBy(() -> useCaseConValidadorReal.ejecutar(dto))
+        assertThatThrownBy(() -> useCase.ejecutar(dto))
                 .isInstanceOf(RutaInvalidaException.class)
                 .hasMessageContaining("Parada sin paqueteId");
     }
 
-
     // ── Helpers ───────────────────────────────────────────────────────────────
+
+    private Transportista transportista() {
+        return Transportista.builder()
+                .transportistaId(UUID.randomUUID())
+                .nombre("Conductor Test")
+                .build();
+    }
 
     private RutaCerradaEventDTO buildEvento(
             UUID rutaId, String contrato, String vehiculoTipo, List<ParadaEventDTO> paradas) {
@@ -238,15 +253,6 @@ class ProcesarRutaCerradaUseCaseTest {
         evento.setParadas(paradas);
 
         return evento;
-    }
-
-    private Ruta buildRutaMock(UUID rutaId, String modeloContrato, String tipoVehiculo, List<Parada> paradas) {
-        return Ruta.builder()
-                .rutaId(rutaId)
-                .modeloContrato(modeloContrato)
-                .tipoVehiculo(tipoVehiculo)
-                .paradas(paradas)
-                .build();
     }
 
     private ParadaEventDTO parada(String estado, String motivo) {

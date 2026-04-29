@@ -1,21 +1,25 @@
 package com.logistica.infrastructure.web.controllers;
 
-import com.logistica.ruta.application.dtos.response.RutaProcesadaResponseDTO;
-import com.logistica.ruta.application.usecases.ruta.ConsultarRutaUseCase;
-import com.logistica.ruta.domain.exceptions.RutaNotFoundException;
-import com.logistica.ruta.infrastructure.config.SecurityConfig;
-import com.logistica.ruta.infrastructure.web.controllers.RutaController;
+import com.logistica.cierreRuta.application.dtos.response.RutaProcesadaResponseDTO;
+import com.logistica.cierreRuta.application.usecases.ruta.ConsultarRutaUseCase;
+import com.logistica.cierreRuta.domain.exceptions.RutaNotFoundException;
+import com.logistica.cierreRuta.infrastructure.config.SecurityConfig;
+import com.logistica.cierreRuta.infrastructure.web.controllers.RutaController;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 import java.util.UUID;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.isNull;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -89,27 +93,27 @@ class RutaControllerTest {
                 .rutaId(UUID.randomUUID())
                 .build();
 
-        when(consultarRutaUseCase.listarTodas())
-                .thenReturn(List.of(r1, r2));
+        when(consultarRutaUseCase.listarTodas(isNull(), any(Pageable.class)))
+                .thenReturn(new PageImpl<>(List.of(r1, r2)));
 
         mockMvc.perform(get("/api/v1/rutas"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.length()").value(2));
+                .andExpect(jsonPath("$.content.length()").value(2));
 
-        verify(consultarRutaUseCase).listarTodas();
+        verify(consultarRutaUseCase).listarTodas(isNull(), any(Pageable.class));
     }
 
     @Test
     @DisplayName("Debe retornar lista vacía si no hay rutas")
     void debe_retornar_lista_vacia() throws Exception {
 
-        when(consultarRutaUseCase.listarTodas())
-                .thenReturn(List.of());
+        when(consultarRutaUseCase.listarTodas(isNull(), any(Pageable.class)))
+                .thenReturn(new PageImpl<>(List.of()));
 
         mockMvc.perform(get("/api/v1/rutas"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.length()").value(0));
+                .andExpect(jsonPath("$.content.length()").value(0));
 
-        verify(consultarRutaUseCase).listarTodas();
+        verify(consultarRutaUseCase).listarTodas(isNull(), any(Pageable.class));
     }
 }
