@@ -2,7 +2,7 @@ package com.logistica.cierreRuta.infrastructure.adapters;
 
 import com.logistica.cierreRuta.domain.enums.TipoVehiculo;
 import com.logistica.cierreRuta.domain.models.Parada;
-import com.logistica.cierreRuta.domain.models.Ruta;
+import com.logistica.cierreRuta.domain.models.CierreRutaRuta;
 import com.logistica.cierreRuta.infrastructure.persistence.entities.ParadaEntity;
 import com.logistica.cierreRuta.infrastructure.persistence.entities.RutaEntity;
 import com.logistica.cierreRuta.infrastructure.persistence.entities.TransportistaEntity;
@@ -14,13 +14,13 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class RutaMapper {
+public class CierreRutaRutaMapper {
 
     private final TransportistaMapper transportistaMapper;
     private final TransportistaJpaRepository transportistaJpaRepository;
     private final ParadaMapper paradaMapper;
 
-    public RutaEntity toEntity(Ruta ruta) {
+    public RutaEntity toEntity(CierreRutaRuta ruta) {
         if (ruta == null) return null;
 
         if (ruta.getTransportista() == null || ruta.getTransportista().getTransportistaId() == null) {
@@ -56,7 +56,7 @@ public class RutaMapper {
         return rutaEntity;
     }
 
-    public Ruta toDomain(RutaEntity entity) {
+    public CierreRutaRuta toDomain(RutaEntity entity) {
         if (entity == null) return null;
 
         List<Parada> paradas = (entity.getParadas() == null ? List.<ParadaEntity>of() : entity.getParadas())
@@ -64,7 +64,7 @@ public class RutaMapper {
                 .map(paradaMapper::toDomain)
                 .toList();
 
-        return Ruta.builder()
+        return CierreRutaRuta.builder()
                 .rutaId(entity.getRutaId())
                 .transportista(transportistaMapper.toDomain(entity.getTransportista()))
                 .vehiculoId(entity.getVehiculoId())

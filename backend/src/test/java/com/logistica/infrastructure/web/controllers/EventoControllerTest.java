@@ -8,11 +8,11 @@ import com.logistica.liquidacion.application.usecases.CalcularLiquidacionUseCase
 import com.logistica.liquidacion.domain.enums.EstadoLiquidacion;
 import com.logistica.liquidacion.domain.enums.EstadoPaquete;
 import com.logistica.liquidacion.domain.models.Liquidacion;
-import com.logistica.liquidacion.domain.models.Ruta;
+import com.logistica.liquidacion.domain.models.LiquidacionRuta;
 import com.logistica.liquidacion.infrastructure.config.JwtAuthenticationFilter;
 import com.logistica.liquidacion.infrastructure.config.JwtService;
 import com.logistica.liquidacion.infrastructure.persistence.mapper.LiquidacionMapper;
-import com.logistica.liquidacion.infrastructure.persistence.mapper.RutaMapper;
+import com.logistica.liquidacion.infrastructure.persistence.mapper.LiquidacionRutaMapper;
 import com.logistica.liquidacion.infrastructure.web.controllers.EventoController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -58,14 +58,14 @@ class EventoControllerTest {
 
     @MockBean private CalcularLiquidacionUseCase calcularLiquidacionUseCase;
     @MockBean private LiquidacionMapper liquidacionMapper;
-    @MockBean private RutaMapper rutaMapper;
+    @MockBean private LiquidacionRutaMapper rutaMapper;
 
     // Seguridad (mock para evitar errores de contexto)
     @MockBean private JwtService jwtService;
     @MockBean private JwtAuthenticationFilter jwtAuthenticationFilter;
 
     private CierreRutaEventDTO validEventDTO;
-    private Ruta ruta;
+    private LiquidacionRuta ruta;
     private Liquidacion liquidacion;
     private LiquidacionResponseDTO responseDTO;
 
@@ -200,8 +200,8 @@ class EventoControllerTest {
         return dto;
     }
 
-    private static Ruta buildRutaValida() {
-        return Ruta.builder()
+    private static LiquidacionRuta buildRutaValida() {
+        return LiquidacionRuta.builder()
                 .id(RUTA_ID)
                 .fechaInicio(OffsetDateTime.now().minusHours(2))
                 .fechaCierre(OffsetDateTime.now())

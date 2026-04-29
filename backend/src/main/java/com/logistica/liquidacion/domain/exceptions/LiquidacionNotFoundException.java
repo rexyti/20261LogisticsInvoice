@@ -3,7 +3,7 @@ import org.springframework.http.HttpStatus;
 
 import java.util.UUID;
 
-public class LiquidacionNotFoundException extends DomainException {
+public class LiquidacionNotFoundException extends LiquidacionDomainException {
 
     private final UUID idLiquidacion;
 

@@ -4,7 +4,7 @@ import com.logistica.cierreRuta.domain.enums.EstadoParada;
 import com.logistica.cierreRuta.domain.enums.ResponsableFalla;
 import com.logistica.cierreRuta.domain.exceptions.ParadaInvalidaException;
 import com.logistica.cierreRuta.domain.models.Parada;
-import com.logistica.cierreRuta.domain.models.Ruta;
+import com.logistica.cierreRuta.domain.models.CierreRutaRuta;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.Objects;
 @Service
 public class ClasificacionRutaService {
 
-    public void clasificar(Ruta ruta) {
+    public void clasificar(CierreRutaRuta ruta) {
         if (ruta == null || ruta.getParadas() == null) return;
 
         ruta.getParadas().forEach(this::procesarParada);

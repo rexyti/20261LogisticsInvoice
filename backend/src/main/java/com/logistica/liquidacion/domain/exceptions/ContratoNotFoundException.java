@@ -3,7 +3,7 @@ package com.logistica.liquidacion.domain.exceptions;
 import org.springframework.http.HttpStatus;
 import java.util.UUID;
 
-public class ContratoNotFoundException extends DomainException {
+public class ContratoNotFoundException extends LiquidacionDomainException {
 
     private final UUID idContrato;
 

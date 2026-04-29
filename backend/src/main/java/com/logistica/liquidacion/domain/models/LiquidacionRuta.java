@@ -9,15 +9,15 @@ import java.util.UUID;
 
 @Getter
 @Builder
-public class Ruta {
+public class LiquidacionRuta {
 
     private final UUID id;
     private final OffsetDateTime fechaInicio;
     private final OffsetDateTime fechaCierre;
     private final List<Paquete> paquetes;
 
-    public static class RutaBuilder {
-        public Ruta build() {
+    public static class LiquidacionRutaBuilder {
+        public LiquidacionRuta build() {
 
             if (id == null) {
                 throw new IllegalArgumentException("El id de la ruta no puede ser null");
@@ -39,11 +39,11 @@ public class Ruta {
                 throw new IllegalArgumentException("La lista de paquetes no puede ser null");
             }
 
-            return new Ruta(id, fechaInicio, fechaCierre, paquetes);
+            return new LiquidacionRuta(id, fechaInicio, fechaCierre, paquetes);
         }
     }
 
-    private Ruta(UUID id, OffsetDateTime fechaInicio, OffsetDateTime fechaCierre, List<Paquete> paquetes) {
+    private LiquidacionRuta(UUID id, OffsetDateTime fechaInicio, OffsetDateTime fechaCierre, List<Paquete> paquetes) {
         this.id = id;
         this.fechaInicio = fechaInicio;
         this.fechaCierre = fechaCierre;

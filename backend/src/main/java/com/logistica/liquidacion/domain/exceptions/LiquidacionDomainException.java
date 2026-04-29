@@ -2,11 +2,11 @@ package com.logistica.liquidacion.domain.exceptions;
 
 import org.springframework.http.HttpStatus;
 
-public abstract class DomainException extends RuntimeException {
+public abstract class LiquidacionDomainException extends RuntimeException {
 
     private final HttpStatus status;
 
-    public DomainException(String message, HttpStatus status) {
+    public LiquidacionDomainException(String message, HttpStatus status) {
         super(message);
         this.status = status;
     }

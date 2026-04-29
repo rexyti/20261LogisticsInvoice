@@ -1,6 +1,6 @@
 package com.logistica.cierreRuta.infrastructure.web.handlers;
 
-import com.logistica.cierreRuta.domain.exceptions.DomainException;
+import com.logistica.cierreRuta.domain.exceptions.CierreRutaDomainException;
 import com.logistica.cierreRuta.domain.exceptions.EventoDuplicadoException;
 import com.logistica.cierreRuta.domain.exceptions.ParadaInvalidaException;
 import com.logistica.cierreRuta.domain.exceptions.RutaNotFoundException;
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 
 @Slf4j
 @RestControllerAdvice
-public class GlobalExceptionHandler {
+public class CierreRutaGlobalExceptionHandler {
 
     @ExceptionHandler(RutaNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleRutaNotFound(RutaNotFoundException e) {
@@ -32,8 +32,8 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(error(e.getMessage(), "PARADA_INVALIDA", 400));
     }
 
-    @ExceptionHandler(DomainException.class)
-    public ResponseEntity<ErrorResponse> handleDomainException(DomainException e) {
+    @ExceptionHandler(CierreRutaDomainException.class)
+    public ResponseEntity<ErrorResponse> handleDomainException(CierreRutaDomainException e) {
         return ResponseEntity.badRequest().body(error(e.getMessage(), "DOMAIN_ERROR", 400));
     }
 

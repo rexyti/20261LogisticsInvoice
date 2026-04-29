@@ -4,7 +4,7 @@ import com.logistica.liquidacion.domain.enums.EstadoPaquete;
 import com.logistica.liquidacion.domain.enums.TipoContratacion;
 import com.logistica.liquidacion.domain.models.Contrato;
 import com.logistica.liquidacion.domain.models.Paquete;
-import com.logistica.liquidacion.domain.models.Ruta;
+import com.logistica.liquidacion.domain.models.LiquidacionRuta;
 import com.logistica.liquidacion.domain.strategies.PorParadaStrategy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,7 +33,7 @@ class PorParadaStrategyTest {
 
     @Test
     void testCalcularConParadasExitosas() {
-        Ruta ruta = Ruta.builder()
+        LiquidacionRuta ruta = LiquidacionRuta.builder()
                 .id(UUID.randomUUID())
                 .fechaInicio(OffsetDateTime.now().minusHours(1))
                 .fechaCierre(OffsetDateTime.now())
@@ -49,7 +49,7 @@ class PorParadaStrategyTest {
 
     @Test
     void testCalcularConParadasFallidasPorCliente() {
-        Ruta ruta = Ruta.builder()
+        LiquidacionRuta ruta = LiquidacionRuta.builder()
                 .id(UUID.randomUUID())
                 .fechaInicio(OffsetDateTime.now().minusHours(1))
                 .fechaCierre(OffsetDateTime.now())
@@ -66,7 +66,7 @@ class PorParadaStrategyTest {
 
     @Test
     void testCalcularConParadasFallidasPorTransportista() {
-        Ruta ruta = Ruta.builder()
+        LiquidacionRuta ruta = LiquidacionRuta.builder()
                 .id(UUID.randomUUID())
                 .fechaInicio(OffsetDateTime.now().minusHours(1))
                 .fechaCierre(OffsetDateTime.now())
@@ -81,7 +81,7 @@ class PorParadaStrategyTest {
 
     @Test
     void testCalcularConMezclaDeEstados() {
-        Ruta ruta = Ruta.builder()
+        LiquidacionRuta ruta = LiquidacionRuta.builder()
                 .id(UUID.randomUUID())
                 .fechaInicio(OffsetDateTime.now().minusHours(1))
                 .fechaCierre(OffsetDateTime.now())
@@ -97,7 +97,7 @@ class PorParadaStrategyTest {
 
     @Test
     void testCalcularConRutaSinPaquetesLanzaExcepcion() {
-        Ruta ruta = Ruta.builder()
+        LiquidacionRuta ruta = LiquidacionRuta.builder()
                 .id(UUID.randomUUID())
                 .fechaInicio(OffsetDateTime.now().minusHours(1))
                 .fechaCierre(OffsetDateTime.now())
@@ -115,7 +115,7 @@ class PorParadaStrategyTest {
                 .tarifa(new BigDecimal("100.00"))
                 .build();
 
-        Ruta ruta = Ruta.builder()
+        LiquidacionRuta ruta = LiquidacionRuta.builder()
                 .id(UUID.randomUUID())
                 .fechaInicio(OffsetDateTime.now().minusHours(1))
                 .fechaCierre(OffsetDateTime.now())

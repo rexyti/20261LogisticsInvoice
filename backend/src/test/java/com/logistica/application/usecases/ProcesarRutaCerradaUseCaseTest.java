@@ -12,7 +12,7 @@ import com.logistica.cierreRuta.domain.enums.TipoAlertaRuta;
 import com.logistica.cierreRuta.domain.events.RutaCerradaProcesadaEvent;
 import com.logistica.cierreRuta.domain.exceptions.RutaInvalidaException;
 import com.logistica.cierreRuta.domain.models.Parada;
-import com.logistica.cierreRuta.domain.models.Ruta;
+import com.logistica.cierreRuta.domain.models.CierreRutaRuta;
 import com.logistica.cierreRuta.domain.models.Transportista;
 import com.logistica.cierreRuta.domain.ports.DomainEvent;
 import com.logistica.cierreRuta.domain.ports.EventPublisher;
@@ -86,7 +86,7 @@ class ProcesarRutaCerradaUseCaseTest {
                 List.of(parada("EXITOSA", null), parada("EXITOSA", null)));
 
         Transportista transportista = transportista();
-        Ruta rutaMock = mock(Ruta.class);
+        CierreRutaRuta rutaMock = mock(CierreRutaRuta.class);
         when(rutaMock.getTransportista()).thenReturn(transportista);
         when(rutaMock.obtenerEventos()).thenReturn(List.of());
 
@@ -113,7 +113,7 @@ class ProcesarRutaCerradaUseCaseTest {
         RutaCerradaEventDTO dto = buildEvento(rutaId, "Recorrido completo", "MOTO", List.of());
 
         Transportista transportista = transportista();
-        Ruta rutaMock = mock(Ruta.class);
+        CierreRutaRuta rutaMock = mock(CierreRutaRuta.class);
         when(rutaMock.getTransportista()).thenReturn(transportista);
         when(rutaMock.obtenerEventos()).thenReturn(List.of());
 
@@ -141,7 +141,7 @@ class ProcesarRutaCerradaUseCaseTest {
                 TipoAlertaRuta.CONTRATO_NULO, "Contrato no encontrado", LocalDateTime.now());
 
         Transportista transportista = transportista();
-        Ruta rutaMock = mock(Ruta.class);
+        CierreRutaRuta rutaMock = mock(CierreRutaRuta.class);
         when(rutaMock.getTransportista()).thenReturn(transportista);
         when(rutaMock.obtenerEventos()).thenReturn(List.of(eventoEsperado));
 
@@ -169,7 +169,7 @@ class ProcesarRutaCerradaUseCaseTest {
                 TipoAlertaRuta.VEHICULO_DESCONOCIDO, "Vehículo desconocido", LocalDateTime.now());
 
         Transportista transportista = transportista();
-        Ruta rutaMock = mock(Ruta.class);
+        CierreRutaRuta rutaMock = mock(CierreRutaRuta.class);
         when(rutaMock.getTransportista()).thenReturn(transportista);
         when(rutaMock.obtenerEventos()).thenReturn(List.of(eventoEsperado));
 
@@ -206,7 +206,7 @@ class ProcesarRutaCerradaUseCaseTest {
                 .estado(EstadoParada.EXITOSA)
                 .build();
 
-        Ruta rutaReal = Ruta.builder()
+        CierreRutaRuta rutaReal = CierreRutaRuta.builder()
                 .rutaId(rutaId)
                 .modeloContrato("Recorrido completo")
                 .transportista(transportista)

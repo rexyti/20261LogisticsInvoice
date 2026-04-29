@@ -3,7 +3,7 @@ package com.logistica.cierreRuta.application.mappers;
 import com.logistica.cierreRuta.application.dtos.request.RutaCerradaEventDTO;
 import com.logistica.cierreRuta.domain.enums.TipoVehiculo;
 import com.logistica.cierreRuta.domain.models.Parada;
-import com.logistica.cierreRuta.domain.models.Ruta;
+import com.logistica.cierreRuta.domain.models.CierreRutaRuta;
 import com.logistica.cierreRuta.domain.models.Transportista;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -20,7 +20,7 @@ public class RutaEventMapper {
     private final TransportistaEventMapper transportistaMapper;
     private final ParadaEventMapper paradaMapper;
 
-    public Ruta toDomain(RutaCerradaEventDTO dto) {
+    public CierreRutaRuta toDomain(RutaCerradaEventDTO dto) {
 
         if (dto == null) {
             throw new IllegalArgumentException("Evento RutaCerradaEventDTO no puede ser null");
@@ -32,7 +32,7 @@ public class RutaEventMapper {
 
         List<Parada> paradas = mapParadas(dto);
 
-        return Ruta.builder()
+        return CierreRutaRuta.builder()
                 .rutaId(dto.getRutaId())
                 .transportista(mapTransportista(dto))
                 .vehiculoId(mapVehiculoId(dto))

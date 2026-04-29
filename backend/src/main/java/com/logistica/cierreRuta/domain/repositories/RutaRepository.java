@@ -1,7 +1,7 @@
 package com.logistica.cierreRuta.domain.repositories;
 
 import com.logistica.cierreRuta.domain.enums.EstadoProcesamiento;
-import com.logistica.cierreRuta.domain.models.Ruta;
+import com.logistica.cierreRuta.domain.models.CierreRutaRuta;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -11,8 +11,8 @@ import java.util.UUID;
 
 public interface RutaRepository {
     boolean existsByRutaId(UUID rutaId);
-    Ruta guardar(Ruta ruta);
-    Optional<Ruta> buscarPorRutaId(UUID rutaId);
-    Page<Ruta> listarTodas( Pageable pageable);
-    Page<Ruta> buscarPorEstado(EstadoProcesamiento estado, Pageable pageable);
+    CierreRutaRuta guardar(CierreRutaRuta ruta);
+    Optional<CierreRutaRuta> buscarPorRutaId(UUID rutaId);
+    Page<CierreRutaRuta> listarTodas( Pageable pageable);
+    Page<CierreRutaRuta> buscarPorEstado(EstadoProcesamiento estado, Pageable pageable);
 }

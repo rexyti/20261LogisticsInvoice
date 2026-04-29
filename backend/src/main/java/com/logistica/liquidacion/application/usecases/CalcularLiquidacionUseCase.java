@@ -5,7 +5,7 @@ import com.logistica.liquidacion.domain.exceptions.LiquidacionDuplicadaException
 import com.logistica.liquidacion.domain.models.AuditoriaLiquidacion;
 import com.logistica.liquidacion.domain.models.Contrato;
 import com.logistica.liquidacion.domain.models.Liquidacion;
-import com.logistica.liquidacion.domain.models.Ruta;
+import com.logistica.liquidacion.domain.models.LiquidacionRuta;
 import com.logistica.liquidacion.domain.repositories.AuditoriaLiquidacionRepository;
 import com.logistica.liquidacion.domain.repositories.ContratoRepository;
 import com.logistica.liquidacion.domain.repositories.LiquidacionRepository;
@@ -27,7 +27,7 @@ public class CalcularLiquidacionUseCase {
     private final LiquidacionStrategyFactory strategyFactory;
 
     @Transactional
-    public Liquidacion execute(Ruta ruta, UUID idContrato) {
+    public Liquidacion execute(LiquidacionRuta ruta, UUID idContrato) {
         // 1. Validaciones de entrada
         if (ruta == null) {
             throw new IllegalArgumentException("La ruta no puede ser nula");

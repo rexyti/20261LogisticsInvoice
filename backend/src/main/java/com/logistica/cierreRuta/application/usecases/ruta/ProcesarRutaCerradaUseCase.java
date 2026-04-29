@@ -2,7 +2,7 @@ package com.logistica.cierreRuta.application.usecases.ruta;
 
 import com.logistica.cierreRuta.application.dtos.request.RutaCerradaEventDTO;
 import com.logistica.cierreRuta.application.mappers.RutaEventMapper;
-import com.logistica.cierreRuta.domain.models.Ruta;
+import com.logistica.cierreRuta.domain.models.CierreRutaRuta;
 import com.logistica.cierreRuta.domain.models.Transportista;
 import com.logistica.cierreRuta.domain.ports.EventPublisher;
 import com.logistica.cierreRuta.domain.ports.TimeProvider;
@@ -44,7 +44,7 @@ public class ProcesarRutaCerradaUseCase {
             return;
         }
 
-        Ruta ruta = rutaEventMapper.toDomain(evento);
+        CierreRutaRuta ruta = rutaEventMapper.toDomain(evento);
 
 
         Transportista transportista = ruta.getTransportista();

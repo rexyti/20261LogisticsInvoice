@@ -1,7 +1,7 @@
 package com.logistica.cierreRuta.application.mappers;
 
 import com.logistica.cierreRuta.application.dtos.response.RutaProcesadaResponseDTO;
-import com.logistica.cierreRuta.domain.models.Ruta;
+import com.logistica.cierreRuta.domain.models.CierreRutaRuta;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +15,7 @@ public class RutaResponseMapper {
     private final TransportistaResponseMapper transportistaMapper;
     private final ParadaResponseMapper paradaMapper;
 
-    public RutaProcesadaResponseDTO toResponse(Ruta ruta) {
+    public RutaProcesadaResponseDTO toResponse(CierreRutaRuta ruta) {
         if (ruta == null) return null;
 
         return RutaProcesadaResponseDTO.builder()

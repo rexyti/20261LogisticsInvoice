@@ -5,7 +5,7 @@ import com.logistica.cierreRuta.domain.enums.MotivoFalla;
 import com.logistica.cierreRuta.domain.enums.ResponsableFalla;
 import com.logistica.cierreRuta.domain.exceptions.ParadaInvalidaException;
 import com.logistica.cierreRuta.domain.models.Parada;
-import com.logistica.cierreRuta.domain.models.Ruta;
+import com.logistica.cierreRuta.domain.models.CierreRutaRuta;
 import com.logistica.cierreRuta.domain.services.ClasificacionRutaService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,8 +31,8 @@ class ClasificacionRutaServiceTest {
 
 
 
-    private Ruta ruta(List<Parada> paradas) {
-        return Ruta.builder()
+    private CierreRutaRuta ruta(List<Parada> paradas) {
+        return CierreRutaRuta.builder()
                 .rutaId(UUID.randomUUID())
                 .paradas(paradas)
                 .build();
@@ -100,7 +100,7 @@ class ClasificacionRutaServiceTest {
             ResponsableFalla responsableEsperado) {
 
         Parada p = paradaFallida(motivo);
-        Ruta r = ruta(List.of(p));
+        CierreRutaRuta r = ruta(List.of(p));
 
         assertThatCode(() -> service.clasificar(r))
                 .doesNotThrowAnyException();
@@ -135,7 +135,7 @@ class ClasificacionRutaServiceTest {
         Parada p2 = paradaFallida(MotivoFalla.PAQUETE_DANADO);
         Parada p3 = paradaExitosa();
 
-        Ruta r = ruta(List.of(p1, p2, p3));
+        CierreRutaRuta r = ruta(List.of(p1, p2, p3));
 
         assertThatCode(() -> service.clasificar(r))
                 .doesNotThrowAnyException();

@@ -18,7 +18,7 @@ import java.util.UUID;
 
 @Getter
 @Builder
-public class Ruta {
+public class CierreRutaRuta {
 
     private UUID rutaId;
     private Transportista transportista;

@@ -4,9 +4,9 @@ import com.logistica.liquidacion.application.dtos.request.CierreRutaEventDTO;
 import com.logistica.liquidacion.application.dtos.response.LiquidacionResponseDTO;
 import com.logistica.liquidacion.application.usecases.CalcularLiquidacionUseCase;
 import com.logistica.liquidacion.domain.models.Liquidacion;
-import com.logistica.liquidacion.domain.models.Ruta;
+import com.logistica.liquidacion.domain.models.LiquidacionRuta;
 import com.logistica.liquidacion.infrastructure.persistence.mapper.LiquidacionMapper;
-import com.logistica.liquidacion.infrastructure.persistence.mapper.RutaMapper;
+import com.logistica.liquidacion.infrastructure.persistence.mapper.LiquidacionRutaMapper;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -20,12 +20,12 @@ public class EventoController {
 
     private final CalcularLiquidacionUseCase calcularLiquidacionUseCase;
     private final LiquidacionMapper liquidacionMapper;
-    private final RutaMapper rutaMapper;
+    private final LiquidacionRutaMapper rutaMapper;
 
     public EventoController(
             CalcularLiquidacionUseCase calcularLiquidacionUseCase,
             LiquidacionMapper liquidacionMapper,
-            RutaMapper rutaMapper
+            LiquidacionRutaMapper rutaMapper
     ) {
         this.calcularLiquidacionUseCase = calcularLiquidacionUseCase;
         this.liquidacionMapper = liquidacionMapper;
@@ -36,7 +36,7 @@ public class EventoController {
     public ResponseEntity<LiquidacionResponseDTO> handleCierreRuta(
             @RequestBody @Valid CierreRutaEventDTO event) {
 
-        Ruta ruta = rutaMapper.toModel(event);
+        LiquidacionRuta ruta = rutaMapper.toModel(event);
 
         Liquidacion liquidacion = calcularLiquidacionUseCase
                 .execute(ruta, event.getIdContrato());

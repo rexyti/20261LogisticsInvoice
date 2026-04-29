@@ -3,7 +3,7 @@ package com.logistica.liquidacion.domain.strategies;
 import com.logistica.liquidacion.domain.enums.TipoContratacion;
 import com.logistica.liquidacion.domain.models.Contrato;
 import com.logistica.liquidacion.domain.models.Paquete;
-import com.logistica.liquidacion.domain.models.Ruta;
+import com.logistica.liquidacion.domain.models.LiquidacionRuta;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -19,7 +19,7 @@ public class PorParadaStrategy implements LiquidacionStrategy {
     }
 
     @Override
-    public BigDecimal calcular(Ruta ruta, Contrato contrato) {
+    public BigDecimal calcular(LiquidacionRuta ruta, Contrato contrato) {
 
         validarContrato(contrato);
         validarRuta(ruta);
@@ -42,7 +42,7 @@ public class PorParadaStrategy implements LiquidacionStrategy {
         }
     }
 
-    private void validarRuta(Ruta ruta) {
+    private void validarRuta(LiquidacionRuta ruta) {
         if (ruta == null || !ruta.tienePaquetes()) {
             throw new IllegalArgumentException("La ruta no tiene paquetes válidos");
         }

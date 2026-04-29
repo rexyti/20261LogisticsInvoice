@@ -2,7 +2,7 @@ package com.logistica.cierreRuta.domain.exceptions;
 
 import java.util.UUID;
 
-public class RutaNotFoundException extends DomainException {
+public class RutaNotFoundException extends CierreRutaDomainException {
     private final UUID rutaId;
     public RutaNotFoundException(UUID rutaId) {
         super("Ruta no encontrada: " + rutaId);

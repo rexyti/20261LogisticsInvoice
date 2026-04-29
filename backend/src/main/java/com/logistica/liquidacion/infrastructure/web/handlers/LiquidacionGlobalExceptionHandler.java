@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.time.OffsetDateTime;
 
 @RestControllerAdvice
-public class GlobalExceptionHandler {
+public class LiquidacionGlobalExceptionHandler {
 
     @ExceptionHandler(ContratoNotFoundException.class)
     public ResponseEntity<ProblemDetail> handleContratoNotFound(ContratoNotFoundException ex) {

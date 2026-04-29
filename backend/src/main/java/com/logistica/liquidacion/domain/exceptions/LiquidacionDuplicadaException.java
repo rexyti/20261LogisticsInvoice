@@ -3,7 +3,7 @@ package com.logistica.liquidacion.domain.exceptions;
 import org.springframework.http.HttpStatus;
 import java.util.UUID;
 
-public class LiquidacionDuplicadaException extends DomainException {
+public class LiquidacionDuplicadaException extends LiquidacionDomainException {
 
     private final UUID idRuta;
 

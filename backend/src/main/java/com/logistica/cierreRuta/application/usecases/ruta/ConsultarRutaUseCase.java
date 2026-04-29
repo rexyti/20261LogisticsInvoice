@@ -4,7 +4,7 @@ import com.logistica.cierreRuta.application.dtos.response.RutaProcesadaResponseD
 import com.logistica.cierreRuta.application.mappers.RutaResponseMapper;
 import com.logistica.cierreRuta.domain.enums.EstadoProcesamiento;
 import com.logistica.cierreRuta.domain.exceptions.RutaNotFoundException;
-import com.logistica.cierreRuta.domain.models.Ruta;
+import com.logistica.cierreRuta.domain.models.CierreRutaRuta;
 import com.logistica.cierreRuta.domain.repositories.RutaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -23,7 +23,7 @@ public class ConsultarRutaUseCase {
     private final RutaResponseMapper rutaResponseMapper;
 
     public RutaProcesadaResponseDTO ejecutar(UUID rutaId) {
-        Ruta ruta = rutaRepository.buscarPorRutaId(rutaId)
+        CierreRutaRuta ruta = rutaRepository.buscarPorRutaId(rutaId)
                 .orElseThrow(() -> new RutaNotFoundException(rutaId));
 
         return rutaResponseMapper.toResponse(ruta);
