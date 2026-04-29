@@ -32,10 +32,10 @@ import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import com.logistica.liquidacion.infrastructure.config.SecurityConfig;
+import com.logistica.liquidacion.infrastructure.config.LiquidacionSecurityConfig;
 
 @WebMvcTest(LiquidacionController.class)
-@Import(SecurityConfig.class)
+@Import(LiquidacionSecurityConfig.class)
 @DisplayName("LiquidacionController - Tests")
 class LiquidacionControllerTest {
 

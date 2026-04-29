@@ -3,7 +3,7 @@ package com.logistica.infrastructure.web.controllers;
 import com.logistica.cierreRuta.application.dtos.response.RutaProcesadaResponseDTO;
 import com.logistica.cierreRuta.application.usecases.ruta.ConsultarRutaUseCase;
 import com.logistica.cierreRuta.domain.exceptions.RutaNotFoundException;
-import com.logistica.cierreRuta.infrastructure.config.SecurityConfig;
+import com.logistica.cierreRuta.infrastructure.config.CierreRutaSecurityConfig;
 import com.logistica.cierreRuta.infrastructure.web.controllers.RutaController;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -32,7 +32,7 @@ class RutaControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private SecurityConfig securityConfig;
+    private CierreRutaSecurityConfig cierreRutaSecurityConfig;
 
     @MockBean
     private ConsultarRutaUseCase consultarRutaUseCase;
