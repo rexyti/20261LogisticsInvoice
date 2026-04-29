@@ -46,18 +46,32 @@ project/
 │   │
 │   │   ├── application/                             # Casos de uso (orquestación)
 │   │   │   ├── usecases/
-│   │   │   │   ├── ruta/
-│   │   │   │   │   ├── ProcesarRutaCerradaUseCase.java
-│   │   │   │   │   ├── RegistrarRutaUseCase.java
-│   │   │   │   │   └── ClasificarResultadoRutaUseCase.java
+│   │   │   │    └──ruta/
+│   │   │   │       ├── ProcesarRutaCerradaUseCase.java
+│   │   │   │       └── ConsultarRutaUseCase.java
+│   │   │   │
+│   │   │   │
+│   │   │   ├── mappers/
+│   │   │   │   ├── ParadaEventMapper.java
+│   │   │   │   ├── ParadaResponseMapper.java
+│   │   │   │   ├── RutaEventMapper.java
+│   │   │   │   ├── RutaResponseMapper.java
+│   │   │   │   ├── TransportistaEventMapper.java
+│   │   │   │   └── TransportistaResponseMapper.java
+│   │   │   │
 │   │   │   │
 │   │   │   └── dtos/
 │   │   │       ├── request/
+│   │   │       │   ├── ConductorEventodTO.java
+│   │   │       │   ├── ParadaEventoDto.java
+│   │   │       │   ├── VehiculoEventoDto.java
 │   │   │       │   └── RutaCerradaEventDTO.java
 │   │   │       │
 │   │   │       └── response/
+│   │   │           ├── ParadaResponseDto.java
+│   │   │           ├── TransportistaResponseDto.java
 │   │   │           └── RutaProcesadaResponseDTO.java
-│   │
+│   │   │
 │   │   ├── domain/                                  # Núcleo del negocio
 │   │   │   ├── models/
 │   │   │   │   ├── Ruta.java
@@ -65,16 +79,20 @@ project/
 │   │   │   │   └── Transportista.java
 │   │   │   │
 │   │   │   ├── enums/
-│   │   │   │   └── MotivoFalla.java                # Responsable + % pago
+│   │   │   │   ├── EstadoParada.java
+│   │   │   │   ├── EstadoProcesamiento.java
+│   │   │   │   ├── MotivoFalla.java
+│   │   │   │   ├── ResponsableFalla.java
+│   │   │   │   ├── TipoAlertaRuta.java
+│   │   │   │   └── TipoVehiculo.java                # Responsable + % pago
 │   │   │   │
 │   │   │   ├── repositories/                        # Puertos
 │   │   │   │   ├── RutaRepository.java
-│   │   │   │   ├── ParadaRepository.java
-│   │   │   │   └── TransportistaRepository.java
+│   │   │   │   └── TarifaRepository.java
 │   │   │   │
 │   │   │   ├── services/                            # Lógica de negocio
-│   │   │   │   ├── ClasificacionRutaService.java
-│   │   │   │   └── IdempotenciaRutaService.java
+│   │   │   │   └── ClasificacionRutaService.java
+│   │   │   │   
 │   │   │   │
 │   │   │   ├── validators/                          # Reglas de negocio
 │   │   │   │   └── RutaValidator.java
@@ -83,41 +101,51 @@ project/
 │   │   │   │   └── RutaCerradaProcesadaEvent.java
 │   │   │   │
 │   │   │   └── exceptions/
-│   │   │       └── EventoDuplicadoException.java
-│   │
+│   │   │       ├── DomainException.java
+│   │   │       ├── EventoDuplicadoException.java
+│   │   │       ├── ParadaInvalidaException.java
+│   │   │       ├── RutaInvalidaException.java
+│   │   │       └── RutaNotfoundException.java
+│   │   │ 
 │   │   ├── infrastructure/                          # Implementación técnica
-│   │   │   ├── messaging/                          # Integración con colas
-│   │   │   │   ├── consumers/
-│   │   │   │   │   └── RutaCerradaConsumer.java
-│   │   │   │   │
-│   │   │   │   └── config/
-│   │   │   │       ├── KafkaConfig.java            # o SQSConfig.java
-│   │   │   │       └── ConsumerConfig.java
-│   │   │   │
-│   │   │   ├── persistence/
-│   │   │   │   ├── entities/
-│   │   │   │   │   ├── RutaEntity.java
-│   │   │   │   │   ├── ParadaEntity.java
-│   │   │   │   │   └── TransportistaEntity.java
-│   │   │   │   │
-│   │   │   │   └── repositories/
-│   │   │   │
-│   │   │   ├── web/                                # (solo lectura si aplica)
-│   │   │   │   ├── controllers/
-│   │   │   │   │   └── RutaController.java
-│   │   │   │   │
-│   │   │   │   └── handlers/
-│   │   │   │
-│   │   │   ├── adapters/                           # Mappers
-│   │   │   │   └── RutaMapper.java
-│   │   │   │
-│   │   │   └── config/
+│   │       ├── messaging/                          # Integración con colas
+│   │       │   ├── consumers/
+│   │       │   │   └── RutaCerradaConsumer.java
+│   │       │   │
+│   │       │   └── config/
+│   │       │       └── SqsConsumerConfig.java
+│   │       │
+│   │       ├── persistence/
+│   │       │   ├── entities/
+│   │       │   │   ├── RutaEntity.java
+│   │       │   │   ├── ParadaEntity.java
+│   │       │   │   └── TransportistaEntity.java
+│   │       │   │
+│   │       │   └── repositories/
+│   │       │       ├── RutaJpaRepository.java
+│   │       │       └── RutaRepositoryImpl.java
+│   │       │
+│   │       ├── web/                                # (solo lectura si aplica)
+│   │       │   ├── controllers/
+│   │       │   │   └── RutaController.java
+│   │       │   │
+│   │       │   └── handlers/
+│   │       │       ├── ErrorResponse.java
+│   │       │       └── GlobalExceptionHandler.java
+│   │       │
+│   │       ├── adapters/                           # Mappers
+│   │       │   ├── ParadaMapper.java
+│   │       │   ├── TransportistaMapper.java
+│   │       │   └── RutaMapper.java
+│   │       │
+│   │       └── config/
+│   │           ├── JacksonConfig.java
+│   │           └── SecurityConfig.java
 │   │
-│   │   └── shared/
-│   │       ├── utils/
-│   │       ├── constants/
-│   │       └── logging/
-│
+│   │   
+│   │       
+│   │       
+│   │      
 │   └── src/test/
 │       ├── unit/
 │       └── integration/

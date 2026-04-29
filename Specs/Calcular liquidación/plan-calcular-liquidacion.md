@@ -56,7 +56,6 @@ backend/
 │   │   │   ├── liquidacion/
 │   │   │   │   ├── CalcularLiquidacionUseCase.java
 │   │   │   │   ├── RecalcularLiquidacionUseCase.java
-│   │   │   │   └── LiquidacionStrategyFactoty.java
 │   │   │
 │   │   └── dtos/                    # DTOs de entrada/salida
 │   │       ├── request/
@@ -92,15 +91,13 @@ backend/
 │   │   │
 │   │   ├── repositories/            # Interfaces (puertos)
 │   │   │   ├── LiquidacionRepository.java
-│   │   │   ├── AjusteRepository.java
-│   │   │   ├── AuditoriaLiquidacionRepository.java
 │   │   │   └── AjusteRepository.java
 │   │   │
 │   │   └── strategies/              # Reglas de negocio (core)
 │   │       ├── LiquidacionStrategy.java
 │   │       ├── PorParadaStrategy.java
 │   │       └── RecorridoCompletoStrategy.java
-│   │      
+│
 │   ├── infrastructure/              # Implementaciones técnicas
 │   │   ├── persistence/
 │   │   │   ├── entities/            # Entidades JPA (separadas del dominio)
@@ -111,7 +108,7 @@ backend/
 │   │   │   │    ├── BaseEntity.java
 │   │   │   │    └── AuditoriaLiquidacionEntity.java  
 │   │   │   │
-│   │   │   ├── repositories/          # Spring Data JPA
+│   │   │   ├── repositories/        # Spring Data JPA
 │   │   │   │    ├── AjusteJpaRepository.java
 │   │   │   │    ├── AjusteRepositoryImpl.java
 │   │   │   │    ├── AuditoriaLiquidacionJpaRepository.java
