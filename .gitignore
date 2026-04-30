@@ -1,0 +1,18 @@
+# IntelliJ
+.idea/
+*.iml
+
+# Archivos compilados Java
+*.class
+out/
+target/
+
+# Logs
+*.log
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Archivos temporales
+*.tmp
