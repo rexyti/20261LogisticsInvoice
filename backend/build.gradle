@@ -6,8 +6,11 @@ plugins {
 
 group = 'com.logistica'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '21'
-targetCompatibility = '21'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
 
 repositories {
     mavenCentral()
@@ -15,7 +18,9 @@ repositories {
 
 ext {
     set('jjwtVersion', '0.12.5')
+    set('springCloudVersion', '2023.0.1')
     set('springCloudAwsVersion', '3.1.1')
+    set('resilience4jVersion', '2.2.0')
 }
 
 dependencies {
@@ -24,6 +29,18 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    // OpenFeign
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+
+    // Resilience4j
+    implementation "io.github.resilience4j:resilience4j-spring-boot3:${resilience4jVersion}"
+    implementation "io.github.resilience4j:resilience4j-circuitbreaker:${resilience4jVersion}"
+    implementation "io.github.resilience4j:resilience4j-retry:${resilience4jVersion}"
+    implementation "io.github.resilience4j:resilience4j-timelimiter:${resilience4jVersion}"
+
+    // Necesario para que funcionen las anotaciones @CircuitBreaker, @Retry y @TimeLimiter
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
 
     // Spring Cloud AWS SQS
     implementation 'io.awspring.cloud:spring-cloud-aws-starter-sqs'
@@ -34,10 +51,10 @@ dependencies {
     // PostgreSQL
     implementation 'org.postgresql:postgresql:42.7.3'
 
-    // Swagger
+    // Swagger / OpenAPI
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0'
 
-    // JWT (UNA SOLA VERSIÓN)
+    // JWT
     implementation "io.jsonwebtoken:jjwt-api:${jjwtVersion}"
     runtimeOnly "io.jsonwebtoken:jjwt-impl:${jjwtVersion}"
     runtimeOnly "io.jsonwebtoken:jjwt-jackson:${jjwtVersion}"
@@ -60,6 +77,7 @@ dependencies {
 
 dependencyManagement {
     imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
         mavenBom "io.awspring.cloud:spring-cloud-aws-dependencies:${springCloudAwsVersion}"
     }
 }

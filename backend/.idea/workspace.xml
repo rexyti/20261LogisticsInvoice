@@ -4,77 +4,207 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70668f6f-3f6d-47f4-bd56-df4d94437e6e" name="Changes" comment="Ubicación nueva dentro de Package de archivos novedad estado paquete">
+    <list default="true" id="70668f6f-3f6d-47f4-bd56-df4d94437e6e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/checksums/sha1-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/dtos/request/ActualizarEstadoPagoRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/application/dtos/request/ActualizarEstadoPagoRequestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/dtos/request/EventoEstadoPagoRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/application/dtos/request/EventoEstadoPagoRequestDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/dtos/response/EstadoPagoResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/application/dtos/response/EstadoPagoResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/dtos/response/EventoTransaccionResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/application/dtos/response/EventoTransaccionResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/dtos/response/PagoResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/application/dtos/response/PagoResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/dtos/response/RecepcionEventoPagoResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/application/dtos/response/RecepcionEventoPagoResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/ports/EventoPagoAsyncPort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/application/ports/EventoPagoAsyncPort.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/usecases/pago/ActualizarEstadoPagoUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/application/usecases/pago/ActualizarEstadoPagoUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/usecases/pago/ObtenerEstadoPagoUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/application/usecases/pago/ObtenerEstadoPagoUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/usecases/pago/ObtenerEventosTransaccionUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/application/usecases/pago/ObtenerEventosTransaccionUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/usecases/pago/PagoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/application/usecases/pago/PagoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/usecases/pago/ProcesarEventoPagoUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/application/usecases/pago/ProcesarEventoPagoUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/usecases/pago/RecibirEventoPagoUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/application/usecases/pago/RecibirEventoPagoUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/usecases/pago/RegistrarEstadoPagoUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/application/usecases/pago/RegistrarEstadoPagoUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/enums/EstadoEventoTransaccion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/enums/EstadoEventoTransaccion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/enums/EstadoPagoEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/enums/EstadoPagoEnum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/enums/TipoEventoPago.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/enums/TipoEventoPago.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/models/EstadoPago.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/models/EstadoPago.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/models/EventoTransaccion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/models/EventoTransaccion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/models/LiquidacionReferencia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/models/LiquidacionReferencia.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/models/Pago.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/models/Pago.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/repositories/EstadoPagoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/repositories/EstadoPagoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/repositories/EventoTransaccionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/repositories/EventoTransaccionRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/repositories/LiquidacionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/repositories/LiquidacionRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/repositories/PagoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/repositories/PagoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/services/EstadoPagoDomainService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/services/EstadoPagoDomainService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/services/IdempotenciaEventoPagoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/services/IdempotenciaEventoPagoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/services/TransicionEstadoPagoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/services/TransicionEstadoPagoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/adapters/EstadoPagoRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/adapters/EstadoPagoRepositoryAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/adapters/EventoTransaccionRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/adapters/EventoTransaccionRepositoryAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/adapters/LiquidacionRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/adapters/LiquidacionRepositoryAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/adapters/PagoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/adapters/PagoMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/adapters/PagoRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/adapters/PagoRepositoryAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/async/config/AsyncPagoConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/async/config/AsyncPagoConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/async/processors/EventoPagoProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/async/processors/EventoPagoProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/config/DomainServiceConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/config/DomainServiceConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/config/JpaConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/config/JpaConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/config/WebhookConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/config/WebhookConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/persistence/entities/EstadoPagoEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/persistence/entities/EstadoPagoEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/persistence/entities/EventoTransaccionEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/persistence/entities/EventoTransaccionEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/persistence/entities/LiquidacionReferenciaEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/persistence/entities/LiquidacionReferenciaEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/persistence/entities/PagoEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/persistence/entities/PagoEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/persistence/repositories/EstadoPagoJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/persistence/repositories/EstadoPagoJpaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/persistence/repositories/EventoTransaccionJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/persistence/repositories/EventoTransaccionJpaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/persistence/repositories/LiquidacionJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/persistence/repositories/LiquidacionJpaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/persistence/repositories/PagoJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/persistence/repositories/PagoJpaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/web/controllers/LiquidacionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/web/controllers/LiquidacionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/web/controllers/PagoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/web/controllers/PagoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/web/controllers/WebhookPagoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/web/controllers/WebhookPagoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/web/handlers/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/web/handlers/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/shared/exceptions/EstadoPagoInvalidoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/exceptions/EstadoPagoInvalidoException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/shared/exceptions/EventoDuplicadoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/exceptions/EventoDuplicadoException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/shared/exceptions/EventoPagoNoProcesableException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/exceptions/EventoPagoNoProcesableException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/shared/exceptions/LiquidacionNoEncontradaException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/exceptions/LiquidacionNoEncontradaException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/shared/exceptions/PagoNoEncontradoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/exceptions/PagoNoEncontradoException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/shared/exceptions/TransicionEstadoPagoInvalidaException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/exceptions/TransicionEstadoPagoInvalidaException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/infrastructure/web/controllers/LiquidacionControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/logistica/RegistrarEstadoPago/infrastructure/controllers/web/LiquidacionControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/infrastructure/web/controllers/PagoControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/logistica/RegistrarEstadoPago/infrastructure/controllers/web/PagoControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/infrastructure/web/controllers/WebhookPagoControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/logistica/RegistrarEstadoPago/infrastructure/controllers/web/WebhookPagoControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/integration/ActualizacionEstadoPagoIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/logistica/RegistrarEstadoPago/integration/ActualizacionEstadoPagoIntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/integration/EventoPagoAsincronoIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/logistica/RegistrarEstadoPago/integration/EventoPagoAsincronoIntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/integration/IdempotenciaEventoPagoIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/logistica/RegistrarEstadoPago/integration/IdempotenciaEventoPagoIntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/integration/RegistroEstadoPagoIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/logistica/RegistrarEstadoPago/integration/RegistroEstadoPagoIntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/unit/EstadoPagoDomainServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/logistica/RegistrarEstadoPago/unit/EstadoPagoDomainServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/unit/EventoPagoProcessorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/logistica/RegistrarEstadoPago/unit/EventoPagoProcessorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/unit/IdempotenciaEventoPagoServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/logistica/RegistrarEstadoPago/unit/IdempotenciaEventoPagoServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/unit/PagoMapperTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/logistica/RegistrarEstadoPago/unit/PagoMapperTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/unit/PagoServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/logistica/RegistrarEstadoPago/unit/PagoServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/unit/TransicionEstadoPagoServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/logistica/RegistrarEstadoPago/unit/TransicionEstadoPagoServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/LogisticaApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/application/dtos/request/ActualizarEstadoPagoRequestDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/application/dtos/request/EventoEstadoPagoRequestDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/application/dtos/request/WebhookPagoRequestDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/application/dtos/response/EstadoPagoResponseDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/application/dtos/response/EventoProcesadoResponseDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/application/dtos/response/EventoTransaccionResponseDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/application/dtos/response/HistorialEstadoDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/application/dtos/response/LogSincronizacionDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/application/dtos/response/PagoResponseDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/application/dtos/response/RecepcionEventoPagoResponseDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/application/dtos/response/SincronizacionResultadoDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/application/mappers/PagoDtoMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/application/ports/EventoPagoAsyncPort.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/application/ports/PackageStatusGateway.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/application/ports/PackageStatusResult.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/application/usecases/pago/ActualizarEstadoPagoUseCase.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/application/usecases/pago/ConsultarEstadoPagoUseCase.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/application/usecases/pago/ObtenerEstadoPagoUseCase.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/application/usecases/pago/ObtenerEventosTransaccionUseCase.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/application/usecases/pago/PagoService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/application/usecases/pago/ProcesarEventoPagoUseCase.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/application/usecases/pago/RecibirEventoPagoUseCase.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/application/usecases/pago/RegistrarEstadoPagoUseCase.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/application/usecases/paquete/ObtenerHistorialUseCase.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/application/usecases/paquete/ObtenerLogsSincronizacionUseCase.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/application/usecases/paquete/SincronizarPaqueteUseCase.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/application/dtos/request/ContratoRequestDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/application/dtos/request/SeguroRequestDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/application/dtos/response/ContratoResponseDTO$ContratoResponseDTOBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/application/dtos/response/ContratoResponseDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/application/dtos/response/SeguroResponseDTO$SeguroResponseDTOBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/application/dtos/response/SeguroResponseDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/application/dtos/response/TransportistaResponseDTO$TransportistaResponseDTOBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/application/dtos/response/TransportistaResponseDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/application/mappers/ContratoResponseMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/application/usecases/contrato/BuscarContratoUseCase.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/application/usecases/contrato/CrearContratoUseCase.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/application/usecases/contrato/ListarContratosUseCase.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/application/validators/FechasContratoValidator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/application/validators/PrecioCondicionalValidator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/application/validators/ValidFechasContrato.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/application/validators/ValidPrecioCondicional.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/domain/enums/TipoVehiculo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/domain/exceptions/ContratoInvalidoException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/domain/exceptions/ContratoNotFoundException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/domain/exceptions/ContratoYaExisteException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/domain/exceptions/DomainException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/domain/exceptions/RecursoNoEncontradoException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/domain/exceptions/TransportistaNotFoundException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/domain/models/Contrato$ContratoBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/domain/models/Contrato.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/domain/models/Seguro$SeguroBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/domain/models/Seguro.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/domain/models/Transportista$TransportistaBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/domain/models/Transportista.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/domain/models/Vehiculo$VehiculoBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/domain/models/Vehiculo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/domain/repositories/ContratoRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/domain/repositories/SeguroRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/domain/repositories/TransportistaRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/domain/repositories/VehiculoRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/infrastructure/adapters/ContratoMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/infrastructure/config/SecurityConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/infrastructure/persistence/entities/ContratoEntity$ContratoEntityBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/infrastructure/persistence/entities/ContratoEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/infrastructure/persistence/entities/SeguroEntity$SeguroEntityBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/infrastructure/persistence/entities/SeguroEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/infrastructure/persistence/entities/TransportistaEntity$TransportistaEntityBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/infrastructure/persistence/entities/TransportistaEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/infrastructure/persistence/entities/VehiculoEntity$VehiculoEntityBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/infrastructure/persistence/entities/VehiculoEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/infrastructure/persistence/repositories/ContratoJpaRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/infrastructure/persistence/repositories/ContratoRepositoryImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/infrastructure/persistence/repositories/SeguroJpaRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/infrastructure/persistence/repositories/SeguroRepositoryImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/infrastructure/persistence/repositories/TransportistaJpaRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/infrastructure/persistence/repositories/TransportistaRepositoryImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/infrastructure/persistence/repositories/VehiculoJpaRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/infrastructure/persistence/repositories/VehiculoRepositoryImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/infrastructure/web/controllers/ContratoController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/infrastructure/web/handlers/ErrorResponse$ErrorResponseBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/infrastructure/web/handlers/ErrorResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/infrastructure/web/handlers/GlobalExceptionHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/domain/enums/EstadoEventoTransaccion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/domain/enums/EstadoPagoEnum.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/domain/enums/EstadoPaquete.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/domain/enums/TipoEventoPago.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/domain/events/PagoProcesadoEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/domain/exceptions/EstadoNoMapeadoException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/domain/exceptions/EventoDuplicadoException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/domain/exceptions/PagoNoEncontradoException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/domain/exceptions/PaqueteNotFoundException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/domain/exceptions/SincronizacionException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/domain/exceptions/TransicionInvalidaException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/domain/models/EstadoPago.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/domain/models/EventoTransaccion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/domain/models/HistorialEstado.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/domain/models/LiquidacionReferencia.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/domain/models/LogSincronizacion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/domain/models/Pago.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/domain/models/Paquete.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/domain/models/Penalidad.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/domain/repositories/EstadoPagoRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/domain/repositories/EventoRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/domain/repositories/EventoTransaccionRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/domain/repositories/HistorialRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/domain/repositories/LiquidacionRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/domain/repositories/LogSincronizacionRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/domain/repositories/PagoRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/domain/repositories/PaqueteRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/domain/services/AuditoriaPagoService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/domain/services/EstadoPagoDomainService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/domain/services/EstadoPaqueteService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/domain/services/IdempotenciaEventoPagoService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/domain/services/IdempotenciaService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/domain/services/ProcesadorEstadoPagoService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/domain/services/TransicionEstadoPagoService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/domain/validators/TransicionEstadoValidator$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/domain/validators/TransicionEstadoValidator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/adapters/EstadoPagoMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/adapters/EstadoPagoRepositoryAdapter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/adapters/EventoMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/adapters/EventoTransaccionRepositoryAdapter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/adapters/LiquidacionRepositoryAdapter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/adapters/PagoMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/adapters/PagoPersistenceMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/adapters/PagoRepositoryAdapter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/async/config/AsyncPagoConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/async/processors/EventoPagoProcessor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/config/AsyncExecutionConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/config/DomainServiceConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/config/FeignConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/config/JpaConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/config/UseCaseConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/config/WebhookConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/http/clients/GestionClient.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/http/dto/GestionPaqueteDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/http/service/ApiCallResult.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/http/service/PackageApiClientService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/persistence/entities/EstadoPagoEntity$EstadoPagoEntityBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/persistence/entities/EstadoPagoEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/persistence/entities/EventoEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/persistence/entities/EventoTransaccionEntity$EventoTransaccionEntityBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/persistence/entities/EventoTransaccionEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/persistence/entities/HistorialEstadoEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/persistence/entities/LiquidacionReferenciaEntity$LiquidacionReferenciaEntityBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/persistence/entities/LiquidacionReferenciaEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/persistence/entities/LogSincronizacionEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/persistence/entities/PagoEntity$PagoEntityBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/persistence/entities/PagoEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/persistence/entities/PaqueteEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/persistence/mapper/PaqueteEntityMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/persistence/repositories/EstadoPagoJpaRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/persistence/repositories/EstadoPagoRepositoryImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/persistence/repositories/EventoJpaRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/persistence/repositories/EventoRepositoryImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/persistence/repositories/EventoTransaccionJpaRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/persistence/repositories/HistorialJpaRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/persistence/repositories/HistorialRepositoryImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/persistence/repositories/LiquidacionJpaRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/persistence/repositories/LogSincronizacionJpaRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/persistence/repositories/LogSincronizacionRepositoryImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/persistence/repositories/PagoJpaRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/persistence/repositories/PagoRepositoryImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/persistence/repositories/PaqueteJpaRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/persistence/repositories/PaqueteRepositoryImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/web/controllers/PagoController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/web/controllers/PaqueteController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/web/controllers/WebhookPagoController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/web/handlers/ErrorResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/infrastructure/web/handlers/GlobalExceptionHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/shared/exceptions/EstadoPagoInvalidoException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/shared/exceptions/EventoDuplicadoException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/shared/exceptions/EventoPagoNoProcesableException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/shared/exceptions/LiquidacionNoEncontradaException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/shared/exceptions/PagoNoEncontradoException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/shared/exceptions/TransicionEstadoPagoInvalidaException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/problems/problems-report.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/problems/problems-report.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,16 +259,19 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Gradle.Build backend.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "feature/mod3-Registrar-Estado-Pago",
+    "Spring Boot.LogisticaApplication.executor": "Run",
+    "git-widget-placeholder": "devolop",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>

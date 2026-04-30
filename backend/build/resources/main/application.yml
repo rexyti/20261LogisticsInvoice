@@ -1,22 +1,7 @@
 spring:
-  application:
-    name: logistica-financiero
+  profiles:
+    active: local
 
-  datasource:
-    url: ${DB_URL:jdbc:postgresql://localhost:5432/logistica_db}
-    username: ${DB_USERNAME:postgres}
-    password: ${DB_PASSWORD:postgres}
-    driver-class-name: org.postgresql.Driver
 
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: false
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        format_sql: true
-
-logging:
-  level:
-    com.logistica: INFO
+server:
+  port: 8080
