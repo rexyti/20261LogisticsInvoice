@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Gradle: org.testcontainers:postgresql:1.19.7" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="org.testcontainers" artifactId="postgresql" version="1.19.7" baseVersion="1.19.7" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.testcontainers/postgresql/1.19.7/49f0bfb900aebd252b4744f0150e8b49330c8734/postgresql-1.19.7.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.logistica.infrastructure.web.ContratoControllerIntegrationTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-04-24T21:28:32.046Z" hostname="LAPTOP-8UJSA6QU" time="2.282">
+  <properties/>
+  <testcase name="T010 - Fechas inválidas retornan HTTP 400 con error en fechaFinal" classname="com.logistica.infrastructure.web.ContratoControllerIntegrationTest" time="1.604"/>
+  <testcase name="T012 - POST válido retorna HTTP 201 con el contrato persistido" classname="com.logistica.infrastructure.web.ContratoControllerIntegrationTest" time="0.412"/>
+  <testcase name="T018 - GET contrato existente retorna los campos principales" classname="com.logistica.infrastructure.web.ContratoControllerIntegrationTest" time="0.162"/>
+  <testcase name="T019 - GET contrato inexistente retorna HTTP 404 con mensaje" classname="com.logistica.infrastructure.web.ContratoControllerIntegrationTest" time="0.018"/>
+  <testcase name="T011 - Registro duplicado retorna HTTP 409 con mensaje específico" classname="com.logistica.infrastructure.web.ContratoControllerIntegrationTest" time="0.04"/>
+  <testcase name="Sin autenticación retorna HTTP 401" classname="com.logistica.infrastructure.web.ContratoControllerIntegrationTest" time="0.013"/>
+  <testcase name="T010 - Campos obligatorios faltantes retornan HTTP 400 con mapa de errores" classname="com.logistica.infrastructure.web.ContratoControllerIntegrationTest" time="0.017"/>
+  <system-out><![CDATA[16:28:19.822 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.logistica.infrastructure.web.ContratoControllerIntegrationTest]: ContratoControllerIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+16:28:20.140 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.logistica.LogisticaApplication for test class com.logistica.infrastructure.web.ContratoControllerIntegrationTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.4)
+
+2026-04-24T16:28:21.205-05:00  INFO 18328 --- [    Test worker] .l.i.w.ContratoControllerIntegrationTest : Starting ContratoControllerIntegrationTest using Java 21.0.10 with PID 18328 (started by LUIS in C:\Users\LUIS\IdeaProjects\20261LogisticsInvoice\backend)
+2026-04-24T16:28:21.208-05:00  INFO 18328 --- [    Test worker] .l.i.w.ContratoControllerIntegrationTest : No active profile set, falling back to 1 default profile: "default"
+2026-04-24T16:28:23.401-05:00  INFO 18328 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-24T16:28:23.574-05:00  INFO 18328 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 151 ms. Found 4 JPA repository interfaces.
+2026-04-24T16:28:24.861-05:00  INFO 18328 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-04-24T16:28:25.173-05:00  INFO 18328 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2026-04-24T16:28:25.320-05:00  INFO 18328 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-04-24T16:28:26.019-05:00  INFO 18328 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-24T16:28:26.098-05:00  INFO 18328 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-04-24T16:28:26.577-05:00  INFO 18328 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2026-04-24T16:28:26.581-05:00  INFO 18328 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-04-24T16:28:26.638-05:00  WARN 18328 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-04-24T16:28:28.522-05:00  INFO 18328 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-24T16:28:28.623-05:00  INFO 18328 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-24T16:28:29.851-05:00  WARN 18328 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-24T16:28:30.915-05:00  INFO 18328 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4a9d6eb9, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@157a2c86, org.springframework.security.web.context.SecurityContextHolderFilter@389fad5b, org.springframework.security.web.header.HeaderWriterFilter@2f1b8770, org.springframework.web.filter.CorsFilter@5b9c74a, org.springframework.security.web.authentication.logout.LogoutFilter@5e38329d, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@7fe40b9f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@285b63eb, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5a983f8a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5b395ee, org.springframework.security.web.session.SessionManagementFilter@c8d20bb, org.springframework.security.web.access.ExceptionTranslationFilter@18bab95b, org.springframework.security.web.access.intercept.AuthorizationFilter@4f70b659]
+2026-04-24T16:28:31.939-05:00  INFO 18328 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-04-24T16:28:31.941-05:00  INFO 18328 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-04-24T16:28:31.941-05:00  INFO 18328 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-04-24T16:28:32.000-05:00  INFO 18328 --- [    Test worker] .l.i.w.ContratoControllerIntegrationTest : Started ContratoControllerIntegrationTest in 11.381 seconds (process running for 15.252)
+]]></system-out>
+  <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (C:\Users\LUIS\.gradle\caches\modules-2\files-2.1\net.bytebuddy\byte-buddy-agent\1.14.12\be4984cb6fd1ef1d11f218a648889dfda44b8a15\byte-buddy-agent-1.14.12.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>

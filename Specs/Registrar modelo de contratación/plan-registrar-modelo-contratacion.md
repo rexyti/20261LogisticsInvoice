@@ -44,55 +44,85 @@ project/
 │   │
 │   │   ├── application/                         # Casos de uso
 │   │   │   ├── usecases/
-│   │   │   │   ├── contrato/
-│   │   │   │   │   ├── CrearContratoUseCase.java
-│   │   │   │   │   ├── BuscarContratoUseCase.java
-│   │   │   │   │   └── ListarContratosUseCase.java
+│   │   │   │   └── contrato/
+│   │   │   │       ├── CrearContratoUseCase.java
+│   │   │   │       ├── BuscarContratoUseCase.java
+│   │   │   │       └── ListarContratosUseCase.java
+│   │   │   │
+│   │   │   ├── mappers/
+│   │   │   │   └── ContratoResponseMapper.java
+│   │   │   │       
+│   │   │   │    
+│   │   │   ├── validator
+│   │   │   │   ├── FechasContratoValidator.java
+│   │   │   │   ├── ValidFechasContrato.java
+│   │   │   │   ├── ValidPrecioCondicional.java
+│   │   │   │   └── PrecioCondicionalValidator.java
 │   │   │   │
 │   │   │   └── dtos/
 │   │   │       ├── request/
+│   │   │       │   ├── SeguroRequestDTO.java
 │   │   │       │   └── ContratoRequestDTO.java
 │   │   │       └── response/
+│   │   │           ├── SeguroResponseDTO.java
+│   │   │           ├── TransportistaResponseDTO.java
 │   │   │           └── ContratoResponseDTO.java
-│   │
+│   │   │
 │   │   ├── domain/                              # Núcleo del negocio
 │   │   │   ├── models/
 │   │   │   │   ├── Contrato.java
-│   │   │   │   ├── Usuario.java
+│   │   │   │   ├── Transportista.java
 │   │   │   │   ├── Vehiculo.java
 │   │   │   │   └── Seguro.java
 │   │   │   │
 │   │   │   ├── repositories/                    # Interfaces (puertos)
 │   │   │   │   ├── ContratoRepository.java
-│   │   │   │   ├── UsuarioRepository.java
+│   │   │   │   ├── SeguroRepository.java
+│   │   │   │   ├── TransportistaRepository.java
 │   │   │   │   └── VehiculoRepository.java
 │   │   │   │
-│   │   │   ├── validators/                      # Reglas de negocio (validaciones)
-│   │   │   │   ├── ContratoValidator.java
-│   │   │   │   ├── FechasContratoValidator.java
-│   │   │   │   └── PrecioCondicionalValidator.java
+│   │   │   ├── enums/                           # Enumeraciones de dominio
+│   │   │   │   └── TipoVehiculo.java
 │   │   │   │
 │   │   │   └── exceptions/                      # Excepciones de negocio
 │   │   │       ├── ContratoInvalidoException.java
+│   │   │       ├── ContratoNotFoundException.java
+│   │   │       ├── ContratoYaExisteException.java
+│   │   │       ├── DomainException.java
+│   │   │       ├── TransportistaNotFoundException.java
 │   │   │       └── RecursoNoEncontradoException.java
-│   │
+│   │   │
 │   │   ├── infrastructure/                      # Implementación técnica
 │   │   │   ├── persistence/
 │   │   │   │   ├── entities/                    # Entidades JPA
+│   │   │   │   │   ├── ContratoEntity.java
+│   │   │   │   │   ├── SeguroEntity.java
+│   │   │   │   │   ├── TransportistaEntity.java
+│   │   │   │   │   └── VehiculoEntity.java
+│   │   │   │   │
 │   │   │   │   └── repositories/                # Spring Data JPA
+│   │   │   │       ├── ContratoRepositoryImpl.java
+│   │   │   │       ├── ContratoJpaRepository.java
+│   │   │   │       ├── SeguroRepositoryImpl.java
+│   │   │   │       ├── SeguroJpaRepository.java
+│   │   │   │       ├── TransportistaRepositoryImpl.java
+│   │   │   │       ├── TransportistaJpaRepository.java
+│   │   │   │       ├── VehiculoJpaRepository.java
+│   │   │   │       └── VehiculoRepositoryImpl.java
 │   │   │   │
 │   │   │   ├── web/
 │   │   │   │   ├── controllers/                 # REST Controllers
 │   │   │   │   │   └── ContratoController.java
 │   │   │   │   │
 │   │   │   │   └── handlers/                    # @RestControllerAdvice
+│   │   │   │       ├── ErrorResponse.java
 │   │   │   │       └── GlobalExceptionHandler.java
 │   │   │   │
 │   │   │   ├── adapters/                        # Mappers dominio ↔ DTO
 │   │   │   │   └── ContratoMapper.java
 │   │   │   │
 │   │   │   └── config/                          # Configuración global (CORS, seguridad)
-│   │
+│   │   │       └── SecurityConfig.java
 │   │   └── shared/
 │   │       ├── utils/
 │   │       └── constants/

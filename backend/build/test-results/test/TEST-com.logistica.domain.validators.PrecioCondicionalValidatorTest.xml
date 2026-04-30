@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.logistica.domain.validators.PrecioCondicionalValidatorTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-04-24T21:28:35.597Z" hostname="LAPTOP-8UJSA6QU" time="0.046">
+  <properties/>
+  <testcase name="T009 - esPorParada=false requiere precio" classname="com.logistica.domain.validators.PrecioCondicionalValidatorTest" time="0.021"/>
+  <testcase name="T009 - esPorParada=true ignora el campo precio" classname="com.logistica.domain.validators.PrecioCondicionalValidatorTest" time="0.004"/>
+  <testcase name="T009 - esPorParada=true requiere precioParadas" classname="com.logistica.domain.validators.PrecioCondicionalValidatorTest" time="0.003"/>
+  <testcase name="T009 - esPorParada=true es válido cuando precioParadas está presente" classname="com.logistica.domain.validators.PrecioCondicionalValidatorTest" time="0.004"/>
+  <testcase name="T009 - esPorParada=false es válido cuando precio está presente" classname="com.logistica.domain.validators.PrecioCondicionalValidatorTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

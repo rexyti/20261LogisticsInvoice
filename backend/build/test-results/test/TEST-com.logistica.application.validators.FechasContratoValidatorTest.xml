@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.logistica.application.validators.FechasContratoValidatorTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-04-24T21:28:35.397Z" hostname="LAPTOP-8UJSA6QU" time="0.071">
+  <properties/>
+  <testcase name="T008 - Falla cuando fechaFinal es igual a fechaInicio" classname="com.logistica.application.validators.FechasContratoValidatorTest" time="0.054"/>
+  <testcase name="T008 - Permite nulos (delegados a @NotNull)" classname="com.logistica.application.validators.FechasContratoValidatorTest" time="0.004"/>
+  <testcase name="T008 - Falla cuando fechaFinal es anterior a fechaInicio" classname="com.logistica.application.validators.FechasContratoValidatorTest" time="0.004"/>
+  <testcase name="T008 - Pasa cuando fechaFinal es estrictamente posterior a fechaInicio" classname="com.logistica.application.validators.FechasContratoValidatorTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

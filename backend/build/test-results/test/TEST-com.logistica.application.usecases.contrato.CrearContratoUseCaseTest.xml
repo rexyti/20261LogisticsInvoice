@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.logistica.application.usecases.contrato.CrearContratoUseCaseTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-04-24T21:28:34.343Z" hostname="LAPTOP-8UJSA6QU" time="1.025">
+  <properties/>
+  <testcase name="Lanza excepción cuando el idContrato ya existe" classname="com.logistica.application.usecases.contrato.CrearContratoUseCaseTest" time="0.943"/>
+  <testcase name="Lanza excepción cuando el transportista no existe" classname="com.logistica.application.usecases.contrato.CrearContratoUseCaseTest" time="0.017"/>
+  <testcase name="Registra el contrato cuando los datos son válidos" classname="com.logistica.application.usecases.contrato.CrearContratoUseCaseTest" time="0.045"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
