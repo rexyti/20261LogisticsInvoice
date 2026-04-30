@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.logistica.unit.TransicionEstadoPagoServiceTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2026-04-26T21:31:16.495Z" hostname="SKIPPER" time="0.016">
+  <properties/>
+  <testcase name="transicion_PAGADO_a_RECHAZADO_esInvalida()" classname="com.logistica.unit.TransicionEstadoPagoServiceTest" time="0.002"/>
+  <testcase name="transicion_PENDIENTE_a_EN_PROCESO_esValida()" classname="com.logistica.unit.TransicionEstadoPagoServiceTest" time="0.0"/>
+  <testcase name="transicion_PAGADO_a_PENDIENTE_esInvalida()" classname="com.logistica.unit.TransicionEstadoPagoServiceTest" time="0.001"/>
+  <testcase name="transicion_RECHAZADO_a_PENDIENTE_esInvalida()" classname="com.logistica.unit.TransicionEstadoPagoServiceTest" time="0.002"/>
+  <testcase name="transicion_EN_PROCESO_a_RECHAZADO_esValida()" classname="com.logistica.unit.TransicionEstadoPagoServiceTest" time="0.001"/>
+  <testcase name="transicion_RECHAZADO_a_EN_PROCESO_esInvalida()" classname="com.logistica.unit.TransicionEstadoPagoServiceTest" time="0.001"/>
+  <testcase name="transicion_PENDIENTE_a_PAGADO_esValida()" classname="com.logistica.unit.TransicionEstadoPagoServiceTest" time="0.0"/>
+  <testcase name="transicion_PAGADO_a_EN_PROCESO_esInvalida()" classname="com.logistica.unit.TransicionEstadoPagoServiceTest" time="0.002"/>
+  <testcase name="transicion_RECHAZADO_a_PAGADO_esInvalida()" classname="com.logistica.unit.TransicionEstadoPagoServiceTest" time="0.001"/>
+  <testcase name="transicion_PENDIENTE_a_RECHAZADO_esValida()" classname="com.logistica.unit.TransicionEstadoPagoServiceTest" time="0.0"/>
+  <testcase name="esTransicionValida_retornaCorrectamente()" classname="com.logistica.unit.TransicionEstadoPagoServiceTest" time="0.001"/>
+  <testcase name="transicion_EN_PROCESO_a_PAGADO_esValida()" classname="com.logistica.unit.TransicionEstadoPagoServiceTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
