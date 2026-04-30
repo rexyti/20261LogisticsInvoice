@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.logistica.application.usecases.pago.ConsultarEstadoPagoUseCaseTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-04-30T21:39:54.733Z" hostname="SKIPPER" time="1.243">
+  <properties/>
+  <testcase name="ejecutar_CuandoPagoNoExiste_LanzaPagoNoEncontradoException()" classname="com.logistica.application.usecases.pago.ConsultarEstadoPagoUseCaseTest" time="1.221"/>
+  <testcase name="ejecutar_CuandoPagoExisteYEsDelUsuario_RetornaEstadoPagoDTO()" classname="com.logistica.application.usecases.pago.ConsultarEstadoPagoUseCaseTest" time="0.007"/>
+  <testcase name="ejecutar_CuandoPagoNoEsDelUsuario_LanzaAccessDeniedPaymentException()" classname="com.logistica.application.usecases.pago.ConsultarEstadoPagoUseCaseTest" time="0.01"/>
+  <system-out><![CDATA[Intento de acceso no autorizado al pago eef47823-eb4d-49aa-a51d-ceca10ca2ff8 por el usuario 11111111-1111-1111-1111-111111111111
+]]></system-out>
+  <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (C:\Users\Sebastian\.gradle\caches\modules-2\files-2.1\net.bytebuddy\byte-buddy-agent\1.14.12\be4984cb6fd1ef1d11f218a648889dfda44b8a15\byte-buddy-agent-1.14.12.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>
