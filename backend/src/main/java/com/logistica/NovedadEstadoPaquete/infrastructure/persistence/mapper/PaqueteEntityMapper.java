@@ -1,0 +1,69 @@
+package com.logistica.NovedadEstadoPaquete.infrastructure.persistence.mapper;
+
+import com.logistica.NovedadEstadoPaquete.domain.models.HistorialEstado;
+import com.logistica.NovedadEstadoPaquete.domain.models.LogSincronizacion;
+import com.logistica.NovedadEstadoPaquete.domain.models.Paquete;
+import com.logistica.NovedadEstadoPaquete.infrastructure.persistence.entities.HistorialEstadoEntity;
+import com.logistica.NovedadEstadoPaquete.infrastructure.persistence.entities.LogSincronizacionEntity;
+import com.logistica.NovedadEstadoPaquete.infrastructure.persistence.entities.PaqueteEntity;
+import org.springframework.stereotype.Component;
+
+@Component
+public class PaqueteEntityMapper {
+
+    public Paquete toDomain(PaqueteEntity entity) {
+        return new Paquete(
+                entity.getIdPaquete(),
+                entity.getIdRuta(),
+                entity.getEstadoActual(),
+                entity.getUpdatedAt()
+        );
+    }
+
+    public PaqueteEntity toEntity(Paquete domain) {
+        return new PaqueteEntity(
+                domain.getIdPaquete(),
+                domain.getIdRuta(),
+                domain.getEstadoActual(),
+                domain.getUpdatedAt()
+        );
+    }
+
+    public HistorialEstado toDomain(HistorialEstadoEntity entity) {
+        return new HistorialEstado(
+                entity.getId(),
+                entity.getIdPaquete(),
+                entity.getEstado(),
+                entity.getFecha()
+        );
+    }
+
+    public HistorialEstadoEntity toEntity(HistorialEstado domain) {
+        return new HistorialEstadoEntity(
+                domain.getId(),
+                domain.getIdPaquete(),
+                domain.getEstado(),
+                domain.getFecha()
+        );
+    }
+
+    public LogSincronizacion toDomain(LogSincronizacionEntity entity) {
+        return new LogSincronizacion(
+                entity.getId(),
+                entity.getIdPaquete(),
+                entity.getCodigoRespuestaHTTP(),
+                entity.getJsonRecibido(),
+                entity.getCreatedAt()
+        );
+    }
+
+    public LogSincronizacionEntity toEntity(LogSincronizacion domain) {
+        return new LogSincronizacionEntity(
+                domain.getId(),
+                domain.getIdPaquete(),
+                domain.getCodigoRespuestaHTTP(),
+                domain.getJsonRecibido(),
+                domain.getCreatedAt()
+        );
+    }
+}
