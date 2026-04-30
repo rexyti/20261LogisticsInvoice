@@ -1,4 +1,4 @@
-package com.logistica.infrastructure.web;
+package com.logistica.contratos.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.logistica.contratos.application.dtos.request.ContratoRequestDTO;

@@ -1,4 +1,4 @@
-package com.logistica.application.validators;
+package com.logistica.contratos.domain.validators;
 
 import com.logistica.contratos.application.dtos.request.ContratoRequestDTO;
 import com.logistica.contratos.application.dtos.request.SeguroRequestDTO;

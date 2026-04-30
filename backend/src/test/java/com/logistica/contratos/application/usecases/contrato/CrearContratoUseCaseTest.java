@@ -1,4 +1,4 @@
-package com.logistica.application.usecases.contrato;
+package com.logistica.contratos.application.usecases.contrato;
 
 import com.logistica.contratos.application.dtos.request.ContratoRequestDTO;
 import com.logistica.contratos.application.dtos.request.SeguroRequestDTO;

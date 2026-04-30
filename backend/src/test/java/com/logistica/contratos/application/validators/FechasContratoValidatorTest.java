@@ -1,4 +1,4 @@
-package com.logistica.application.validators;
+package com.logistica.contratos.application.validators;
 
 import com.logistica.contratos.application.dtos.request.ContratoRequestDTO;
 import com.logistica.contratos.application.dtos.request.SeguroRequestDTO;
@@ -18,7 +18,7 @@ import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class PrecioCondicionalValidatorTest {
+class FechasContratoValidatorTest {
 
     private static Validator validator;
 
@@ -28,7 +28,7 @@ class PrecioCondicionalValidatorTest {
         validator = factory.getValidator();
     }
 
-    private ContratoRequestDTO dtoBase() {
+    private ContratoRequestDTO dtoValido() {
         SeguroRequestDTO seguro = new SeguroRequestDTO();
         seguro.setNumeroPoliza("POL-001");
         seguro.setEstado("VIGENTE");
@@ -37,6 +37,8 @@ class PrecioCondicionalValidatorTest {
         dto.setIdContrato("CONT-001");
         dto.setTipoContrato("MENSAJERIA");
         dto.setTransportistaId(UUID.randomUUID());
+        dto.setEsPorParada(true);
+        dto.setPrecioParadas(new BigDecimal("15.50"));
         dto.setTipoVehiculo(TipoVehiculo.VAN);
         dto.setFechaInicio(LocalDateTime.of(2026, 1, 1, 0, 0));
         dto.setFechaFinal(LocalDateTime.of(2026, 12, 31, 0, 0));
@@ -45,76 +47,60 @@ class PrecioCondicionalValidatorTest {
     }
 
     @Test
-    @DisplayName("T009 - esPorParada=true requiere precioParadas")
-    void porParadaRequierePrecioParadas() {
-        ContratoRequestDTO dto = dtoBase();
-        dto.setEsPorParada(true);
-        dto.setPrecioParadas(null);
+    @DisplayName("T008 - Falla cuando fechaFinal es anterior a fechaInicio")
+    void debeRechazarFechaFinalAnteriorAInicio() {
+        ContratoRequestDTO dto = dtoValido();
+        dto.setFechaInicio(LocalDateTime.of(2026, 6, 1, 0, 0));
+        dto.setFechaFinal(LocalDateTime.of(2026, 1, 1, 0, 0));
 
         Set<ConstraintViolation<ContratoRequestDTO>> violations = validator.validate(dto);
 
         assertThat(violations).anyMatch(v ->
-                v.getPropertyPath().toString().equals("precioParadas")
-                        && v.getMessage().contains("Por Parada")
+                v.getPropertyPath().toString().equals("fechaFinal")
+                        && v.getMessage().contains("estrictamente mayor")
         );
     }
 
     @Test
-    @DisplayName("T009 - esPorParada=true es válido cuando precioParadas está presente")
-    void porParadaValidoCuandoPrecioParadasPresente() {
-        ContratoRequestDTO dto = dtoBase();
-        dto.setEsPorParada(true);
-        dto.setPrecioParadas(new BigDecimal("20.00"));
-
-        Set<ConstraintViolation<ContratoRequestDTO>> violations = validator.validate(dto);
-
-        assertThat(violations).noneMatch(v ->
-                v.getPropertyPath().toString().equals("precioParadas")
-        );
-    }
-
-    @Test
-    @DisplayName("T009 - esPorParada=false requiere precio")
-    void recorridoCompletoRequierePrecio() {
-        ContratoRequestDTO dto = dtoBase();
-        dto.setEsPorParada(false);
-        dto.setPrecio(null);
+    @DisplayName("T008 - Falla cuando fechaFinal es igual a fechaInicio")
+    void debeRechazarFechaFinalIgualAInicio() {
+        ContratoRequestDTO dto = dtoValido();
+        LocalDateTime mismaFecha = LocalDateTime.of(2026, 6, 1, 0, 0);
+        dto.setFechaInicio(mismaFecha);
+        dto.setFechaFinal(mismaFecha);
 
         Set<ConstraintViolation<ContratoRequestDTO>> violations = validator.validate(dto);
 
         assertThat(violations).anyMatch(v ->
-                v.getPropertyPath().toString().equals("precio")
-                        && v.getMessage().contains("Recorrido Completo")
+                v.getPropertyPath().toString().equals("fechaFinal")
+                        && v.getMessage().contains("estrictamente mayor")
         );
     }
 
     @Test
-    @DisplayName("T009 - esPorParada=false es válido cuando precio está presente")
-    void recorridoCompletoValidoCuandoPrecioPresente() {
-        ContratoRequestDTO dto = dtoBase();
-        dto.setEsPorParada(false);
-        dto.setPrecio(new BigDecimal("500.00"));
+    @DisplayName("T008 - Pasa cuando fechaFinal es estrictamente posterior a fechaInicio")
+    void debeAceptarFechaFinalPosteriorAInicio() {
+        ContratoRequestDTO dto = dtoValido();
 
         Set<ConstraintViolation<ContratoRequestDTO>> violations = validator.validate(dto);
 
         assertThat(violations).noneMatch(v ->
-                v.getPropertyPath().toString().equals("precio")
+                v.getPropertyPath().toString().equals("fechaFinal")
+                        && v.getMessage().contains("estrictamente mayor")
         );
     }
 
     @Test
-    @DisplayName("T009 - esPorParada=true ignora el campo precio")
-    void porParadaIgnoraCampoPrecio() {
-        ContratoRequestDTO dto = dtoBase();
-        dto.setEsPorParada(true);
-        dto.setPrecioParadas(new BigDecimal("10.00"));
-        dto.setPrecio(null);
+    @DisplayName("T008 - Permite nulos (delegados a @NotNull)")
+    void debePermitirNulosCuandoExistenOtrasValidaciones() {
+        ContratoRequestDTO dto = dtoValido();
+        dto.setFechaInicio(null);
+        dto.setFechaFinal(null);
 
         Set<ConstraintViolation<ContratoRequestDTO>> violations = validator.validate(dto);
 
         assertThat(violations).noneMatch(v ->
-                v.getPropertyPath().toString().equals("precio")
-                        && v.getMessage().contains("Recorrido Completo")
+                v.getMessage().contains("estrictamente mayor")
         );
     }
 }
