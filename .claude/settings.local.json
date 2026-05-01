@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C /c/Users/Aleja/IdeaProjects/20261LogisticsInvoice log --oneline --all)"
+    ]
+  }
+}

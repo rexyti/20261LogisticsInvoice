@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17e9b87a-fadc-44c3-8b48-1742cb0ad6f5" name="Changes" comment="implementación backend visualizar liquidación" />
+    <list default="true" id="17e9b87a-fadc-44c3-8b48-1742cb0ad6f5" name="Changes" comment="Correcciones menores a la rama" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,10 +31,17 @@
     &quot;accountId&quot;: &quot;12194620-3955-413d-8bfb-b01f034bfd6e&quot;
   }
 }</component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
   <component name="ProjectId" id="3CjoXJbEgZsJTN5gTCwTo1ppCCu" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -43,10 +50,10 @@
   "keyToString": {
     "Gradle.C:/Users/Sebastian/IdeaProjects/20261LogisticsInvoice/backend/build.gradle.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "feature/mod3-Novedad-Estado-Paquete",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Sebastian/IdeaProjects/20261LogisticsInvoice",
     "node.js.detected.package.eslint": "true",
@@ -58,17 +65,6 @@
   }
 }]]></component>
   <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="20261LogisticsInvoice" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="20261LogisticsInvoice" />
-      <option name="filePath" />
-      <method v="2" />
-    </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="20261LogisticsInvoice" />
       <option name="ENV_FILES" value="" />
@@ -119,6 +115,17 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <method v="2" />
     </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="20261LogisticsInvoice" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="20261LogisticsInvoice" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -149,7 +156,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776911966816</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Correcciones menores a la rama">
+      <option name="closed" value="true" />
+      <created>1777617933710</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1777617933711</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -157,6 +172,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="implementación backend visualizar liquidación" />
-    <option name="LAST_COMMIT_MESSAGE" value="implementación backend visualizar liquidación" />
+    <MESSAGE value="Correcciones menores a la rama" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correcciones menores a la rama" />
   </component>
 </project>
