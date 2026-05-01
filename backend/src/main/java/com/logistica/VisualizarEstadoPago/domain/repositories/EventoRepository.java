@@ -1,11 +1,11 @@
 package com.logistica.VisualizarEstadoPago.domain.repositories;
 
-import com.logistica.VisualizarEstadoPago.domain.models.EventoTransaccion;
+import com.logistica.VisualizarEstadoPago.domain.models.VisualizarEstadoPagoEventoTransaccion;
 
 import java.util.Optional;
 import java.util.UUID;
 
 public interface EventoRepository {
-    Optional<EventoTransaccion> findById(UUID id);
-    EventoTransaccion save(EventoTransaccion eventoTransaccion);
+    Optional<VisualizarEstadoPagoEventoTransaccion> findById(UUID id);
+    VisualizarEstadoPagoEventoTransaccion save(VisualizarEstadoPagoEventoTransaccion eventoTransaccion);
 }

@@ -1,16 +1,16 @@
-package com.logistica.RegistrarEstadoPago.unit;
+﻿package com.logistica.RegistrarEstadoPago.unit;
 
 import com.logistica.RegistrarEstadoPago.domain.enums.EstadoEventoTransaccion;
-import com.logistica.RegistrarEstadoPago.domain.enums.EstadoPagoEnum;
-import com.logistica.RegistrarEstadoPago.domain.models.EstadoPago;
-import com.logistica.RegistrarEstadoPago.domain.models.EventoTransaccion;
+import com.logistica.RegistrarEstadoPago.domain.enums.RegistrarEstadoPagoEstadoPagoEnum;
+import com.logistica.RegistrarEstadoPago.domain.models.RegistrarEstadoPagoEstadoPago;
+import com.logistica.RegistrarEstadoPago.domain.models.RegistrarEstadoPagoEventoTransaccion;
 import com.logistica.RegistrarEstadoPago.domain.models.LiquidacionReferencia;
-import com.logistica.RegistrarEstadoPago.domain.models.Pago;
+import com.logistica.RegistrarEstadoPago.domain.models.RegistrarEstadoPagoPago;
 import com.logistica.RegistrarEstadoPago.infrastructure.adapters.PagoMapper;
-import com.logistica.RegistrarEstadoPago.infrastructure.persistence.entities.EstadoPagoEntity;
+import com.logistica.RegistrarEstadoPago.infrastructure.persistence.entities.RegistrarEstadoPagoEstadoPagoEntity;
 import com.logistica.RegistrarEstadoPago.infrastructure.persistence.entities.EventoTransaccionEntity;
 import com.logistica.RegistrarEstadoPago.infrastructure.persistence.entities.LiquidacionReferenciaEntity;
-import com.logistica.RegistrarEstadoPago.infrastructure.persistence.entities.PagoEntity;
+import com.logistica.RegistrarEstadoPago.infrastructure.persistence.entities.RegistrarEstadoPagoPagoEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -33,21 +33,21 @@ class PagoMapperTest {
     void pagoEntity_toDomain_mapeatodosLosCampos() {
         UUID idPago = UUID.randomUUID();
         UUID idLiquidacion = UUID.randomUUID();
-        PagoEntity entity = PagoEntity.builder()
+        RegistrarEstadoPagoPagoEntity entity = RegistrarEstadoPagoPagoEntity.builder()
                 .idPago(idPago)
                 .idLiquidacion(idLiquidacion)
-                .estadoActual(EstadoPagoEnum.EN_PROCESO)
+                .estadoActual(RegistrarEstadoPagoEstadoPagoEnum.EN_PROCESO)
                 .montoBase(new BigDecimal("1000.00"))
                 .montoNeto(new BigDecimal("900.00"))
                 .fechaUltimaActualizacion(Instant.now())
                 .ultimaSecuenciaProcesada(1L)
                 .build();
 
-        Pago domain = mapper.toDomain(entity);
+        RegistrarEstadoPagoPago domain = mapper.toDomain(entity);
 
         assertThat(domain.idPago()).isEqualTo(idPago);
         assertThat(domain.idLiquidacion()).isEqualTo(idLiquidacion);
-        assertThat(domain.estadoActual()).isEqualTo(EstadoPagoEnum.EN_PROCESO);
+        assertThat(domain.estadoActual()).isEqualTo(RegistrarEstadoPagoEstadoPagoEnum.EN_PROCESO);
         assertThat(domain.montoBase()).isEqualByComparingTo(new BigDecimal("1000.00"));
     }
 
@@ -55,14 +55,14 @@ class PagoMapperTest {
     void pago_toEntity_mapeatodosLosCampos() {
         UUID idPago = UUID.randomUUID();
         UUID idLiquidacion = UUID.randomUUID();
-        Pago domain = new Pago(idPago, null, new BigDecimal("500.00"), Instant.now(),
+        RegistrarEstadoPagoPago domain = new RegistrarEstadoPagoPago(idPago, null, new BigDecimal("500.00"), Instant.now(),
                 null, new BigDecimal("450.00"), idLiquidacion,
-                EstadoPagoEnum.PAGADO, Instant.now(), 2L);
+                RegistrarEstadoPagoEstadoPagoEnum.PAGADO, Instant.now(), 2L);
 
-        PagoEntity entity = mapper.toEntity(domain);
+        RegistrarEstadoPagoPagoEntity entity = mapper.toEntity(domain);
 
         assertThat(entity.getIdPago()).isEqualTo(idPago);
-        assertThat(entity.getEstadoActual()).isEqualTo(EstadoPagoEnum.PAGADO);
+        assertThat(entity.getEstadoActual()).isEqualTo(RegistrarEstadoPagoEstadoPagoEnum.PAGADO);
         assertThat(entity.getUltimaSecuenciaProcesada()).isEqualTo(2L);
     }
 
@@ -70,19 +70,19 @@ class PagoMapperTest {
     void estadoPagoEntity_toDomain_mapeatodosLosCampos() {
         UUID idEstado = UUID.randomUUID();
         UUID idPago = UUID.randomUUID();
-        EstadoPagoEntity entity = EstadoPagoEntity.builder()
+        RegistrarEstadoPagoEstadoPagoEntity entity = RegistrarEstadoPagoEstadoPagoEntity.builder()
                 .idEstadoPago(idEstado)
                 .idPago(idPago)
-                .estado(EstadoPagoEnum.PAGADO)
+                .estado(RegistrarEstadoPagoEstadoPagoEnum.PAGADO)
                 .fechaRegistro(Instant.now())
                 .secuenciaEvento(2L)
                 .build();
 
-        EstadoPago domain = mapper.toDomain(entity);
+        RegistrarEstadoPagoEstadoPago domain = mapper.toDomain(entity);
 
         assertThat(domain.idEstadoPago()).isEqualTo(idEstado);
         assertThat(domain.idPago()).isEqualTo(idPago);
-        assertThat(domain.estado()).isEqualTo(EstadoPagoEnum.PAGADO);
+        assertThat(domain.estado()).isEqualTo(RegistrarEstadoPagoEstadoPagoEnum.PAGADO);
     }
 
     @Test
@@ -98,12 +98,12 @@ class PagoMapperTest {
                 .fechaRecepcion(Instant.now())
                 .fechaEventoBanco(Instant.now())
                 .secuencia(1L)
-                .estadoSolicitado(EstadoPagoEnum.EN_PROCESO)
+                .estadoSolicitado(RegistrarEstadoPagoEstadoPagoEnum.EN_PROCESO)
                 .estadoProcesamiento(EstadoEventoTransaccion.PROCESADO)
                 .procesado(true)
                 .build();
 
-        EventoTransaccion domain = mapper.toDomain(entity);
+        RegistrarEstadoPagoEventoTransaccion domain = mapper.toDomain(entity);
 
         assertThat(domain.idEvento()).isEqualTo(idEvento);
         assertThat(domain.idTransaccionBanco()).isEqualTo("txn-001");

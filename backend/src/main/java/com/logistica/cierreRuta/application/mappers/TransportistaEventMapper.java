@@ -1,13 +1,13 @@
 package com.logistica.cierreRuta.application.mappers;
 
 import com.logistica.cierreRuta.application.dtos.request.ConductorEventDTO;
-import com.logistica.cierreRuta.domain.models.Transportista;
+import com.logistica.cierreRuta.domain.models.CierreRutaTransportista;
 import org.springframework.stereotype.Component;
 
 @Component
 public class TransportistaEventMapper {
 
-    public Transportista toDomain(ConductorEventDTO dto) {
+    public CierreRutaTransportista toDomain(ConductorEventDTO dto) {
         if (dto == null) {
             throw new IllegalArgumentException("Conductor es obligatorio en el evento");
         }
@@ -20,7 +20,7 @@ public class TransportistaEventMapper {
             throw new IllegalArgumentException("nombre del conductor es obligatorio en el evento");
         }
 
-        return Transportista.builder()
+        return CierreRutaTransportista.builder()
                 .transportistaId(dto.getConductorId())
                 .nombre(dto.getNombre() != null ? dto.getNombre().trim() : null)
                 .build();

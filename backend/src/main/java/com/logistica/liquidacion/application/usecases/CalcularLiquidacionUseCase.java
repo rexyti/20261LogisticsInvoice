@@ -1,13 +1,13 @@
 package com.logistica.liquidacion.application.usecases;
 
-import com.logistica.liquidacion.domain.exceptions.ContratoNotFoundException;
+import com.logistica.liquidacion.domain.exceptions.LiquidacionContratoNotFoundException;
 import com.logistica.liquidacion.domain.exceptions.LiquidacionDuplicadaException;
 import com.logistica.liquidacion.domain.models.AuditoriaLiquidacion;
-import com.logistica.liquidacion.domain.models.Contrato;
+import com.logistica.liquidacion.domain.models.LiquidacionContrato;
 import com.logistica.liquidacion.domain.models.Liquidacion;
 import com.logistica.liquidacion.domain.models.LiquidacionRuta;
 import com.logistica.liquidacion.domain.repositories.AuditoriaLiquidacionRepository;
-import com.logistica.liquidacion.domain.repositories.ContratoRepository;
+import com.logistica.liquidacion.domain.repositories.LiquidacionContratoRepository;
 import com.logistica.liquidacion.domain.repositories.LiquidacionRepository;
 import com.logistica.liquidacion.domain.strategies.LiquidacionStrategy;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +22,7 @@ import java.util.UUID;
 public class CalcularLiquidacionUseCase {
 
     private final LiquidacionRepository liquidacionRepository;
-    private final ContratoRepository  contratoRepository;
+    private final LiquidacionContratoRepository  contratoRepository;
     private final AuditoriaLiquidacionRepository auditoriaRepository;
     private final LiquidacionStrategyFactory strategyFactory;
 
@@ -38,8 +38,8 @@ public class CalcularLiquidacionUseCase {
         }
 
         // 2. Obtener el contrato desde la base de datos
-        Contrato contrato = contratoRepository.findById(idContrato)
-                .orElseThrow(() -> new ContratoNotFoundException(idContrato));
+        LiquidacionContrato contrato = contratoRepository.findById(idContrato)
+                .orElseThrow(() -> new LiquidacionContratoNotFoundException(idContrato));
 
         // 3. Validar duplicado
         if (liquidacionRepository.existsByIdRuta(ruta.getId())) {

@@ -1,8 +1,8 @@
 package com.logistica.RegistrarEstadoPago.infrastructure.adapters;
 
 import com.logistica.RegistrarEstadoPago.domain.models.LiquidacionReferencia;
-import com.logistica.RegistrarEstadoPago.domain.repositories.LiquidacionRepository;
-import com.logistica.RegistrarEstadoPago.infrastructure.persistence.repositories.LiquidacionJpaRepository;
+import com.logistica.RegistrarEstadoPago.domain.repositories.RegistrarEstadoPagoLiquidacionRepository;
+import com.logistica.RegistrarEstadoPago.infrastructure.persistence.repositories.RegistrarEstadoPagoLiquidacionJpaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -11,9 +11,9 @@ import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
-public class LiquidacionRepositoryAdapter implements LiquidacionRepository {
+public class LiquidacionRepositoryAdapter implements RegistrarEstadoPagoLiquidacionRepository {
 
-    private final LiquidacionJpaRepository liquidacionJpaRepository;
+    private final RegistrarEstadoPagoLiquidacionJpaRepository liquidacionJpaRepository;
     private final PagoMapper pagoMapper;
 
     @Override

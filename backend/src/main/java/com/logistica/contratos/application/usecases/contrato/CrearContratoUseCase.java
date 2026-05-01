@@ -5,11 +5,11 @@ import com.logistica.contratos.application.dtos.response.ContratoResponseDTO;
 import com.logistica.contratos.application.mappers.ContratoResponseMapper;
 import com.logistica.contratos.domain.exceptions.ContratoYaExisteException;
 import com.logistica.contratos.domain.exceptions.TransportistaNotFoundException;
-import com.logistica.contratos.domain.models.Contrato;
+import com.logistica.contratos.domain.models.ContratosContrato;
 import com.logistica.contratos.domain.models.Seguro;
-import com.logistica.contratos.domain.models.Transportista;
-import com.logistica.contratos.domain.repositories.ContratoRepository;
-import com.logistica.contratos.domain.repositories.TransportistaRepository;
+import com.logistica.contratos.domain.models.ContratosTransportista;
+import com.logistica.contratos.domain.repositories.ContratosContratoRepository;
+import com.logistica.contratos.domain.repositories.ContratosTransportistaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,8 +19,8 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class CrearContratoUseCase {
 
-    private final ContratoRepository contratoRepository;
-    private final TransportistaRepository transportistaRepository;
+    private final ContratosContratoRepository contratoRepository;
+    private final ContratosTransportistaRepository transportistaRepository;
     private final ContratoResponseMapper responseMapper;
 
     @Transactional
@@ -32,7 +32,7 @@ public class CrearContratoUseCase {
         }
 
         // Busca el transportista existente — no lo crea
-        Transportista transportista = transportistaRepository
+        ContratosTransportista transportista = transportistaRepository
                 .buscarPorId(dto.getTransportistaId())
                 .orElseThrow(() -> new TransportistaNotFoundException(
                         dto.getTransportistaId()));
@@ -44,8 +44,8 @@ public class CrearContratoUseCase {
                 .estado(dto.getSeguro().getEstado())
                 .build();
 
-        // Contrato.crear() valida fechas y precio condicional
-        Contrato contrato = Contrato.crear(
+        // ContratosContrato.crear() valida fechas y precio condicional
+        ContratosContrato contrato = ContratosContrato.crear(
                 dto.getIdContrato(),
                 dto.getTipoContrato(),
                 transportista,
@@ -58,7 +58,7 @@ public class CrearContratoUseCase {
                 seguro
         );
 
-        Contrato guardado = contratoRepository.guardar(contrato);
+        ContratosContrato guardado = contratoRepository.guardar(contrato);
         return responseMapper.toResponseDTO(guardado);
     }
 }

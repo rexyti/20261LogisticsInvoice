@@ -1,7 +1,7 @@
 package com.logistica.liquidacion.domain.strategies;
 
 import com.logistica.liquidacion.domain.enums.TipoContratacion;
-import com.logistica.liquidacion.domain.models.Contrato;
+import com.logistica.liquidacion.domain.models.LiquidacionContrato;
 import com.logistica.liquidacion.domain.models.LiquidacionRuta;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +16,7 @@ public class RecorridoCompletoStrategy implements LiquidacionStrategy {
     }
 
     @Override
-    public BigDecimal calcular(LiquidacionRuta ruta, Contrato contrato) {
+    public BigDecimal calcular(LiquidacionRuta ruta, LiquidacionContrato contrato) {
 
         validarContrato(contrato);
         validarRuta(ruta);
@@ -34,7 +34,7 @@ public class RecorridoCompletoStrategy implements LiquidacionStrategy {
         }
     }
 
-    private void validarContrato(Contrato contrato) {
+    private void validarContrato(LiquidacionContrato contrato) {
         if (contrato == null || !contrato.esRecorridoCompleto()) {
             throw new IllegalArgumentException("El contrato no es de tipo RECORRIDO_COMPLETO");
         }

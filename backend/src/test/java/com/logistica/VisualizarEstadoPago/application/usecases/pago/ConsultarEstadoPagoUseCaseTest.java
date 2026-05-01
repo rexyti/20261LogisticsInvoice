@@ -1,12 +1,12 @@
-package com.logistica.VisualizarEstadoPago.application.usecases.pago;
+﻿package com.logistica.VisualizarEstadoPago.application.usecases.pago;
 
-import com.logistica.VisualizarEstadoPago.application.dtos.response.EstadoPagoResponseDTO;
+import com.logistica.VisualizarEstadoPago.application.dtos.response.VisualizarEstadoPagoEstadoPagoResponseDTO;
 import com.logistica.VisualizarEstadoPago.application.usecases.pago.ConsultarEstadoPagoUseCase;
-import com.logistica.VisualizarEstadoPago.domain.enums.EstadoPagoEnum;
+import com.logistica.VisualizarEstadoPago.domain.enums.VisualizarEstadoPagoEstadoPagoEnum;
 import com.logistica.VisualizarEstadoPago.domain.exceptions.AccessDeniedPaymentException;
-import com.logistica.VisualizarEstadoPago.domain.exceptions.PagoNoEncontradoException;
-import com.logistica.VisualizarEstadoPago.domain.models.Pago;
-import com.logistica.VisualizarEstadoPago.domain.repositories.PagoRepository;
+import com.logistica.VisualizarEstadoPago.domain.exceptions.VisualizarEstadoPagoPagoNoEncontradoException;
+import com.logistica.VisualizarEstadoPago.domain.models.VisualizarEstadoPagoPago;
+import com.logistica.VisualizarEstadoPago.domain.repositories.VisualizarEstadoPagoPagoRepository;
 import com.logistica.VisualizarEstadoPago.domain.services.AuditoriaPagoService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,7 +26,7 @@ import static org.mockito.Mockito.when;
 class ConsultarEstadoPagoUseCaseTest {
 
     @Mock
-    private PagoRepository pagoRepository;
+    private VisualizarEstadoPagoPagoRepository pagoRepository;
 
     private ConsultarEstadoPagoUseCase consultarEstadoPagoUseCase;
 
@@ -40,16 +40,16 @@ class ConsultarEstadoPagoUseCaseTest {
     @Test
     void ejecutar_CuandoPagoExisteYEsDelUsuario_RetornaEstadoPagoDTO() {
         UUID pagoId = UUID.randomUUID();
-        Pago pago = new Pago(pagoId, USUARIO_ID, new BigDecimal("1000.00"),
+        VisualizarEstadoPagoPago pago = new VisualizarEstadoPagoPago(pagoId, USUARIO_ID, new BigDecimal("1000.00"),
                 LocalDateTime.now(), null, new BigDecimal("1000.00"),
-                UUID.randomUUID(), EstadoPagoEnum.PAGADO);
+                UUID.randomUUID(), VisualizarEstadoPagoEstadoPagoEnum.PAGADO);
         when(pagoRepository.findById(pagoId)).thenReturn(Optional.of(pago));
 
-        EstadoPagoResponseDTO result = consultarEstadoPagoUseCase.ejecutar(pagoId, USUARIO_ID);
+        VisualizarEstadoPagoEstadoPagoResponseDTO result = consultarEstadoPagoUseCase.ejecutar(pagoId, USUARIO_ID);
 
         assertNotNull(result);
         assertEquals(pagoId, result.getPagoId());
-        assertEquals(EstadoPagoEnum.PAGADO.name(), result.getEstado());
+        assertEquals(VisualizarEstadoPagoEstadoPagoEnum.PAGADO.name(), result.getEstado());
         assertEquals(pago.getMontoNeto(), result.getMonto());
     }
 
@@ -58,7 +58,7 @@ class ConsultarEstadoPagoUseCaseTest {
         UUID pagoId = UUID.randomUUID();
         when(pagoRepository.findById(pagoId)).thenReturn(Optional.empty());
 
-        assertThrows(PagoNoEncontradoException.class,
+        assertThrows(VisualizarEstadoPagoPagoNoEncontradoException.class,
                 () -> consultarEstadoPagoUseCase.ejecutar(pagoId, USUARIO_ID));
     }
 
@@ -66,9 +66,9 @@ class ConsultarEstadoPagoUseCaseTest {
     void ejecutar_CuandoPagoNoEsDelUsuario_LanzaAccessDeniedPaymentException() {
         UUID pagoId = UUID.randomUUID();
         UUID otroPropietario = UUID.fromString("22222222-2222-2222-2222-222222222222");
-        Pago pago = new Pago(pagoId, otroPropietario, new BigDecimal("1000.00"),
+        VisualizarEstadoPagoPago pago = new VisualizarEstadoPagoPago(pagoId, otroPropietario, new BigDecimal("1000.00"),
                 LocalDateTime.now(), null, new BigDecimal("1000.00"),
-                UUID.randomUUID(), EstadoPagoEnum.PAGADO);
+                UUID.randomUUID(), VisualizarEstadoPagoEstadoPagoEnum.PAGADO);
         when(pagoRepository.findById(pagoId)).thenReturn(Optional.of(pago));
 
         assertThrows(AccessDeniedPaymentException.class,

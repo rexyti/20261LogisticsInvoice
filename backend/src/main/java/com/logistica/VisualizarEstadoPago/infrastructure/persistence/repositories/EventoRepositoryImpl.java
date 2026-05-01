@@ -1,6 +1,6 @@
 package com.logistica.VisualizarEstadoPago.infrastructure.persistence.repositories;
 
-import com.logistica.VisualizarEstadoPago.domain.models.EventoTransaccion;
+import com.logistica.VisualizarEstadoPago.domain.models.VisualizarEstadoPagoEventoTransaccion;
 import com.logistica.VisualizarEstadoPago.domain.repositories.EventoRepository;
 import com.logistica.VisualizarEstadoPago.infrastructure.adapters.EventoMapper;
 import com.logistica.VisualizarEstadoPago.infrastructure.persistence.entities.EventoEntity;
@@ -20,12 +20,12 @@ public class EventoRepositoryImpl implements EventoRepository {
     private EventoMapper eventoMapper;
 
     @Override
-    public Optional<EventoTransaccion> findById(UUID id) {
+    public Optional<VisualizarEstadoPagoEventoTransaccion> findById(UUID id) {
         return jpaRepository.findById(id).map(eventoMapper::toDomain);
     }
 
     @Override
-    public EventoTransaccion save(EventoTransaccion eventoTransaccion) {
+    public VisualizarEstadoPagoEventoTransaccion save(VisualizarEstadoPagoEventoTransaccion eventoTransaccion) {
         EventoEntity entity = eventoMapper.toEntity(eventoTransaccion);
         EventoEntity savedEntity = jpaRepository.save(entity);
         return eventoMapper.toDomain(savedEntity);

@@ -1,28 +1,28 @@
 package com.logistica.VisualizarEstadoPago.infrastructure.adapters;
 
-import com.logistica.VisualizarEstadoPago.domain.models.EstadoPago;
-import com.logistica.VisualizarEstadoPago.infrastructure.persistence.entities.EstadoPagoEntity;
+import com.logistica.VisualizarEstadoPago.domain.models.VisualizarEstadoPagoEstadoPago;
+import com.logistica.VisualizarEstadoPago.infrastructure.persistence.entities.VisualizarEstadoPagoEstadoPagoEntity;
 import org.springframework.stereotype.Component;
 
 @Component
 public class EstadoPagoMapper {
 
-    public EstadoPago toDomain(EstadoPagoEntity entity) {
+    public VisualizarEstadoPagoEstadoPago toDomain(VisualizarEstadoPagoEstadoPagoEntity entity) {
         if (entity == null) {
             return null;
         }
-        return new EstadoPago(
+        return new VisualizarEstadoPagoEstadoPago(
                 entity.getId(),
                 entity.getPagoId(),
                 entity.getEstado()
         );
     }
 
-    public EstadoPagoEntity toEntity(EstadoPago domain) {
+    public VisualizarEstadoPagoEstadoPagoEntity toEntity(VisualizarEstadoPagoEstadoPago domain) {
         if (domain == null) {
             return null;
         }
-        return new EstadoPagoEntity(
+        return new VisualizarEstadoPagoEstadoPagoEntity(
                 domain.getId(),
                 domain.getPagoId(),
                 domain.getEstado()

@@ -3,12 +3,12 @@ package com.logistica.cierreRuta.application.usecases.ruta;
 import com.logistica.cierreRuta.application.dtos.request.RutaCerradaEventDTO;
 import com.logistica.cierreRuta.application.mappers.RutaEventMapper;
 import com.logistica.cierreRuta.domain.models.CierreRutaRuta;
-import com.logistica.cierreRuta.domain.models.Transportista;
+import com.logistica.cierreRuta.domain.models.CierreRutaTransportista;
 import com.logistica.cierreRuta.domain.ports.EventPublisher;
 import com.logistica.cierreRuta.domain.ports.TimeProvider;
 import com.logistica.cierreRuta.domain.repositories.RutaRepository;
 
-import com.logistica.cierreRuta.domain.repositories.TransportistaRepository;
+import com.logistica.cierreRuta.domain.repositories.CierreRutaTransportistaRepository;
 import com.logistica.cierreRuta.domain.services.ClasificacionRutaService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +23,7 @@ import java.util.UUID;
 public class ProcesarRutaCerradaUseCase {
 
     private final RutaRepository rutaRepository;
-    private final TransportistaRepository transportistaRepository;
+    private final CierreRutaTransportistaRepository transportistaRepository;
     private final RutaEventMapper rutaEventMapper;
     private final TimeProvider timeProvider;
     private final ClasificacionRutaService clasificacionRutaService;
@@ -47,10 +47,10 @@ public class ProcesarRutaCerradaUseCase {
         CierreRutaRuta ruta = rutaEventMapper.toDomain(evento);
 
 
-        Transportista transportista = ruta.getTransportista();
+        CierreRutaTransportista transportista = ruta.getTransportista();
 
 
-        Transportista existente = transportistaRepository
+        CierreRutaTransportista existente = transportistaRepository
                 .buscarPorTransportistaId(transportista.getTransportistaId())
                 .orElseGet(() -> transportistaRepository.guardar(transportista));
 

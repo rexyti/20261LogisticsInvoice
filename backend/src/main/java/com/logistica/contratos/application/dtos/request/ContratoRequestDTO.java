@@ -2,7 +2,7 @@ package com.logistica.contratos.application.dtos.request;
 
 import com.logistica.contratos.application.validators.ValidFechasContrato;
 import com.logistica.contratos.application.validators.ValidPrecioCondicional;
-import com.logistica.contratos.domain.enums.TipoVehiculo;
+import com.logistica.contratos.domain.enums.ContratosTipoVehiculo;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -36,7 +36,7 @@ public class ContratoRequestDTO {
     private BigDecimal precio;
 
     @NotNull(message = "El tipo de vehículo es obligatorio")
-    private TipoVehiculo tipoVehiculo;
+    private ContratosTipoVehiculo tipoVehiculo;
 
     @NotNull(message = "La fecha de inicio es obligatoria")
     private LocalDateTime fechaInicio;

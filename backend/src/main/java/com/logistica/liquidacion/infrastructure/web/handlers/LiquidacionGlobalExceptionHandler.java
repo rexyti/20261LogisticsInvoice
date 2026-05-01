@@ -1,6 +1,6 @@
 package com.logistica.liquidacion.infrastructure.web.handlers;
 
-import com.logistica.liquidacion.domain.exceptions.ContratoNotFoundException;
+import com.logistica.liquidacion.domain.exceptions.LiquidacionContratoNotFoundException;
 import com.logistica.liquidacion.domain.exceptions.LiquidacionDuplicadaException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
@@ -14,8 +14,8 @@ import java.time.OffsetDateTime;
 @RestControllerAdvice
 public class LiquidacionGlobalExceptionHandler {
 
-    @ExceptionHandler(ContratoNotFoundException.class)
-    public ResponseEntity<ProblemDetail> handleContratoNotFound(ContratoNotFoundException ex) {
+    @ExceptionHandler(LiquidacionContratoNotFoundException.class)
+    public ResponseEntity<ProblemDetail> handleContratoNotFound(LiquidacionContratoNotFoundException ex) {
         return buildResponse(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 

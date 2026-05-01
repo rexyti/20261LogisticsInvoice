@@ -1,6 +1,6 @@
 package com.logistica.RegistrarEstadoPago.application.dtos.request;
 
-import com.logistica.RegistrarEstadoPago.domain.enums.EstadoPagoEnum;
+import com.logistica.RegistrarEstadoPago.domain.enums.RegistrarEstadoPagoEstadoPagoEnum;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -13,7 +13,7 @@ public record EventoEstadoPagoRequestDTO(
         @NotBlank String idTransaccionBanco,
         @NotNull UUID idPago,
         @NotNull UUID idLiquidacion,
-        @NotNull EstadoPagoEnum estado,
+        @NotNull RegistrarEstadoPagoEstadoPagoEnum estado,
         @NotNull LocalDateTime fechaEvento,
         Long secuencia,
         Map<String, Object> payloadOriginal

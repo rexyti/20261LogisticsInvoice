@@ -1,14 +1,14 @@
-package com.logistica.RegistrarEstadoPago.infrastructure.controllers.web;
+﻿package com.logistica.RegistrarEstadoPago.infrastructure.controllers.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.logistica.RegistrarEstadoPago.application.dtos.response.EventoTransaccionResponseDTO;
 import com.logistica.RegistrarEstadoPago.application.dtos.response.PagoResponseDTO;
 import com.logistica.RegistrarEstadoPago.application.usecases.pago.ObtenerEstadoPagoUseCase;
 import com.logistica.RegistrarEstadoPago.application.usecases.pago.ObtenerEventosTransaccionUseCase;
-import com.logistica.RegistrarEstadoPago.infrastructure.web.controllers.PagoController;
+import com.logistica.RegistrarEstadoPago.infrastructure.web.controllers.RegistrarEstadoPagoPagoController;
 import com.logistica.RegistrarEstadoPago.domain.enums.EstadoEventoTransaccion;
-import com.logistica.RegistrarEstadoPago.domain.enums.EstadoPagoEnum;
-import com.logistica.RegistrarEstadoPago.exceptions.PagoNoEncontradoException;
+import com.logistica.RegistrarEstadoPago.domain.enums.RegistrarEstadoPagoEstadoPagoEnum;
+import com.logistica.RegistrarEstadoPago.exceptions.RegistrarEstadoPagoPagoNoEncontradoException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(PagoController.class)
+@WebMvcTest(RegistrarEstadoPagoPagoController.class)
 class PagoControllerTest {
 
     @Autowired
@@ -44,7 +44,7 @@ class PagoControllerTest {
     void get_estadoPago_existente_retorna200() throws Exception {
         UUID idPago = UUID.randomUUID();
         PagoResponseDTO response = new PagoResponseDTO(idPago, UUID.randomUUID(),
-                EstadoPagoEnum.PAGADO, Instant.now(), 2L);
+                RegistrarEstadoPagoEstadoPagoEnum.PAGADO, Instant.now(), 2L);
         when(obtenerEstadoPagoUseCase.obtenerEstadoPago(any())).thenReturn(response);
 
         mockMvc.perform(get("/api/v1/pagos/{idPago}/estado", idPago))
@@ -57,7 +57,7 @@ class PagoControllerTest {
     void get_estadoPago_pagoInexistente_retorna404() throws Exception {
         UUID idPago = UUID.randomUUID();
         when(obtenerEstadoPagoUseCase.obtenerEstadoPago(any()))
-                .thenThrow(new PagoNoEncontradoException(idPago.toString()));
+                .thenThrow(new RegistrarEstadoPagoPagoNoEncontradoException(idPago.toString()));
 
         mockMvc.perform(get("/api/v1/pagos/{idPago}/estado", idPago))
                 .andExpect(status().isNotFound());
@@ -69,7 +69,7 @@ class PagoControllerTest {
         UUID idLiquidacion = UUID.randomUUID();
         List<EventoTransaccionResponseDTO> eventos = List.of(
                 new EventoTransaccionResponseDTO(UUID.randomUUID(), "txn-001", idPago, idLiquidacion,
-                        EstadoPagoEnum.EN_PROCESO, EstadoEventoTransaccion.PROCESADO,
+                        RegistrarEstadoPagoEstadoPagoEnum.EN_PROCESO, EstadoEventoTransaccion.PROCESADO,
                         Instant.now(), Instant.now(), 1L, null)
         );
         when(obtenerEventosTransaccionUseCase.obtenerEventos(any())).thenReturn(eventos);

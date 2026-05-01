@@ -13,7 +13,7 @@ public record SincronizacionResultadoDTO(
 
     public static SincronizacionResultadoDTO noEncontrado(Long idPaquete) {
         return new SincronizacionResultadoDTO(idPaquete, null, null,
-                "PAQUETE_NO_ENCONTRADO", "Paquete no encontrado en el módulo de gestión");
+                "PAQUETE_NO_ENCONTRADO", "NovedadEstadoPaquetePaquete no encontrado en el módulo de gestión");
     }
 
     public static SincronizacionResultadoDTO estadoNoMapeado(Long idPaquete, String estadoRaw) {

@@ -3,7 +3,7 @@ package com.logistica.cierreRuta.domain.models;
 import com.logistica.cierreRuta.domain.enums.EstadoParada;
 import com.logistica.cierreRuta.domain.enums.EstadoProcesamiento;
 import com.logistica.cierreRuta.domain.enums.TipoAlertaRuta;
-import com.logistica.cierreRuta.domain.enums.TipoVehiculo;
+import com.logistica.cierreRuta.domain.enums.CierreRutaTipoVehiculo;
 import com.logistica.cierreRuta.domain.events.RutaCerradaProcesadaEvent;
 import com.logistica.cierreRuta.domain.exceptions.RutaInvalidaException;
 import com.logistica.cierreRuta.domain.ports.DomainEvent;
@@ -21,9 +21,9 @@ import java.util.UUID;
 public class CierreRutaRuta {
 
     private UUID rutaId;
-    private Transportista transportista;
+    private CierreRutaTransportista transportista;
     private UUID vehiculoId;
-    private TipoVehiculo tipoVehiculo;
+    private CierreRutaTipoVehiculo tipoVehiculo;
     private String modeloContrato;
     private LocalDateTime fechaInicioTransito;
     private LocalDateTime fechaCierre;
@@ -59,7 +59,7 @@ public class CierreRutaRuta {
         }
 
         if(transportista == null) {
-            throw new RutaInvalidaException("Transportista sin id");
+            throw new RutaInvalidaException("CierreRutaTransportista sin id");
         }
 
         if (paradas == null || paradas.isEmpty()) {
@@ -165,7 +165,7 @@ public class CierreRutaRuta {
         eventos.clear();
     }
 
-    public void asignarTransportista(Transportista transportista) {
+    public void asignarTransportista(CierreRutaTransportista transportista) {
         this.transportista = transportista;
     }
 }

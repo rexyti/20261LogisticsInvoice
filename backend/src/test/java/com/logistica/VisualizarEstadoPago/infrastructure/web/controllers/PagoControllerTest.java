@@ -1,13 +1,13 @@
-package com.logistica.VisualizarEstadoPago.infrastructure.web.controllers;
+﻿package com.logistica.VisualizarEstadoPago.infrastructure.web.controllers;
 
-import com.logistica.VisualizarEstadoPago.application.dtos.response.EstadoPagoResponseDTO;
+import com.logistica.VisualizarEstadoPago.application.dtos.response.VisualizarEstadoPagoEstadoPagoResponseDTO;
 import com.logistica.VisualizarEstadoPago.application.dtos.response.PagoListDTO;
 import com.logistica.VisualizarEstadoPago.application.usecases.pago.ConsultarEstadoPagoUseCase;
 import com.logistica.VisualizarEstadoPago.application.usecases.pago.ListarPagosUseCase;
-import com.logistica.VisualizarEstadoPago.infrastructure.web.controllers.PagoController;
-import com.logistica.VisualizarEstadoPago.domain.enums.EstadoPagoEnum;
+import com.logistica.VisualizarEstadoPago.infrastructure.web.controllers.VisualizarEstadoPagoPagoController;
+import com.logistica.VisualizarEstadoPago.domain.enums.VisualizarEstadoPagoEstadoPagoEnum;
 import com.logistica.VisualizarEstadoPago.domain.exceptions.AccessDeniedPaymentException;
-import com.logistica.VisualizarEstadoPago.domain.exceptions.PagoNoEncontradoException;
+import com.logistica.VisualizarEstadoPago.domain.exceptions.VisualizarEstadoPagoPagoNoEncontradoException;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(PagoController.class)
+@WebMvcTest(VisualizarEstadoPagoPagoController.class)
 class PagoControllerTest {
 
     private static final String USUARIO_UUID = "11111111-1111-1111-1111-111111111111";
@@ -45,8 +45,8 @@ class PagoControllerTest {
     @WithMockUser(username = USUARIO_UUID)
     void obtenerEstadoPago_CuandoPagoExiste_Retorna200() throws Exception {
         UUID pagoId = UUID.randomUUID();
-        EstadoPagoResponseDTO responseDTO = new EstadoPagoResponseDTO(
-                pagoId, EstadoPagoEnum.PAGADO.name(), LocalDateTime.now(),
+        VisualizarEstadoPagoEstadoPagoResponseDTO responseDTO = new VisualizarEstadoPagoEstadoPagoResponseDTO(
+                pagoId, VisualizarEstadoPagoEstadoPagoEnum.PAGADO.name(), LocalDateTime.now(),
                 new BigDecimal("1000.00"), null, UUID.randomUUID());
         when(consultarEstadoPagoUseCase.ejecutar(pagoId, USUARIO_ID)).thenReturn(responseDTO);
 
@@ -61,7 +61,7 @@ class PagoControllerTest {
     void obtenerEstadoPago_CuandoPagoNoExiste_Retorna404() throws Exception {
         UUID pagoId = UUID.randomUUID();
         when(consultarEstadoPagoUseCase.ejecutar(pagoId, USUARIO_ID))
-                .thenThrow(new PagoNoEncontradoException("Pago no encontrado"));
+                .thenThrow(new VisualizarEstadoPagoPagoNoEncontradoException("VisualizarEstadoPagoPago no encontrado"));
 
         mockMvc.perform(get("/api/pagos/{id}", pagoId))
                 .andExpect(status().isNotFound());
@@ -82,7 +82,7 @@ class PagoControllerTest {
     @WithMockUser(username = USUARIO_UUID)
     void listarPagos_CuandoUsuarioTienePagos_Retorna200ConLista() throws Exception {
         PagoListDTO dto = new PagoListDTO(UUID.randomUUID(), UUID.randomUUID(),
-                LocalDateTime.now(), new BigDecimal("500.00"), EstadoPagoEnum.PENDIENTE.name());
+                LocalDateTime.now(), new BigDecimal("500.00"), VisualizarEstadoPagoEstadoPagoEnum.PENDIENTE.name());
         when(listarPagosUseCase.ejecutar(USUARIO_ID)).thenReturn(List.of(dto));
 
         mockMvc.perform(get("/api/pagos"))

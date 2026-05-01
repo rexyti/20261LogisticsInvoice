@@ -1,12 +1,12 @@
 package com.logistica.NovedadEstadoPaquete.domain.repositories;
 
-import com.logistica.NovedadEstadoPaquete.domain.models.Paquete;
+import com.logistica.NovedadEstadoPaquete.domain.models.NovedadEstadoPaquetePaquete;
 
 import java.util.Optional;
 
 public interface PaqueteRepository {
 
-    Optional<Paquete> findByIdPaquete(Long idPaquete);
+    Optional<NovedadEstadoPaquetePaquete> findByIdPaquete(Long idPaquete);
 
-    Paquete save(Paquete paquete);
+    NovedadEstadoPaquetePaquete save(NovedadEstadoPaquetePaquete paquete);
 }

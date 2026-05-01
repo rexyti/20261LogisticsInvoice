@@ -1,12 +1,12 @@
-package com.logistica.RegistrarEstadoPago.integration;
+﻿package com.logistica.RegistrarEstadoPago.integration;
 
-import com.logistica.RegistrarEstadoPago.domain.enums.EstadoPagoEnum;
+import com.logistica.RegistrarEstadoPago.domain.enums.RegistrarEstadoPagoEstadoPagoEnum;
 import com.logistica.RegistrarEstadoPago.infrastructure.persistence.entities.LiquidacionReferenciaEntity;
-import com.logistica.RegistrarEstadoPago.infrastructure.persistence.entities.PagoEntity;
-import com.logistica.RegistrarEstadoPago.infrastructure.persistence.repositories.EstadoPagoJpaRepository;
+import com.logistica.RegistrarEstadoPago.infrastructure.persistence.entities.RegistrarEstadoPagoPagoEntity;
+import com.logistica.RegistrarEstadoPago.infrastructure.persistence.repositories.RegistrarEstadoPagoEstadoPagoJpaRepository;
 import com.logistica.RegistrarEstadoPago.infrastructure.persistence.repositories.EventoTransaccionJpaRepository;
-import com.logistica.RegistrarEstadoPago.infrastructure.persistence.repositories.LiquidacionJpaRepository;
-import com.logistica.RegistrarEstadoPago.infrastructure.persistence.repositories.PagoJpaRepository;
+import com.logistica.RegistrarEstadoPago.infrastructure.persistence.repositories.RegistrarEstadoPagoLiquidacionJpaRepository;
+import com.logistica.RegistrarEstadoPago.infrastructure.persistence.repositories.RegistrarEstadoPagoPagoJpaRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +26,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ActualizacionEstadoPagoIntegrationTest {
 
     @Autowired private TestRestTemplate restTemplate;
-    @Autowired private LiquidacionJpaRepository liquidacionJpaRepository;
-    @Autowired private PagoJpaRepository pagoJpaRepository;
-    @Autowired private EstadoPagoJpaRepository estadoPagoJpaRepository;
+    @Autowired private RegistrarEstadoPagoLiquidacionJpaRepository liquidacionJpaRepository;
+    @Autowired private RegistrarEstadoPagoPagoJpaRepository pagoJpaRepository;
+    @Autowired private RegistrarEstadoPagoEstadoPagoJpaRepository estadoPagoJpaRepository;
     @Autowired private EventoTransaccionJpaRepository eventoTransaccionJpaRepository;
 
     private UUID idLiquidacion;
@@ -45,10 +45,10 @@ class ActualizacionEstadoPagoIntegrationTest {
         idPago = UUID.randomUUID();
         liquidacionJpaRepository.save(new LiquidacionReferenciaEntity(idLiquidacion));
 
-        pagoJpaRepository.save(PagoEntity.builder()
+        pagoJpaRepository.save(RegistrarEstadoPagoPagoEntity.builder()
                 .idPago(idPago)
                 .idLiquidacion(idLiquidacion)
-                .estadoActual(EstadoPagoEnum.EN_PROCESO)
+                .estadoActual(RegistrarEstadoPagoEstadoPagoEnum.EN_PROCESO)
                 .fechaUltimaActualizacion(Instant.now())
                 .ultimaSecuenciaProcesada(1L)
                 .build());
@@ -77,8 +77,8 @@ class ActualizacionEstadoPagoIntegrationTest {
 
         Thread.sleep(1000);
 
-        PagoEntity pago = pagoJpaRepository.findById(idPago).orElseThrow();
-        assertThat(pago.getEstadoActual()).isEqualTo(EstadoPagoEnum.PAGADO);
+        RegistrarEstadoPagoPagoEntity pago = pagoJpaRepository.findById(idPago).orElseThrow();
+        assertThat(pago.getEstadoActual()).isEqualTo(RegistrarEstadoPagoEstadoPagoEnum.PAGADO);
         assertThat(pago.getUltimaSecuenciaProcesada()).isEqualTo(2L);
         assertThat(estadoPagoJpaRepository.findByIdPagoOrderByFechaRegistroDesc(idPago)).isNotEmpty();
     }
@@ -106,8 +106,8 @@ class ActualizacionEstadoPagoIntegrationTest {
 
         Thread.sleep(1000);
 
-        PagoEntity pago = pagoJpaRepository.findById(idPago).orElseThrow();
-        assertThat(pago.getEstadoActual()).isEqualTo(EstadoPagoEnum.RECHAZADO);
+        RegistrarEstadoPagoPagoEntity pago = pagoJpaRepository.findById(idPago).orElseThrow();
+        assertThat(pago.getEstadoActual()).isEqualTo(RegistrarEstadoPagoEstadoPagoEnum.RECHAZADO);
     }
 
     private HttpHeaders jsonHeaders() {

@@ -1,12 +1,12 @@
 package com.logistica.cierreRuta.infrastructure.adapters;
 
-import com.logistica.cierreRuta.domain.enums.TipoVehiculo;
+import com.logistica.cierreRuta.domain.enums.CierreRutaTipoVehiculo;
 import com.logistica.cierreRuta.domain.models.Parada;
 import com.logistica.cierreRuta.domain.models.CierreRutaRuta;
 import com.logistica.cierreRuta.infrastructure.persistence.entities.ParadaEntity;
 import com.logistica.cierreRuta.infrastructure.persistence.entities.RutaEntity;
-import com.logistica.cierreRuta.infrastructure.persistence.entities.TransportistaEntity;
-import com.logistica.cierreRuta.infrastructure.persistence.repositories.TransportistaJpaRepository;
+import com.logistica.cierreRuta.infrastructure.persistence.entities.CierreRutaTransportistaEntity;
+import com.logistica.cierreRuta.infrastructure.persistence.repositories.CierreRutaTransportistaJpaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +17,7 @@ import java.util.List;
 public class CierreRutaRutaMapper {
 
     private final TransportistaMapper transportistaMapper;
-    private final TransportistaJpaRepository transportistaJpaRepository;
+    private final CierreRutaTransportistaJpaRepository transportistaJpaRepository;
     private final ParadaMapper paradaMapper;
 
     public RutaEntity toEntity(CierreRutaRuta ruta) {
@@ -29,10 +29,10 @@ public class CierreRutaRutaMapper {
         }
 
         // Recuperar la entidad gestionada por JPA para que el FK se resuelva correctamente.
-        TransportistaEntity transportistaEntity = transportistaJpaRepository
+        CierreRutaTransportistaEntity transportistaEntity = transportistaJpaRepository
                 .findByConductorId(ruta.getTransportista().getTransportistaId())
                 .orElseThrow(() -> new IllegalStateException(
-                        "Transportista no encontrado en BD para transportistaId: "
+                        "CierreRutaTransportista no encontrado en BD para transportistaId: "
                         + ruta.getTransportista().getTransportistaId()));
 
         RutaEntity rutaEntity = RutaEntity.builder()
@@ -68,7 +68,7 @@ public class CierreRutaRutaMapper {
                 .rutaId(entity.getRutaId())
                 .transportista(transportistaMapper.toDomain(entity.getTransportista()))
                 .vehiculoId(entity.getVehiculoId())
-                .tipoVehiculo(entity.getTipoVehiculo() != null ? TipoVehiculo.valueOf(entity.getTipoVehiculo()) : null)
+                .tipoVehiculo(entity.getTipoVehiculo() != null ? CierreRutaTipoVehiculo.valueOf(entity.getTipoVehiculo()) : null)
                 .modeloContrato(entity.getModeloContrato())
                 .fechaInicioTransito(entity.getFechaInicioTransito())
                 .fechaCierre(entity.getFechaCierre())

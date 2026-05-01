@@ -1,6 +1,6 @@
 package com.logistica.RegistrarEstadoPago.application.dtos.response;
 
-import com.logistica.RegistrarEstadoPago.domain.enums.EstadoPagoEnum;
+import com.logistica.RegistrarEstadoPago.domain.enums.RegistrarEstadoPagoEstadoPagoEnum;
 
 import java.time.Instant;
 import java.util.UUID;
@@ -8,7 +8,7 @@ import java.util.UUID;
 public record PagoResponseDTO(
         UUID idPago,
         UUID idLiquidacion,
-        EstadoPagoEnum estado,
+        RegistrarEstadoPagoEstadoPagoEnum estado,
         Instant fechaUltimaActualizacion,
         Long ultimaSecuenciaProcesada
 ) {}

@@ -1,7 +1,7 @@
 package com.logistica.RegistrarEstadoPago.infrastructure.persistence.entities;
 
 import com.logistica.RegistrarEstadoPago.domain.enums.EstadoEventoTransaccion;
-import com.logistica.RegistrarEstadoPago.domain.enums.EstadoPagoEnum;
+import com.logistica.RegistrarEstadoPago.domain.enums.RegistrarEstadoPagoEstadoPagoEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -51,7 +51,7 @@ public class EventoTransaccionEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "estado_solicitado")
-    private EstadoPagoEnum estadoSolicitado;
+    private RegistrarEstadoPagoEstadoPagoEnum estadoSolicitado;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "estado_procesamiento", nullable = false)

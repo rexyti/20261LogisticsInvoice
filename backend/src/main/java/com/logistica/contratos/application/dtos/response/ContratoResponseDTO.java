@@ -1,7 +1,7 @@
 package com.logistica.contratos.application.dtos.response;
 
 
-import com.logistica.contratos.domain.enums.TipoVehiculo;
+import com.logistica.contratos.domain.enums.ContratosTipoVehiculo;
 import lombok.Builder;
 import lombok.Getter;
 import java.math.BigDecimal;
@@ -14,8 +14,8 @@ public class ContratoResponseDTO {
     private UUID id;
     private String idContrato;
     private String tipoContrato;
-    private TransportistaResponseDTO transportista;
-    private TipoVehiculo tipoVehiculo;
+    private ContratosTransportistaResponseDTO transportista;
+    private ContratosTipoVehiculo tipoVehiculo;
     private Boolean esPorParada;
     private BigDecimal precioParadas;
     private BigDecimal precio;

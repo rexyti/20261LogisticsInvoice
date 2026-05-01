@@ -1,16 +1,16 @@
 package com.logistica.VisualizarEstadoPago.application.mappers;
 
-import com.logistica.VisualizarEstadoPago.application.dtos.response.EstadoPagoResponseDTO;
+import com.logistica.VisualizarEstadoPago.application.dtos.response.VisualizarEstadoPagoEstadoPagoResponseDTO;
 import com.logistica.VisualizarEstadoPago.application.dtos.response.PagoListDTO;
-import com.logistica.VisualizarEstadoPago.domain.models.Pago;
+import com.logistica.VisualizarEstadoPago.domain.models.VisualizarEstadoPagoPago;
 
 public class PagoDtoMapper {
 
-    public EstadoPagoResponseDTO toEstadoPagoResponseDTO(Pago pago) {
+    public VisualizarEstadoPagoEstadoPagoResponseDTO toEstadoPagoResponseDTO(VisualizarEstadoPagoPago pago) {
         if (pago == null) {
             return null;
         }
-        return new EstadoPagoResponseDTO(
+        return new VisualizarEstadoPagoEstadoPagoResponseDTO(
                 pago.getId(),
                 pago.getEstado().name(),
                 pago.getFecha(),
@@ -20,7 +20,7 @@ public class PagoDtoMapper {
         );
     }
 
-    public PagoListDTO toPagoListDTO(Pago pago) {
+    public PagoListDTO toPagoListDTO(VisualizarEstadoPagoPago pago) {
         if (pago == null) {
             return null;
         }

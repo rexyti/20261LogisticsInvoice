@@ -1,4 +1,4 @@
-package com.logistica.application.usecases;
+﻿package com.logistica.application.usecases;
 
 import com.logistica.cierreRuta.application.dtos.request.ConductorEventDTO;
 import com.logistica.cierreRuta.application.dtos.request.ParadaEventDTO;
@@ -13,12 +13,12 @@ import com.logistica.cierreRuta.domain.events.RutaCerradaProcesadaEvent;
 import com.logistica.cierreRuta.domain.exceptions.RutaInvalidaException;
 import com.logistica.cierreRuta.domain.models.Parada;
 import com.logistica.cierreRuta.domain.models.CierreRutaRuta;
-import com.logistica.cierreRuta.domain.models.Transportista;
+import com.logistica.cierreRuta.domain.models.CierreRutaTransportista;
 import com.logistica.cierreRuta.domain.ports.DomainEvent;
 import com.logistica.cierreRuta.domain.ports.EventPublisher;
 import com.logistica.cierreRuta.domain.ports.TimeProvider;
 import com.logistica.cierreRuta.domain.repositories.RutaRepository;
-import com.logistica.cierreRuta.domain.repositories.TransportistaRepository;
+import com.logistica.cierreRuta.domain.repositories.CierreRutaTransportistaRepository;
 import com.logistica.cierreRuta.domain.services.ClasificacionRutaService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -41,7 +41,7 @@ import static org.mockito.Mockito.*;
 class ProcesarRutaCerradaUseCaseTest {
 
     @Mock private RutaRepository rutaRepository;
-    @Mock private TransportistaRepository transportistaRepository;
+    @Mock private CierreRutaTransportistaRepository transportistaRepository;
     @Mock private RutaEventMapper rutaEventMapper;
     @Mock private TimeProvider timeProvider;
     @Mock private ClasificacionRutaService clasificacionRutaService;
@@ -85,7 +85,7 @@ class ProcesarRutaCerradaUseCaseTest {
         RutaCerradaEventDTO dto = buildEvento(rutaId, "Recorrido completo", "MOTO",
                 List.of(parada("EXITOSA", null), parada("EXITOSA", null)));
 
-        Transportista transportista = transportista();
+        CierreRutaTransportista transportista = transportista();
         CierreRutaRuta rutaMock = mock(CierreRutaRuta.class);
         when(rutaMock.getTransportista()).thenReturn(transportista);
         when(rutaMock.obtenerEventos()).thenReturn(List.of());
@@ -105,14 +105,14 @@ class ProcesarRutaCerradaUseCaseTest {
         verifyNoInteractions(eventPublisher);
     }
 
-    // ── T013b: Transportista nuevo se guarda ──────────────────────────────────
+    // ── T013b: CierreRutaTransportista nuevo se guarda ──────────────────────────────────
     @Test
     @DisplayName("Debe guardar el transportista si no existe en el sistema")
     void debe_guardar_transportista_si_no_existe() {
         UUID rutaId = UUID.randomUUID();
         RutaCerradaEventDTO dto = buildEvento(rutaId, "Recorrido completo", "MOTO", List.of());
 
-        Transportista transportista = transportista();
+        CierreRutaTransportista transportista = transportista();
         CierreRutaRuta rutaMock = mock(CierreRutaRuta.class);
         when(rutaMock.getTransportista()).thenReturn(transportista);
         when(rutaMock.obtenerEventos()).thenReturn(List.of());
@@ -140,7 +140,7 @@ class ProcesarRutaCerradaUseCaseTest {
                 rutaId, EstadoProcesamiento.REQUIERE_REVISION,
                 TipoAlertaRuta.CONTRATO_NULO, "Contrato no encontrado", LocalDateTime.now());
 
-        Transportista transportista = transportista();
+        CierreRutaTransportista transportista = transportista();
         CierreRutaRuta rutaMock = mock(CierreRutaRuta.class);
         when(rutaMock.getTransportista()).thenReturn(transportista);
         when(rutaMock.obtenerEventos()).thenReturn(List.of(eventoEsperado));
@@ -168,7 +168,7 @@ class ProcesarRutaCerradaUseCaseTest {
                 rutaId, EstadoProcesamiento.REQUIERE_REVISION,
                 TipoAlertaRuta.VEHICULO_DESCONOCIDO, "Vehículo desconocido", LocalDateTime.now());
 
-        Transportista transportista = transportista();
+        CierreRutaTransportista transportista = transportista();
         CierreRutaRuta rutaMock = mock(CierreRutaRuta.class);
         when(rutaMock.getTransportista()).thenReturn(transportista);
         when(rutaMock.obtenerEventos()).thenReturn(List.of(eventoEsperado));
@@ -198,7 +198,7 @@ class ProcesarRutaCerradaUseCaseTest {
     @DisplayName("Debe lanzar RutaInvalidaException si una parada no tiene paqueteId")
     void debe_lanzar_excepcion_si_parada_no_tiene_paqueteId() {
         UUID rutaId = UUID.randomUUID();
-        Transportista transportista = transportista();
+        CierreRutaTransportista transportista = transportista();
 
         Parada paradaSinPaquete = Parada.builder()
                 .paradaId(UUID.randomUUID())
@@ -227,8 +227,8 @@ class ProcesarRutaCerradaUseCaseTest {
 
     // ── Helpers ───────────────────────────────────────────────────────────────
 
-    private Transportista transportista() {
-        return Transportista.builder()
+    private CierreRutaTransportista transportista() {
+        return CierreRutaTransportista.builder()
                 .transportistaId(UUID.randomUUID())
                 .nombre("Conductor Test")
                 .build();

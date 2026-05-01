@@ -1,8 +1,8 @@
-package com.logistica.VisualizarEstadoPago.integration;
+﻿package com.logistica.VisualizarEstadoPago.integration;
 
-import com.logistica.VisualizarEstadoPago.domain.enums.EstadoPagoEnum;
-import com.logistica.VisualizarEstadoPago.infrastructure.persistence.entities.PagoEntity;
-import com.logistica.VisualizarEstadoPago.infrastructure.persistence.repositories.PagoJpaRepository;
+import com.logistica.VisualizarEstadoPago.domain.enums.VisualizarEstadoPagoEstadoPagoEnum;
+import com.logistica.VisualizarEstadoPago.infrastructure.persistence.entities.VisualizarEstadoPagoPagoEntity;
+import com.logistica.VisualizarEstadoPago.infrastructure.persistence.repositories.VisualizarEstadoPagoPagoJpaRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ class VisualizarEstadoPagoIntegrationTest {
     private MockMvc mockMvc;
 
     @Autowired
-    private PagoJpaRepository pagoJpaRepository;
+    private VisualizarEstadoPagoPagoJpaRepository pagoJpaRepository;
 
     private static final String USUARIO_UUID = "11111111-1111-1111-1111-111111111111";
     private static final UUID USUARIO_ID = UUID.fromString(USUARIO_UUID);
@@ -43,7 +43,7 @@ class VisualizarEstadoPagoIntegrationTest {
     @Test
     @WithMockUser(username = USUARIO_UUID)
     void obtenerEstadoPago_CuandoPagoEsDelUsuario_Retorna200() throws Exception {
-        PagoEntity saved = pagoJpaRepository.saveAndFlush(pagoConEstado(USUARIO_ID, EstadoPagoEnum.PAGADO));
+        VisualizarEstadoPagoPagoEntity saved = pagoJpaRepository.saveAndFlush(pagoConEstado(USUARIO_ID, VisualizarEstadoPagoEstadoPagoEnum.PAGADO));
 
         mockMvc.perform(get("/api/pagos/{id}", saved.getId()))
                 .andExpect(status().isOk())
@@ -55,7 +55,7 @@ class VisualizarEstadoPagoIntegrationTest {
     @Test
     @WithMockUser(username = USUARIO_UUID)
     void obtenerEstadoPago_CuandoEstadoPendiente_MuestraEstadoCorrecto() throws Exception {
-        PagoEntity saved = pagoJpaRepository.saveAndFlush(pagoConEstado(USUARIO_ID, EstadoPagoEnum.PENDIENTE));
+        VisualizarEstadoPagoPagoEntity saved = pagoJpaRepository.saveAndFlush(pagoConEstado(USUARIO_ID, VisualizarEstadoPagoEstadoPagoEnum.PENDIENTE));
 
         mockMvc.perform(get("/api/pagos/{id}", saved.getId()))
                 .andExpect(status().isOk())
@@ -65,7 +65,7 @@ class VisualizarEstadoPagoIntegrationTest {
     @Test
     @WithMockUser(username = USUARIO_UUID)
     void obtenerEstadoPago_CuandoEstadoRechazado_MuestraEstadoCorrecto() throws Exception {
-        PagoEntity saved = pagoJpaRepository.saveAndFlush(pagoConEstado(USUARIO_ID, EstadoPagoEnum.RECHAZADO));
+        VisualizarEstadoPagoPagoEntity saved = pagoJpaRepository.saveAndFlush(pagoConEstado(USUARIO_ID, VisualizarEstadoPagoEstadoPagoEnum.RECHAZADO));
 
         mockMvc.perform(get("/api/pagos/{id}", saved.getId()))
                 .andExpect(status().isOk())
@@ -83,7 +83,7 @@ class VisualizarEstadoPagoIntegrationTest {
     @Test
     @WithMockUser(username = OTRO_USUARIO_UUID)
     void obtenerEstadoPago_CuandoUsuarioNoEsPropietario_Retorna403() throws Exception {
-        PagoEntity saved = pagoJpaRepository.saveAndFlush(pagoConEstado(USUARIO_ID, EstadoPagoEnum.PAGADO));
+        VisualizarEstadoPagoPagoEntity saved = pagoJpaRepository.saveAndFlush(pagoConEstado(USUARIO_ID, VisualizarEstadoPagoEstadoPagoEnum.PAGADO));
 
         mockMvc.perform(get("/api/pagos/{id}", saved.getId()))
                 .andExpect(status().isForbidden())
@@ -93,17 +93,17 @@ class VisualizarEstadoPagoIntegrationTest {
     @Test
     @WithMockUser(username = USUARIO_UUID)
     void listarPagos_RetornaUnicamentePagosDelUsuarioAutenticado() throws Exception {
-        pagoJpaRepository.saveAndFlush(pagoConEstado(USUARIO_ID, EstadoPagoEnum.PAGADO));
-        pagoJpaRepository.saveAndFlush(pagoConEstado(USUARIO_ID, EstadoPagoEnum.PENDIENTE));
-        pagoJpaRepository.saveAndFlush(pagoConEstado(UUID.fromString(OTRO_USUARIO_UUID), EstadoPagoEnum.PAGADO));
+        pagoJpaRepository.saveAndFlush(pagoConEstado(USUARIO_ID, VisualizarEstadoPagoEstadoPagoEnum.PAGADO));
+        pagoJpaRepository.saveAndFlush(pagoConEstado(USUARIO_ID, VisualizarEstadoPagoEstadoPagoEnum.PENDIENTE));
+        pagoJpaRepository.saveAndFlush(pagoConEstado(UUID.fromString(OTRO_USUARIO_UUID), VisualizarEstadoPagoEstadoPagoEnum.PAGADO));
 
         mockMvc.perform(get("/api/pagos"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.length()").value(2));
     }
 
-    private PagoEntity pagoConEstado(UUID usuarioId, EstadoPagoEnum estado) {
-        PagoEntity entity = new PagoEntity();
+    private VisualizarEstadoPagoPagoEntity pagoConEstado(UUID usuarioId, VisualizarEstadoPagoEstadoPagoEnum estado) {
+        VisualizarEstadoPagoPagoEntity entity = new VisualizarEstadoPagoPagoEntity();
         entity.setUsuarioId(usuarioId);
         entity.setMontoBase(new BigDecimal("1000.00"));
         entity.setMontoNeto(new BigDecimal("900.00"));

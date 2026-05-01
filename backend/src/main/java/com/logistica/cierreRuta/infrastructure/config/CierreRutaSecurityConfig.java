@@ -12,7 +12,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class CierreRutaSecurityConfig {
 
     @Bean
-    public SecurityFilterChain CierreRutaSecurityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain cierreRutaSecurityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth.anyRequest().permitAll());

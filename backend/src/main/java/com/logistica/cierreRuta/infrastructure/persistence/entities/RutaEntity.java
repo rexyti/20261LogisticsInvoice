@@ -30,7 +30,7 @@ public class RutaEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "transportista_id", nullable = false)
-    private TransportistaEntity transportista;
+    private CierreRutaTransportistaEntity transportista;
 
     @Column(name = "vehiculo_id")
     private UUID vehiculoId;

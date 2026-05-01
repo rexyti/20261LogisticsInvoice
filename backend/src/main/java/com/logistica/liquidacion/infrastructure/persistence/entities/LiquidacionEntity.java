@@ -22,7 +22,7 @@ public class LiquidacionEntity extends BaseEntity {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_contrato", nullable = false)
-    private ContratoEntity contrato;
+    private LiquidacionContratoEntity contrato;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 50)

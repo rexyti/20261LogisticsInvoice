@@ -3,7 +3,7 @@ package com.logistica.liquidacion.infrastructure.persistence.mapper;
 import com.logistica.liquidacion.application.dtos.response.AjusteResponseDTO;
 import com.logistica.liquidacion.application.dtos.response.LiquidacionResponseDTO;
 import com.logistica.liquidacion.domain.models.Liquidacion;
-import com.logistica.liquidacion.infrastructure.persistence.entities.ContratoEntity;
+import com.logistica.liquidacion.infrastructure.persistence.entities.LiquidacionContratoEntity;
 import com.logistica.liquidacion.infrastructure.persistence.entities.LiquidacionEntity;
 import org.springframework.stereotype.Component;
 
@@ -26,7 +26,7 @@ public class LiquidacionMapper {
         entity.setIdRuta(model.getIdRuta());
         
         if (model.getIdContrato() != null) {
-            ContratoEntity contrato = new ContratoEntity();
+            LiquidacionContratoEntity contrato = new LiquidacionContratoEntity();
             contrato.setId(model.getIdContrato());
             entity.setContrato(contrato);
         }

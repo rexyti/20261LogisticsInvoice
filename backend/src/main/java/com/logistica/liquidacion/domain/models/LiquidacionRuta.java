@@ -14,7 +14,7 @@ public class LiquidacionRuta {
     private final UUID id;
     private final OffsetDateTime fechaInicio;
     private final OffsetDateTime fechaCierre;
-    private final List<Paquete> paquetes;
+    private final List<LiquidacionPaquete> paquetes;
 
     public static class LiquidacionRutaBuilder {
         public LiquidacionRuta build() {
@@ -43,7 +43,7 @@ public class LiquidacionRuta {
         }
     }
 
-    private LiquidacionRuta(UUID id, OffsetDateTime fechaInicio, OffsetDateTime fechaCierre, List<Paquete> paquetes) {
+    private LiquidacionRuta(UUID id, OffsetDateTime fechaInicio, OffsetDateTime fechaCierre, List<LiquidacionPaquete> paquetes) {
         this.id = id;
         this.fechaInicio = fechaInicio;
         this.fechaCierre = fechaCierre;
@@ -59,23 +59,23 @@ public class LiquidacionRuta {
     }
 
     public long paquetesEntregados() {
-        return paquetes.stream().filter(Paquete::esEntregado).count();
+        return paquetes.stream().filter(LiquidacionPaquete::esEntregado).count();
     }
 
     public long paquetesFallidosCliente() {
-        return paquetes.stream().filter(Paquete::esFallidoCliente).count();
+        return paquetes.stream().filter(LiquidacionPaquete::esFallidoCliente).count();
     }
 
     public long paquetesFallidosTransportista() {
-        return paquetes.stream().filter(Paquete::esFallidoTransportista).count();
+        return paquetes.stream().filter(LiquidacionPaquete::esFallidoTransportista).count();
     }
-    public List<Paquete> obtenerPaquetesValidos() {
+    public List<LiquidacionPaquete> obtenerPaquetesValidos() {
         return paquetes.stream()
-                .filter(Paquete::tieneReglaDePagoAplicable)
+                .filter(LiquidacionPaquete::tieneReglaDePagoAplicable)
                 .toList();
     }
 
     public boolean fueCompletada() {
-        return tienePaquetes() && paquetes.stream().allMatch(Paquete::esEntregado);
+        return tienePaquetes() && paquetes.stream().allMatch(LiquidacionPaquete::esEntregado);
     }
 }

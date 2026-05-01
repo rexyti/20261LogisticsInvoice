@@ -1,9 +1,9 @@
-package com.logistica.domain.strategies;
+﻿package com.logistica.domain.strategies;
 
-import com.logistica.liquidacion.domain.enums.EstadoPaquete;
+import com.logistica.liquidacion.domain.enums.LiquidacionEstadoPaquete;
 import com.logistica.liquidacion.domain.enums.TipoContratacion;
-import com.logistica.liquidacion.domain.models.Contrato;
-import com.logistica.liquidacion.domain.models.Paquete;
+import com.logistica.liquidacion.domain.models.LiquidacionContrato;
+import com.logistica.liquidacion.domain.models.LiquidacionPaquete;
 import com.logistica.liquidacion.domain.models.LiquidacionRuta;
 import com.logistica.liquidacion.domain.strategies.PorParadaStrategy;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,12 +19,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class PorParadaStrategyTest {
 
     private PorParadaStrategy strategy;
-    private Contrato contrato;
+    private LiquidacionContrato contrato;
 
     @BeforeEach
     void setUp() {
         strategy = new PorParadaStrategy();
-        contrato = Contrato.builder()
+        contrato = LiquidacionContrato.builder()
                 .id(UUID.randomUUID())
                 .tipoContratacion(TipoContratacion.POR_PARADA)
                 .tarifa(new BigDecimal("10.00"))
@@ -38,8 +38,8 @@ class PorParadaStrategyTest {
                 .fechaInicio(OffsetDateTime.now().minusHours(1))
                 .fechaCierre(OffsetDateTime.now())
                 .paquetes(Arrays.asList(
-                        Paquete.builder().id(UUID.randomUUID()).estadoFinal(EstadoPaquete.ENTREGADO).build(),
-                        Paquete.builder().id(UUID.randomUUID()).estadoFinal(EstadoPaquete.ENTREGADO).build()
+                        LiquidacionPaquete.builder().id(UUID.randomUUID()).estadoFinal(LiquidacionEstadoPaquete.ENTREGADO).build(),
+                        LiquidacionPaquete.builder().id(UUID.randomUUID()).estadoFinal(LiquidacionEstadoPaquete.ENTREGADO).build()
                 ))
                 .build();
         
@@ -54,8 +54,8 @@ class PorParadaStrategyTest {
                 .fechaInicio(OffsetDateTime.now().minusHours(1))
                 .fechaCierre(OffsetDateTime.now())
                 .paquetes(Arrays.asList(
-                        Paquete.builder().id(UUID.randomUUID()).estadoFinal(EstadoPaquete.FALLIDO_CLIENTE).build(),
-                        Paquete.builder().id(UUID.randomUUID()).estadoFinal(EstadoPaquete.FALLIDO_CLIENTE).build()
+                        LiquidacionPaquete.builder().id(UUID.randomUUID()).estadoFinal(LiquidacionEstadoPaquete.FALLIDO_CLIENTE).build(),
+                        LiquidacionPaquete.builder().id(UUID.randomUUID()).estadoFinal(LiquidacionEstadoPaquete.FALLIDO_CLIENTE).build()
                 ))
                 .build();
         
@@ -71,7 +71,7 @@ class PorParadaStrategyTest {
                 .fechaInicio(OffsetDateTime.now().minusHours(1))
                 .fechaCierre(OffsetDateTime.now())
                 .paquetes(Arrays.asList(
-                        Paquete.builder().id(UUID.randomUUID()).estadoFinal(EstadoPaquete.FALLIDO_TRANSPORTISTA).build()
+                        LiquidacionPaquete.builder().id(UUID.randomUUID()).estadoFinal(LiquidacionEstadoPaquete.FALLIDO_TRANSPORTISTA).build()
                 ))
                 .build();
         
@@ -86,8 +86,8 @@ class PorParadaStrategyTest {
                 .fechaInicio(OffsetDateTime.now().minusHours(1))
                 .fechaCierre(OffsetDateTime.now())
                 .paquetes(Arrays.asList(
-                        Paquete.builder().id(UUID.randomUUID()).estadoFinal(EstadoPaquete.ENTREGADO).build(), // 10
-                        Paquete.builder().id(UUID.randomUUID()).estadoFinal(EstadoPaquete.FALLIDO_CLIENTE).build() // 5
+                        LiquidacionPaquete.builder().id(UUID.randomUUID()).estadoFinal(LiquidacionEstadoPaquete.ENTREGADO).build(), // 10
+                        LiquidacionPaquete.builder().id(UUID.randomUUID()).estadoFinal(LiquidacionEstadoPaquete.FALLIDO_CLIENTE).build() // 5
                 ))
                 .build();
         
@@ -109,7 +109,7 @@ class PorParadaStrategyTest {
 
     @Test
     void testCalcularConContratoInvalidoLanzaExcepcion() {
-        Contrato contratoInvalido = Contrato.builder()
+        LiquidacionContrato contratoInvalido = LiquidacionContrato.builder()
                 .id(UUID.randomUUID())
                 .tipoContratacion(TipoContratacion.RECORRIDO_COMPLETO)
                 .tarifa(new BigDecimal("100.00"))
@@ -119,7 +119,7 @@ class PorParadaStrategyTest {
                 .id(UUID.randomUUID())
                 .fechaInicio(OffsetDateTime.now().minusHours(1))
                 .fechaCierre(OffsetDateTime.now())
-                .paquetes(Arrays.asList(Paquete.builder().id(UUID.randomUUID()).estadoFinal(EstadoPaquete.ENTREGADO).build()))
+                .paquetes(Arrays.asList(LiquidacionPaquete.builder().id(UUID.randomUUID()).estadoFinal(LiquidacionEstadoPaquete.ENTREGADO).build()))
                 .build();
 
         assertThrows(IllegalArgumentException.class, () -> strategy.calcular(ruta, contratoInvalido));

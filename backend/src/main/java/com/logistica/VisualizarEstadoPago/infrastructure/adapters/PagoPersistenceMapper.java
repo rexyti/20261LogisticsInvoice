@@ -1,17 +1,17 @@
 package com.logistica.VisualizarEstadoPago.infrastructure.adapters;
 
-import com.logistica.VisualizarEstadoPago.domain.models.Pago;
-import com.logistica.VisualizarEstadoPago.infrastructure.persistence.entities.PagoEntity;
+import com.logistica.VisualizarEstadoPago.domain.models.VisualizarEstadoPagoPago;
+import com.logistica.VisualizarEstadoPago.infrastructure.persistence.entities.VisualizarEstadoPagoPagoEntity;
 import org.springframework.stereotype.Component;
 
 @Component
 public class PagoPersistenceMapper {
 
-    public Pago toDomain(PagoEntity entity) {
+    public VisualizarEstadoPagoPago toDomain(VisualizarEstadoPagoPagoEntity entity) {
         if (entity == null) {
             return null;
         }
-        return new Pago(
+        return new VisualizarEstadoPagoPago(
                 entity.getId(),
                 entity.getUsuarioId(),
                 entity.getMontoBase(),
@@ -23,11 +23,11 @@ public class PagoPersistenceMapper {
         );
     }
 
-    public PagoEntity toEntity(Pago domain) {
+    public VisualizarEstadoPagoPagoEntity toEntity(VisualizarEstadoPagoPago domain) {
         if (domain == null) {
             return null;
         }
-        return new PagoEntity(
+        return new VisualizarEstadoPagoPagoEntity(
                 domain.getId(),
                 domain.getUsuarioId(),
                 domain.getMontoBase(),

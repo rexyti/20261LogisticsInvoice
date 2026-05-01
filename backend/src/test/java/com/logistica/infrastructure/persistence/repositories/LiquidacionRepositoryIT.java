@@ -1,8 +1,8 @@
-package com.logistica.infrastructure.persistence.repositories;
+﻿package com.logistica.infrastructure.persistence.repositories;
 
 import com.logistica.liquidacion.domain.enums.EstadoLiquidacion;
 import com.logistica.liquidacion.domain.enums.TipoContratacion;
-import com.logistica.liquidacion.infrastructure.persistence.entities.ContratoEntity;
+import com.logistica.liquidacion.infrastructure.persistence.entities.LiquidacionContratoEntity;
 import com.logistica.liquidacion.infrastructure.persistence.entities.LiquidacionEntity;
 import com.logistica.liquidacion.infrastructure.persistence.repositories.LiquidacionJpaRepository;
 import org.junit.jupiter.api.DisplayName;
@@ -32,7 +32,7 @@ class LiquidacionRepositoryIT extends AbstractRepositoryIT {
     @DisplayName("Debe guardar y encontrar una liquidación por su ID con relación OneToOne a Contrato")
     void shouldSaveAndFindByIdWithOneToOneContrato() {
         // Given: Un contrato persistido
-        ContratoEntity contrato = createContrato();
+        LiquidacionContratoEntity contrato = createContrato();
         entityManager.persist(contrato);
 
         // Given: Una entidad liquidación válida
@@ -56,7 +56,7 @@ class LiquidacionRepositoryIT extends AbstractRepositoryIT {
     @DisplayName("Debe fallar al intentar asociar el mismo contrato a dos liquidaciones (Restricción OneToOne)")
     void shouldFailWhenSameContratoIsUsedInTwoLiquidaciones() {
         // Given: Un contrato y una liquidación ya persistida
-        ContratoEntity contrato = createContrato();
+        LiquidacionContratoEntity contrato = createContrato();
         entityManager.persist(contrato);
         
         LiquidacionEntity liq1 = createLiquidacion(UUID.randomUUID(), contrato);
@@ -72,15 +72,15 @@ class LiquidacionRepositoryIT extends AbstractRepositoryIT {
 
     // --- Helpers de Creación (Clean Code) ---
 
-    private ContratoEntity createContrato() {
-        ContratoEntity contrato = new ContratoEntity();
+    private LiquidacionContratoEntity createContrato() {
+        LiquidacionContratoEntity contrato = new LiquidacionContratoEntity();
         contrato.setId(UUID.randomUUID());
         contrato.setTipoContratacion(TipoContratacion.POR_PARADA);
         contrato.setTarifa(new BigDecimal("10.0000"));
         return contrato;
     }
 
-    private LiquidacionEntity createLiquidacion(UUID rutaId, ContratoEntity contrato) {
+    private LiquidacionEntity createLiquidacion(UUID rutaId, LiquidacionContratoEntity contrato) {
         LiquidacionEntity entity = new LiquidacionEntity();
         entity.setId(UUID.randomUUID());
         entity.setIdRuta(rutaId);

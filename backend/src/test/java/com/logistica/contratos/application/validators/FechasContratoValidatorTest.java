@@ -1,8 +1,8 @@
-package com.logistica.contratos.application.validators;
+﻿package com.logistica.contratos.application.validators;
 
 import com.logistica.contratos.application.dtos.request.ContratoRequestDTO;
 import com.logistica.contratos.application.dtos.request.SeguroRequestDTO;
-import com.logistica.contratos.domain.enums.TipoVehiculo;
+import com.logistica.contratos.domain.enums.ContratosTipoVehiculo;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
@@ -39,7 +39,7 @@ class FechasContratoValidatorTest {
         dto.setTransportistaId(UUID.randomUUID());
         dto.setEsPorParada(true);
         dto.setPrecioParadas(new BigDecimal("15.50"));
-        dto.setTipoVehiculo(TipoVehiculo.VAN);
+        dto.setTipoVehiculo(ContratosTipoVehiculo.VAN);
         dto.setFechaInicio(LocalDateTime.of(2026, 1, 1, 0, 0));
         dto.setFechaFinal(LocalDateTime.of(2026, 12, 31, 0, 0));
         dto.setSeguro(seguro);

@@ -1,4 +1,4 @@
-package com.logistica.infrastructure.web.controllers;
+﻿package com.logistica.infrastructure.web.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.logistica.liquidacion.application.dtos.request.CierreRutaEventDTO;
@@ -6,7 +6,7 @@ import com.logistica.liquidacion.application.dtos.request.PaqueteDTO;
 import com.logistica.liquidacion.application.dtos.response.LiquidacionResponseDTO;
 import com.logistica.liquidacion.application.usecases.CalcularLiquidacionUseCase;
 import com.logistica.liquidacion.domain.enums.EstadoLiquidacion;
-import com.logistica.liquidacion.domain.enums.EstadoPaquete;
+import com.logistica.liquidacion.domain.enums.LiquidacionEstadoPaquete;
 import com.logistica.liquidacion.domain.models.Liquidacion;
 import com.logistica.liquidacion.domain.models.LiquidacionRuta;
 import com.logistica.liquidacion.infrastructure.config.JwtAuthenticationFilter;
@@ -188,7 +188,7 @@ class EventoControllerTest {
     private static CierreRutaEventDTO buildEventDTO() {
         PaqueteDTO paquete = new PaqueteDTO();
         paquete.setId(UUID.fromString("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"));
-        paquete.setEstadoFinal(EstadoPaquete.ENTREGADO);
+        paquete.setEstadoFinal(LiquidacionEstadoPaquete.ENTREGADO);
 
         CierreRutaEventDTO dto = new CierreRutaEventDTO();
         dto.setIdRuta(RUTA_ID);

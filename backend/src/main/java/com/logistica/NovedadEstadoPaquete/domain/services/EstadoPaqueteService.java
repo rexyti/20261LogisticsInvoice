@@ -1,6 +1,6 @@
 package com.logistica.NovedadEstadoPaquete.domain.services;
 
-import com.logistica.NovedadEstadoPaquete.domain.enums.EstadoPaquete;
+import com.logistica.NovedadEstadoPaquete.domain.enums.NovedadEstadoPaqueteEstadoPaquete;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -8,11 +8,11 @@ import java.util.Optional;
 @Service
 public class EstadoPaqueteService {
 
-    public Optional<EstadoPaquete> resolverEstado(String estadoRaw) {
-        return EstadoPaquete.fromString(estadoRaw);
+    public Optional<NovedadEstadoPaqueteEstadoPaquete> resolverEstado(String estadoRaw) {
+        return NovedadEstadoPaqueteEstadoPaquete.fromString(estadoRaw);
     }
 
-    public int calcularPorcentajePago(EstadoPaquete estado) {
+    public int calcularPorcentajePago(NovedadEstadoPaqueteEstadoPaquete estado) {
         return estado.getPorcentajePago();
     }
 }

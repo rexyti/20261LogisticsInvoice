@@ -2,14 +2,14 @@ package com.logistica.contratos.application.mappers;
 
 import com.logistica.contratos.application.dtos.response.ContratoResponseDTO;
 import com.logistica.contratos.application.dtos.response.SeguroResponseDTO;
-import com.logistica.contratos.application.dtos.response.TransportistaResponseDTO;
-import com.logistica.contratos.domain.models.Contrato;
+import com.logistica.contratos.application.dtos.response.ContratosTransportistaResponseDTO;
+import com.logistica.contratos.domain.models.ContratosContrato;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ContratoResponseMapper {
 
-    public ContratoResponseDTO toResponseDTO(Contrato contrato) {
+    public ContratoResponseDTO toResponseDTO(ContratosContrato contrato) {
         return ContratoResponseDTO.builder()
                 .id(contrato.getId())
                 .idContrato(contrato.getIdContrato())
@@ -25,15 +25,15 @@ public class ContratoResponseMapper {
                 .build();
     }
 
-    private TransportistaResponseDTO mapTransportista(Contrato contrato) {
+    private ContratosTransportistaResponseDTO mapTransportista(ContratosContrato contrato) {
         if (contrato.getTransportista() == null) return null;
-        return TransportistaResponseDTO.builder()
+        return ContratosTransportistaResponseDTO.builder()
                 .transportistaId(contrato.getTransportista().getTransportistaId())
                 .nombre(contrato.getTransportista().getNombre())
                 .build();
     }
 
-    private SeguroResponseDTO mapSeguro(Contrato contrato) {
+    private SeguroResponseDTO mapSeguro(ContratosContrato contrato) {
         if (contrato.getSeguro() == null) return null;
         return SeguroResponseDTO.builder()
                 .id(contrato.getSeguro().getIdSeguro())

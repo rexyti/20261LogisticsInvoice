@@ -1,6 +1,6 @@
 package com.logistica.liquidacion.application.dtos.request;
 
-import com.logistica.liquidacion.domain.enums.EstadoPaquete;
+import com.logistica.liquidacion.domain.enums.LiquidacionEstadoPaquete;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import java.util.UUID;
@@ -12,7 +12,7 @@ public class PaqueteDTO {
     private UUID id;
 
     @NotNull
-    private EstadoPaquete estadoFinal;
+    private LiquidacionEstadoPaquete estadoFinal;
 
     private String novedades;
 }

@@ -3,10 +3,10 @@ package com.logistica.NovedadEstadoPaquete.application.usecases.paquete;
 import com.logistica.NovedadEstadoPaquete.application.dtos.response.SincronizacionResultadoDTO;
 import com.logistica.NovedadEstadoPaquete.application.ports.PackageStatusGateway;
 import com.logistica.NovedadEstadoPaquete.application.ports.PackageStatusResult;
-import com.logistica.NovedadEstadoPaquete.domain.enums.EstadoPaquete;
+import com.logistica.NovedadEstadoPaquete.domain.enums.NovedadEstadoPaqueteEstadoPaquete;
 import com.logistica.NovedadEstadoPaquete.domain.models.HistorialEstado;
 import com.logistica.NovedadEstadoPaquete.domain.models.LogSincronizacion;
-import com.logistica.NovedadEstadoPaquete.domain.models.Paquete;
+import com.logistica.NovedadEstadoPaquete.domain.models.NovedadEstadoPaquetePaquete;
 import com.logistica.NovedadEstadoPaquete.domain.repositories.HistorialRepository;
 import com.logistica.NovedadEstadoPaquete.domain.repositories.LogSincronizacionRepository;
 import com.logistica.NovedadEstadoPaquete.domain.repositories.PaqueteRepository;
@@ -46,7 +46,7 @@ public class SincronizarPaqueteUseCase {
         }
 
         if (resultado.paqueteNoEncontrado()) {
-            log.warn("Paquete no encontrado en módulo de gestión idPaquete={}", idPaquete);
+            log.warn("NovedadEstadoPaquetePaquete no encontrado en módulo de gestión idPaquete={}", idPaquete);
             return SincronizacionResultadoDTO.noEncontrado(idPaquete);
         }
 
@@ -55,13 +55,13 @@ public class SincronizarPaqueteUseCase {
             return SincronizacionResultadoDTO.error(idPaquete, resultado.codigoRespuestaHTTP());
         }
 
-        Optional<EstadoPaquete> estadoOpt = estadoPaqueteService.resolverEstado(resultado.estadoRaw());
+        Optional<NovedadEstadoPaqueteEstadoPaquete> estadoOpt = estadoPaqueteService.resolverEstado(resultado.estadoRaw());
         if (estadoOpt.isEmpty()) {
             log.warn("Estado no mapeado '{}' para idPaquete={}", resultado.estadoRaw(), idPaquete);
             return SincronizacionResultadoDTO.estadoNoMapeado(idPaquete, resultado.estadoRaw());
         }
 
-        EstadoPaquete estado = estadoOpt.get();
+        NovedadEstadoPaqueteEstadoPaquete estado = estadoOpt.get();
         actualizarEstadoPaquete(idPaquete, idRuta, estado.name());
         historialRepository.save(new HistorialEstado(null, idPaquete, estado.name(), LocalDateTime.now()));
 
@@ -92,8 +92,8 @@ public class SincronizarPaqueteUseCase {
     }
 
     private void actualizarEstadoPaquete(Long idPaquete, Long idRuta, String estado) {
-        Paquete paquete = paqueteRepository.findByIdPaquete(idPaquete)
-                .orElse(new Paquete(idPaquete, idRuta, null, null));
+        NovedadEstadoPaquetePaquete paquete = paqueteRepository.findByIdPaquete(idPaquete)
+                .orElse(new NovedadEstadoPaquetePaquete(idPaquete, idRuta, null, null));
         paquete.setIdRuta(idRuta);
         paquete.setEstadoActual(estado);
         paquete.setUpdatedAt(LocalDateTime.now());

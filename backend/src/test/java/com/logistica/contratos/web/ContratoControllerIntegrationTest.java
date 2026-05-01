@@ -1,11 +1,11 @@
-package com.logistica.contratos.web;
+﻿package com.logistica.contratos.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.logistica.contratos.application.dtos.request.ContratoRequestDTO;
 import com.logistica.contratos.application.dtos.request.SeguroRequestDTO;
-import com.logistica.contratos.domain.enums.TipoVehiculo;
-import com.logistica.contratos.infrastructure.persistence.entities.TransportistaEntity;
-import com.logistica.contratos.infrastructure.persistence.repositories.TransportistaJpaRepository;
+import com.logistica.contratos.domain.enums.ContratosTipoVehiculo;
+import com.logistica.contratos.infrastructure.persistence.entities.ContratosTransportistaEntity;
+import com.logistica.contratos.infrastructure.persistence.repositories.ContratosTransportistaJpaRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -39,14 +39,14 @@ class ContratoControllerIntegrationTest {
     private ObjectMapper objectMapper;
 
     @Autowired
-    private TransportistaJpaRepository transportistaJpaRepository;
+    private ContratosTransportistaJpaRepository transportistaJpaRepository;
 
     private UUID transportistaId;
 
     @BeforeEach
     void setUp() {
-        TransportistaEntity transportista = TransportistaEntity.builder()
-                .nombre("Test Transportista")
+        ContratosTransportistaEntity transportista = ContratosTransportistaEntity.builder()
+                .nombre("Test ContratosTransportista")
                 .build();
         transportistaId = transportistaJpaRepository.save(transportista).getIdTransportista();
     }
@@ -62,7 +62,7 @@ class ContratoControllerIntegrationTest {
         dto.setTransportistaId(transportistaId);
         dto.setEsPorParada(true);
         dto.setPrecioParadas(new BigDecimal("18.00"));
-        dto.setTipoVehiculo(TipoVehiculo.VAN);
+        dto.setTipoVehiculo(ContratosTipoVehiculo.VAN);
         dto.setFechaInicio(LocalDateTime.of(2026, 1, 1, 0, 0));
         dto.setFechaFinal(LocalDateTime.of(2026, 12, 31, 0, 0));
         dto.setSeguro(seguro);

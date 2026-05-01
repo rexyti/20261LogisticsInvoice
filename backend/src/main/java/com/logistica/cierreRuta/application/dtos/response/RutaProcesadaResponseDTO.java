@@ -27,7 +27,7 @@ public class RutaProcesadaResponseDTO {
 
     private LocalDateTime fechaCierre;
 
-    private TransportistaResponseDTO transportista;
+    private CierreRutaTransportistaResponseDTO transportista;
 
     @Builder.Default
     private List<ParadaResponseDTO> paradas = List.of();

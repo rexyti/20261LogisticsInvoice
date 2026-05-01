@@ -1,15 +1,15 @@
-package com.logistica.RegistrarEstadoPago.integration;
+﻿package com.logistica.RegistrarEstadoPago.integration;
 
 import com.logistica.RegistrarEstadoPago.domain.enums.EstadoEventoTransaccion;
-import com.logistica.RegistrarEstadoPago.domain.enums.EstadoPagoEnum;
-import com.logistica.RegistrarEstadoPago.infrastructure.persistence.entities.EstadoPagoEntity;
+import com.logistica.RegistrarEstadoPago.domain.enums.RegistrarEstadoPagoEstadoPagoEnum;
+import com.logistica.RegistrarEstadoPago.infrastructure.persistence.entities.RegistrarEstadoPagoEstadoPagoEntity;
 import com.logistica.RegistrarEstadoPago.infrastructure.persistence.entities.EventoTransaccionEntity;
 import com.logistica.RegistrarEstadoPago.infrastructure.persistence.entities.LiquidacionReferenciaEntity;
-import com.logistica.RegistrarEstadoPago.infrastructure.persistence.entities.PagoEntity;
-import com.logistica.RegistrarEstadoPago.infrastructure.persistence.repositories.EstadoPagoJpaRepository;
+import com.logistica.RegistrarEstadoPago.infrastructure.persistence.entities.RegistrarEstadoPagoPagoEntity;
+import com.logistica.RegistrarEstadoPago.infrastructure.persistence.repositories.RegistrarEstadoPagoEstadoPagoJpaRepository;
 import com.logistica.RegistrarEstadoPago.infrastructure.persistence.repositories.EventoTransaccionJpaRepository;
-import com.logistica.RegistrarEstadoPago.infrastructure.persistence.repositories.LiquidacionJpaRepository;
-import com.logistica.RegistrarEstadoPago.infrastructure.persistence.repositories.PagoJpaRepository;
+import com.logistica.RegistrarEstadoPago.infrastructure.persistence.repositories.RegistrarEstadoPagoLiquidacionJpaRepository;
+import com.logistica.RegistrarEstadoPago.infrastructure.persistence.repositories.RegistrarEstadoPagoPagoJpaRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +29,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 class IdempotenciaEventoPagoIntegrationTest {
 
     @Autowired private TestRestTemplate restTemplate;
-    @Autowired private LiquidacionJpaRepository liquidacionJpaRepository;
-    @Autowired private PagoJpaRepository pagoJpaRepository;
-    @Autowired private EstadoPagoJpaRepository estadoPagoJpaRepository;
+    @Autowired private RegistrarEstadoPagoLiquidacionJpaRepository liquidacionJpaRepository;
+    @Autowired private RegistrarEstadoPagoPagoJpaRepository pagoJpaRepository;
+    @Autowired private RegistrarEstadoPagoEstadoPagoJpaRepository estadoPagoJpaRepository;
     @Autowired private EventoTransaccionJpaRepository eventoTransaccionJpaRepository;
 
     private UUID idLiquidacion;
@@ -84,19 +84,19 @@ class IdempotenciaEventoPagoIntegrationTest {
 
         Thread.sleep(1000);
 
-        // No debe crearse un nuevo EstadoPago
-        List<EstadoPagoEntity> estadosDespues = estadoPagoJpaRepository
+        // No debe crearse un nuevo RegistrarEstadoPagoEstadoPago
+        List<RegistrarEstadoPagoEstadoPagoEntity> estadosDespues = estadoPagoJpaRepository
                 .findByIdPagoOrderByFechaRegistroDesc(idPago);
         assertThat(estadosDespues).hasSize(estadosAntesDelDuplicado);
 
-        // No debe crearse un nuevo EventoTransaccion (duplicado ignorado silenciosamente)
+        // No debe crearse un nuevo RegistrarEstadoPagoEventoTransaccion (duplicado ignorado silenciosamente)
         List<EventoTransaccionEntity> eventosDespues = eventoTransaccionJpaRepository
                 .findByIdPagoOrderByFechaRecepcionAsc(idPago);
         assertThat(eventosDespues).hasSize(eventosAntesDuplicado);
 
         // El pago debe mantenerse en EN_PROCESO
-        PagoEntity pago = pagoJpaRepository.findById(idPago).orElseThrow();
-        assertThat(pago.getEstadoActual()).isEqualTo(EstadoPagoEnum.EN_PROCESO);
+        RegistrarEstadoPagoPagoEntity pago = pagoJpaRepository.findById(idPago).orElseThrow();
+        assertThat(pago.getEstadoActual()).isEqualTo(RegistrarEstadoPagoEstadoPagoEnum.EN_PROCESO);
 
         // El evento original debe estar marcado como PROCESADO
         assertThat(eventosDespues.get(0).getEstadoProcesamiento())

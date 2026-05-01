@@ -2,7 +2,7 @@ package com.logistica.NovedadEstadoPaquete.infrastructure.persistence.mapper;
 
 import com.logistica.NovedadEstadoPaquete.domain.models.HistorialEstado;
 import com.logistica.NovedadEstadoPaquete.domain.models.LogSincronizacion;
-import com.logistica.NovedadEstadoPaquete.domain.models.Paquete;
+import com.logistica.NovedadEstadoPaquete.domain.models.NovedadEstadoPaquetePaquete;
 import com.logistica.NovedadEstadoPaquete.infrastructure.persistence.entities.HistorialEstadoEntity;
 import com.logistica.NovedadEstadoPaquete.infrastructure.persistence.entities.LogSincronizacionEntity;
 import com.logistica.NovedadEstadoPaquete.infrastructure.persistence.entities.PaqueteEntity;
@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class PaqueteEntityMapper {
 
-    public Paquete toDomain(PaqueteEntity entity) {
-        return new Paquete(
+    public NovedadEstadoPaquetePaquete toDomain(PaqueteEntity entity) {
+        return new NovedadEstadoPaquetePaquete(
                 entity.getIdPaquete(),
                 entity.getIdRuta(),
                 entity.getEstadoActual(),
@@ -20,7 +20,7 @@ public class PaqueteEntityMapper {
         );
     }
 
-    public PaqueteEntity toEntity(Paquete domain) {
+    public PaqueteEntity toEntity(NovedadEstadoPaquetePaquete domain) {
         return new PaqueteEntity(
                 domain.getIdPaquete(),
                 domain.getIdRuta(),

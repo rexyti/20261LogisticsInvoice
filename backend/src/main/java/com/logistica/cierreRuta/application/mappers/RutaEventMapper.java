@@ -1,10 +1,10 @@
 package com.logistica.cierreRuta.application.mappers;
 
 import com.logistica.cierreRuta.application.dtos.request.RutaCerradaEventDTO;
-import com.logistica.cierreRuta.domain.enums.TipoVehiculo;
+import com.logistica.cierreRuta.domain.enums.CierreRutaTipoVehiculo;
 import com.logistica.cierreRuta.domain.models.Parada;
 import com.logistica.cierreRuta.domain.models.CierreRutaRuta;
-import com.logistica.cierreRuta.domain.models.Transportista;
+import com.logistica.cierreRuta.domain.models.CierreRutaTransportista;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -55,7 +55,7 @@ public class RutaEventMapper {
                 .toList();
     }
 
-    private Transportista mapTransportista(RutaCerradaEventDTO dto) {
+    private CierreRutaTransportista mapTransportista(RutaCerradaEventDTO dto) {
         if (dto.getConductor() == null){
             throw new IllegalArgumentException("El conductor es obligatorio");
         }
@@ -67,12 +67,12 @@ public class RutaEventMapper {
         return dto.getVehiculo().getVehiculoId();
     }
 
-    private TipoVehiculo mapTipoVehiculo(RutaCerradaEventDTO dto) {
+    private CierreRutaTipoVehiculo mapTipoVehiculo(RutaCerradaEventDTO dto) {
         if (dto.getVehiculo() == null || dto.getVehiculo().getTipo() == null) {
             return null;
         }
 
-        return TipoVehiculo.from(dto.getVehiculo().getTipo());
+        return CierreRutaTipoVehiculo.from(dto.getVehiculo().getTipo());
     }
 
     private String mapModeloContrato(RutaCerradaEventDTO dto) {

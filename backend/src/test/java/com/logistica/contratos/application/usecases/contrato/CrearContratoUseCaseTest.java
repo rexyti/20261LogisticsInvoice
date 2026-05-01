@@ -1,18 +1,18 @@
-package com.logistica.contratos.application.usecases.contrato;
+﻿package com.logistica.contratos.application.usecases.contrato;
 
 import com.logistica.contratos.application.dtos.request.ContratoRequestDTO;
 import com.logistica.contratos.application.dtos.request.SeguroRequestDTO;
 import com.logistica.contratos.application.dtos.response.ContratoResponseDTO;
 import com.logistica.contratos.application.mappers.ContratoResponseMapper;
 import com.logistica.contratos.application.usecases.contrato.CrearContratoUseCase;
-import com.logistica.contratos.domain.enums.TipoVehiculo;
+import com.logistica.contratos.domain.enums.ContratosTipoVehiculo;
 import com.logistica.contratos.domain.exceptions.ContratoYaExisteException;
 import com.logistica.contratos.domain.exceptions.TransportistaNotFoundException;
-import com.logistica.contratos.domain.models.Contrato;
+import com.logistica.contratos.domain.models.ContratosContrato;
 import com.logistica.contratos.domain.models.Seguro;
-import com.logistica.contratos.domain.models.Transportista;
-import com.logistica.contratos.domain.repositories.ContratoRepository;
-import com.logistica.contratos.domain.repositories.TransportistaRepository;
+import com.logistica.contratos.domain.models.ContratosTransportista;
+import com.logistica.contratos.domain.repositories.ContratosContratoRepository;
+import com.logistica.contratos.domain.repositories.ContratosTransportistaRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -37,9 +37,9 @@ import static org.mockito.Mockito.when;
 class CrearContratoUseCaseTest {
 
     @Mock
-    private ContratoRepository contratoRepository;
+    private ContratosContratoRepository contratoRepository;
     @Mock
-    private TransportistaRepository transportistaRepository;
+    private ContratosTransportistaRepository transportistaRepository;
     @Mock
     private ContratoResponseMapper responseMapper;
 
@@ -63,7 +63,7 @@ class CrearContratoUseCaseTest {
         dtoValido.setTransportistaId(transportistaId);
         dtoValido.setEsPorParada(true);
         dtoValido.setPrecioParadas(new BigDecimal("15.50"));
-        dtoValido.setTipoVehiculo(TipoVehiculo.VAN);
+        dtoValido.setTipoVehiculo(ContratosTipoVehiculo.VAN);
         dtoValido.setFechaInicio(LocalDateTime.of(2026, 1, 1, 0, 0));
         dtoValido.setFechaFinal(LocalDateTime.of(2026, 12, 31, 0, 0));
         dtoValido.setSeguro(seguro);
@@ -72,16 +72,16 @@ class CrearContratoUseCaseTest {
     @Test
     @DisplayName("Registra el contrato cuando los datos son válidos")
     void debeRegistrarContratoConDatosValidos() {
-        Transportista transportista = Transportista.builder()
+        ContratosTransportista transportista = ContratosTransportista.builder()
                 .transportistaId(transportistaId)
                 .nombre("Juan Pérez")
                 .build();
 
-        Contrato contratoCreado = Contrato.builder()
+        ContratosContrato contratoCreado = ContratosContrato.builder()
                 .id(UUID.randomUUID())
                 .idContrato("CONT-001")
                 .transportista(transportista)
-                .tipoVehiculo(TipoVehiculo.VAN)
+                .tipoVehiculo(ContratosTipoVehiculo.VAN)
                 .esPorParada(true)
                 .precioParadas(new BigDecimal("15.50"))
                 .fechaInicio(LocalDateTime.of(2026, 1, 1, 0, 0))

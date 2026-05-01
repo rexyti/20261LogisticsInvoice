@@ -1,6 +1,6 @@
-package com.logistica.RegistrarEstadoPago.unit;
+﻿package com.logistica.RegistrarEstadoPago.unit;
 
-import com.logistica.RegistrarEstadoPago.domain.enums.EstadoPagoEnum;
+import com.logistica.RegistrarEstadoPago.domain.enums.RegistrarEstadoPagoEstadoPagoEnum;
 import com.logistica.RegistrarEstadoPago.domain.services.EstadoPagoDomainService;
 import com.logistica.RegistrarEstadoPago.exceptions.EstadoPagoInvalidoException;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,22 +20,22 @@ class EstadoPagoDomainServiceTest {
 
     @Test
     void estadoFinal_PAGADO_esTrue() {
-        assertThat(service.esEstadoFinal(EstadoPagoEnum.PAGADO)).isTrue();
+        assertThat(service.esEstadoFinal(RegistrarEstadoPagoEstadoPagoEnum.PAGADO)).isTrue();
     }
 
     @Test
     void estadoFinal_RECHAZADO_esTrue() {
-        assertThat(service.esEstadoFinal(EstadoPagoEnum.RECHAZADO)).isTrue();
+        assertThat(service.esEstadoFinal(RegistrarEstadoPagoEstadoPagoEnum.RECHAZADO)).isTrue();
     }
 
     @Test
     void estadoFinal_PENDIENTE_esFalse() {
-        assertThat(service.esEstadoFinal(EstadoPagoEnum.PENDIENTE)).isFalse();
+        assertThat(service.esEstadoFinal(RegistrarEstadoPagoEstadoPagoEnum.PENDIENTE)).isFalse();
     }
 
     @Test
     void estadoFinal_EN_PROCESO_esFalse() {
-        assertThat(service.esEstadoFinal(EstadoPagoEnum.EN_PROCESO)).isFalse();
+        assertThat(service.esEstadoFinal(RegistrarEstadoPagoEstadoPagoEnum.EN_PROCESO)).isFalse();
     }
 
     @Test
@@ -46,7 +46,7 @@ class EstadoPagoDomainServiceTest {
 
     @Test
     void validarEstadoConocido_conEstadoValido_noLanzaExcepcion() {
-        for (EstadoPagoEnum estado : EstadoPagoEnum.values()) {
+        for (RegistrarEstadoPagoEstadoPagoEnum estado : RegistrarEstadoPagoEstadoPagoEnum.values()) {
             service.validarEstadoConocido(estado);
         }
     }

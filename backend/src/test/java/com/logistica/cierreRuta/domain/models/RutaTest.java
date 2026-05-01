@@ -1,8 +1,8 @@
-package com.logistica.cierreRuta.domain.models;
+﻿package com.logistica.cierreRuta.domain.models;
 
 import com.logistica.cierreRuta.domain.enums.EstadoParada;
 import com.logistica.cierreRuta.domain.enums.EstadoProcesamiento;
-import com.logistica.cierreRuta.domain.enums.TipoVehiculo;
+import com.logistica.cierreRuta.domain.enums.CierreRutaTipoVehiculo;
 import com.logistica.cierreRuta.domain.exceptions.RutaInvalidaException;
 import org.junit.jupiter.api.Test;
 
@@ -30,7 +30,7 @@ class RutaTest {
 
         Ruta ruta = Ruta.builder()
                 .rutaId(UUID.randomUUID())
-                .tipoVehiculo(TipoVehiculo.NHR)
+                .tipoVehiculo(CierreRutaTipoVehiculo.NHR)
                 .modeloContrato("STANDARD")
                 .paradas(List.of(paradaValida()))
                 .build();
@@ -49,7 +49,7 @@ class RutaTest {
     void deberia_fallar_si_ruta_no_tiene_id() {
 
         Ruta ruta = Ruta.builder()
-                .tipoVehiculo(TipoVehiculo.NHR)
+                .tipoVehiculo(CierreRutaTipoVehiculo.NHR)
                 .modeloContrato("STANDARD")
                 .paradas(List.of(paradaValida()))
                 .build();
@@ -63,7 +63,7 @@ class RutaTest {
 
         Ruta ruta = Ruta.builder()
                 .rutaId(UUID.randomUUID())
-                .tipoVehiculo(TipoVehiculo.NHR)
+                .tipoVehiculo(CierreRutaTipoVehiculo.NHR)
                 .modeloContrato("STANDARD")
                 .paradas(List.of())
                 .build();
@@ -77,7 +77,7 @@ class RutaTest {
 
         Ruta ruta = Ruta.builder()
                 .rutaId(UUID.randomUUID())
-                .tipoVehiculo(TipoVehiculo.NHR)
+                .tipoVehiculo(CierreRutaTipoVehiculo.NHR)
                 .modeloContrato("STANDARD")
                 .paradas(List.of((Parada) null))
                 .build();
@@ -97,7 +97,7 @@ class RutaTest {
 
         Ruta ruta = Ruta.builder()
                 .rutaId(UUID.randomUUID())
-                .tipoVehiculo(TipoVehiculo.NHR)
+                .tipoVehiculo(CierreRutaTipoVehiculo.NHR)
                 .modeloContrato("STANDARD")
                 .paradas(List.of(parada))
                 .build();
@@ -118,7 +118,7 @@ class RutaTest {
 
         Ruta ruta = Ruta.builder()
                 .rutaId(UUID.randomUUID())
-                .tipoVehiculo(TipoVehiculo.NHR)
+                .tipoVehiculo(CierreRutaTipoVehiculo.NHR)
                 .modeloContrato("STANDARD")
                 .paradas(List.of(parada))
                 .build();
@@ -132,7 +132,7 @@ class RutaTest {
 
         Ruta ruta = Ruta.builder()
                 .rutaId(UUID.randomUUID())
-                .tipoVehiculo(TipoVehiculo.NHR)
+                .tipoVehiculo(CierreRutaTipoVehiculo.NHR)
                 .modeloContrato(null)
                 .paradas(List.of(paradaValida()))
                 .build();

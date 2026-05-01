@@ -21,7 +21,7 @@ public class VehiculoEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_transportista")
-    private TransportistaEntity transportista;
+    private ContratosTransportistaEntity transportista;
 
     @Column(nullable = false)
     private String tipo;

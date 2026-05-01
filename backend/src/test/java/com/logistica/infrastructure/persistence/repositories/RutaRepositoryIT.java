@@ -1,10 +1,10 @@
-package com.logistica.infrastructure.persistence.repositories;
+﻿package com.logistica.infrastructure.persistence.repositories;
 
 import com.logistica.cierreRuta.domain.enums.EstadoParada;
 import com.logistica.cierreRuta.domain.enums.EstadoProcesamiento;
 import com.logistica.cierreRuta.infrastructure.persistence.entities.ParadaEntity;
 import com.logistica.cierreRuta.infrastructure.persistence.entities.RutaEntity;
-import com.logistica.cierreRuta.infrastructure.persistence.entities.TransportistaEntity;
+import com.logistica.cierreRuta.infrastructure.persistence.entities.CierreRutaTransportistaEntity;
 import com.logistica.cierreRuta.infrastructure.persistence.repositories.RutaJpaRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -30,7 +30,7 @@ class RutaRepositoryIT extends AbstractRepositoryIT {
     @DisplayName("Debe persistir una ruta completa con su transportista y paradas")
     void shouldPersistFullRuta() {
         // Given
-        TransportistaEntity transportista = TransportistaEntity.builder()
+        CierreRutaTransportistaEntity transportista = CierreRutaTransportistaEntity.builder()
                 .conductorId(UUID.randomUUID())
                 .nombre("Juan Transport")
                 .build();

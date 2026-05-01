@@ -1,18 +1,18 @@
 package com.logistica.VisualizarEstadoPago.domain.validators;
 
-import com.logistica.VisualizarEstadoPago.domain.enums.EstadoPagoEnum;
+import com.logistica.VisualizarEstadoPago.domain.enums.VisualizarEstadoPagoEstadoPagoEnum;
 import org.springframework.stereotype.Component;
 
 @Component
 public class TransicionEstadoValidator {
 
-    public boolean isValid(EstadoPagoEnum estadoActual, EstadoPagoEnum nuevoEstado) {
+    public boolean isValid(VisualizarEstadoPagoEstadoPagoEnum estadoActual, VisualizarEstadoPagoEstadoPagoEnum nuevoEstado) {
         if (estadoActual == null) {
             return true;
         }
         switch (estadoActual) {
             case PENDIENTE:
-                return nuevoEstado == EstadoPagoEnum.PAGADO || nuevoEstado == EstadoPagoEnum.RECHAZADO;
+                return nuevoEstado == VisualizarEstadoPagoEstadoPagoEnum.PAGADO || nuevoEstado == VisualizarEstadoPagoEstadoPagoEnum.RECHAZADO;
             case PAGADO:
             case RECHAZADO:
                 return false;

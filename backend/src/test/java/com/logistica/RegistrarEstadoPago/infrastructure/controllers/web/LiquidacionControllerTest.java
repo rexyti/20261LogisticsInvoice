@@ -1,10 +1,10 @@
-package com.logistica.RegistrarEstadoPago.infrastructure.controllers.web;
+﻿package com.logistica.RegistrarEstadoPago.infrastructure.controllers.web;
 
 import com.logistica.RegistrarEstadoPago.application.dtos.response.PagoResponseDTO;
 import com.logistica.RegistrarEstadoPago.application.usecases.pago.ObtenerEstadoPagoUseCase;
-import com.logistica.RegistrarEstadoPago.infrastructure.web.controllers.LiquidacionController;
-import com.logistica.RegistrarEstadoPago.domain.enums.EstadoPagoEnum;
-import com.logistica.RegistrarEstadoPago.exceptions.PagoNoEncontradoException;
+import com.logistica.RegistrarEstadoPago.infrastructure.web.controllers.RegistrarEstadoPagoLiquidacionController;
+import com.logistica.RegistrarEstadoPago.domain.enums.RegistrarEstadoPagoEstadoPagoEnum;
+import com.logistica.RegistrarEstadoPago.exceptions.RegistrarEstadoPagoPagoNoEncontradoException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(LiquidacionController.class)
+@WebMvcTest(RegistrarEstadoPagoLiquidacionController.class)
 class LiquidacionControllerTest {
 
     @Autowired
@@ -34,7 +34,7 @@ class LiquidacionControllerTest {
         UUID idLiquidacion = UUID.randomUUID();
         UUID idPago = UUID.randomUUID();
         PagoResponseDTO response = new PagoResponseDTO(idPago, idLiquidacion,
-                EstadoPagoEnum.PAGADO, Instant.now(), 3L);
+                RegistrarEstadoPagoEstadoPagoEnum.PAGADO, Instant.now(), 3L);
         when(obtenerEstadoPagoUseCase.obtenerEstadoPagoPorLiquidacion(any())).thenReturn(response);
 
         mockMvc.perform(get("/api/v1/liquidaciones/{idLiquidacion}/pago/estado", idLiquidacion))
@@ -47,7 +47,7 @@ class LiquidacionControllerTest {
     void get_estadoPagoPorLiquidacion_sinPago_retorna404() throws Exception {
         UUID idLiquidacion = UUID.randomUUID();
         when(obtenerEstadoPagoUseCase.obtenerEstadoPagoPorLiquidacion(any()))
-                .thenThrow(new PagoNoEncontradoException("liquidacion:" + idLiquidacion));
+                .thenThrow(new RegistrarEstadoPagoPagoNoEncontradoException("liquidacion:" + idLiquidacion));
 
         mockMvc.perform(get("/api/v1/liquidaciones/{idLiquidacion}/pago/estado", idLiquidacion))
                 .andExpect(status().isNotFound());

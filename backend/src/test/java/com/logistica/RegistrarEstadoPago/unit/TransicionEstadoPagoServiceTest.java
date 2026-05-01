@@ -1,6 +1,6 @@
-package com.logistica.RegistrarEstadoPago.unit;
+﻿package com.logistica.RegistrarEstadoPago.unit;
 
-import com.logistica.RegistrarEstadoPago.domain.enums.EstadoPagoEnum;
+import com.logistica.RegistrarEstadoPago.domain.enums.RegistrarEstadoPagoEstadoPagoEnum;
 import com.logistica.RegistrarEstadoPago.domain.services.TransicionEstadoPagoService;
 import com.logistica.RegistrarEstadoPago.exceptions.TransicionEstadoPagoInvalidaException;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,70 +20,70 @@ class TransicionEstadoPagoServiceTest {
 
     @Test
     void transicion_PENDIENTE_a_EN_PROCESO_esValida() {
-        service.validarTransicion(EstadoPagoEnum.PENDIENTE, EstadoPagoEnum.EN_PROCESO);
+        service.validarTransicion(RegistrarEstadoPagoEstadoPagoEnum.PENDIENTE, RegistrarEstadoPagoEstadoPagoEnum.EN_PROCESO);
     }
 
     @Test
     void transicion_PENDIENTE_a_PAGADO_esValida() {
-        service.validarTransicion(EstadoPagoEnum.PENDIENTE, EstadoPagoEnum.PAGADO);
+        service.validarTransicion(RegistrarEstadoPagoEstadoPagoEnum.PENDIENTE, RegistrarEstadoPagoEstadoPagoEnum.PAGADO);
     }
 
     @Test
     void transicion_PENDIENTE_a_RECHAZADO_esValida() {
-        service.validarTransicion(EstadoPagoEnum.PENDIENTE, EstadoPagoEnum.RECHAZADO);
+        service.validarTransicion(RegistrarEstadoPagoEstadoPagoEnum.PENDIENTE, RegistrarEstadoPagoEstadoPagoEnum.RECHAZADO);
     }
 
     @Test
     void transicion_EN_PROCESO_a_PAGADO_esValida() {
-        service.validarTransicion(EstadoPagoEnum.EN_PROCESO, EstadoPagoEnum.PAGADO);
+        service.validarTransicion(RegistrarEstadoPagoEstadoPagoEnum.EN_PROCESO, RegistrarEstadoPagoEstadoPagoEnum.PAGADO);
     }
 
     @Test
     void transicion_EN_PROCESO_a_RECHAZADO_esValida() {
-        service.validarTransicion(EstadoPagoEnum.EN_PROCESO, EstadoPagoEnum.RECHAZADO);
+        service.validarTransicion(RegistrarEstadoPagoEstadoPagoEnum.EN_PROCESO, RegistrarEstadoPagoEstadoPagoEnum.RECHAZADO);
     }
 
     @Test
     void transicion_PAGADO_a_EN_PROCESO_esInvalida() {
-        assertThatThrownBy(() -> service.validarTransicion(EstadoPagoEnum.PAGADO, EstadoPagoEnum.EN_PROCESO))
+        assertThatThrownBy(() -> service.validarTransicion(RegistrarEstadoPagoEstadoPagoEnum.PAGADO, RegistrarEstadoPagoEstadoPagoEnum.EN_PROCESO))
                 .isInstanceOf(TransicionEstadoPagoInvalidaException.class);
     }
 
     @Test
     void transicion_PAGADO_a_PENDIENTE_esInvalida() {
-        assertThatThrownBy(() -> service.validarTransicion(EstadoPagoEnum.PAGADO, EstadoPagoEnum.PENDIENTE))
+        assertThatThrownBy(() -> service.validarTransicion(RegistrarEstadoPagoEstadoPagoEnum.PAGADO, RegistrarEstadoPagoEstadoPagoEnum.PENDIENTE))
                 .isInstanceOf(TransicionEstadoPagoInvalidaException.class);
     }
 
     @Test
     void transicion_PAGADO_a_RECHAZADO_esInvalida() {
-        assertThatThrownBy(() -> service.validarTransicion(EstadoPagoEnum.PAGADO, EstadoPagoEnum.RECHAZADO))
+        assertThatThrownBy(() -> service.validarTransicion(RegistrarEstadoPagoEstadoPagoEnum.PAGADO, RegistrarEstadoPagoEstadoPagoEnum.RECHAZADO))
                 .isInstanceOf(TransicionEstadoPagoInvalidaException.class);
     }
 
     @Test
     void transicion_RECHAZADO_a_EN_PROCESO_esInvalida() {
-        assertThatThrownBy(() -> service.validarTransicion(EstadoPagoEnum.RECHAZADO, EstadoPagoEnum.EN_PROCESO))
+        assertThatThrownBy(() -> service.validarTransicion(RegistrarEstadoPagoEstadoPagoEnum.RECHAZADO, RegistrarEstadoPagoEstadoPagoEnum.EN_PROCESO))
                 .isInstanceOf(TransicionEstadoPagoInvalidaException.class);
     }
 
     @Test
     void transicion_RECHAZADO_a_PAGADO_esInvalida() {
-        assertThatThrownBy(() -> service.validarTransicion(EstadoPagoEnum.RECHAZADO, EstadoPagoEnum.PAGADO))
+        assertThatThrownBy(() -> service.validarTransicion(RegistrarEstadoPagoEstadoPagoEnum.RECHAZADO, RegistrarEstadoPagoEstadoPagoEnum.PAGADO))
                 .isInstanceOf(TransicionEstadoPagoInvalidaException.class);
     }
 
     @Test
     void transicion_RECHAZADO_a_PENDIENTE_esInvalida() {
-        assertThatThrownBy(() -> service.validarTransicion(EstadoPagoEnum.RECHAZADO, EstadoPagoEnum.PENDIENTE))
+        assertThatThrownBy(() -> service.validarTransicion(RegistrarEstadoPagoEstadoPagoEnum.RECHAZADO, RegistrarEstadoPagoEstadoPagoEnum.PENDIENTE))
                 .isInstanceOf(TransicionEstadoPagoInvalidaException.class);
     }
 
     @Test
     void esTransicionValida_retornaCorrectamente() {
-        assertThat(service.esTransicionValida(EstadoPagoEnum.PENDIENTE, EstadoPagoEnum.EN_PROCESO)).isTrue();
-        assertThat(service.esTransicionValida(EstadoPagoEnum.EN_PROCESO, EstadoPagoEnum.PAGADO)).isTrue();
-        assertThat(service.esTransicionValida(EstadoPagoEnum.PAGADO, EstadoPagoEnum.EN_PROCESO)).isFalse();
-        assertThat(service.esTransicionValida(EstadoPagoEnum.RECHAZADO, EstadoPagoEnum.PAGADO)).isFalse();
+        assertThat(service.esTransicionValida(RegistrarEstadoPagoEstadoPagoEnum.PENDIENTE, RegistrarEstadoPagoEstadoPagoEnum.EN_PROCESO)).isTrue();
+        assertThat(service.esTransicionValida(RegistrarEstadoPagoEstadoPagoEnum.EN_PROCESO, RegistrarEstadoPagoEstadoPagoEnum.PAGADO)).isTrue();
+        assertThat(service.esTransicionValida(RegistrarEstadoPagoEstadoPagoEnum.PAGADO, RegistrarEstadoPagoEstadoPagoEnum.EN_PROCESO)).isFalse();
+        assertThat(service.esTransicionValida(RegistrarEstadoPagoEstadoPagoEnum.RECHAZADO, RegistrarEstadoPagoEstadoPagoEnum.PAGADO)).isFalse();
     }
 }

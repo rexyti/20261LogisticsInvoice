@@ -1,20 +1,20 @@
 package com.logistica.RegistrarEstadoPago.infrastructure.adapters;
 
-import com.logistica.RegistrarEstadoPago.domain.models.EstadoPago;
-import com.logistica.RegistrarEstadoPago.domain.models.EventoTransaccion;
+import com.logistica.RegistrarEstadoPago.domain.models.RegistrarEstadoPagoEstadoPago;
+import com.logistica.RegistrarEstadoPago.domain.models.RegistrarEstadoPagoEventoTransaccion;
 import com.logistica.RegistrarEstadoPago.domain.models.LiquidacionReferencia;
-import com.logistica.RegistrarEstadoPago.domain.models.Pago;
-import com.logistica.RegistrarEstadoPago.infrastructure.persistence.entities.EstadoPagoEntity;
+import com.logistica.RegistrarEstadoPago.domain.models.RegistrarEstadoPagoPago;
+import com.logistica.RegistrarEstadoPago.infrastructure.persistence.entities.RegistrarEstadoPagoEstadoPagoEntity;
 import com.logistica.RegistrarEstadoPago.infrastructure.persistence.entities.EventoTransaccionEntity;
 import com.logistica.RegistrarEstadoPago.infrastructure.persistence.entities.LiquidacionReferenciaEntity;
-import com.logistica.RegistrarEstadoPago.infrastructure.persistence.entities.PagoEntity;
+import com.logistica.RegistrarEstadoPago.infrastructure.persistence.entities.RegistrarEstadoPagoPagoEntity;
 import org.springframework.stereotype.Component;
 
 @Component
 public class PagoMapper {
 
-    public Pago toDomain(PagoEntity entity) {
-        return new Pago(
+    public RegistrarEstadoPagoPago toDomain(RegistrarEstadoPagoPagoEntity entity) {
+        return new RegistrarEstadoPagoPago(
                 entity.getIdPago(),
                 entity.getIdUsuario(),
                 entity.getMontoBase(),
@@ -28,8 +28,8 @@ public class PagoMapper {
         );
     }
 
-    public PagoEntity toEntity(Pago domain) {
-        return PagoEntity.builder()
+    public RegistrarEstadoPagoPagoEntity toEntity(RegistrarEstadoPagoPago domain) {
+        return RegistrarEstadoPagoPagoEntity.builder()
                 .idPago(domain.idPago())
                 .idUsuario(domain.idUsuario())
                 .montoBase(domain.montoBase())
@@ -43,8 +43,8 @@ public class PagoMapper {
                 .build();
     }
 
-    public EstadoPago toDomain(EstadoPagoEntity entity) {
-        return new EstadoPago(
+    public RegistrarEstadoPagoEstadoPago toDomain(RegistrarEstadoPagoEstadoPagoEntity entity) {
+        return new RegistrarEstadoPagoEstadoPago(
                 entity.getIdEstadoPago(),
                 entity.getIdPago(),
                 entity.getEstado(),
@@ -55,8 +55,8 @@ public class PagoMapper {
         );
     }
 
-    public EstadoPagoEntity toEntity(EstadoPago domain) {
-        return EstadoPagoEntity.builder()
+    public RegistrarEstadoPagoEstadoPagoEntity toEntity(RegistrarEstadoPagoEstadoPago domain) {
+        return RegistrarEstadoPagoEstadoPagoEntity.builder()
                 .idEstadoPago(domain.idEstadoPago())
                 .idPago(domain.idPago())
                 .estado(domain.estado())
@@ -67,8 +67,8 @@ public class PagoMapper {
                 .build();
     }
 
-    public EventoTransaccion toDomain(EventoTransaccionEntity entity) {
-        return new EventoTransaccion(
+    public RegistrarEstadoPagoEventoTransaccion toDomain(EventoTransaccionEntity entity) {
+        return new RegistrarEstadoPagoEventoTransaccion(
                 entity.getIdEvento(),
                 entity.getIdTransaccionBanco(),
                 entity.getIdPago(),
@@ -84,7 +84,7 @@ public class PagoMapper {
         );
     }
 
-    public EventoTransaccionEntity toEntity(EventoTransaccion domain) {
+    public EventoTransaccionEntity toEntity(RegistrarEstadoPagoEventoTransaccion domain) {
         return EventoTransaccionEntity.builder()
                 .idEvento(domain.idEvento())
                 .idTransaccionBanco(domain.idTransaccionBanco())

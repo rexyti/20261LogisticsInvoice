@@ -1,8 +1,8 @@
-package com.logistica.RegistrarEstadoPago.unit;
+﻿package com.logistica.RegistrarEstadoPago.unit;
 
 import com.logistica.RegistrarEstadoPago.domain.enums.EstadoEventoTransaccion;
-import com.logistica.RegistrarEstadoPago.domain.enums.EstadoPagoEnum;
-import com.logistica.RegistrarEstadoPago.domain.models.EventoTransaccion;
+import com.logistica.RegistrarEstadoPago.domain.enums.RegistrarEstadoPagoEstadoPagoEnum;
+import com.logistica.RegistrarEstadoPago.domain.models.RegistrarEstadoPagoEventoTransaccion;
 import com.logistica.RegistrarEstadoPago.domain.repositories.EventoTransaccionRepository;
 import com.logistica.RegistrarEstadoPago.domain.services.IdempotenciaEventoPagoService;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,7 +33,7 @@ class IdempotenciaEventoPagoServiceTest {
 
     @Test
     void eventoYaProcesado_esDetectadoComoDuplicado() {
-        EventoTransaccion eventoProcesado = eventoConEstado(EstadoEventoTransaccion.PROCESADO, true);
+        RegistrarEstadoPagoEventoTransaccion eventoProcesado = eventoConEstado(EstadoEventoTransaccion.PROCESADO, true);
         when(eventoTransaccionRepository.findByIdTransaccionBanco("txn-001"))
                 .thenReturn(Optional.of(eventoProcesado));
 
@@ -50,18 +50,18 @@ class IdempotenciaEventoPagoServiceTest {
 
     @Test
     void eventoEnEstadoRecibido_noProcesado_noEsDuplicado() {
-        EventoTransaccion eventoRecibido = eventoConEstado(EstadoEventoTransaccion.RECIBIDO, false);
+        RegistrarEstadoPagoEventoTransaccion eventoRecibido = eventoConEstado(EstadoEventoTransaccion.RECIBIDO, false);
         when(eventoTransaccionRepository.findByIdTransaccionBanco("txn-parcial"))
                 .thenReturn(Optional.of(eventoRecibido));
 
         assertThat(service.esEventoDuplicado("txn-parcial")).isFalse();
     }
 
-    private EventoTransaccion eventoConEstado(EstadoEventoTransaccion estado, boolean procesado) {
-        return new EventoTransaccion(
+    private RegistrarEstadoPagoEventoTransaccion eventoConEstado(EstadoEventoTransaccion estado, boolean procesado) {
+        return new RegistrarEstadoPagoEventoTransaccion(
                 UUID.randomUUID(), "txn-001", UUID.randomUUID(), UUID.randomUUID(),
                 "{}", Instant.now(), Instant.now(), 1L,
-                EstadoPagoEnum.EN_PROCESO, estado, null, procesado
+                RegistrarEstadoPagoEstadoPagoEnum.EN_PROCESO, estado, null, procesado
         );
     }
 }

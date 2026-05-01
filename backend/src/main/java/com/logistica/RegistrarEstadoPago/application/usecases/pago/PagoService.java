@@ -8,18 +8,18 @@ import com.logistica.RegistrarEstadoPago.application.dtos.response.PagoResponseD
 import com.logistica.RegistrarEstadoPago.application.dtos.response.RecepcionEventoPagoResponseDTO;
 import com.logistica.RegistrarEstadoPago.application.ports.EventoPagoAsyncPort;
 import com.logistica.RegistrarEstadoPago.domain.enums.EstadoEventoTransaccion;
-import com.logistica.RegistrarEstadoPago.domain.enums.EstadoPagoEnum;
-import com.logistica.RegistrarEstadoPago.domain.models.EstadoPago;
-import com.logistica.RegistrarEstadoPago.domain.models.EventoTransaccion;
-import com.logistica.RegistrarEstadoPago.domain.models.Pago;
-import com.logistica.RegistrarEstadoPago.domain.repositories.EstadoPagoRepository;
+import com.logistica.RegistrarEstadoPago.domain.enums.RegistrarEstadoPagoEstadoPagoEnum;
+import com.logistica.RegistrarEstadoPago.domain.models.RegistrarEstadoPagoEstadoPago;
+import com.logistica.RegistrarEstadoPago.domain.models.RegistrarEstadoPagoEventoTransaccion;
+import com.logistica.RegistrarEstadoPago.domain.models.RegistrarEstadoPagoPago;
+import com.logistica.RegistrarEstadoPago.domain.repositories.RegistrarEstadoPagoEstadoPagoRepository;
 import com.logistica.RegistrarEstadoPago.domain.repositories.EventoTransaccionRepository;
-import com.logistica.RegistrarEstadoPago.domain.repositories.LiquidacionRepository;
-import com.logistica.RegistrarEstadoPago.domain.repositories.PagoRepository;
+import com.logistica.RegistrarEstadoPago.domain.repositories.RegistrarEstadoPagoLiquidacionRepository;
+import com.logistica.RegistrarEstadoPago.domain.repositories.RegistrarEstadoPagoPagoRepository;
 import com.logistica.RegistrarEstadoPago.domain.services.EstadoPagoDomainService;
 import com.logistica.RegistrarEstadoPago.domain.services.IdempotenciaEventoPagoService;
 import com.logistica.RegistrarEstadoPago.domain.services.TransicionEstadoPagoService;
-import com.logistica.RegistrarEstadoPago.exceptions.PagoNoEncontradoException;
+import com.logistica.RegistrarEstadoPago.exceptions.RegistrarEstadoPagoPagoNoEncontradoException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,10 +39,10 @@ public class PagoService implements RecibirEventoPagoUseCase, ProcesarEventoPago
         RegistrarEstadoPagoUseCase, ActualizarEstadoPagoUseCase,
         ObtenerEstadoPagoUseCase, ObtenerEventosTransaccionUseCase {
 
-    private final PagoRepository pagoRepository;
-    private final EstadoPagoRepository estadoPagoRepository;
+    private final RegistrarEstadoPagoPagoRepository pagoRepository;
+    private final RegistrarEstadoPagoEstadoPagoRepository estadoPagoRepository;
     private final EventoTransaccionRepository eventoTransaccionRepository;
-    private final LiquidacionRepository liquidacionRepository;
+    private final RegistrarEstadoPagoLiquidacionRepository liquidacionRepository;
     private final EstadoPagoDomainService estadoPagoDomainService;
     private final TransicionEstadoPagoService transicionEstadoPagoService;
     private final IdempotenciaEventoPagoService idempotenciaEventoPagoService;
@@ -80,8 +80,8 @@ public class PagoService implements RecibirEventoPagoUseCase, ProcesarEventoPago
             return;
         }
 
-        // 2. Guardar EventoTransaccion con estado RECIBIDO
-        EventoTransaccion evento = new EventoTransaccion(
+        // 2. Guardar RegistrarEstadoPagoEventoTransaccion con estado RECIBIDO
+        RegistrarEstadoPagoEventoTransaccion evento = new RegistrarEstadoPagoEventoTransaccion(
                 idEvento, dto.idTransaccionBanco(), dto.idPago(), dto.idLiquidacion(),
                 payload, ahora, fechaEvento, secuencia,
                 dto.estado(), EstadoEventoTransaccion.RECIBIDO, null, false
@@ -96,8 +96,8 @@ public class PagoService implements RecibirEventoPagoUseCase, ProcesarEventoPago
             return;
         }
 
-        // 4. Buscar o crear el Pago
-        Pago pago = pagoRepository.findById(dto.idPago()).orElse(null);
+        // 4. Buscar o crear el RegistrarEstadoPagoPago
+        RegistrarEstadoPagoPago pago = pagoRepository.findById(dto.idPago()).orElse(null);
 
         if (pago == null) {
             registrarEstadoInicial(dto.idPago(), dto.idLiquidacion(), dto.estado(), fechaEvento, secuencia, idEvento);
@@ -136,50 +136,50 @@ public class PagoService implements RecibirEventoPagoUseCase, ProcesarEventoPago
     }
 
     @Override
-    public void registrarEstadoInicial(UUID idPago, UUID idLiquidacion, EstadoPagoEnum estado,
+    public void registrarEstadoInicial(UUID idPago, UUID idLiquidacion, RegistrarEstadoPagoEstadoPagoEnum estado,
                                         Instant fechaEvento, Long secuencia, UUID idEvento) {
         estadoPagoDomainService.validarEstadoConocido(estado);
 
-        Pago nuevoPago = new Pago(idPago, null, null, Instant.now(), null, null,
-                idLiquidacion, EstadoPagoEnum.PENDIENTE, Instant.now(), 0L);
+        RegistrarEstadoPagoPago nuevoPago = new RegistrarEstadoPagoPago(idPago, null, null, Instant.now(), null, null,
+                idLiquidacion, RegistrarEstadoPagoEstadoPagoEnum.PENDIENTE, Instant.now(), 0L);
         pagoRepository.save(nuevoPago);
 
-        transicionEstadoPagoService.validarTransicion(EstadoPagoEnum.PENDIENTE, estado);
+        transicionEstadoPagoService.validarTransicion(RegistrarEstadoPagoEstadoPagoEnum.PENDIENTE, estado);
 
-        EstadoPago estadoPago = new EstadoPago(null, idPago, estado, Instant.now(), fechaEvento, secuencia, idEvento);
+        RegistrarEstadoPagoEstadoPago estadoPago = new RegistrarEstadoPagoEstadoPago(null, idPago, estado, Instant.now(), fechaEvento, secuencia, idEvento);
         estadoPagoRepository.save(estadoPago);
 
-        Pago pagoActualizado = nuevoPago.actualizarEstado(estado, Instant.now(), secuencia);
+        RegistrarEstadoPagoPago pagoActualizado = nuevoPago.actualizarEstado(estado, Instant.now(), secuencia);
         pagoRepository.save(pagoActualizado);
     }
 
     @Override
-    public void actualizarEstadoPago(UUID idPago, EstadoPagoEnum nuevoEstado,
+    public void actualizarEstadoPago(UUID idPago, RegistrarEstadoPagoEstadoPagoEnum nuevoEstado,
                                       Instant fechaEvento, Long secuencia, UUID idEvento) {
         estadoPagoDomainService.validarEstadoConocido(nuevoEstado);
 
-        Pago pago = pagoRepository.findById(idPago)
-                .orElseThrow(() -> new PagoNoEncontradoException(idPago.toString()));
+        RegistrarEstadoPagoPago pago = pagoRepository.findById(idPago)
+                .orElseThrow(() -> new RegistrarEstadoPagoPagoNoEncontradoException(idPago.toString()));
 
-        EstadoPago estadoPago = new EstadoPago(null, idPago, nuevoEstado, Instant.now(), fechaEvento, secuencia, idEvento);
+        RegistrarEstadoPagoEstadoPago estadoPago = new RegistrarEstadoPagoEstadoPago(null, idPago, nuevoEstado, Instant.now(), fechaEvento, secuencia, idEvento);
         estadoPagoRepository.save(estadoPago);
 
-        Pago pagoActualizado = pago.actualizarEstado(nuevoEstado, Instant.now(), secuencia);
+        RegistrarEstadoPagoPago pagoActualizado = pago.actualizarEstado(nuevoEstado, Instant.now(), secuencia);
         pagoRepository.save(pagoActualizado);
     }
 
     @Override
     public PagoResponseDTO obtenerEstadoPago(UUID idPago) {
-        Pago pago = pagoRepository.findById(idPago)
-                .orElseThrow(() -> new PagoNoEncontradoException(idPago.toString()));
+        RegistrarEstadoPagoPago pago = pagoRepository.findById(idPago)
+                .orElseThrow(() -> new RegistrarEstadoPagoPagoNoEncontradoException(idPago.toString()));
         return new PagoResponseDTO(pago.idPago(), pago.idLiquidacion(), pago.estadoActual(),
                 pago.fechaUltimaActualizacion(), pago.ultimaSecuenciaProcesada());
     }
 
     @Override
     public PagoResponseDTO obtenerEstadoPagoPorLiquidacion(UUID idLiquidacion) {
-        Pago pago = pagoRepository.findByIdLiquidacion(idLiquidacion)
-                .orElseThrow(() -> new PagoNoEncontradoException("liquidacion:" + idLiquidacion));
+        RegistrarEstadoPagoPago pago = pagoRepository.findByIdLiquidacion(idLiquidacion)
+                .orElseThrow(() -> new RegistrarEstadoPagoPagoNoEncontradoException("liquidacion:" + idLiquidacion));
         return new PagoResponseDTO(pago.idPago(), pago.idLiquidacion(), pago.estadoActual(),
                 pago.fechaUltimaActualizacion(), pago.ultimaSecuenciaProcesada());
     }

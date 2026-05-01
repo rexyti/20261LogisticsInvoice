@@ -53,7 +53,7 @@ public class PackageApiClientService implements PackageStatusGateway {
             String json = objectMapper.writeValueAsString(dto);
             return PackageStatusResult.exitoso(200, json, dto.estado());
         } catch (FeignException.NotFound e) {
-            log.warn("Paquete no encontrado idRuta={} idPaquete={}", idRuta, idPaquete);
+            log.warn("NovedadEstadoPaquetePaquete no encontrado idRuta={} idPaquete={}", idRuta, idPaquete);
             return PackageStatusResult.noEncontrado(404, safeBody(e));
         } catch (FeignException e) {
             if (e.status() >= 500 || e.status() == -1) {

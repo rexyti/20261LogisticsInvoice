@@ -1,17 +1,17 @@
 package com.logistica.VisualizarEstadoPago.infrastructure.adapters;
 
-import com.logistica.VisualizarEstadoPago.domain.models.EventoTransaccion;
+import com.logistica.VisualizarEstadoPago.domain.models.VisualizarEstadoPagoEventoTransaccion;
 import com.logistica.VisualizarEstadoPago.infrastructure.persistence.entities.EventoEntity;
 import org.springframework.stereotype.Component;
 
 @Component
 public class EventoMapper {
 
-    public EventoTransaccion toDomain(EventoEntity entity) {
+    public VisualizarEstadoPagoEventoTransaccion toDomain(EventoEntity entity) {
         if (entity == null) {
             return null;
         }
-        return new EventoTransaccion(
+        return new VisualizarEstadoPagoEventoTransaccion(
                 entity.getId(),
                 entity.getTipo(),
                 entity.getFecha(),
@@ -19,7 +19,7 @@ public class EventoMapper {
         );
     }
 
-    public EventoEntity toEntity(EventoTransaccion domain) {
+    public EventoEntity toEntity(VisualizarEstadoPagoEventoTransaccion domain) {
         if (domain == null) {
             return null;
         }

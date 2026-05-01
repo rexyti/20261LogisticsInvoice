@@ -1,10 +1,10 @@
-package com.logistica.infrastructure.persistence.repositories;
+﻿package com.logistica.infrastructure.persistence.repositories;
 
 import com.logistica.liquidacion.domain.enums.EstadoLiquidacion;
 import com.logistica.liquidacion.domain.enums.TipoAjuste;
 import com.logistica.liquidacion.domain.enums.TipoContratacion;
 import com.logistica.liquidacion.infrastructure.persistence.entities.AjusteEntity;
-import com.logistica.liquidacion.infrastructure.persistence.entities.ContratoEntity;
+import com.logistica.liquidacion.infrastructure.persistence.entities.LiquidacionContratoEntity;
 import com.logistica.liquidacion.infrastructure.persistence.entities.LiquidacionEntity;
 import com.logistica.liquidacion.infrastructure.persistence.repositories.AjusteJpaRepository;
 import org.junit.jupiter.api.DisplayName;
@@ -32,7 +32,7 @@ class AjusteRepositoryIT extends AbstractRepositoryIT {
     @DisplayName("Debe encontrar ajustes por el ID de la liquidación")
     void shouldFindByLiquidacionId() {
         // Given: Un contrato y una liquidación persistida
-        ContratoEntity contrato = createContrato();
+        LiquidacionContratoEntity contrato = createContrato();
         entityManager.persist(contrato);
         
         LiquidacionEntity liq = createLiquidacion(UUID.randomUUID(), contrato);
@@ -56,15 +56,15 @@ class AjusteRepositoryIT extends AbstractRepositoryIT {
 
     // --- Helpers de Creación ---
 
-    private ContratoEntity createContrato() {
-        ContratoEntity contrato = new ContratoEntity();
+    private LiquidacionContratoEntity createContrato() {
+        LiquidacionContratoEntity contrato = new LiquidacionContratoEntity();
         contrato.setId(UUID.randomUUID());
         contrato.setTipoContratacion(TipoContratacion.POR_PARADA);
         contrato.setTarifa(new BigDecimal("10.0000"));
         return contrato;
     }
 
-    private LiquidacionEntity createLiquidacion(UUID rutaId, ContratoEntity contrato) {
+    private LiquidacionEntity createLiquidacion(UUID rutaId, LiquidacionContratoEntity contrato) {
         LiquidacionEntity entity = new LiquidacionEntity();
         entity.setId(UUID.randomUUID());
         entity.setIdRuta(rutaId);

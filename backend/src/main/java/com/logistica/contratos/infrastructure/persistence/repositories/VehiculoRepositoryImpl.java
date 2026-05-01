@@ -1,6 +1,6 @@
 package com.logistica.contratos.infrastructure.persistence.repositories;
 
-import com.logistica.contratos.domain.enums.TipoVehiculo;
+import com.logistica.contratos.domain.enums.ContratosTipoVehiculo;
 import com.logistica.contratos.domain.models.Vehiculo;
 import com.logistica.contratos.domain.repositories.VehiculoRepository;
 import com.logistica.contratos.infrastructure.persistence.entities.VehiculoEntity;
@@ -24,7 +24,7 @@ public class VehiculoRepositoryImpl implements VehiculoRepository {
         VehiculoEntity saved = jpaRepository.save(entity);
         return Vehiculo.builder()
                 .idVehiculo(saved.getIdVehiculo())
-                .tipo(TipoVehiculo.valueOf(saved.getTipo()))
+                .tipo(ContratosTipoVehiculo.valueOf(saved.getTipo()))
                 .build();
     }
 
@@ -33,7 +33,7 @@ public class VehiculoRepositoryImpl implements VehiculoRepository {
         return jpaRepository.findById(id)
                 .map(e -> Vehiculo.builder()
                         .idVehiculo(e.getIdVehiculo())
-                        .tipo(TipoVehiculo.valueOf(e.getTipo()))
+                        .tipo(ContratosTipoVehiculo.valueOf(e.getTipo()))
                         .build());
     }
 }

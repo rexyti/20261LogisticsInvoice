@@ -1,20 +1,20 @@
 package com.logistica.VisualizarEstadoPago.domain.services;
 
-import com.logistica.VisualizarEstadoPago.domain.models.Pago;
-import com.logistica.VisualizarEstadoPago.domain.repositories.PagoRepository;
+import com.logistica.VisualizarEstadoPago.domain.models.VisualizarEstadoPagoPago;
+import com.logistica.VisualizarEstadoPago.domain.repositories.VisualizarEstadoPagoPagoRepository;
 
 import java.util.UUID;
 
 public class ProcesadorEstadoPagoService {
 
-    private final PagoRepository pagoRepository;
+    private final VisualizarEstadoPagoPagoRepository pagoRepository;
 
-    public ProcesadorEstadoPagoService(PagoRepository pagoRepository) {
+    public ProcesadorEstadoPagoService(VisualizarEstadoPagoPagoRepository pagoRepository) {
         this.pagoRepository = pagoRepository;
     }
 
     public void procesarEstado(UUID pagoId, String estado) {
-        Pago pago = pagoRepository.findById(pagoId).orElse(null);
+        VisualizarEstadoPagoPago pago = pagoRepository.findById(pagoId).orElse(null);
         if (pago != null) {
             // Lógica para procesar el estado del pago
         }

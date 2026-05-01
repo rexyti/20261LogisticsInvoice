@@ -1,4 +1,4 @@
-package com.logistica.NovedadEstadoPaquete.integration;
+﻿package com.logistica.NovedadEstadoPaquete.integration;
 
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
@@ -68,7 +68,7 @@ class SincronizarEstadoIT {
     }
 
     // -----------------------------------------------------------------------
-    // T009 – SC-001: estadoActual en Paquete == estado en HistorialEstado
+    // T009 – SC-001: estadoActual en NovedadEstadoPaquetePaquete == estado en HistorialEstado
     // -----------------------------------------------------------------------
     @Test
     void t009_estado_persistido_coincide_con_respuesta_del_modulo() {
