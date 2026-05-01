@@ -5,16 +5,48 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="54f2c6b2-ce94-490f-bca3-e1cbe4aabb3b" name="Changes" comment="test funcionales">
-      <change beforePath="$PROJECT_DIR$/.gradle/8.6/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.claude/settings.local.json" beforeDir="false" afterPath="$PROJECT_DIR$/.claude/settings.local.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/config/PaginationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/config/PaginationConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/web/controllers/LiquidacionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/web/controllers/LiquidacionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/infrastructure/web/controllers/LiquidacionControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/logistica/infrastructure/web/controllers/LiquidacionControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/dtos/request/FiltroLiquidacionDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/application/dtos/request/FiltroLiquidacionDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/dtos/response/AjusteLiquidacionDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/application/dtos/response/AjusteLiquidacionDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/dtos/response/LiquidacionDetalleDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/application/dtos/response/LiquidacionDetalleDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/dtos/response/LiquidacionListItemDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/application/dtos/response/LiquidacionListItemDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/dtos/response/LiquidacionListResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/application/dtos/response/LiquidacionListResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/mappers/LiquidacionDTOMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/application/mappers/LiquidacionDTOMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/security/UsuarioAutenticado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/application/security/UsuarioAutenticado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/usecases/liquidacion/BuscarLiquidacionesUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/application/usecases/liquidacion/BuscarLiquidacionesUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/usecases/liquidacion/ListarLiquidacionesUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/application/usecases/liquidacion/ListarLiquidacionesUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/usecases/liquidacion/ObtenerDetalleLiquidacionUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/application/usecases/liquidacion/ObtenerDetalleLiquidacionUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/enums/EstadoLiquidacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/domain/enums/EstadoLiquidacion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/exceptions/AccesoDenegadoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/domain/exceptions/AccesoDenegadoException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/exceptions/LiquidacionAunNoCalculadaException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/domain/exceptions/LiquidacionAunNoCalculadaException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/exceptions/LiquidacionNoEncontradaException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/domain/exceptions/LiquidacionNoEncontradaException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/models/Ajuste.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/domain/models/Ajuste.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/models/Liquidacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/domain/models/Liquidacion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/models/ResultadoBusquedaPorRuta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/domain/models/ResultadoBusquedaPorRuta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/models/Ruta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/domain/models/Ruta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/repositories/LiquidacionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/domain/repositories/LiquidacionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/adapters/LiquidacionMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/infrastructure/adapters/LiquidacionMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/config/PaginationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/infrastructure/config/PaginationConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/infrastructure/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/infrastructure/config/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/persistence/entities/AjusteEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/infrastructure/persistence/entities/AjusteEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/persistence/entities/LiquidacionEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/infrastructure/persistence/entities/LiquidacionEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/persistence/entities/RutaEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/infrastructure/persistence/entities/RutaEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/persistence/repositories/LiquidacionJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/infrastructure/persistence/repositories/LiquidacionJpaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/persistence/repositories/LiquidacionRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/infrastructure/persistence/repositories/LiquidacionRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/persistence/repositories/RutaJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/infrastructure/persistence/repositories/RutaJpaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/security/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/infrastructure/security/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/security/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/infrastructure/security/JwtService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/web/controllers/LiquidacionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/infrastructure/web/controllers/LiquidacionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/web/handlers/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/infrastructure/web/handlers/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/application/usecases/BuscarLiquidacionesUseCaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/logistica/VisualizarLiquidación/application/usecases/BuscarLiquidacionesUseCaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/application/usecases/ListarLiquidacionesUseCaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/logistica/VisualizarLiquidación/application/usecases/ListarLiquidacionesUseCaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/application/usecases/ObtenerDetalleLiquidacionUseCaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/logistica/VisualizarLiquidación/application/usecases/ObtenerDetalleLiquidacionUseCaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/infrastructure/web/controllers/LiquidacionControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/logistica/VisualizarLiquidación/infrastructure/web/controllers/LiquidacionControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +81,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="feature/mod3-Visualizar-Estado-Pago" />
+        <entry key="$PROJECT_DIR$/.." value="devolop" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -60,12 +92,12 @@
     &quot;assignee&quot;: &quot;sjaltamar-18&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/InsoftUnimag/20261LogisticsInvoice.git&quot;,
-    &quot;accountId&quot;: &quot;4f7a8a8e-b34a-4ce6-9648-f01755d0504f&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/InsoftUnimag/20261LogisticsInvoice.git",
+    "accountId": "12194620-3955-413d-8bfb-b01f034bfd6e"
   }
-}</component>
+}]]></component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -79,82 +111,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.BuscarLiquidacionesUseCaseTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.C:/Users/Sebastian/IdeaProjects/20261LogisticsInvoice/backend/build.gradle.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.LiquidacionControllerTest.dadoUsuarioAutorizado_cuandoListar_respuestaIncluyeTodosLosCamposRequeridos.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.LiquidacionControllerTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.LiquidacionControllerTest.listar_ok_contenido.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ListarLiquidacionesUseCaseTest.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.ObtenerDetalleLiquidacionUseCaseTest.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Sebastian/IdeaProjects/20261LogisticsInvoice/backend&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.BuscarLiquidacionesUseCaseTest.executor": "Run",
+    "Gradle.C:/Users/Sebastian/IdeaProjects/20261LogisticsInvoice/backend/build.gradle.executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
+    "Gradle.LiquidacionControllerTest.dadoUsuarioAutorizado_cuandoListar_respuestaIncluyeTodosLosCamposRequeridos.executor": "Run",
+    "Gradle.LiquidacionControllerTest.executor": "Run",
+    "Gradle.LiquidacionControllerTest.listar_ok_contenido.executor": "Run",
+    "Gradle.ListarLiquidacionesUseCaseTest.executor": "Run",
+    "Gradle.ObtenerDetalleLiquidacionUseCaseTest.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "#7 on feature/mod3-Visualizar-Liquidación",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Sebastian/IdeaProjects/20261LogisticsInvoice/backend",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected="Gradle.LiquidacionControllerTest">
-    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
-      <module name="backend" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="Python.FlaskServer">
-      <module name="backend" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="launchJavascriptDebuger" value="false" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="Tox" factoryName="Tox">
-      <module name="backend" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <method v="2" />
-    </configuration>
+}]]></component>
+  <component name="RunManager" selected="Spring Boot.LogisticaApplication">
     <configuration name="LiquidacionControllerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -169,30 +152,6 @@
             <option value=":test" />
             <option value="--tests" />
             <option value="&quot;com.logistica.infrastructure.web.controllers.LiquidacionControllerTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
-    </configuration>
-    <configuration name="LiquidacionControllerTest.dadoUsuarioAutorizado_cuandoListar_respuestaIncluyeTodosLosCamposRequeridos" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;com.logistica.infrastructure.web.controllers.LiquidacionControllerTest.dadoUsuarioAutorizado_cuandoListar_respuestaIncluyeTodosLosCamposRequeridos&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -275,6 +234,65 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="backend [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="dependencies" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="backend" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Python.FlaskServer">
+      <module name="backend" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <method v="2" />
+    </configuration>
     <configuration name="LogisticaApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="logistica-backend.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.logistica.LogisticaApplication" />
@@ -282,13 +300,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <module name="backend" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.LiquidacionControllerTest" />
-        <item itemvalue="Gradle.LiquidacionControllerTest.listar_ok_contenido" />
         <item itemvalue="Gradle.ObtenerDetalleLiquidacionUseCaseTest" />
         <item itemvalue="Gradle.ListarLiquidacionesUseCaseTest" />
-        <item itemvalue="Gradle.LiquidacionControllerTest.dadoUsuarioAutorizado_cuandoListar_respuestaIncluyeTodosLosCamposRequeridos" />
+        <item itemvalue="Gradle.LiquidacionControllerTest.listar_ok_contenido" />
+        <item itemvalue="Gradle.LiquidacionControllerTest" />
+        <item itemvalue="Gradle.backend [dependencies]" />
       </list>
     </recent_temporary>
   </component>
@@ -309,6 +340,7 @@
       <updated>1776909757151</updated>
       <workItem from="1776909758408" duration="199000" />
       <workItem from="1777070553161" duration="4972000" />
+      <workItem from="1777643107638" duration="2393000" />
     </task>
     <task id="LOCAL-00001" summary="implementación de backend para cierre de ruta">
       <option name="closed" value="true" />
