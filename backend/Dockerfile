@@ -2,7 +2,7 @@ FROM openjdk:21-ea-1-jdk-slim
 
 WORKDIR /app
 
-COPY build/libs/backend-0.0.1-SNAPSHOT.jar app.jar
+COPY build/libs/*.jar app.jar
 
 EXPOSE 8080
 

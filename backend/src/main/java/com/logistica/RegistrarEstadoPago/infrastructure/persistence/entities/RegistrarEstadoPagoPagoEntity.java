@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.UUID;
-
 @Entity
 @Table(name = "pagos")
 @Data
@@ -26,16 +25,15 @@ public class RegistrarEstadoPagoPagoEntity {
     @Column(name = "id_usuario")
     private UUID idUsuario;
 
-    @Column(name = "monto_base", precision = 18, scale = 2)
+    @Column(precision = 18, scale = 2)
     private BigDecimal montoBase;
 
-    @Column(name = "fecha")
     private Instant fecha;
 
     @Column(name = "id_penalidad")
     private UUID idPenalidad;
 
-    @Column(name = "monto_neto", precision = 18, scale = 2)
+    @Column(precision = 18, scale = 2)
     private BigDecimal montoNeto;
 
     @Column(name = "id_liquidacion", nullable = false)
@@ -52,6 +50,5 @@ public class RegistrarEstadoPagoPagoEntity {
     private Long ultimaSecuenciaProcesada;
 
     @Version
-    @Column(name = "version")
     private Long version;
 }
