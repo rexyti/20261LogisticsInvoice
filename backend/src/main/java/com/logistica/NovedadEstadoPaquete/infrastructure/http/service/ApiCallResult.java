@@ -1,4 +1,4 @@
-package com.logistica.infrastructure.http.service;
+package com.logistica.NovedadEstadoPaquete.infrastructure.http.service;
 
 import lombok.Getter;
 

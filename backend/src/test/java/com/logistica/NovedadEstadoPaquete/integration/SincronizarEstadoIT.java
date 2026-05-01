@@ -1,12 +1,13 @@
-package com.logistica.integration;
+package com.logistica.NovedadEstadoPaquete.integration;
 
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
-import com.logistica.application.dtos.response.SincronizacionResultadoDTO;
-import com.logistica.application.usecases.paquete.SincronizarPaqueteUseCase;
-import com.logistica.domain.models.HistorialEstado;
-import com.logistica.domain.models.LogSincronizacion;
-import com.logistica.domain.repositories.HistorialRepository;
+import com.logistica.NovedadEstadoPaquete.application.dtos.response.SincronizacionResultadoDTO;
+import com.logistica.NovedadEstadoPaquete.application.usecases.paquete.SincronizarPaqueteUseCase;
+import com.logistica.NovedadEstadoPaquete.domain.models.HistorialEstado;
+import com.logistica.NovedadEstadoPaquete.domain.models.LogSincronizacion;
+import com.logistica.NovedadEstadoPaquete.domain.repositories.HistorialRepository;
+import com.logistica.NovedadEstadoPaquete.domain.repositories.LogSincronizacionRepository;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

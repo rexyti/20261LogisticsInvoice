@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git -C /c/Users/Aleja/IdeaProjects/20261LogisticsInvoice log --oneline --all)"
+      "Bash(git -C /c/Users/Aleja/IdeaProjects/20261LogisticsInvoice log --oneline --all)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\Aleja\\\\IdeaProjects\\\\20261LogisticsInvoice\" -Force)",
+      "Bash(Select-Object Name, Mode)",
+      "Bash(xargs grep *)",
+      "mcp__ide__getDiagnostics"
     ]
   }
 }
