@@ -52,6 +52,7 @@ resilience4j:
         retry-exceptions:
           - java.util.concurrent.TimeoutException
           - java.io.IOException
+          - feign.FeignException
 
   timelimiter:
     instances:

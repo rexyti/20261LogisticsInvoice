@@ -9,4 +9,6 @@ public interface HistorialRepository {
     HistorialEstado save(HistorialEstado historialEstado);
 
     List<HistorialEstado> findByIdPaquete(Long idPaquete, int page, int size);
+
+    List<HistorialEstado> findByIdPaqueteOrderByFechaDesc(Long idPaquete);
 }

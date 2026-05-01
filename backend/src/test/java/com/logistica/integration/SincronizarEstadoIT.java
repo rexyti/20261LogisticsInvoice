@@ -7,6 +7,7 @@ import com.logistica.application.usecases.paquete.SincronizarPaqueteUseCase;
 import com.logistica.domain.models.HistorialEstado;
 import com.logistica.domain.models.LogSincronizacion;
 import com.logistica.domain.repositories.HistorialRepository;
+import com.logistica.domain.repositories.LogSincronizacionRepository;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -14,7 +14,6 @@ import com.logistica.domain.services.EstadoPaqueteService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -43,6 +42,7 @@ public class SincronizarPaqueteUseCase {
 
         if (resultado.pendientePorSincronizacion()) {
             actualizarEstadoPaquete(idPaquete, idRuta, ESTADO_PENDIENTE_SINCRONIZACION);
+            historialRepository.save(new HistorialEstado(null, idPaquete, ESTADO_PENDIENTE_SINCRONIZACION, LocalDateTime.now()));
             return SincronizacionResultadoDTO.pendiente(idPaquete);
         }
 

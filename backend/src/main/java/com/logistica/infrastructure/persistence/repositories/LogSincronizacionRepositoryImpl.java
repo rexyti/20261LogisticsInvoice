@@ -62,6 +62,14 @@ public class LogSincronizacionRepositoryImpl implements LogSincronizacionReposit
                 .toList();
     }
 
+    @Override
+    public List<LogSincronizacion> findByIdPaquete(Long idPaquete) {
+        return jpa.findByIdPaqueteOrderByCreatedAtDesc(idPaquete)
+                .stream()
+                .map(mapper::toDomain)
+                .toList();
+    }
+
     private int sanitizeSize(int size) {
         if (size <= 0) {
             return DEFAULT_SIZE;

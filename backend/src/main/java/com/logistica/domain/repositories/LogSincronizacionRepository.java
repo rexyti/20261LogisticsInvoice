@@ -11,4 +11,6 @@ public interface LogSincronizacionRepository {
     List<LogSincronizacion> findAll(int page, int size);
 
     List<LogSincronizacion> findByIdPaquete(Long idPaquete, int page, int size);
+
+    List<LogSincronizacion> findByIdPaquete(Long idPaquete);
 }
