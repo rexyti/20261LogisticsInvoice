@@ -14,7 +14,7 @@ import java.util.UUID;
 @Table(name = "liquidaciones")
 @Getter
 @Setter
-public class LiquidacionEntity extends BaseEntity {
+public class LiquidacionEntity extends LiquidacionBaseEntity {
 
 
     @Column(name = "id_ruta", nullable = false, unique = true)
@@ -51,7 +51,7 @@ public class LiquidacionEntity extends BaseEntity {
     private Long version;
 
     @OneToMany(mappedBy = "liquidacion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<AjusteEntity> ajustes;
+    private List<LiquidacionAjusteEntity> ajustes;
 
 
 }

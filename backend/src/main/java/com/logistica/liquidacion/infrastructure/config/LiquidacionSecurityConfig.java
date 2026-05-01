@@ -17,7 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 public class LiquidacionSecurityConfig {
 
-    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final LiquidacionJwtAuthenticationFilter jwtAuthenticationFilter;
 
     @Bean
     public SecurityFilterChain liquidacionSecurityFilterChain(HttpSecurity http) throws Exception {

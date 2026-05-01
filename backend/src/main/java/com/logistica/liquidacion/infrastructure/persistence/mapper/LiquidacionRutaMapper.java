@@ -1,6 +1,6 @@
 package com.logistica.liquidacion.infrastructure.persistence.mapper;
 
-import com.logistica.liquidacion.application.dtos.request.CierreRutaEventDTO;
+import com.logistica.liquidacion.application.dtos.request.LiquidacionCierreRutaEventDTO;
 import com.logistica.liquidacion.domain.models.LiquidacionPaquete;
 import com.logistica.liquidacion.domain.models.LiquidacionRuta;
 import org.springframework.stereotype.Component;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class LiquidacionRutaMapper {
 
-    public LiquidacionRuta toModel(CierreRutaEventDTO event) {
+    public LiquidacionRuta toModel(LiquidacionCierreRutaEventDTO event) {
         return LiquidacionRuta.builder()
                 .id(event.getIdRuta())
                 .fechaInicio(event.getFechaInicio())

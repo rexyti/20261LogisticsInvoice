@@ -1,6 +1,6 @@
 package com.logistica.liquidacion.infrastructure.persistence.mapper;
 
-import com.logistica.liquidacion.application.dtos.response.AjusteResponseDTO;
+import com.logistica.liquidacion.application.dtos.response.LiquidacionAjusteResponseDTO;
 import com.logistica.liquidacion.application.dtos.response.LiquidacionResponseDTO;
 import com.logistica.liquidacion.domain.models.Liquidacion;
 import com.logistica.liquidacion.infrastructure.persistence.entities.LiquidacionContratoEntity;
@@ -12,9 +12,9 @@ import java.util.List;
 @Component
 public class LiquidacionMapper {
 
-    private final AjusteMapper ajusteMapper;
+    private final LiquidacionAjusteMapper ajusteMapper;
 
-    public LiquidacionMapper(AjusteMapper ajusteMapper) {
+    public LiquidacionMapper(LiquidacionAjusteMapper ajusteMapper) {
         this.ajusteMapper = ajusteMapper;
     }
 
@@ -75,7 +75,7 @@ public class LiquidacionMapper {
     public LiquidacionResponseDTO toResponseDTO(Liquidacion model) {
         if (model == null) return null;
 
-        List<AjusteResponseDTO> ajustesDto = model.getAjustes() != null
+        List<LiquidacionAjusteResponseDTO> ajustesDto = model.getAjustes() != null
                 ? model.getAjustes().stream()
                 .map(ajusteMapper::toResponseDTO)
                 .toList()

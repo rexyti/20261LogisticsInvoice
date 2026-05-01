@@ -1,10 +1,10 @@
 package com.logistica.infrastructure.web.controllers;
 
-import com.logistica.cierreRuta.application.dtos.response.RutaProcesadaResponseDTO;
-import com.logistica.cierreRuta.application.usecases.ruta.ConsultarRutaUseCase;
+import com.logistica.cierreRuta.application.dtos.response.CierreRutaRutaProcesadaResponseDTO;
+import com.logistica.cierreRuta.application.usecases.ruta.CierreRutaConsultarRutaUseCase;
 import com.logistica.cierreRuta.domain.exceptions.RutaNotFoundException;
 import com.logistica.cierreRuta.infrastructure.config.CierreRutaSecurityConfig;
-import com.logistica.cierreRuta.infrastructure.web.controllers.RutaController;
+import com.logistica.cierreRuta.infrastructure.web.controllers.CierreRutaRutaController;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(RutaController.class)
+@WebMvcTest(CierreRutaRutaController.class)
 @AutoConfigureMockMvc(addFilters = false)
 class RutaControllerTest {
 
@@ -35,7 +35,7 @@ class RutaControllerTest {
     private CierreRutaSecurityConfig cierreRutaSecurityConfig;
 
     @MockBean
-    private ConsultarRutaUseCase consultarRutaUseCase;
+    private CierreRutaConsultarRutaUseCase consultarRutaUseCase;
 
     // ─────────────────────────────────────────────
     // GET /{id}
@@ -48,7 +48,7 @@ class RutaControllerTest {
 
         UUID id = UUID.randomUUID();
 
-        RutaProcesadaResponseDTO response = RutaProcesadaResponseDTO.builder()
+        CierreRutaRutaProcesadaResponseDTO response = CierreRutaRutaProcesadaResponseDTO.builder()
                 .rutaId(id)
                 .build();
 
@@ -85,11 +85,11 @@ class RutaControllerTest {
     @DisplayName("Debe listar rutas correctamente")
     void debe_listar_rutas() throws Exception {
 
-        RutaProcesadaResponseDTO r1 = RutaProcesadaResponseDTO.builder()
+        CierreRutaRutaProcesadaResponseDTO r1 = CierreRutaRutaProcesadaResponseDTO.builder()
                 .rutaId(UUID.randomUUID())
                 .build();
 
-        RutaProcesadaResponseDTO r2 = RutaProcesadaResponseDTO.builder()
+        CierreRutaRutaProcesadaResponseDTO r2 = CierreRutaRutaProcesadaResponseDTO.builder()
                 .rutaId(UUID.randomUUID())
                 .build();
 

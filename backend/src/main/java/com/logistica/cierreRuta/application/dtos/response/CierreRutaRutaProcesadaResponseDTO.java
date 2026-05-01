@@ -1,0 +1,26 @@
+package com.logistica.cierreRuta.application.dtos.response;
+
+import com.logistica.cierreRuta.domain.enums.EstadoProcesamiento;
+import lombok.Builder;
+import lombok.Getter;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.UUID;
+
+@Getter
+@Builder
+public class CierreRutaRutaProcesadaResponseDTO {
+
+    private UUID rutaId;
+    private UUID vehiculoId;
+    private String tipoVehiculo;
+    private String modeloContrato;
+    private EstadoProcesamiento estadoProcesamiento;
+    private LocalDateTime fechaInicioTransito;
+    private LocalDateTime fechaCierre;
+    private CierreRutaTransportistaResponseDTO transportista;
+
+    @Builder.Default
+    private List<CierreRutaParadaResponseDTO> paradas = List.of();
+}

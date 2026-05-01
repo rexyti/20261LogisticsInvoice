@@ -7,6 +7,7 @@ import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,12 +21,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class PrecioCondicionalValidatorTest {
 
+    private static ValidatorFactory factory;
     private static Validator validator;
 
     @BeforeAll
     static void setup() {
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
+    }
+
+    @AfterAll
+    static void tearDown() {
+        if (factory != null) {
+            factory.close();
+        }
     }
 
     private ContratoRequestDTO dtoBase() {

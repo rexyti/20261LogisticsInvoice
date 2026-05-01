@@ -1,6 +1,6 @@
 package com.logistica.application.dtos;
 
-import com.logistica.cierreRuta.application.dtos.request.RutaCerradaEventDTO;
+import com.logistica.cierreRuta.application.dtos.request.CierreRutaRutaCerradaEventDTO;
 import com.logistica.cierreRuta.domain.enums.EstadoParada;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +16,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 class RutaCerradaEventDTOMappingTest {
 
     @Autowired
-    private JacksonTester<RutaCerradaEventDTO> json;
+    private JacksonTester<CierreRutaRutaCerradaEventDTO> json;
 
 
-    private RutaCerradaEventDTO load() throws IOException {
+    private CierreRutaRutaCerradaEventDTO load() throws IOException {
         return json.read("/evento_ruta_cerrada.json").getObject();
     }
 

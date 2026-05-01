@@ -28,7 +28,7 @@ class RutaTest {
     @Test
     void deberia_procesar_ruta_valida_correctamente() {
 
-        Ruta ruta = Ruta.builder()
+        CierreRutaRuta ruta = CierreRutaRuta.builder()
                 .rutaId(UUID.randomUUID())
                 .tipoVehiculo(CierreRutaTipoVehiculo.NHR)
                 .modeloContrato("STANDARD")
@@ -48,7 +48,7 @@ class RutaTest {
     @Test
     void deberia_fallar_si_ruta_no_tiene_id() {
 
-        Ruta ruta = Ruta.builder()
+        CierreRutaRuta ruta = CierreRutaRuta.builder()
                 .tipoVehiculo(CierreRutaTipoVehiculo.NHR)
                 .modeloContrato("STANDARD")
                 .paradas(List.of(paradaValida()))
@@ -61,7 +61,7 @@ class RutaTest {
     @Test
     void deberia_fallar_si_no_tiene_paradas() {
 
-        Ruta ruta = Ruta.builder()
+        CierreRutaRuta ruta = CierreRutaRuta.builder()
                 .rutaId(UUID.randomUUID())
                 .tipoVehiculo(CierreRutaTipoVehiculo.NHR)
                 .modeloContrato("STANDARD")
@@ -75,7 +75,7 @@ class RutaTest {
     @Test
     void deberia_fallar_si_hay_parada_nula() {
 
-        Ruta ruta = Ruta.builder()
+        CierreRutaRuta ruta = CierreRutaRuta.builder()
                 .rutaId(UUID.randomUUID())
                 .tipoVehiculo(CierreRutaTipoVehiculo.NHR)
                 .modeloContrato("STANDARD")
@@ -95,7 +95,7 @@ class RutaTest {
                 .estado(null)
                 .build();
 
-        Ruta ruta = Ruta.builder()
+        CierreRutaRuta ruta = CierreRutaRuta.builder()
                 .rutaId(UUID.randomUUID())
                 .tipoVehiculo(CierreRutaTipoVehiculo.NHR)
                 .modeloContrato("STANDARD")
@@ -116,7 +116,7 @@ class RutaTest {
                 .motivoFalla(null)
                 .build();
 
-        Ruta ruta = Ruta.builder()
+        CierreRutaRuta ruta = CierreRutaRuta.builder()
                 .rutaId(UUID.randomUUID())
                 .tipoVehiculo(CierreRutaTipoVehiculo.NHR)
                 .modeloContrato("STANDARD")
@@ -130,7 +130,7 @@ class RutaTest {
     @Test
     void deberia_marcar_revision_si_contrato_es_nulo() {
 
-        Ruta ruta = Ruta.builder()
+        CierreRutaRuta ruta = CierreRutaRuta.builder()
                 .rutaId(UUID.randomUUID())
                 .tipoVehiculo(CierreRutaTipoVehiculo.NHR)
                 .modeloContrato(null)
@@ -145,7 +145,7 @@ class RutaTest {
     @Test
     void deberia_marcar_revision_si_tipo_vehiculo_es_nulo() {
 
-        Ruta ruta = Ruta.builder()
+        CierreRutaRuta ruta = CierreRutaRuta.builder()
                 .rutaId(UUID.randomUUID())
                 .tipoVehiculo(null)
                 .modeloContrato("STANDARD")

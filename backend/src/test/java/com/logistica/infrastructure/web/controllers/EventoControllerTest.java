@@ -1,19 +1,19 @@
-﻿package com.logistica.infrastructure.web.controllers;
+package com.logistica.infrastructure.web.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.logistica.liquidacion.application.dtos.request.CierreRutaEventDTO;
-import com.logistica.liquidacion.application.dtos.request.PaqueteDTO;
+import com.logistica.liquidacion.application.dtos.request.LiquidacionCierreRutaEventDTO;
+import com.logistica.liquidacion.application.dtos.request.LiquidacionPaqueteDTO;
 import com.logistica.liquidacion.application.dtos.response.LiquidacionResponseDTO;
-import com.logistica.liquidacion.application.usecases.CalcularLiquidacionUseCase;
+import com.logistica.liquidacion.application.usecases.LiquidacionCalcularUseCase;
 import com.logistica.liquidacion.domain.enums.EstadoLiquidacion;
 import com.logistica.liquidacion.domain.enums.LiquidacionEstadoPaquete;
 import com.logistica.liquidacion.domain.models.Liquidacion;
 import com.logistica.liquidacion.domain.models.LiquidacionRuta;
-import com.logistica.liquidacion.infrastructure.config.JwtAuthenticationFilter;
-import com.logistica.liquidacion.infrastructure.config.JwtService;
+import com.logistica.liquidacion.infrastructure.config.LiquidacionJwtAuthenticationFilter;
+import com.logistica.liquidacion.infrastructure.config.LiquidacionJwtService;
 import com.logistica.liquidacion.infrastructure.persistence.mapper.LiquidacionMapper;
 import com.logistica.liquidacion.infrastructure.persistence.mapper.LiquidacionRutaMapper;
-import com.logistica.liquidacion.infrastructure.web.controllers.EventoController;
+import com.logistica.liquidacion.infrastructure.web.controllers.LiquidacionEventoController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -38,7 +38,7 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(EventoController.class)
+@WebMvcTest(LiquidacionEventoController.class)
 @AutoConfigureMockMvc(addFilters = false)
 @Import(LocalValidatorFactoryBean.class)
 @DisplayName("EventoController - Tests")
@@ -56,15 +56,15 @@ class EventoControllerTest {
     @Autowired private MockMvc mockMvc;
     @Autowired private ObjectMapper objectMapper;
 
-    @MockBean private CalcularLiquidacionUseCase calcularLiquidacionUseCase;
+    @MockBean private LiquidacionCalcularUseCase calcularLiquidacionUseCase;
     @MockBean private LiquidacionMapper liquidacionMapper;
     @MockBean private LiquidacionRutaMapper rutaMapper;
 
     // Seguridad (mock para evitar errores de contexto)
-    @MockBean private JwtService jwtService;
-    @MockBean private JwtAuthenticationFilter jwtAuthenticationFilter;
+    @MockBean private LiquidacionJwtService jwtService;
+    @MockBean private LiquidacionJwtAuthenticationFilter jwtAuthenticationFilter;
 
-    private CierreRutaEventDTO validEventDTO;
+    private LiquidacionCierreRutaEventDTO validEventDTO;
     private LiquidacionRuta ruta;
     private Liquidacion liquidacion;
     private LiquidacionResponseDTO responseDTO;
@@ -176,7 +176,7 @@ class EventoControllerTest {
     // =========================================================================
     // Helpers
     // =========================================================================
-    private org.springframework.test.web.servlet.ResultActions ejecutarPost(CierreRutaEventDTO dto) throws Exception {
+    private org.springframework.test.web.servlet.ResultActions ejecutarPost(LiquidacionCierreRutaEventDTO dto) throws Exception {
         return mockMvc.perform(post(ENDPOINT)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(dto)));
@@ -185,12 +185,12 @@ class EventoControllerTest {
     // =========================================================================
     // Factories
     // =========================================================================
-    private static CierreRutaEventDTO buildEventDTO() {
-        PaqueteDTO paquete = new PaqueteDTO();
+    private static LiquidacionCierreRutaEventDTO buildEventDTO() {
+        LiquidacionPaqueteDTO paquete = new LiquidacionPaqueteDTO();
         paquete.setId(UUID.fromString("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"));
         paquete.setEstadoFinal(LiquidacionEstadoPaquete.ENTREGADO);
 
-        CierreRutaEventDTO dto = new CierreRutaEventDTO();
+        LiquidacionCierreRutaEventDTO dto = new LiquidacionCierreRutaEventDTO();
         dto.setIdRuta(RUTA_ID);
         dto.setIdContrato(CONTRATO_ID);
         dto.setFechaInicio(OffsetDateTime.now().minusHours(2));

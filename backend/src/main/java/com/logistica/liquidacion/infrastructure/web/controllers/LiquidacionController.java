@@ -1,11 +1,11 @@
 package com.logistica.liquidacion.infrastructure.web.controllers;
 
-import com.logistica.liquidacion.application.dtos.request.RecalcularLiquidacionRequestDTO;
+import com.logistica.liquidacion.application.dtos.request.LiquidacionRecalcularRequestDTO;
 import com.logistica.liquidacion.application.dtos.response.LiquidacionResponseDTO;
-import com.logistica.liquidacion.application.usecases.RecalcularLiquidacionUseCase;
+import com.logistica.liquidacion.application.usecases.LiquidacionRecalcularUseCase;
 import com.logistica.liquidacion.domain.models.Ajuste;
 import com.logistica.liquidacion.domain.models.Liquidacion;
-import com.logistica.liquidacion.infrastructure.persistence.mapper.AjusteMapper;
+import com.logistica.liquidacion.infrastructure.persistence.mapper.LiquidacionAjusteMapper;
 import com.logistica.liquidacion.infrastructure.persistence.mapper.LiquidacionMapper;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -20,14 +20,14 @@ import java.util.UUID;
 @Tag(name = "Liquidaciones", description = "Endpoints para la gestión de liquidaciones.")
 public class LiquidacionController {
 
-    private final RecalcularLiquidacionUseCase recalcularLiquidacionUseCase;
+    private final LiquidacionRecalcularUseCase recalcularLiquidacionUseCase;
     private final LiquidacionMapper liquidacionMapper;
-    private final AjusteMapper ajusteMapper;
+    private final LiquidacionAjusteMapper ajusteMapper;
 
     public LiquidacionController(
-            RecalcularLiquidacionUseCase recalcularLiquidacionUseCase,
+            LiquidacionRecalcularUseCase recalcularLiquidacionUseCase,
             LiquidacionMapper liquidacionMapper,
-            AjusteMapper ajusteMapper
+            LiquidacionAjusteMapper ajusteMapper
     ) {
         this.recalcularLiquidacionUseCase = recalcularLiquidacionUseCase;
         this.liquidacionMapper = liquidacionMapper;
@@ -37,7 +37,7 @@ public class LiquidacionController {
     @PutMapping("/{id}/recalcular")
     public ResponseEntity<LiquidacionResponseDTO> recalcularLiquidacion(
             @PathVariable UUID id,
-            @RequestBody @Valid RecalcularLiquidacionRequestDTO request) {
+            @RequestBody @Valid LiquidacionRecalcularRequestDTO request) {
 
         List<Ajuste> nuevosAjustes = ajusteMapper.toModelList(request.getAjustes());
 

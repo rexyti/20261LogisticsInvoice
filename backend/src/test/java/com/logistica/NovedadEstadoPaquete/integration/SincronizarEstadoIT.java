@@ -6,7 +6,8 @@ import com.logistica.NovedadEstadoPaquete.application.dtos.response.Sincronizaci
 import com.logistica.NovedadEstadoPaquete.application.usecases.paquete.SincronizarPaqueteUseCase;
 import com.logistica.NovedadEstadoPaquete.domain.models.HistorialEstado;
 import com.logistica.NovedadEstadoPaquete.domain.models.LogSincronizacion;
-import com.logistica.NovedadEstadoPaquete.domain.repositories.HistorialRepository;
+import com.logistica.NovedadEstadoPaquete.infrastructure.persistence.repositories.HistorialJpaRepository;
+import com.logistica.NovedadEstadoPaquete.infrastructure.persistence.repositories.LogSincronizacionJpaRepository;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,8 +30,8 @@ class SincronizarEstadoIT {
     private static WireMockServer wireMock;
 
     @Autowired SincronizarPaqueteUseCase   sincronizarUseCase;
-    @Autowired HistorialRepository         historialRepository;
-    @Autowired LogSincronizacionRepository logSincronizacionRepository;
+    @Autowired HistorialJpaRepository         historialRepository;
+    @Autowired LogSincronizacionJpaRepository logSincronizacionRepository;
 
     @BeforeAll
     static void startWireMock() {

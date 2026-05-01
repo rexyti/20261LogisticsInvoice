@@ -2,10 +2,10 @@
 
 import com.logistica.cierreRuta.domain.enums.EstadoParada;
 import com.logistica.cierreRuta.domain.enums.EstadoProcesamiento;
-import com.logistica.cierreRuta.infrastructure.persistence.entities.ParadaEntity;
-import com.logistica.cierreRuta.infrastructure.persistence.entities.RutaEntity;
+import com.logistica.cierreRuta.infrastructure.persistence.entities.CierreRutaParadaEntity;
+import com.logistica.cierreRuta.infrastructure.persistence.entities.CierreRutaRutaEntity;
 import com.logistica.cierreRuta.infrastructure.persistence.entities.CierreRutaTransportistaEntity;
-import com.logistica.cierreRuta.infrastructure.persistence.repositories.RutaJpaRepository;
+import com.logistica.cierreRuta.infrastructure.persistence.repositories.CierreRutaRutaJpaRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class RutaRepositoryIT extends AbstractRepositoryIT {
 
     @Autowired
-    private RutaJpaRepository repository;
+    private CierreRutaRutaJpaRepository repository;
 
     @Autowired
     private TestEntityManager entityManager;
@@ -36,7 +36,7 @@ class RutaRepositoryIT extends AbstractRepositoryIT {
                 .build();
         entityManager.persist(transportista);
 
-        RutaEntity ruta = RutaEntity.builder()
+        CierreRutaRutaEntity ruta = CierreRutaRutaEntity.builder()
                 .rutaId(UUID.randomUUID())
                 .transportista(transportista)
                 .fechaInicioTransito(LocalDateTime.now())
@@ -44,7 +44,7 @@ class RutaRepositoryIT extends AbstractRepositoryIT {
                 .estadoProcesamiento(EstadoProcesamiento.OK)
                 .build();
 
-        ParadaEntity parada = ParadaEntity.builder()
+        CierreRutaParadaEntity parada = CierreRutaParadaEntity.builder()
                 .paradaId(UUID.randomUUID())
                 .paqueteId(UUID.randomUUID())
                 .estado(EstadoParada.EXITOSA)
@@ -53,12 +53,12 @@ class RutaRepositoryIT extends AbstractRepositoryIT {
         ruta.addParada(parada);
 
         // When
-        RutaEntity saved = repository.save(ruta);
+        CierreRutaRutaEntity saved = repository.save(ruta);
         entityManager.flush();
         entityManager.clear();
 
         // Then
-        Optional<RutaEntity> found = repository.findById(saved.getId());
+        Optional<CierreRutaRutaEntity> found = repository.findById(saved.getId());
         assertThat(found).isPresent();
         assertThat(found.get().getTransportista().getNombre()).isEqualTo("Juan Transport");
         assertThat(found.get().getParadas()).hasSize(1);

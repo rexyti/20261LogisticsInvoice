@@ -1,15 +1,15 @@
 package com.logistica.infrastructure.web.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.logistica.liquidacion.application.dtos.request.AjusteDTO;
-import com.logistica.liquidacion.application.dtos.request.RecalcularLiquidacionRequestDTO;
+import com.logistica.liquidacion.application.dtos.request.LiquidacionAjusteDTO;
+import com.logistica.liquidacion.application.dtos.request.LiquidacionRecalcularRequestDTO;
 import com.logistica.liquidacion.application.dtos.response.LiquidacionResponseDTO;
-import com.logistica.liquidacion.application.usecases.RecalcularLiquidacionUseCase;
+import com.logistica.liquidacion.application.usecases.LiquidacionRecalcularUseCase;
 import com.logistica.liquidacion.domain.enums.EstadoLiquidacion;
 import com.logistica.liquidacion.domain.enums.TipoAjuste;
 import com.logistica.liquidacion.domain.models.Liquidacion;
-import com.logistica.liquidacion.infrastructure.config.JwtService;
-import com.logistica.liquidacion.infrastructure.persistence.mapper.AjusteMapper;
+import com.logistica.liquidacion.infrastructure.config.LiquidacionJwtService;
+import com.logistica.liquidacion.infrastructure.persistence.mapper.LiquidacionAjusteMapper;
 import com.logistica.liquidacion.infrastructure.persistence.mapper.LiquidacionMapper;
 import com.logistica.liquidacion.infrastructure.web.controllers.LiquidacionController;
 import org.junit.jupiter.api.DisplayName;
@@ -46,12 +46,12 @@ class LiquidacionControllerTest {
     @Autowired private MockMvc mockMvc;
     @Autowired private ObjectMapper objectMapper;
 
-    @MockBean private RecalcularLiquidacionUseCase recalcularLiquidacionUseCase;
+    @MockBean private LiquidacionRecalcularUseCase recalcularLiquidacionUseCase;
     @MockBean private LiquidacionMapper liquidacionMapper;
-    @MockBean private AjusteMapper ajusteMapper;
+    @MockBean private LiquidacionAjusteMapper ajusteMapper;
 
     // Seguridad
-    @MockBean private JwtService jwtService;
+    @MockBean private LiquidacionJwtService jwtService;
 
 
     @Nested
@@ -63,7 +63,7 @@ class LiquidacionControllerTest {
         @DisplayName("Debe retornar 200 OK cuando el request es válido")
         void shouldReturn200WhenRecalculateIsValid() throws Exception {
 
-            RecalcularLiquidacionRequestDTO request = createValidRequest();
+            LiquidacionRecalcularRequestDTO request = createValidRequest();
 
             Liquidacion mockLiq = Liquidacion.builder()
                     .id(LIQUIDACION_ID)
@@ -97,7 +97,7 @@ class LiquidacionControllerTest {
         @DisplayName("Debe retornar 400 cuando faltan ajustes")
         void shouldReturn400WhenAjustesMissing() throws Exception {
 
-            RecalcularLiquidacionRequestDTO invalidRequest = new RecalcularLiquidacionRequestDTO();
+            LiquidacionRecalcularRequestDTO invalidRequest = new LiquidacionRecalcularRequestDTO();
             invalidRequest.setResponsable("ADMIN");
 
             mockMvc.perform(put(ENDPOINT, LIQUIDACION_ID)
@@ -123,13 +123,13 @@ class LiquidacionControllerTest {
     // =========================
     // Factory
     // =========================
-    private RecalcularLiquidacionRequestDTO createValidRequest() {
-        AjusteDTO ajuste = new AjusteDTO();
+    private LiquidacionRecalcularRequestDTO createValidRequest() {
+        LiquidacionAjusteDTO ajuste = new LiquidacionAjusteDTO();
         ajuste.setTipo(TipoAjuste.BONO);
         ajuste.setMonto(new BigDecimal("50.00"));
         ajuste.setMotivo("Corrección manual");
 
-        RecalcularLiquidacionRequestDTO request = new RecalcularLiquidacionRequestDTO();
+        LiquidacionRecalcularRequestDTO request = new LiquidacionRecalcularRequestDTO();
         request.setAjustes(List.of(ajuste));
         request.setResponsable("ADMIN_USER");
         return request;

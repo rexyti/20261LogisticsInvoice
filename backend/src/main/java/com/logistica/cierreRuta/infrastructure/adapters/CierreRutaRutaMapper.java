@@ -3,8 +3,8 @@ package com.logistica.cierreRuta.infrastructure.adapters;
 import com.logistica.cierreRuta.domain.enums.CierreRutaTipoVehiculo;
 import com.logistica.cierreRuta.domain.models.Parada;
 import com.logistica.cierreRuta.domain.models.CierreRutaRuta;
-import com.logistica.cierreRuta.infrastructure.persistence.entities.ParadaEntity;
-import com.logistica.cierreRuta.infrastructure.persistence.entities.RutaEntity;
+import com.logistica.cierreRuta.infrastructure.persistence.entities.CierreRutaParadaEntity;
+import com.logistica.cierreRuta.infrastructure.persistence.entities.CierreRutaRutaEntity;
 import com.logistica.cierreRuta.infrastructure.persistence.entities.CierreRutaTransportistaEntity;
 import com.logistica.cierreRuta.infrastructure.persistence.repositories.CierreRutaTransportistaJpaRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,11 +16,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CierreRutaRutaMapper {
 
-    private final TransportistaMapper transportistaMapper;
+    private final CierreRutaTransportistaMapper transportistaMapper;
     private final CierreRutaTransportistaJpaRepository transportistaJpaRepository;
-    private final ParadaMapper paradaMapper;
+    private final CierreRutaParadaMapper paradaMapper;
 
-    public RutaEntity toEntity(CierreRutaRuta ruta) {
+    public CierreRutaRutaEntity toEntity(CierreRutaRuta ruta) {
         if (ruta == null) return null;
 
         if (ruta.getTransportista() == null || ruta.getTransportista().getTransportistaId() == null) {
@@ -35,7 +35,7 @@ public class CierreRutaRutaMapper {
                         "CierreRutaTransportista no encontrado en BD para transportistaId: "
                         + ruta.getTransportista().getTransportistaId()));
 
-        RutaEntity rutaEntity = RutaEntity.builder()
+        CierreRutaRutaEntity rutaEntity = CierreRutaRutaEntity.builder()
                 .rutaId(ruta.getRutaId())
                 .transportista(transportistaEntity)
                 .vehiculoId(ruta.getVehiculoId())
@@ -46,7 +46,7 @@ public class CierreRutaRutaMapper {
                 .estadoProcesamiento(ruta.getEstadoProcesamiento())
                 .build();
 
-        List<ParadaEntity> paradas = (ruta.getParadas() == null ? List.<Parada>of() : ruta.getParadas())
+        List<CierreRutaParadaEntity> paradas = (ruta.getParadas() == null ? List.<Parada>of() : ruta.getParadas())
                 .stream()
                 .map(paradaMapper::toEntity)
                 .toList();
@@ -56,10 +56,10 @@ public class CierreRutaRutaMapper {
         return rutaEntity;
     }
 
-    public CierreRutaRuta toDomain(RutaEntity entity) {
+    public CierreRutaRuta toDomain(CierreRutaRutaEntity entity) {
         if (entity == null) return null;
 
-        List<Parada> paradas = (entity.getParadas() == null ? List.<ParadaEntity>of() : entity.getParadas())
+        List<Parada> paradas = (entity.getParadas() == null ? List.<CierreRutaParadaEntity>of() : entity.getParadas())
                 .stream()
                 .map(paradaMapper::toDomain)
                 .toList();

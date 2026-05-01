@@ -1,7 +1,7 @@
 package com.logistica.cierreRuta.infrastructure.messaging.consumers;
 
-import com.logistica.cierreRuta.application.dtos.request.RutaCerradaEventDTO;
-import com.logistica.cierreRuta.application.usecases.ruta.ProcesarRutaCerradaUseCase;
+import com.logistica.cierreRuta.application.dtos.request.CierreRutaRutaCerradaEventDTO;
+import com.logistica.cierreRuta.application.usecases.ruta.CierreRutaProcesarRutaCerradaUseCase;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -62,7 +62,7 @@ class RutaCerradaConsumerIT {
     private SqsAsyncClient sqsAsyncClient;
 
     @MockBean
-    private ProcesarRutaCerradaUseCase procesarRutaCerradaUseCase;
+    private CierreRutaProcesarRutaCerradaUseCase procesarRutaCerradaUseCase;
 
     @DynamicPropertySource
     static void overrideProperties(DynamicPropertyRegistry registry) {
@@ -136,6 +136,6 @@ class RutaCerradaConsumerIT {
         ).get();
 
         verify(procesarRutaCerradaUseCase, timeout(Duration.ofSeconds(10).toMillis()))
-                .ejecutar(any(RutaCerradaEventDTO.class));
+                .ejecutar(any(CierreRutaRutaCerradaEventDTO.class));
     }
 }

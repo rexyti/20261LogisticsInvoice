@@ -7,7 +7,9 @@
       "Bash(echo \"exit2: $?\")",
       "Bash(echo \"exit3: $?\")",
       "Bash(./gradlew compileJava compileTestJava)",
-      "Bash(./gradlew test *)"
+      "Bash(./gradlew test *)",
+      "Bash(Get-ChildItem *)",
+      "mcp__ide__getDiagnostics"
     ]
   }
 }

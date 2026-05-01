@@ -3,10 +3,10 @@
 import com.logistica.liquidacion.domain.enums.EstadoLiquidacion;
 import com.logistica.liquidacion.domain.enums.TipoAjuste;
 import com.logistica.liquidacion.domain.enums.TipoContratacion;
-import com.logistica.liquidacion.infrastructure.persistence.entities.AjusteEntity;
+import com.logistica.liquidacion.infrastructure.persistence.entities.LiquidacionAjusteEntity;
 import com.logistica.liquidacion.infrastructure.persistence.entities.LiquidacionContratoEntity;
 import com.logistica.liquidacion.infrastructure.persistence.entities.LiquidacionEntity;
-import com.logistica.liquidacion.infrastructure.persistence.repositories.AjusteJpaRepository;
+import com.logistica.liquidacion.infrastructure.persistence.repositories.LiquidacionAjusteJpaRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class AjusteRepositoryIT extends AbstractRepositoryIT {
 
     @Autowired
-    private AjusteJpaRepository ajusteRepository;
+    private LiquidacionAjusteJpaRepository ajusteRepository;
 
     @Autowired
     private TestEntityManager entityManager;
@@ -39,18 +39,18 @@ class AjusteRepositoryIT extends AbstractRepositoryIT {
         entityManager.persist(liq);
 
         // Given: Dos ajustes asociados
-        AjusteEntity a1 = createAjuste(liq, TipoAjuste.BONO, "10.0000", "Bono 1");
-        AjusteEntity a2 = createAjuste(liq, TipoAjuste.PENALIZACION, "5.0000", "Descuento 1");
+        LiquidacionAjusteEntity a1 = createAjuste(liq, TipoAjuste.BONO, "10.0000", "Bono 1");
+        LiquidacionAjusteEntity a2 = createAjuste(liq, TipoAjuste.PENALIZACION, "5.0000", "Descuento 1");
         
         ajusteRepository.saveAllAndFlush(List.of(a1, a2));
         entityManager.clear(); // Forzar carga de DB
 
         // When
-        List<AjusteEntity> results = ajusteRepository.findByLiquidacion_Id(liq.getId());
+        List<LiquidacionAjusteEntity> results = ajusteRepository.findByLiquidacion_Id(liq.getId());
 
         // Then
         assertThat(results).hasSize(2);
-        assertThat(results).extracting(AjusteEntity::getMotivo)
+        assertThat(results).extracting(LiquidacionAjusteEntity::getMotivo)
                 .containsExactlyInAnyOrder("Bono 1", "Descuento 1");
     }
 
@@ -78,8 +78,8 @@ class AjusteRepositoryIT extends AbstractRepositoryIT {
         return entity;
     }
 
-    private AjusteEntity createAjuste(LiquidacionEntity liq, TipoAjuste tipo, String monto, String motivo) {
-        AjusteEntity ajuste = new AjusteEntity();
+    private LiquidacionAjusteEntity createAjuste(LiquidacionEntity liq, TipoAjuste tipo, String monto, String motivo) {
+        LiquidacionAjusteEntity ajuste = new LiquidacionAjusteEntity();
         ajuste.setId(UUID.randomUUID());
         ajuste.setLiquidacion(liq);
         ajuste.setTipo(tipo);

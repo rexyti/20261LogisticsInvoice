@@ -23,5 +23,5 @@ public class LiquidacionResponseDTO {
     private final UUID idAdminRevisor;
     private final OffsetDateTime fechaAceptacionRevision;
     private final OffsetDateTime creadoEn;
-    private final List<AjusteResponseDTO> ajustes;
+    private final List<LiquidacionAjusteResponseDTO> ajustes;
 }
