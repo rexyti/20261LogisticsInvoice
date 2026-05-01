@@ -7,8 +7,7 @@ Una vez que el sistema recibe el cierre de ruta desde el Módulo de Rutas y Flot
 Este cálculo aplica las reglas del modelo de contratación registrado, los estados de entrega de los paquetes, y las penalizaciones o ajustes configurados.
 
 Existe un segundo flujo, el recálculo, que ocurre únicamente cuando un conductor solicita formalmente una revisión de su liquidación y esa solicitud es aceptada por un administrador. 
-En ese caso, el administrador ingresa los nuevos ajustes manualmente en el sistema y presiona un botón para que el sistema recalcule automáticamente el valor final con esos nuevos datos.
-
+En ese caso, el administrador ingresa los nuevos ajustes manualmente en el sistema y presiona un botón para que el sistema recalcule automáticamente el valor final con esos nuevosdatos.
 ---
 
 ## glossary of stakeholder
