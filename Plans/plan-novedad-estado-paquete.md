@@ -30,33 +30,102 @@ Esta funcionalidad establece la integración sincrónica entre el Módulo Financ
 ### Documentation (this feature)
 
 ```text
-specs/novedad-estado-paquete/
-├── plan.md              # Este archivo 
-└── spec.md             # Especificación: Novedad estado del paquete.md
+Specs/
+└── Novedad estado del paquete.md      # Especificación funcional de la feature
+
+Plans/
+└── plan-novedad-estado-paquete.md     # Plan técnico de implementación
 ```
 
 ### Source Code (repository root)
 
 ```text
 backend/
-├── src/main/java/com/logistica/
-│   ├── clients/         # Clientes HTTP (Feign o WebClient) para API externa
-│   ├── config/          # Configuración de Resilience4j (Timeouts/Retries)
-│   ├── dtos/            # DTOs para la respuesta del Módulo de Gestión
-│   ├── models/          # Entidades JPA (Paquete, HistorialEstado, LogSincronizacion)
-│   ├── repositories/    # Interfaces Spring Data JPA
-│   └── services/        # Lógica de negocio y mapeo de porcentajes
-└── src/test/java/       # Pruebas con JUnit 5 y WireMock
+├── build.gradle                       # Dependencias Spring Boot, OpenFeign, Resilience4j, Flyway, Lombok
+├── settings.gradle
+├── gradlew / gradlew.bat
+└── src/
+    ├── main/
+    │   ├── java/com/logistica/
+    │   │   ├── LogisticaApplication.java
+    │   │   ├── application/
+    │   │   │   ├── dtos/response/
+    │   │   │   │   ├── HistorialEstadoDTO.java
+    │   │   │   │   ├── LogSincronizacionDTO.java
+    │   │   │   │   └── SincronizacionResultadoDTO.java
+    │   │   │   ├── ports/
+    │   │   │   │   ├── PackageStatusGateway.java
+    │   │   │   │   └── PackageStatusResult.java
+    │   │   │   └── usecases/paquete/
+    │   │   │       ├── ObtenerHistorialUseCase.java
+    │   │   │       ├── ObtenerLogsSincronizacionUseCase.java
+    │   │   │       └── SincronizarPaqueteUseCase.java
+    │   │   ├── domain/
+    │   │   │   ├── enums/
+    │   │   │   │   └── EstadoPaquete.java
+    │   │   │   ├── exceptions/
+    │   │   │   │   ├── EstadoNoMapeadoException.java
+    │   │   │   │   ├── PaqueteNotFoundException.java
+    │   │   │   │   └── SincronizacionException.java
+    │   │   │   ├── models/
+    │   │   │   │   ├── HistorialEstado.java
+    │   │   │   │   ├── LogSincronizacion.java
+    │   │   │   │   └── Paquete.java
+    │   │   │   ├── repositories/
+    │   │   │   │   ├── HistorialRepository.java
+    │   │   │   │   ├── LogSincronizacionRepository.java
+    │   │   │   │   └── PaqueteRepository.java
+    │   │   │   └── services/
+    │   │   │       └── EstadoPaqueteService.java
+    │   │   └── infrastructure/
+    │   │       ├── config/
+    │   │       │   ├── AsyncExecutionConfig.java
+    │   │       │   └── FeignConfig.java
+    │   │       ├── http/
+    │   │       │   ├── clients/
+    │   │       │   │   └── GestionClient.java
+    │   │       │   ├── dto/
+    │   │       │   │   └── GestionPaqueteDTO.java
+    │   │       │   └── service/
+    │   │       │       ├── ApiCallResult.java
+    │   │       │       └── PackageApiClientService.java
+    │   │       ├── persistence/
+    │   │       │   ├── entities/
+    │   │       │   │   ├── HistorialEstadoEntity.java
+    │   │       │   │   ├── LogSincronizacionEntity.java
+    │   │       │   │   └── PaqueteEntity.java
+    │   │       │   ├── mapper/
+    │   │       │   │   └── PaqueteEntityMapper.java
+    │   │       │   └── repositories/
+    │   │       │       ├── HistorialJpaRepository.java
+    │   │       │       ├── HistorialRepositoryImpl.java
+    │   │       │       ├── LogSincronizacionJpaRepository.java
+    │   │       │       ├── LogSincronizacionRepositoryImpl.java
+    │   │       │       ├── PaqueteJpaRepository.java
+    │   │       │       └── PaqueteRepositoryImpl.java
+    │   │       └── web/
+    │   │           ├── controllers/
+    │   │           │   └── PaqueteController.java
+    │   │           └── handlers/
+    │   │               ├── ErrorResponse.java
+    │   │               └── GlobalExceptionHandler.java
+    │   └── resources/
+    │       ├── application.yml         # Configuración de API externa, Feign, Resilience4j y datasource
+    │       └── db/migration/
+    │           └── V1__create_paquete_schema.sql
+    └── test/java/                      # Pruebas con JUnit 5 y WireMock
 
-frontend/
-├── src/
-│   ├── components/      # UI: Tablas de historial de estados y logs de error
-│   ├── services/        # Peticiones al backend financiero
-│   └── pages/           # Vistas de auditoría financiera
-└── package.json
+Prototipo/
+├── Acción Pago.png
+├── Detalle liquidación.png
+├── Registrar contrato.png
+├── Vaucher Registro de estado de pago.png
+├── Visualizar estado de pago.png
+├── Visualizar liquidación.png
+└── Link.md
 ```
 
-**Structure Decision**: Se introduce la carpeta clients/ en el backend, aislándola del resto del código, lo que respeta el principio de responsabilidad única para las integraciones externas.
+**Structure Decision**: La estructura actual separa el dominio, los casos de uso, los puertos de aplicación y los adaptadores de infraestructura. La integración HTTP con el Módulo de Gestión de Paquetes queda aislada en `infrastructure/http`, mientras que la persistencia JPA queda en `infrastructure/persistence`. La capa `application` orquesta la sincronización mediante puertos, evitando que la lógica de negocio dependa directamente de Feign, Spring Data JPA o detalles de infraestructura.
 
 ---
 
