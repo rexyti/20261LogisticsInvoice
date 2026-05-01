@@ -53,11 +53,8 @@ project/
 │   │
 │   │   ├── application/                             # Casos de uso (orquestación)
 │   │   │   ├── usecases/
-│   │   │   │   ├── pago/
-│   │   │   │   │   ├── ProcesarWebhookPagoUseCase.java
-│   │   │   │   │   ├── RegistrarEventoPagoUseCase.java
+│   │   │   │       ├── pago/
 │   │   │   │   │   └── ConsultarEstadoPagoUseCase.java
-│   │   │   │
 │   │   │   └── dtos/
 │   │   │       ├── request/
 │   │   │       │   └── WebhookPagoRequestDTO.java
@@ -65,7 +62,8 @@ project/
 │   │   │       └── response/
 │   │   │           ├── EstadoPagoResponseDTO.java
 │   │   │           └── EventoProcesadoResponseDTO.java
-│   │
+│   │   │   ├── mappers/
+│   │   │   │   │   └── PagoDtoMapper.java
 │   │   ├── domain/                                  # Núcleo del negocio
 │   │   │   ├── models/
 │   │   │   │   ├── Pago.java
@@ -106,6 +104,12 @@ project/
 │   │   │   │   │   └── EventoEntity.java
 │   │   │   │   │
 │   │   │   │   └── repositories/
+│   │   │   │   │   ├── EstadoPagoJpaRepository.java
+│   │   │   │   │   ├── EstadoPagoRepositoryImpl.java
+│   │   │   │   │   ├── EventoJpaRepository.java
+│   │   │   │   │   ├── EventoRepositoryImpl.java
+│   │   │   │   │   ├── PagoJpaRepository.java
+│   │   │   │   │   ├── PagoRepositoryImpl.java
 │   │   │   │
 │   │   │   ├── web/
 │   │   │   │   ├── controllers/

@@ -1,7 +1,6 @@
 package com.logistica.application.usecases.pago;
 
 import com.logistica.application.dtos.response.EstadoPagoResponseDTO;
-import com.logistica.application.mappers.PagoDtoMapper;
 import com.logistica.domain.enums.EstadoPagoEnum;
 import com.logistica.domain.exceptions.PagoNoEncontradoException;
 import com.logistica.domain.models.Pago;
@@ -30,7 +29,7 @@ public class ConsultarEstadoPagoUseCaseTest {
 
     @BeforeEach
     void setUp() {
-        consultarEstadoPagoUseCase = new ConsultarEstadoPagoUseCase(pagoRepository, new PagoDtoMapper());
+        consultarEstadoPagoUseCase = new ConsultarEstadoPagoUseCase(pagoRepository);
     }
 
     @Test

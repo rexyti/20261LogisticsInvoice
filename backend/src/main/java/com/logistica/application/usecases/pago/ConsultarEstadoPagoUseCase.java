@@ -13,9 +13,9 @@ public class ConsultarEstadoPagoUseCase {
     private final PagoRepository pagoRepository;
     private final PagoDtoMapper pagoDtoMapper;
 
-    public ConsultarEstadoPagoUseCase(PagoRepository pagoRepository, PagoDtoMapper pagoDtoMapper) {
+    public ConsultarEstadoPagoUseCase(PagoRepository pagoRepository) {
         this.pagoRepository = pagoRepository;
-        this.pagoDtoMapper = pagoDtoMapper;
+        this.pagoDtoMapper = new PagoDtoMapper();
     }
 
     public EstadoPagoResponseDTO ejecutar(UUID pagoId) {
