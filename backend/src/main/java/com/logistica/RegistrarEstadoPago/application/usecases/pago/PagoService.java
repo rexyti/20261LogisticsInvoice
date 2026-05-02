@@ -19,7 +19,7 @@ import com.logistica.RegistrarEstadoPago.domain.repositories.RegistrarEstadoPago
 import com.logistica.RegistrarEstadoPago.domain.services.EstadoPagoDomainService;
 import com.logistica.RegistrarEstadoPago.domain.services.IdempotenciaEventoPagoService;
 import com.logistica.RegistrarEstadoPago.domain.services.TransicionEstadoPagoService;
-import com.logistica.RegistrarEstadoPago.exceptions.RegistrarEstadoPagoPagoNoEncontradoException;
+import com.logistica.RegistrarEstadoPago.domain.exceptions.RegistrarEstadoPagoPagoNoEncontradoException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

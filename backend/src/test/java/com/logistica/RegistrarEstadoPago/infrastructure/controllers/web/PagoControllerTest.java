@@ -8,7 +8,7 @@ import com.logistica.RegistrarEstadoPago.application.usecases.pago.ObtenerEvento
 import com.logistica.RegistrarEstadoPago.infrastructure.web.controllers.RegistrarEstadoPagoPagoController;
 import com.logistica.RegistrarEstadoPago.domain.enums.EstadoEventoTransaccion;
 import com.logistica.RegistrarEstadoPago.domain.enums.RegistrarEstadoPagoEstadoPagoEnum;
-import com.logistica.RegistrarEstadoPago.exceptions.RegistrarEstadoPagoPagoNoEncontradoException;
+import com.logistica.RegistrarEstadoPago.domain.exceptions.RegistrarEstadoPagoPagoNoEncontradoException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;

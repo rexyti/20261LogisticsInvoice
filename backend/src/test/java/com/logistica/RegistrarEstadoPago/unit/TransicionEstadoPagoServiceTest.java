@@ -2,7 +2,7 @@
 
 import com.logistica.RegistrarEstadoPago.domain.enums.RegistrarEstadoPagoEstadoPagoEnum;
 import com.logistica.RegistrarEstadoPago.domain.services.TransicionEstadoPagoService;
-import com.logistica.RegistrarEstadoPago.exceptions.TransicionEstadoPagoInvalidaException;
+import com.logistica.RegistrarEstadoPago.domain.exceptions.TransicionEstadoPagoInvalidaException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

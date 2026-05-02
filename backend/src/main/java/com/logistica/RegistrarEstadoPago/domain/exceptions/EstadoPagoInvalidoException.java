@@ -1,4 +1,4 @@
-package com.logistica.RegistrarEstadoPago.exceptions;
+package com.logistica.RegistrarEstadoPago.domain.exceptions;
 
 public class EstadoPagoInvalidoException extends RuntimeException {
     public EstadoPagoInvalidoException(String estado) {

@@ -16,8 +16,8 @@ import com.logistica.RegistrarEstadoPago.domain.repositories.RegistrarEstadoPago
 import com.logistica.RegistrarEstadoPago.domain.services.EstadoPagoDomainService;
 import com.logistica.RegistrarEstadoPago.domain.services.IdempotenciaEventoPagoService;
 import com.logistica.RegistrarEstadoPago.domain.services.TransicionEstadoPagoService;
-import com.logistica.RegistrarEstadoPago.exceptions.RegistrarEstadoPagoPagoNoEncontradoException;
-import com.logistica.RegistrarEstadoPago.exceptions.TransicionEstadoPagoInvalidaException;
+import com.logistica.RegistrarEstadoPago.domain.exceptions.RegistrarEstadoPagoPagoNoEncontradoException;
+import com.logistica.RegistrarEstadoPago.domain.exceptions.TransicionEstadoPagoInvalidaException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

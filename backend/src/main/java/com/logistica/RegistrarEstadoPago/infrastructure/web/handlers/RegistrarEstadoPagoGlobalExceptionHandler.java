@@ -1,11 +1,11 @@
 package com.logistica.RegistrarEstadoPago.infrastructure.web.handlers;
 
-import com.logistica.RegistrarEstadoPago.exceptions.EstadoPagoInvalidoException;
-import com.logistica.RegistrarEstadoPago.exceptions.RegistrarEstadoPagoEventoDuplicadoException;
-import com.logistica.RegistrarEstadoPago.exceptions.EventoPagoNoProcesableException;
-import com.logistica.RegistrarEstadoPago.exceptions.LiquidacionNoEncontradaException;
-import com.logistica.RegistrarEstadoPago.exceptions.RegistrarEstadoPagoPagoNoEncontradoException;
-import com.logistica.RegistrarEstadoPago.exceptions.TransicionEstadoPagoInvalidaException;
+import com.logistica.RegistrarEstadoPago.domain.exceptions.EstadoPagoInvalidoException;
+import com.logistica.RegistrarEstadoPago.domain.exceptions.RegistrarEstadoPagoEventoDuplicadoException;
+import com.logistica.RegistrarEstadoPago.domain.exceptions.EventoPagoNoProcesableException;
+import com.logistica.RegistrarEstadoPago.domain.exceptions.LiquidacionNoEncontradaException;
+import com.logistica.RegistrarEstadoPago.domain.exceptions.RegistrarEstadoPagoPagoNoEncontradoException;
+import com.logistica.RegistrarEstadoPago.domain.exceptions.TransicionEstadoPagoInvalidaException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.http.HttpStatus;

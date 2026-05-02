@@ -1,7 +1,7 @@
 package com.logistica.RegistrarEstadoPago.domain.services;
 
 import com.logistica.RegistrarEstadoPago.domain.enums.RegistrarEstadoPagoEstadoPagoEnum;
-import com.logistica.RegistrarEstadoPago.exceptions.EstadoPagoInvalidoException;
+import com.logistica.RegistrarEstadoPago.domain.exceptions.EstadoPagoInvalidoException;
 
 import java.util.Set;
 

@@ -4,29 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70668f6f-3f6d-47f4-bd56-df4d94437e6e" name="Changes" comment="creacion de rama para la base de datos, modificaciones mayores de nombres para evitar confusion en el sistema">
-      <change beforePath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.bin" afterDir="false" />
+    <list default="true" id="70668f6f-3f6d-47f4-bd56-df4d94437e6e" name="Changes" comment="Funcionamiento total de la base de datos para cada modulo">
       <change beforePath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_04_2026_7_28_p_m___Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_04_2026_7_28_p_ m__[Changes]/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/LogisticaApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/com/logistica/LogisticaApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/db/migration/V1__init_schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/db/migration/V1__init_schema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/LogisticaApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/LogisticaApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/infrastructure/http/clients/GestionClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/infrastructure/http/clients/GestionClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/persistence/entities/RegistrarEstadoPagoPagoEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/persistence/entities/RegistrarEstadoPagoPagoEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V1__init_schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V1__init_schema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V2__create_paquete_schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V2__create_paquete_schema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V3__create_contratos_schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V3__create_contratos_schema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V4__fix_parada_ruta_fk.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V4__fix_parada_ruta_fk.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V5__indexes_visualizacion_liquidacion.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V5__indexes_visualizacion_liquidacion.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/application/usecases/pago/PagoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/application/usecases/pago/PagoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/services/EstadoPagoDomainService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/services/EstadoPagoDomainService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/services/TransicionEstadoPagoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/services/TransicionEstadoPagoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/exceptions/EstadoPagoInvalidoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/exceptions/EstadoPagoInvalidoException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/exceptions/EventoPagoNoProcesableException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/exceptions/EventoPagoNoProcesableException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/exceptions/LiquidacionNoEncontradaException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/exceptions/LiquidacionNoEncontradaException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/exceptions/RegistrarEstadoPagoEventoDuplicadoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/exceptions/RegistrarEstadoPagoEventoDuplicadoException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/exceptions/RegistrarEstadoPagoPagoNoEncontradoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/exceptions/RegistrarEstadoPagoPagoNoEncontradoException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/exceptions/TransicionEstadoPagoInvalidaException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/exceptions/TransicionEstadoPagoInvalidaException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/web/handlers/RegistrarEstadoPagoGlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/web/handlers/RegistrarEstadoPagoGlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/RegistrarEstadoPago/infrastructure/controllers/web/LiquidacionControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/logistica/RegistrarEstadoPago/infrastructure/controllers/web/LiquidacionControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/RegistrarEstadoPago/infrastructure/controllers/web/PagoControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/logistica/RegistrarEstadoPago/infrastructure/controllers/web/PagoControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/RegistrarEstadoPago/unit/EstadoPagoDomainServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/logistica/RegistrarEstadoPago/unit/EstadoPagoDomainServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/RegistrarEstadoPago/unit/PagoServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/logistica/RegistrarEstadoPago/unit/PagoServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/RegistrarEstadoPago/unit/TransicionEstadoPagoServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/logistica/RegistrarEstadoPago/unit/TransicionEstadoPagoServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,30 +87,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "Gradle.Build backend.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "Spring Boot.LogisticaApplication.executor": "Run",
-    "git-widget-placeholder": "develop-docker",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;Gradle.Build backend.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Spring Boot.LogisticaApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;develop-docker&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="LogisticaApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="logistica-backend.main" />
@@ -138,6 +138,7 @@
       <workItem from="1777111796715" duration="168000" />
       <workItem from="1777111989173" duration="182000" />
       <workItem from="1777653117744" duration="14176000" />
+      <workItem from="1777726128648" duration="1715000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <option name="closed" value="true" />
