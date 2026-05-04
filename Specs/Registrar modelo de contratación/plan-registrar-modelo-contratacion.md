@@ -115,7 +115,7 @@ project/
 │   │   │   │   └── hooks/                      # Manejo del formulario
 │   │   │
 │   │   ├── shared/                            # Reutilizable
-│   │   │   ├── components/                    # Inputs, botones, modales genéricos
+│   │   │   ├── components/          si          # Inputs, botones, modales genéricos
 │   │   │   ├── services/                      # Axios base config
 │   │   │   └── utils/
 │   │
