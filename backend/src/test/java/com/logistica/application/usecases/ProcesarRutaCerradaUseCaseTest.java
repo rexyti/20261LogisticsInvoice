@@ -1,25 +1,25 @@
 package com.logistica.application.usecases;
 
-import com.logistica.cierreRuta.application.dtos.request.CierreRutaConductorEventDTO;
-import com.logistica.cierreRuta.application.dtos.request.CierreRutaParadaEventDTO;
-import com.logistica.cierreRuta.application.dtos.request.CierreRutaRutaCerradaEventDTO;
-import com.logistica.cierreRuta.application.dtos.request.CierreRutaVehiculoEventDTO;
-import com.logistica.cierreRuta.application.mappers.CierreRutaRutaEventMapper;
-import com.logistica.cierreRuta.application.usecases.ruta.CierreRutaProcesarRutaCerradaUseCase;
-import com.logistica.cierreRuta.domain.enums.EstadoParada;
-import com.logistica.cierreRuta.domain.enums.EstadoProcesamiento;
-import com.logistica.cierreRuta.domain.enums.TipoAlertaRuta;
-import com.logistica.cierreRuta.domain.events.RutaCerradaProcesadaEvent;
-import com.logistica.cierreRuta.domain.exceptions.RutaInvalidaException;
-import com.logistica.cierreRuta.domain.models.Parada;
-import com.logistica.cierreRuta.domain.models.CierreRutaRuta;
-import com.logistica.cierreRuta.domain.models.CierreRutaTransportista;
-import com.logistica.cierreRuta.domain.ports.DomainEvent;
-import com.logistica.cierreRuta.domain.ports.EventPublisher;
-import com.logistica.cierreRuta.domain.ports.TimeProvider;
-import com.logistica.cierreRuta.domain.repositories.RutaRepository;
-import com.logistica.cierreRuta.domain.repositories.CierreRutaTransportistaRepository;
-import com.logistica.cierreRuta.domain.services.ClasificacionRutaService;
+import com.logistica.application.cierreRuta.dtos.request.ConductorEventDTO;
+import com.logistica.application.cierreRuta.dtos.request.ParadaEventDTO;
+import com.logistica.application.cierreRuta.dtos.request.RutaCerradaEventDTO;
+import com.logistica.application.cierreRuta.dtos.request.VehiculoEventDTO;
+import com.logistica.application.cierreRuta.mappers.RutaEventMapper;
+import com.logistica.application.cierreRuta.usecases.ruta.ProcesarRutaCerradaUseCase;
+import com.logistica.domain.cierreRuta.enums.EstadoParada;
+import com.logistica.domain.cierreRuta.enums.EstadoProcesamiento;
+import com.logistica.domain.cierreRuta.enums.TipoAlertaRuta;
+import com.logistica.domain.cierreRuta.events.RutaCerradaProcesadaEvent;
+import com.logistica.domain.cierreRuta.exceptions.RutaInvalidaException;
+import com.logistica.domain.cierreRuta.models.Parada;
+import com.logistica.domain.cierreRuta.models.RutaCerrada;
+import com.logistica.domain.cierreRuta.models.TransportistaRuta;
+import com.logistica.domain.cierreRuta.ports.DomainEvent;
+import com.logistica.domain.cierreRuta.ports.EventPublisher;
+import com.logistica.domain.cierreRuta.ports.TimeProvider;
+import com.logistica.domain.cierreRuta.repositories.RutaRepository;
+import com.logistica.domain.cierreRuta.repositories.TransportistaRutaRepository;
+import com.logistica.domain.cierreRuta.services.ClasificacionRutaService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -37,21 +37,21 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-@DisplayName("CierreRutaProcesarRutaCerradaUseCase - Tests")
+@DisplayName("ProcesarRutaCerradaUseCase - Tests")
 class CierreRutaProcesarRutaCerradaUseCaseTest {
 
     @Mock private RutaRepository rutaRepository;
-    @Mock private CierreRutaTransportistaRepository transportistaRepository;
-    @Mock private CierreRutaRutaEventMapper rutaEventMapper;
+    @Mock private TransportistaRepository transportistaRepository;
+    @Mock private RutaEventMapper rutaEventMapper;
     @Mock private TimeProvider timeProvider;
     @Mock private ClasificacionRutaService clasificacionRutaService;
     @Mock private EventPublisher eventPublisher;
 
-    private CierreRutaProcesarRutaCerradaUseCase useCase;
+    private ProcesarRutaCerradaUseCase useCase;
 
     @BeforeEach
     void setUp() {
-        useCase = new CierreRutaProcesarRutaCerradaUseCase(
+        useCase = new ProcesarRutaCerradaUseCase(
                 rutaRepository,
                 transportistaRepository,
                 rutaEventMapper,
@@ -67,7 +67,7 @@ class CierreRutaProcesarRutaCerradaUseCaseTest {
     @DisplayName("Debe ignorar evento duplicado si la ruta ya existe")
     void debe_ignorar_evento_duplicado() {
         UUID rutaId = UUID.randomUUID();
-        CierreRutaRutaCerradaEventDTO dto = buildEvento(rutaId, "Recorrido completo", "MOTO", List.of());
+        RutaCerradaEventDTO dto = buildEvento(rutaId, "Recorrido completo", "MOTO", List.of());
 
         when(rutaRepository.existsByRutaId(rutaId)).thenReturn(true);
 
@@ -82,11 +82,11 @@ class CierreRutaProcesarRutaCerradaUseCaseTest {
     @DisplayName("Debe buscar el transportista, clasificar, procesar y persistir la ruta")
     void debe_clasificar_procesar_y_persistir_la_ruta() {
         UUID rutaId = UUID.randomUUID();
-        CierreRutaRutaCerradaEventDTO dto = buildEvento(rutaId, "Recorrido completo", "MOTO",
+        RutaCerradaEventDTO dto = buildEvento(rutaId, "Recorrido completo", "MOTO",
                 List.of(parada("EXITOSA", null), parada("EXITOSA", null)));
 
-        CierreRutaTransportista transportista = transportista();
-        CierreRutaRuta rutaMock = mock(CierreRutaRuta.class);
+        TransportistaRuta transportista = transportista();
+        RutaCerrada rutaMock = mock(RutaCerrada.class);
         when(rutaMock.getTransportista()).thenReturn(transportista);
         when(rutaMock.obtenerEventos()).thenReturn(List.of());
 
@@ -105,15 +105,15 @@ class CierreRutaProcesarRutaCerradaUseCaseTest {
         verifyNoInteractions(eventPublisher);
     }
 
-    // ── T013b: CierreRutaTransportista nuevo se guarda ──────────────────────────────────
+    // ── T013b: TransportistaRuta nuevo se guarda ──────────────────────────────────
     @Test
     @DisplayName("Debe guardar el transportista si no existe en el sistema")
     void debe_guardar_transportista_si_no_existe() {
         UUID rutaId = UUID.randomUUID();
-        CierreRutaRutaCerradaEventDTO dto = buildEvento(rutaId, "Recorrido completo", "MOTO", List.of());
+        RutaCerradaEventDTO dto = buildEvento(rutaId, "Recorrido completo", "MOTO", List.of());
 
-        CierreRutaTransportista transportista = transportista();
-        CierreRutaRuta rutaMock = mock(CierreRutaRuta.class);
+        TransportistaRuta transportista = transportista();
+        RutaCerrada rutaMock = mock(RutaCerrada.class);
         when(rutaMock.getTransportista()).thenReturn(transportista);
         when(rutaMock.obtenerEventos()).thenReturn(List.of());
 
@@ -134,14 +134,14 @@ class CierreRutaProcesarRutaCerradaUseCaseTest {
     @DisplayName("Debe publicar evento CONTRATO_NULO cuando el modelo de contrato es nulo")
     void debe_publicar_evento_contrato_nulo() {
         UUID rutaId = UUID.randomUUID();
-        CierreRutaRutaCerradaEventDTO dto = buildEvento(rutaId, null, "MOTO", List.of(parada("EXITOSA", null)));
+        RutaCerradaEventDTO dto = buildEvento(rutaId, null, "MOTO", List.of(parada("EXITOSA", null)));
 
         DomainEvent eventoEsperado = new RutaCerradaProcesadaEvent(
                 rutaId, EstadoProcesamiento.REQUIERE_REVISION,
                 TipoAlertaRuta.CONTRATO_NULO, "Contrato no encontrado", LocalDateTime.now());
 
-        CierreRutaTransportista transportista = transportista();
-        CierreRutaRuta rutaMock = mock(CierreRutaRuta.class);
+        TransportistaRuta transportista = transportista();
+        RutaCerrada rutaMock = mock(RutaCerrada.class);
         when(rutaMock.getTransportista()).thenReturn(transportista);
         when(rutaMock.obtenerEventos()).thenReturn(List.of(eventoEsperado));
 
@@ -161,15 +161,15 @@ class CierreRutaProcesarRutaCerradaUseCaseTest {
     @DisplayName("Debe publicar evento VEHICULO_DESCONOCIDO cuando el tipo de vehículo es nulo")
     void debe_publicar_evento_vehiculo_desconocido() {
         UUID rutaId = UUID.randomUUID();
-        CierreRutaRutaCerradaEventDTO dto = buildEvento(rutaId, "Recorrido completo", null,
+        RutaCerradaEventDTO dto = buildEvento(rutaId, "Recorrido completo", null,
                 List.of(parada("EXITOSA", null)));
 
         DomainEvent eventoEsperado = new RutaCerradaProcesadaEvent(
                 rutaId, EstadoProcesamiento.REQUIERE_REVISION,
                 TipoAlertaRuta.VEHICULO_DESCONOCIDO, "Vehículo desconocido", LocalDateTime.now());
 
-        CierreRutaTransportista transportista = transportista();
-        CierreRutaRuta rutaMock = mock(CierreRutaRuta.class);
+        TransportistaRuta transportista = transportista();
+        RutaCerrada rutaMock = mock(RutaCerrada.class);
         when(rutaMock.getTransportista()).thenReturn(transportista);
         when(rutaMock.obtenerEventos()).thenReturn(List.of(eventoEsperado));
 
@@ -198,7 +198,7 @@ class CierreRutaProcesarRutaCerradaUseCaseTest {
     @DisplayName("Debe lanzar RutaInvalidaException si una parada no tiene paqueteId")
     void debe_lanzar_excepcion_si_parada_no_tiene_paqueteId() {
         UUID rutaId = UUID.randomUUID();
-        CierreRutaTransportista transportista = transportista();
+        TransportistaRuta transportista = transportista();
 
         Parada paradaSinPaquete = Parada.builder()
                 .paradaId(UUID.randomUUID())
@@ -206,14 +206,14 @@ class CierreRutaProcesarRutaCerradaUseCaseTest {
                 .estado(EstadoParada.EXITOSA)
                 .build();
 
-        CierreRutaRuta rutaReal = CierreRutaRuta.builder()
+        RutaCerrada rutaReal = RutaCerrada.builder()
                 .rutaId(rutaId)
                 .modeloContrato("Recorrido completo")
                 .transportista(transportista)
                 .parada(paradaSinPaquete)
                 .build();
 
-        CierreRutaRutaCerradaEventDTO dto = buildEvento(rutaId, "Recorrido completo", "MOTO", List.of());
+        RutaCerradaEventDTO dto = buildEvento(rutaId, "Recorrido completo", "MOTO", List.of());
 
         when(rutaRepository.existsByRutaId(rutaId)).thenReturn(false);
         when(rutaEventMapper.toDomain(any())).thenReturn(rutaReal);
@@ -227,25 +227,25 @@ class CierreRutaProcesarRutaCerradaUseCaseTest {
 
     // ── Helpers ───────────────────────────────────────────────────────────────
 
-    private CierreRutaTransportista transportista() {
-        return CierreRutaTransportista.builder()
+    private TransportistaRuta transportista() {
+        return TransportistaRuta.builder()
                 .transportistaId(UUID.randomUUID())
                 .nombre("Conductor Test")
                 .build();
     }
 
-    private CierreRutaRutaCerradaEventDTO buildEvento(
-            UUID rutaId, String contrato, String vehiculoTipo, List<CierreRutaParadaEventDTO> paradas) {
+    private RutaCerradaEventDTO buildEvento(
+            UUID rutaId, String contrato, String vehiculoTipo, List<ParadaEventDTO> paradas) {
 
-        CierreRutaConductorEventDTO conductor = new CierreRutaConductorEventDTO();
+        ConductorEventDTO conductor = new ConductorEventDTO();
         conductor.setConductorId(UUID.randomUUID());
         conductor.setModeloContrato(contrato);
 
-        CierreRutaVehiculoEventDTO vehiculo = new CierreRutaVehiculoEventDTO();
+        VehiculoEventDTO vehiculo = new VehiculoEventDTO();
         vehiculo.setVehiculoId(UUID.randomUUID());
         vehiculo.setTipo(vehiculoTipo);
 
-        CierreRutaRutaCerradaEventDTO evento = new CierreRutaRutaCerradaEventDTO();
+        RutaCerradaEventDTO evento = new RutaCerradaEventDTO();
         evento.setRutaId(rutaId);
         evento.setConductor(conductor);
         evento.setVehiculo(vehiculo);
@@ -255,8 +255,8 @@ class CierreRutaProcesarRutaCerradaUseCaseTest {
         return evento;
     }
 
-    private CierreRutaParadaEventDTO parada(String estado, String motivo) {
-        CierreRutaParadaEventDTO p = new CierreRutaParadaEventDTO();
+    private ParadaEventDTO parada(String estado, String motivo) {
+        ParadaEventDTO p = new ParadaEventDTO();
         p.setParadaId(UUID.randomUUID());
         p.setEstado(EstadoParada.valueOf(estado));
         p.setMotivoNoEntrega(motivo);

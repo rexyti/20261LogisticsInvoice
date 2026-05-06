@@ -7,7 +7,7 @@ import com.logistica.VisualizarLiquidación.application.usecases.liquidacion.Lis
 import com.logistica.VisualizarLiquidación.domain.enums.EstadoLiquidacion;
 import com.logistica.VisualizarLiquidación.domain.models.Liquidacion;
 import com.logistica.VisualizarLiquidación.domain.models.Ruta;
-import com.logistica.VisualizarLiquidación.domain.repositories.LiquidacionRepository;
+import com.logistica.VisualizarLiquidación.domain.repositories.Repository;
 import com.logistica.VisualizarLiquidación.application.mappers.LiquidacionDTOMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -37,7 +37,7 @@ import static org.mockito.Mockito.*;
 class ListarLiquidacionesUseCaseTest {
 
     @Mock
-    private LiquidacionRepository repository;
+    private Repository repository;
 
     @Mock
     private LiquidacionDTOMapper mapper;

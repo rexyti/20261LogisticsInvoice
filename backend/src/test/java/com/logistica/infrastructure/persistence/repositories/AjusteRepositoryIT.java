@@ -1,12 +1,12 @@
-﻿package com.logistica.infrastructure.persistence.repositories;
+package com.logistica.infrastructure.persistence.repositories;
 
-import com.logistica.liquidacion.domain.enums.EstadoLiquidacion;
-import com.logistica.liquidacion.domain.enums.TipoAjuste;
-import com.logistica.liquidacion.domain.enums.TipoContratacion;
-import com.logistica.liquidacion.infrastructure.persistence.entities.LiquidacionAjusteEntity;
-import com.logistica.liquidacion.infrastructure.persistence.entities.LiquidacionContratoEntity;
-import com.logistica.liquidacion.infrastructure.persistence.entities.LiquidacionEntity;
-import com.logistica.liquidacion.infrastructure.persistence.repositories.LiquidacionAjusteJpaRepository;
+import com.logistica.domain.liquidacion.enums.EstadoLiquidacion;
+import com.logistica.domain.liquidacion.enums.TipoAjuste;
+import com.logistica.domain.liquidacion.enums.TipoContratacion;
+import com.logistica.infrastructure.liquidacion.persistence.entities.AjusteEntity;
+import com.logistica.infrastructure.liquidacion.persistence.entities.ContratoEntity;
+import com.logistica.infrastructure.liquidacion.persistence.entities.Entity;
+import com.logistica.infrastructure.liquidacion.persistence.repositories.AjusteJpaRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class AjusteRepositoryIT extends AbstractRepositoryIT {
 
     @Autowired
-    private LiquidacionAjusteJpaRepository ajusteRepository;
+    private AjusteJpaRepository ajusteRepository;
 
     @Autowired
     private TestEntityManager entityManager;
@@ -32,40 +32,40 @@ class AjusteRepositoryIT extends AbstractRepositoryIT {
     @DisplayName("Debe encontrar ajustes por el ID de la liquidación")
     void shouldFindByLiquidacionId() {
         // Given: Un contrato y una liquidación persistida
-        LiquidacionContratoEntity contrato = createContrato();
+        ContratoEntity contrato = createContrato();
         entityManager.persist(contrato);
         
-        LiquidacionEntity liq = createLiquidacion(UUID.randomUUID(), contrato);
+        Entity liq = createLiquidacion(UUID.randomUUID(), contrato);
         entityManager.persist(liq);
 
         // Given: Dos ajustes asociados
-        LiquidacionAjusteEntity a1 = createAjuste(liq, TipoAjuste.BONO, "10.0000", "Bono 1");
-        LiquidacionAjusteEntity a2 = createAjuste(liq, TipoAjuste.PENALIZACION, "5.0000", "Descuento 1");
+        AjusteEntity a1 = createAjuste(liq, TipoAjuste.BONO, "10.0000", "Bono 1");
+        AjusteEntity a2 = createAjuste(liq, TipoAjuste.PENALIZACION, "5.0000", "Descuento 1");
         
         ajusteRepository.saveAllAndFlush(List.of(a1, a2));
         entityManager.clear(); // Forzar carga de DB
 
         // When
-        List<LiquidacionAjusteEntity> results = ajusteRepository.findByLiquidacion_Id(liq.getId());
+        List<AjusteEntity> results = ajusteRepository.findByLiquidacion_Id(liq.getId());
 
         // Then
         assertThat(results).hasSize(2);
-        assertThat(results).extracting(LiquidacionAjusteEntity::getMotivo)
+        assertThat(results).extracting(AjusteEntity::getMotivo)
                 .containsExactlyInAnyOrder("Bono 1", "Descuento 1");
     }
 
     // --- Helpers de Creación ---
 
-    private LiquidacionContratoEntity createContrato() {
-        LiquidacionContratoEntity contrato = new LiquidacionContratoEntity();
+    private ContratoEntity createContrato() {
+        ContratoEntity contrato = new ContratoEntity();
         contrato.setId(UUID.randomUUID());
         contrato.setTipoContratacion(TipoContratacion.POR_PARADA);
         contrato.setTarifa(new BigDecimal("10.0000"));
         return contrato;
     }
 
-    private LiquidacionEntity createLiquidacion(UUID rutaId, LiquidacionContratoEntity contrato) {
-        LiquidacionEntity entity = new LiquidacionEntity();
+    private Entity createLiquidacion(UUID rutaId, ContratoEntity contrato) {
+        Entity entity = new Entity();
         entity.setId(UUID.randomUUID());
         entity.setIdRuta(rutaId);
         entity.setContrato(contrato);
@@ -78,8 +78,8 @@ class AjusteRepositoryIT extends AbstractRepositoryIT {
         return entity;
     }
 
-    private LiquidacionAjusteEntity createAjuste(LiquidacionEntity liq, TipoAjuste tipo, String monto, String motivo) {
-        LiquidacionAjusteEntity ajuste = new LiquidacionAjusteEntity();
+    private AjusteEntity createAjuste(Entity liq, TipoAjuste tipo, String monto, String motivo) {
+        AjusteEntity ajuste = new AjusteEntity();
         ajuste.setId(UUID.randomUUID());
         ajuste.setLiquidacion(liq);
         ajuste.setTipo(tipo);

@@ -11,7 +11,7 @@ import com.logistica.VisualizarLiquidacion.domain.exceptions.LiquidacionNoEncont
 import com.logistica.VisualizarLiquidacion.domain.models.Liquidacion;
 import com.logistica.VisualizarLiquidacion.domain.models.ResultadoBusquedaPorRuta;
 import com.logistica.VisualizarLiquidacion.domain.models.Ruta;
-import com.logistica.VisualizarLiquidacion.domain.repositories.LiquidacionRepository;
+import com.logistica.VisualizarLiquidacion.domain.repositories.Repository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -38,7 +38,7 @@ import static org.mockito.Mockito.*;
 class BuscarLiquidacionesUseCaseTest {
 
     @Mock
-    private LiquidacionRepository repository;
+    private Repository repository;
 
     @Mock
     private LiquidacionDTOMapper mapper;

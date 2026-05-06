@@ -9,7 +9,7 @@ import com.logistica.VisualizarLiquidación.application.usecases.liquidacion.Lis
 import com.logistica.VisualizarLiquidación.application.usecases.liquidacion.ObtenerDetalleLiquidacionUseCase;
 import com.logistica.VisualizarLiquidación.infrastructure.security.JwtAuthenticationFilter;
 import com.logistica.VisualizarLiquidación.infrastructure.security.JwtService;
-import com.logistica.VisualizarLiquidación.infrastructure.web.controllers.LiquidacionController;
+import com.logistica.VisualizarLiquidación.infrastructure.web.controllers.Controller;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -36,7 +36,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(LiquidacionController.class)
+@WebMvcTest(Controller.class)
 @AutoConfigureMockMvc(addFilters = false)
 class LiquidacionControllerTest {
 

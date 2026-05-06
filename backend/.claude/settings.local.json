@@ -9,7 +9,26 @@
       "Bash(./gradlew compileJava compileTestJava)",
       "Bash(./gradlew test *)",
       "Bash(Get-ChildItem *)",
-      "mcp__ide__getDiagnostics"
+      "mcp__ide__getDiagnostics",
+      "Bash(dir \"C:\\\\Users\\\\LUIS\\\\IdeaProjects\\\\20261LogisticsInvoice\\\\backend\\\\src\\\\main\\\\java\\\\com\\\\logistica\")",
+      "Bash(xargs -0 -I {} bash -c 'echo \"=FILE: {}\"; grep -m 1 \"^\\\\s*\\\\\\(public\\\\|private\\\\|protected\\\\\\).*\\\\\\(class\\\\|interface\\\\|enum\\\\|record\\\\\\)\" {} | sed \"s/^/CLASS: /\"')",
+      "Bash(python migrate_arch.py)",
+      "Bash(python -c ' *)",
+      "Bash(python migrate_phase2.py)",
+      "Bash(./gradlew compileJava)",
+      "Bash(del *)",
+      "Bash(python migrate_arch.py --version)",
+      "Read(//usr/**)",
+      "Bash(python fix_errors.py)",
+      "Bash(./gradlew compileJava -Xmaxerrs 200)",
+      "Bash(findstr /C:\"error:\")",
+      "Bash(findstr \"error:\")",
+      "Bash(./gradlew clean *)",
+      "Bash(Remove-Item \"C:\\\\Users\\\\LUIS\\\\IdeaProjects\\\\20261LogisticsInvoice\\\\backend\\\\src\\\\main\\\\java\\\\com\\\\logistica\\\\infrastructure\\\\liquidacion\\\\persistence\\\\repositories\\\\ContratoJpaRepository.java\" -Force)",
+      "Bash(Remove-Item \"C:\\\\Users\\\\LUIS\\\\IdeaProjects\\\\20261LogisticsInvoice\\\\backend\\\\src\\\\main\\\\java\\\\com\\\\logistica\\\\infrastructure\\\\contratos\\\\persistence\\\\repositories\\\\TransportistaJpaRepository.java\" -Force)",
+      "Bash(Remove-Item \"C:\\\\Users\\\\LUIS\\\\IdeaProjects\\\\20261LogisticsInvoice\\\\backend\\\\src\\\\main\\\\java\\\\com\\\\logistica\\\\infrastructure\\\\cierreRuta\\\\persistence\\\\repositories\\\\TransportistaJpaRepository.java\" -Force)",
+      "Bash(Remove-Item \"C:\\\\Users\\\\LUIS\\\\IdeaProjects\\\\20261LogisticsInvoice\\\\backend\\\\src\\\\main\\\\java\\\\com\\\\logistica\\\\infrastructure\\\\liquidacion\\\\persistence\\\\repositories\\\\JpaRepository.java\" -Force)",
+      "Bash(Remove-Item \"C:\\\\Users\\\\LUIS\\\\IdeaProjects\\\\20261LogisticsInvoice\\\\backend\\\\src\\\\main\\\\java\\\\com\\\\logistica\\\\infrastructure\\\\liquidacion\\\\persistence\\\\entities\\\\ContratoEntity.java\" -Force)"
     ]
   }
 }

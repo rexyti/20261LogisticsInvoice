@@ -1,17 +1,17 @@
 package com.logistica.infrastructure.web.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.logistica.liquidacion.application.dtos.request.LiquidacionAjusteDTO;
-import com.logistica.liquidacion.application.dtos.request.LiquidacionRecalcularRequestDTO;
-import com.logistica.liquidacion.application.dtos.response.LiquidacionResponseDTO;
-import com.logistica.liquidacion.application.usecases.LiquidacionRecalcularUseCase;
-import com.logistica.liquidacion.domain.enums.EstadoLiquidacion;
-import com.logistica.liquidacion.domain.enums.TipoAjuste;
-import com.logistica.liquidacion.domain.models.Liquidacion;
-import com.logistica.liquidacion.infrastructure.config.LiquidacionJwtService;
-import com.logistica.liquidacion.infrastructure.persistence.mapper.LiquidacionAjusteMapper;
-import com.logistica.liquidacion.infrastructure.persistence.mapper.LiquidacionMapper;
-import com.logistica.liquidacion.infrastructure.web.controllers.LiquidacionController;
+import com.logistica.application.liquidacion.dtos.request.AjusteDTO;
+import com.logistica.application.liquidacion.dtos.request.RecalcularRequestDTO;
+import com.logistica.application.liquidacion.dtos.response.ResponseDTO;
+import com.logistica.application.liquidacion.usecases.RecalcularUseCase;
+import com.logistica.domain.liquidacion.enums.EstadoLiquidacion;
+import com.logistica.domain.liquidacion.enums.TipoAjuste;
+import com.logistica.domain.liquidacion.models.Liquidacion;
+import com.logistica.infrastructure.liquidacion.config.JwtService;
+import com.logistica.infrastructure.liquidacion.persistence.mapper.AjusteMapper;
+import com.logistica.infrastructure.liquidacion.persistence.mapper.Mapper;
+import com.logistica.infrastructure.liquidacion.web.controllers.Controller;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -32,11 +32,11 @@ import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import com.logistica.liquidacion.infrastructure.config.LiquidacionSecurityConfig;
+import com.logistica.infrastructure.liquidacion.config.SecurityConfig;
 
-@WebMvcTest(LiquidacionController.class)
-@Import(LiquidacionSecurityConfig.class)
-@DisplayName("LiquidacionController - Tests")
+@WebMvcTest(Controller.class)
+@Import(SecurityConfig.class)
+@DisplayName("Controller - Tests")
 class LiquidacionControllerTest {
 
     private static final UUID LIQUIDACION_ID = UUID.randomUUID();
@@ -46,12 +46,12 @@ class LiquidacionControllerTest {
     @Autowired private MockMvc mockMvc;
     @Autowired private ObjectMapper objectMapper;
 
-    @MockBean private LiquidacionRecalcularUseCase recalcularLiquidacionUseCase;
-    @MockBean private LiquidacionMapper liquidacionMapper;
-    @MockBean private LiquidacionAjusteMapper ajusteMapper;
+    @MockBean private RecalcularUseCase recalcularLiquidacionUseCase;
+    @MockBean private Mapper liquidacionMapper;
+    @MockBean private AjusteMapper ajusteMapper;
 
     // Seguridad
-    @MockBean private LiquidacionJwtService jwtService;
+    @MockBean private JwtService jwtService;
 
 
     @Nested
@@ -63,14 +63,14 @@ class LiquidacionControllerTest {
         @DisplayName("Debe retornar 200 OK cuando el request es válido")
         void shouldReturn200WhenRecalculateIsValid() throws Exception {
 
-            LiquidacionRecalcularRequestDTO request = createValidRequest();
+            RecalcularRequestDTO request = createValidRequest();
 
             Liquidacion mockLiq = Liquidacion.builder()
                     .id(LIQUIDACION_ID)
                     .estado(EstadoLiquidacion.RECALCULADA)
                     .build();
 
-            LiquidacionResponseDTO response = LiquidacionResponseDTO.builder()
+            ResponseDTO response = ResponseDTO.builder()
                     .id(LIQUIDACION_ID)
                     .estado(EstadoLiquidacion.RECALCULADA)
                     .valorFinal(VALOR_RECALCULADO)
@@ -97,7 +97,7 @@ class LiquidacionControllerTest {
         @DisplayName("Debe retornar 400 cuando faltan ajustes")
         void shouldReturn400WhenAjustesMissing() throws Exception {
 
-            LiquidacionRecalcularRequestDTO invalidRequest = new LiquidacionRecalcularRequestDTO();
+            RecalcularRequestDTO invalidRequest = new RecalcularRequestDTO();
             invalidRequest.setResponsable("ADMIN");
 
             mockMvc.perform(put(ENDPOINT, LIQUIDACION_ID)
@@ -123,13 +123,13 @@ class LiquidacionControllerTest {
     // =========================
     // Factory
     // =========================
-    private LiquidacionRecalcularRequestDTO createValidRequest() {
-        LiquidacionAjusteDTO ajuste = new LiquidacionAjusteDTO();
+    private RecalcularRequestDTO createValidRequest() {
+        AjusteDTO ajuste = new AjusteDTO();
         ajuste.setTipo(TipoAjuste.BONO);
         ajuste.setMonto(new BigDecimal("50.00"));
         ajuste.setMotivo("Corrección manual");
 
-        LiquidacionRecalcularRequestDTO request = new LiquidacionRecalcularRequestDTO();
+        RecalcularRequestDTO request = new RecalcularRequestDTO();
         request.setAjustes(List.of(ajuste));
         request.setResponsable("ADMIN_USER");
         return request;

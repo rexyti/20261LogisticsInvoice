@@ -1,19 +1,19 @@
 package com.logistica.infrastructure.web.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.logistica.liquidacion.application.dtos.request.LiquidacionCierreRutaEventDTO;
-import com.logistica.liquidacion.application.dtos.request.LiquidacionPaqueteDTO;
-import com.logistica.liquidacion.application.dtos.response.LiquidacionResponseDTO;
-import com.logistica.liquidacion.application.usecases.LiquidacionCalcularUseCase;
-import com.logistica.liquidacion.domain.enums.EstadoLiquidacion;
-import com.logistica.liquidacion.domain.enums.LiquidacionEstadoPaquete;
-import com.logistica.liquidacion.domain.models.Liquidacion;
-import com.logistica.liquidacion.domain.models.LiquidacionRuta;
-import com.logistica.liquidacion.infrastructure.config.LiquidacionJwtAuthenticationFilter;
-import com.logistica.liquidacion.infrastructure.config.LiquidacionJwtService;
-import com.logistica.liquidacion.infrastructure.persistence.mapper.LiquidacionMapper;
-import com.logistica.liquidacion.infrastructure.persistence.mapper.LiquidacionRutaMapper;
-import com.logistica.liquidacion.infrastructure.web.controllers.LiquidacionEventoController;
+import com.logistica.application.liquidacion.dtos.request.CierreRutaEventDTO;
+import com.logistica.application.liquidacion.dtos.request.PaqueteDTO;
+import com.logistica.application.liquidacion.dtos.response.ResponseDTO;
+import com.logistica.application.liquidacion.usecases.CalcularUseCase;
+import com.logistica.domain.liquidacion.enums.EstadoLiquidacion;
+import com.logistica.domain.liquidacion.enums.EstadoPaquete;
+import com.logistica.domain.liquidacion.models.Liquidacion;
+import com.logistica.domain.liquidacion.models.RutaLiquidacion;
+import com.logistica.infrastructure.liquidacion.config.JwtAuthenticationFilter;
+import com.logistica.infrastructure.liquidacion.config.JwtService;
+import com.logistica.infrastructure.liquidacion.persistence.mapper.Mapper;
+import com.logistica.infrastructure.liquidacion.persistence.mapper.RutaMapper;
+import com.logistica.infrastructure.liquidacion.web.controllers.EventoController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -38,7 +38,7 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(LiquidacionEventoController.class)
+@WebMvcTest(EventoController.class)
 @AutoConfigureMockMvc(addFilters = false)
 @Import(LocalValidatorFactoryBean.class)
 @DisplayName("EventoController - Tests")
@@ -56,18 +56,18 @@ class EventoControllerTest {
     @Autowired private MockMvc mockMvc;
     @Autowired private ObjectMapper objectMapper;
 
-    @MockBean private LiquidacionCalcularUseCase calcularLiquidacionUseCase;
-    @MockBean private LiquidacionMapper liquidacionMapper;
-    @MockBean private LiquidacionRutaMapper rutaMapper;
+    @MockBean private CalcularUseCase calcularLiquidacionUseCase;
+    @MockBean private Mapper liquidacionMapper;
+    @MockBean private RutaMapper rutaMapper;
 
     // Seguridad (mock para evitar errores de contexto)
-    @MockBean private LiquidacionJwtService jwtService;
-    @MockBean private LiquidacionJwtAuthenticationFilter jwtAuthenticationFilter;
+    @MockBean private JwtService jwtService;
+    @MockBean private JwtAuthenticationFilter jwtAuthenticationFilter;
 
-    private LiquidacionCierreRutaEventDTO validEventDTO;
-    private LiquidacionRuta ruta;
+    private CierreRutaEventDTO validEventDTO;
+    private RutaLiquidacion ruta;
     private Liquidacion liquidacion;
-    private LiquidacionResponseDTO responseDTO;
+    private ResponseDTO responseDTO;
 
     @BeforeEach
     void setUp() {
@@ -176,7 +176,7 @@ class EventoControllerTest {
     // =========================================================================
     // Helpers
     // =========================================================================
-    private org.springframework.test.web.servlet.ResultActions ejecutarPost(LiquidacionCierreRutaEventDTO dto) throws Exception {
+    private org.springframework.test.web.servlet.ResultActions ejecutarPost(CierreRutaEventDTO dto) throws Exception {
         return mockMvc.perform(post(ENDPOINT)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(dto)));
@@ -185,12 +185,12 @@ class EventoControllerTest {
     // =========================================================================
     // Factories
     // =========================================================================
-    private static LiquidacionCierreRutaEventDTO buildEventDTO() {
-        LiquidacionPaqueteDTO paquete = new LiquidacionPaqueteDTO();
+    private static CierreRutaEventDTO buildEventDTO() {
+        PaqueteDTO paquete = new PaqueteDTO();
         paquete.setId(UUID.fromString("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"));
-        paquete.setEstadoFinal(LiquidacionEstadoPaquete.ENTREGADO);
+        paquete.setEstadoFinal(EstadoPaquete.ENTREGADO);
 
-        LiquidacionCierreRutaEventDTO dto = new LiquidacionCierreRutaEventDTO();
+        CierreRutaEventDTO dto = new CierreRutaEventDTO();
         dto.setIdRuta(RUTA_ID);
         dto.setIdContrato(CONTRATO_ID);
         dto.setFechaInicio(OffsetDateTime.now().minusHours(2));
@@ -200,8 +200,8 @@ class EventoControllerTest {
         return dto;
     }
 
-    private static LiquidacionRuta buildRutaValida() {
-        return LiquidacionRuta.builder()
+    private static RutaLiquidacion buildRutaValida() {
+        return RutaLiquidacion.builder()
                 .id(RUTA_ID)
                 .fechaInicio(OffsetDateTime.now().minusHours(2))
                 .fechaCierre(OffsetDateTime.now())
@@ -219,8 +219,8 @@ class EventoControllerTest {
                 .build();
     }
 
-    private static LiquidacionResponseDTO buildResponseDTO() {
-        return LiquidacionResponseDTO.builder()
+    private static ResponseDTO buildResponseDTO() {
+        return ResponseDTO.builder()
                 .id(LIQ_ID)
                 .idRuta(RUTA_ID)
                 .estado(EstadoLiquidacion.CALCULADA)

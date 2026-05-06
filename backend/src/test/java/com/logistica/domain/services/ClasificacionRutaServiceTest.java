@@ -1,12 +1,12 @@
 package com.logistica.domain.services;
 
-import com.logistica.cierreRuta.domain.enums.EstadoParada;
-import com.logistica.cierreRuta.domain.enums.MotivoFalla;
-import com.logistica.cierreRuta.domain.enums.ResponsableFalla;
-import com.logistica.cierreRuta.domain.exceptions.ParadaInvalidaException;
-import com.logistica.cierreRuta.domain.models.Parada;
-import com.logistica.cierreRuta.domain.models.CierreRutaRuta;
-import com.logistica.cierreRuta.domain.services.ClasificacionRutaService;
+import com.logistica.domain.cierreRuta.enums.EstadoParada;
+import com.logistica.domain.cierreRuta.enums.MotivoFalla;
+import com.logistica.domain.cierreRuta.enums.ResponsableFalla;
+import com.logistica.domain.cierreRuta.exceptions.ParadaInvalidaException;
+import com.logistica.domain.cierreRuta.models.Parada;
+import com.logistica.domain.cierreRuta.models.RutaCerrada;
+import com.logistica.domain.cierreRuta.services.ClasificacionRutaService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -31,8 +31,8 @@ class ClasificacionRutaServiceTest {
 
 
 
-    private CierreRutaRuta ruta(List<Parada> paradas) {
-        return CierreRutaRuta.builder()
+    private RutaCerrada ruta(List<Parada> paradas) {
+        return RutaCerrada.builder()
                 .rutaId(UUID.randomUUID())
                 .paradas(paradas)
                 .build();
@@ -100,7 +100,7 @@ class ClasificacionRutaServiceTest {
             ResponsableFalla responsableEsperado) {
 
         Parada p = paradaFallida(motivo);
-        CierreRutaRuta r = ruta(List.of(p));
+        RutaCerrada r = ruta(List.of(p));
 
         assertThatCode(() -> service.clasificar(r))
                 .doesNotThrowAnyException();
@@ -135,7 +135,7 @@ class ClasificacionRutaServiceTest {
         Parada p2 = paradaFallida(MotivoFalla.PAQUETE_DANADO);
         Parada p3 = paradaExitosa();
 
-        CierreRutaRuta r = ruta(List.of(p1, p2, p3));
+        RutaCerrada r = ruta(List.of(p1, p2, p3));
 
         assertThatCode(() -> service.clasificar(r))
                 .doesNotThrowAnyException();

@@ -1,11 +1,11 @@
-﻿package com.logistica.infrastructure.persistence.repositories;
+package com.logistica.infrastructure.persistence.repositories;
 
-import com.logistica.cierreRuta.domain.enums.EstadoParada;
-import com.logistica.cierreRuta.domain.enums.EstadoProcesamiento;
-import com.logistica.cierreRuta.infrastructure.persistence.entities.CierreRutaParadaEntity;
-import com.logistica.cierreRuta.infrastructure.persistence.entities.CierreRutaRutaEntity;
-import com.logistica.cierreRuta.infrastructure.persistence.entities.CierreRutaTransportistaEntity;
-import com.logistica.cierreRuta.infrastructure.persistence.repositories.CierreRutaRutaJpaRepository;
+import com.logistica.domain.cierreRuta.enums.EstadoParada;
+import com.logistica.domain.cierreRuta.enums.EstadoProcesamiento;
+import com.logistica.infrastructure.cierreRuta.persistence.entities.ParadaEntity;
+import com.logistica.infrastructure.cierreRuta.persistence.entities.RutaEntity;
+import com.logistica.infrastructure.cierreRuta.persistence.entities.TransportistaEntity;
+import com.logistica.infrastructure.cierreRuta.persistence.repositories.RutaJpaRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class RutaRepositoryIT extends AbstractRepositoryIT {
 
     @Autowired
-    private CierreRutaRutaJpaRepository repository;
+    private RutaJpaRepository repository;
 
     @Autowired
     private TestEntityManager entityManager;
@@ -30,13 +30,13 @@ class RutaRepositoryIT extends AbstractRepositoryIT {
     @DisplayName("Debe persistir una ruta completa con su transportista y paradas")
     void shouldPersistFullRuta() {
         // Given
-        CierreRutaTransportistaEntity transportista = CierreRutaTransportistaEntity.builder()
+        TransportistaEntity transportista = TransportistaEntity.builder()
                 .conductorId(UUID.randomUUID())
                 .nombre("Juan Transport")
                 .build();
         entityManager.persist(transportista);
 
-        CierreRutaRutaEntity ruta = CierreRutaRutaEntity.builder()
+        RutaEntity ruta = RutaEntity.builder()
                 .rutaId(UUID.randomUUID())
                 .transportista(transportista)
                 .fechaInicioTransito(LocalDateTime.now())
@@ -44,7 +44,7 @@ class RutaRepositoryIT extends AbstractRepositoryIT {
                 .estadoProcesamiento(EstadoProcesamiento.OK)
                 .build();
 
-        CierreRutaParadaEntity parada = CierreRutaParadaEntity.builder()
+        ParadaEntity parada = ParadaEntity.builder()
                 .paradaId(UUID.randomUUID())
                 .paqueteId(UUID.randomUUID())
                 .estado(EstadoParada.EXITOSA)
@@ -53,12 +53,12 @@ class RutaRepositoryIT extends AbstractRepositoryIT {
         ruta.addParada(parada);
 
         // When
-        CierreRutaRutaEntity saved = repository.save(ruta);
+        RutaEntity saved = repository.save(ruta);
         entityManager.flush();
         entityManager.clear();
 
         // Then
-        Optional<CierreRutaRutaEntity> found = repository.findById(saved.getId());
+        Optional<RutaEntity> found = repository.findById(saved.getId());
         assertThat(found).isPresent();
         assertThat(found.get().getTransportista().getNombre()).isEqualTo("Juan Transport");
         assertThat(found.get().getParadas()).hasSize(1);

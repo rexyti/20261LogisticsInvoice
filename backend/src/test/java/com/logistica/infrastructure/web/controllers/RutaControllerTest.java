@@ -1,10 +1,10 @@
 package com.logistica.infrastructure.web.controllers;
 
-import com.logistica.cierreRuta.application.dtos.response.CierreRutaRutaProcesadaResponseDTO;
-import com.logistica.cierreRuta.application.usecases.ruta.CierreRutaConsultarRutaUseCase;
-import com.logistica.cierreRuta.domain.exceptions.RutaNotFoundException;
-import com.logistica.cierreRuta.infrastructure.config.CierreRutaSecurityConfig;
-import com.logistica.cierreRuta.infrastructure.web.controllers.CierreRutaRutaController;
+import com.logistica.application.cierreRuta.dtos.response.RutaProcesadaResponseDTO;
+import com.logistica.application.cierreRuta.usecases.ruta.ConsultarRutaUseCase;
+import com.logistica.domain.cierreRuta.exceptions.RutaNotFoundException;
+import com.logistica.infrastructure.cierreRuta.config.SecurityConfig;
+import com.logistica.infrastructure.cierreRuta.web.controllers.RutaController;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(CierreRutaRutaController.class)
+@WebMvcTest(RutaController.class)
 @AutoConfigureMockMvc(addFilters = false)
 class RutaControllerTest {
 
@@ -32,10 +32,10 @@ class RutaControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private CierreRutaSecurityConfig cierreRutaSecurityConfig;
+    private SecurityConfig cierreRutaSecurityConfig;
 
     @MockBean
-    private CierreRutaConsultarRutaUseCase consultarRutaUseCase;
+    private ConsultarRutaUseCase consultarRutaUseCase;
 
     // ─────────────────────────────────────────────
     // GET /{id}
@@ -48,7 +48,7 @@ class RutaControllerTest {
 
         UUID id = UUID.randomUUID();
 
-        CierreRutaRutaProcesadaResponseDTO response = CierreRutaRutaProcesadaResponseDTO.builder()
+        RutaProcesadaResponseDTO response = RutaProcesadaResponseDTO.builder()
                 .rutaId(id)
                 .build();
 
@@ -85,11 +85,11 @@ class RutaControllerTest {
     @DisplayName("Debe listar rutas correctamente")
     void debe_listar_rutas() throws Exception {
 
-        CierreRutaRutaProcesadaResponseDTO r1 = CierreRutaRutaProcesadaResponseDTO.builder()
+        RutaProcesadaResponseDTO r1 = RutaProcesadaResponseDTO.builder()
                 .rutaId(UUID.randomUUID())
                 .build();
 
-        CierreRutaRutaProcesadaResponseDTO r2 = CierreRutaRutaProcesadaResponseDTO.builder()
+        RutaProcesadaResponseDTO r2 = RutaProcesadaResponseDTO.builder()
                 .rutaId(UUID.randomUUID())
                 .build();
 
