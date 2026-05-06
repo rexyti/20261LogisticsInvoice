@@ -18,12 +18,12 @@ public class ContratoTransportistaRepositoryImpl implements TransportistaReposit
     @Override
     public Transportista guardar(Transportista transportista) {
         TransportistaEntity entity = TransportistaEntity.builder()
-                .idTransportista(transportista.getTransportistaId())
+                .id(transportista.getTransportistaId())
                 .nombre(transportista.getNombre())
                 .build();
         TransportistaEntity saved = jpaRepository.save(entity);
         return Transportista.builder()
-                .transportistaId(saved.getIdTransportista())
+                .transportistaId(saved.getId())
                 .nombre(saved.getNombre())
                 .build();
     }
@@ -32,7 +32,7 @@ public class ContratoTransportistaRepositoryImpl implements TransportistaReposit
     public Optional<Transportista> buscarPorId(UUID id) {
         return jpaRepository.findById(id)
                 .map(e -> Transportista.builder()
-                        .transportistaId(e.getIdTransportista())
+                        .transportistaId(e.getId())
                         .nombre(e.getNombre())
                         .build());
     }

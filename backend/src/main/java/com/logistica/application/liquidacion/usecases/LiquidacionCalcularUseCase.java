@@ -19,7 +19,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class CalcularUseCase {
+public class LiquidacionCalcularUseCase {
 
     private final LiquidacionRepository liquidacionRepository;
     private final ContratoTarifaRepository contratoRepository;
@@ -28,7 +28,6 @@ public class CalcularUseCase {
 
     @Transactional
     public Liquidacion execute(RutaLiquidacion ruta, UUID idContrato) {
-        // 1. Validaciones de entrada
         if (ruta == null) {
             throw new IllegalArgumentException("La ruta no puede ser nula");
         }
@@ -37,24 +36,19 @@ public class CalcularUseCase {
             throw new IllegalArgumentException("La ruta debe tener al menos un paquete");
         }
 
-        // 2. Obtener el contrato desde la base de datos
         ContratoTarifa contrato = contratoRepository.findById(idContrato)
                 .orElseThrow(() -> new ContratoTarifaNoEncontradaException(idContrato));
 
-        // 3. Validar duplicado
         if (liquidacionRepository.existsByIdRuta(ruta.getId())) {
             throw new DuplicadaException(ruta.getId());
         }
 
-        // 4. Calcular valor base
         Strategy strategy = strategyFactory.getStrategy(contrato.getTipoContratacion());
         BigDecimal valorBase = strategy.calcular(ruta, contrato);
 
-        // 5. Crear liquidación
         Liquidacion liquidacion = Liquidacion.crear(ruta.getId(), contrato.getId(), valorBase);
         Liquidacion savedLiquidacion = liquidacionRepository.save(liquidacion);
 
-        // 6. Registrar auditoría
         AuditoriaLiquidacion auditoriaCalculo = AuditoriaLiquidacion.crearCalculo(
                 savedLiquidacion.getId(),
                 savedLiquidacion.getValorFinal()

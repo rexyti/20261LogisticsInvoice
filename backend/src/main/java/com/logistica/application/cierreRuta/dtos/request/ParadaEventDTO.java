@@ -1,6 +1,8 @@
 package com.logistica.application.cierreRuta.dtos.request;
 
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.logistica.domain.cierreRuta.enums.EstadoParada;
 import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.NotNull;
@@ -11,6 +13,7 @@ import java.util.UUID;
 
 @Getter
 @Setter
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class ParadaEventDTO {
 
     @NotNull

@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ObtenerHistorialUseCase {
+public class PaqueteObtenerHistorialUseCase {
 
     private final HistorialRepository historialRepository;
 

@@ -7,6 +7,8 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+
+
 @Entity
 @Table(name = "contratos")
 @Getter
@@ -51,6 +53,12 @@ public class ContratoEntity {
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_seguro")
     private SeguroEntity seguro;
+
+    @Column(name = "tipo_contratacion")
+    private String tipoContratacion;
+
+    @Column(precision = 19, scale = 4)
+    private BigDecimal tarifa;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;

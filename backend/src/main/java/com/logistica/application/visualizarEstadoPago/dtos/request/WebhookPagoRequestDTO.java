@@ -1,9 +1,13 @@
 package com.logistica.application.visualizarEstadoPago.dtos.request;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class WebhookPagoRequestDTO {
 
     private UUID eventoId;
@@ -25,51 +29,21 @@ public class WebhookPagoRequestDTO {
         this.monto = monto;
     }
 
-    public UUID getEventoId() {
-        return eventoId;
-    }
+    public UUID getEventoId() { return eventoId; }
+    public void setEventoId(UUID eventoId) { this.eventoId = eventoId; }
 
-    public void setEventoId(UUID eventoId) {
-        this.eventoId = eventoId;
-    }
+    public UUID getPagoId() { return pagoId; }
+    public void setPagoId(UUID pagoId) { this.pagoId = pagoId; }
 
-    public UUID getPagoId() {
-        return pagoId;
-    }
+    public String getNuevoEstado() { return nuevoEstado; }
+    public void setNuevoEstado(String nuevoEstado) { this.nuevoEstado = nuevoEstado; }
 
-    public void setPagoId(UUID pagoId) {
-        this.pagoId = pagoId;
-    }
+    public LocalDateTime getFechaEvento() { return fechaEvento; }
+    public void setFechaEvento(LocalDateTime fechaEvento) { this.fechaEvento = fechaEvento; }
 
-    public String getNuevoEstado() {
-        return nuevoEstado;
-    }
+    public String getMotivo() { return motivo; }
+    public void setMotivo(String motivo) { this.motivo = motivo; }
 
-    public void setNuevoEstado(String nuevoEstado) {
-        this.nuevoEstado = nuevoEstado;
-    }
-
-    public LocalDateTime getFechaEvento() {
-        return fechaEvento;
-    }
-
-    public void setFechaEvento(LocalDateTime fechaEvento) {
-        this.fechaEvento = fechaEvento;
-    }
-
-    public String getMotivo() {
-        return motivo;
-    }
-
-    public void setMotivo(String motivo) {
-        this.motivo = motivo;
-    }
-
-    public BigDecimal getMonto() {
-        return monto;
-    }
-
-    public void setMonto(BigDecimal monto) {
-        this.monto = monto;
-    }
+    public BigDecimal getMonto() { return monto; }
+    public void setMonto(BigDecimal monto) { this.monto = monto; }
 }

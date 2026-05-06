@@ -1,6 +1,7 @@
 package com.logistica.infrastructure.liquidacion.persistence.entities;
 
 import com.logistica.domain.liquidacion.enums.EstadoLiquidacion;
+import com.logistica.infrastructure.contratos.persistence.entities.ContratoEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,7 +22,7 @@ public class LiquidacionEntity extends BaseEntity {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_contrato", nullable = false)
-    private ContratoTarifaEntity contrato;
+    private ContratoEntity contrato;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 50)

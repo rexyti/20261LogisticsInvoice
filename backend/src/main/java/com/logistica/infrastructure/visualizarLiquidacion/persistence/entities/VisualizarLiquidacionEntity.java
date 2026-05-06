@@ -1,6 +1,7 @@
 package com.logistica.infrastructure.visualizarLiquidacion.persistence.entities;
 
 import com.logistica.domain.visualizarLiquidacion.enums.EstadoLiquidacion;
+import com.logistica.infrastructure.liquidacion.persistence.entities.AjusteEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Immutable;
@@ -48,7 +49,8 @@ public class VisualizarLiquidacionEntity {
     @Column(name = "usuario_id", nullable = false, length = 255)
     private String usuarioId;
 
-    @OneToMany(mappedBy = "liquidacion", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_liquidacion", insertable = false, updatable = false)
     @Builder.Default
-    private List<VisualizarLiquidacionAjusteEntity> ajustes = new ArrayList<>();
+    private List<AjusteEntity> ajustes = new ArrayList<>();
 }

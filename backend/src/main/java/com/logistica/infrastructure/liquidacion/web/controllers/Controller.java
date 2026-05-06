@@ -1,8 +1,8 @@
 package com.logistica.infrastructure.liquidacion.web.controllers;
 
 import com.logistica.application.liquidacion.dtos.request.RecalcularRequestDTO;
-import com.logistica.application.liquidacion.dtos.response.ResponseDTO;
-import com.logistica.application.liquidacion.usecases.RecalcularUseCase;
+import com.logistica.application.liquidacion.dtos.response.LiquidacionResponseDTO;
+import com.logistica.application.liquidacion.usecases.LiquidacionRecalcularUseCase;
 import com.logistica.domain.liquidacion.models.Ajuste;
 import com.logistica.domain.liquidacion.models.Liquidacion;
 import com.logistica.infrastructure.liquidacion.persistence.mapper.AjusteMapper;
@@ -20,12 +20,12 @@ import java.util.UUID;
 @Tag(name = "Liquidaciones", description = "Endpoints para la gestión de liquidaciones.")
 public class Controller {
 
-    private final RecalcularUseCase recalcularLiquidacionUseCase;
+    private final LiquidacionRecalcularUseCase recalcularLiquidacionUseCase;
     private final Mapper liquidacionMapper;
     private final AjusteMapper ajusteMapper;
 
     public Controller(
-            RecalcularUseCase recalcularLiquidacionUseCase,
+            LiquidacionRecalcularUseCase recalcularLiquidacionUseCase,
             Mapper liquidacionMapper,
             AjusteMapper ajusteMapper
     ) {
@@ -35,7 +35,7 @@ public class Controller {
     }
 
     @PutMapping("/{id}/recalcular")
-    public ResponseEntity<ResponseDTO> recalcularLiquidacion(
+    public ResponseEntity<LiquidacionResponseDTO> recalcularLiquidacion(
             @PathVariable UUID id,
             @RequestBody @Valid RecalcularRequestDTO request) {
 

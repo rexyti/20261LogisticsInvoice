@@ -1,8 +1,8 @@
 package com.logistica.infrastructure.liquidacion.web.controllers;
 
 import com.logistica.application.liquidacion.dtos.request.CierreRutaEventDTO;
-import com.logistica.application.liquidacion.dtos.response.ResponseDTO;
-import com.logistica.application.liquidacion.usecases.CalcularUseCase;
+import com.logistica.application.liquidacion.dtos.response.LiquidacionResponseDTO;
+import com.logistica.application.liquidacion.usecases.LiquidacionCalcularUseCase;
 import com.logistica.domain.liquidacion.models.Liquidacion;
 import com.logistica.domain.liquidacion.models.RutaLiquidacion;
 import com.logistica.infrastructure.liquidacion.persistence.mapper.Mapper;
@@ -18,12 +18,12 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = "Eventos", description = "Endpoints para la recepción de eventos del sistema.")
 public class EventoController {
 
-    private final CalcularUseCase calcularLiquidacionUseCase;
+    private final LiquidacionCalcularUseCase calcularLiquidacionUseCase;
     private final Mapper liquidacionMapper;
     private final LiquidacionRutaMapper rutaMapper;
 
     public EventoController(
-            CalcularUseCase calcularLiquidacionUseCase,
+            LiquidacionCalcularUseCase calcularLiquidacionUseCase,
             Mapper liquidacionMapper,
             LiquidacionRutaMapper rutaMapper
     ) {
@@ -33,7 +33,7 @@ public class EventoController {
     }
 
     @PostMapping("/cierre-ruta")
-    public ResponseEntity<ResponseDTO> handleCierreRuta(
+    public ResponseEntity<LiquidacionResponseDTO> handleCierreRuta(
             @RequestBody @Valid CierreRutaEventDTO event) {
 
         RutaLiquidacion ruta = rutaMapper.toModel(event);

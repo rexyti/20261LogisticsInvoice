@@ -13,7 +13,7 @@ public class TransportistaEventMapper {
         }
 
         if (dto.getConductorId() == null) {
-            throw new IllegalArgumentException("conductorId es obligatorio");
+            throw new IllegalArgumentException("transportistaId es obligatorio en el evento");
         }
 
         if (dto.getNombre() == null || dto.getNombre().trim().isEmpty()) {

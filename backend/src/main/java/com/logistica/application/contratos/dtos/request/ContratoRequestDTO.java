@@ -1,5 +1,7 @@
 package com.logistica.application.contratos.dtos.request;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.logistica.application.contratos.validators.ValidFechasContrato;
 import com.logistica.application.contratos.validators.ValidPrecioCondicional;
 import com.logistica.domain.shared.enums.TipoVehiculo;
@@ -17,6 +19,7 @@ import java.util.UUID;
 @Setter
 @ValidFechasContrato
 @ValidPrecioCondicional
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class ContratoRequestDTO {
 
     @NotBlank(message = "El identificador del contrato es obligatorio")

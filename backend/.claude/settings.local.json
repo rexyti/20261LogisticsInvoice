@@ -28,7 +28,26 @@
       "Bash(Remove-Item \"C:\\\\Users\\\\LUIS\\\\IdeaProjects\\\\20261LogisticsInvoice\\\\backend\\\\src\\\\main\\\\java\\\\com\\\\logistica\\\\infrastructure\\\\contratos\\\\persistence\\\\repositories\\\\TransportistaJpaRepository.java\" -Force)",
       "Bash(Remove-Item \"C:\\\\Users\\\\LUIS\\\\IdeaProjects\\\\20261LogisticsInvoice\\\\backend\\\\src\\\\main\\\\java\\\\com\\\\logistica\\\\infrastructure\\\\cierreRuta\\\\persistence\\\\repositories\\\\TransportistaJpaRepository.java\" -Force)",
       "Bash(Remove-Item \"C:\\\\Users\\\\LUIS\\\\IdeaProjects\\\\20261LogisticsInvoice\\\\backend\\\\src\\\\main\\\\java\\\\com\\\\logistica\\\\infrastructure\\\\liquidacion\\\\persistence\\\\repositories\\\\JpaRepository.java\" -Force)",
-      "Bash(Remove-Item \"C:\\\\Users\\\\LUIS\\\\IdeaProjects\\\\20261LogisticsInvoice\\\\backend\\\\src\\\\main\\\\java\\\\com\\\\logistica\\\\infrastructure\\\\liquidacion\\\\persistence\\\\entities\\\\ContratoEntity.java\" -Force)"
+      "Bash(Remove-Item \"C:\\\\Users\\\\LUIS\\\\IdeaProjects\\\\20261LogisticsInvoice\\\\backend\\\\src\\\\main\\\\java\\\\com\\\\logistica\\\\infrastructure\\\\liquidacion\\\\persistence\\\\entities\\\\ContratoEntity.java\" -Force)",
+      "Bash(docker exec postgres-db *)",
+      "Bash(docker cp *)",
+      "PowerShell(docker exec postgres-db *)",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(Sort-Object)",
+      "Bash(Remove-Item \"C:\\\\Users\\\\LUIS\\\\IdeaProjects\\\\20261LogisticsInvoice\\\\backend\\\\src\\\\main\\\\java\\\\com\\\\logistica\\\\infrastructure\\\\cierreRuta\\\\persistence\\\\entities\\\\TransportistaEntity.java\" -Force)",
+      "Bash(Remove-Item \"C:\\\\Users\\\\LUIS\\\\IdeaProjects\\\\20261LogisticsInvoice\\\\backend\\\\src\\\\main\\\\java\\\\com\\\\logistica\\\\infrastructure\\\\cierreRuta\\\\persistence\\\\repositories\\\\CierreRutaTransportistaJpaRepository.java\" -Force)",
+      "Bash(Write-Host \"Eliminados archivos cierreRuta obsoletos\")",
+      "Bash(awk -F: '{print $1}')",
+      "Bash(xargs -I {} basename {} .java)",
+      "Bash(xargs -I {} sh -c 'basename {} .java')",
+      "Bash(xargs grep -h \"public class\")",
+      "Bash(awk '{print $3}')",
+      "Bash(awk '$1 > 1 {print $2}')",
+      "Bash(xargs grep -l \"public class TransportistaResponseDTO\")",
+      "Bash(awk 'NR%2{printf \"%s \", $0; next} 1')",
+      "Bash(awk '$1 > 1')",
+      "Bash(xargs -I {} bash -c 'echo \"{}:\"; grep -h \"public class\" {}')",
+      "Bash(xargs -I {} bash -c 'echo \"{}\"; grep -h \"public interface\" {}')"
     ]
   }
 }

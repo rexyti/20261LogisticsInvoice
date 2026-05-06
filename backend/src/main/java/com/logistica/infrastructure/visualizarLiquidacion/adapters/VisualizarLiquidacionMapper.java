@@ -3,7 +3,7 @@ package com.logistica.infrastructure.visualizarLiquidacion.adapters;
 import com.logistica.domain.visualizarLiquidacion.models.Ajuste;
 import com.logistica.domain.visualizarLiquidacion.models.Liquidacion;
 import com.logistica.domain.visualizarLiquidacion.models.Ruta;
-import com.logistica.infrastructure.visualizarLiquidacion.persistence.entities.VisualizarLiquidacionAjusteEntity;
+import com.logistica.infrastructure.liquidacion.persistence.entities.AjusteEntity;
 import com.logistica.infrastructure.visualizarLiquidacion.persistence.entities.VisualizarLiquidacionEntity;
 import com.logistica.infrastructure.visualizarLiquidacion.persistence.entities.VisualizarLiquidacionRutaEntity;
 import org.springframework.stereotype.Component;
@@ -40,14 +40,14 @@ public class VisualizarLiquidacionMapper {
                 .build();
     }
 
-    private List<Ajuste> toAjustesDomain(List<VisualizarLiquidacionAjusteEntity> entities) {
+    private List<Ajuste> toAjustesDomain(List<AjusteEntity> entities) {
         if (entities == null) return List.of();
         return entities.stream()
                 .map(e -> Ajuste.builder()
                         .id(e.getId())
-                        .tipo(e.getTipo())
+                        .tipo(e.getTipo() != null ? e.getTipo().name() : null)
                         .monto(e.getMonto())
-                        .razon(e.getRazon())
+                        .razon(e.getMotivo())
                         .build())
                 .toList();
     }

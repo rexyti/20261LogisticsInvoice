@@ -1,9 +1,9 @@
 package com.logistica.infrastructure.liquidacion.persistence.mapper;
 
 import com.logistica.application.liquidacion.dtos.response.AjusteResponseDTO;
-import com.logistica.application.liquidacion.dtos.response.ResponseDTO;
+import com.logistica.application.liquidacion.dtos.response.LiquidacionResponseDTO;
 import com.logistica.domain.liquidacion.models.Liquidacion;
-import com.logistica.infrastructure.liquidacion.persistence.entities.ContratoTarifaEntity;
+import com.logistica.infrastructure.contratos.persistence.entities.ContratoEntity;
 import com.logistica.infrastructure.liquidacion.persistence.entities.LiquidacionEntity;
 import org.springframework.stereotype.Component;
 
@@ -26,7 +26,7 @@ public class Mapper {
         entity.setIdRuta(model.getIdRuta());
         
         if (model.getIdContrato() != null) {
-            ContratoTarifaEntity contrato = new ContratoTarifaEntity();
+            ContratoEntity contrato = new ContratoEntity();
             contrato.setId(model.getIdContrato());
             entity.setContrato(contrato);
         }
@@ -72,7 +72,7 @@ public class Mapper {
                 .build();
     }
 
-    public ResponseDTO toResponseDTO(Liquidacion model) {
+    public LiquidacionResponseDTO toResponseDTO(Liquidacion model) {
         if (model == null) return null;
 
         List<AjusteResponseDTO> ajustesDto = model.getAjustes() != null
@@ -81,7 +81,7 @@ public class Mapper {
                 .toList()
                 : List.of();
 
-        return ResponseDTO.builder()
+        return LiquidacionResponseDTO.builder()
                 .id(model.getId())
                 .idRuta(model.getIdRuta())
                 .idContrato(model.getIdContrato())

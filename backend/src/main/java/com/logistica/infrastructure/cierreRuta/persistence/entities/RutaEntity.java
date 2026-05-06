@@ -1,6 +1,7 @@
 package com.logistica.infrastructure.cierreRuta.persistence.entities;
 
 import com.logistica.domain.cierreRuta.enums.EstadoProcesamiento;
+import com.logistica.infrastructure.contratos.persistence.entities.TransportistaEntity;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70668f6f-3f6d-47f4-bd56-df4d94437e6e" name="Changes" comment="Funcionamiento total de la base de datos para cada modulo">
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/shelf/Uncommitted_changes_before_Checkout_at_22_04_2026_11_47a__m___Changes_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/shelf/Uncommitted_changes_before_Checkout_at_22_04_2026_11_47 a_ m__[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="70668f6f-3f6d-47f4-bd56-df4d94437e6e" name="Changes" comment="reorganizacion y creacion de entidades unidas para evitar duplicaciones">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/liquidacion/dtos/response/LiquidacionResponseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/liquidacion/usecases/LiquidacionCalcularUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/liquidacion/usecases/LiquidacionRecalcularUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/usecases/paquete/PaqueteObtenerHistorialUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V1__init_clean_schema.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.claude/settings.local.json" beforeDir="false" afterPath="$PROJECT_DIR$/.claude/settings.local.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.lock" afterDir="false" />
@@ -19,401 +18,89 @@
       <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_security_spring_security_web_6_2_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_security_spring_security_web_6_2_3.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/logistica-backend.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/logistica-backend.main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/logistica-backend.test.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/application/dtos/request/ContratoRequestDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/application/dtos/request/SeguroRequestDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/application/dtos/response/ContratoResponseDTO$ContratoResponseDTOBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/application/dtos/response/ContratoResponseDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/application/dtos/response/SeguroResponseDTO$SeguroResponseDTOBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/application/dtos/response/SeguroResponseDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/application/mappers/ContratoResponseMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/application/usecases/contrato/BuscarContratoUseCase.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/application/usecases/contrato/CrearContratoUseCase.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/application/usecases/contrato/ListarContratosUseCase.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/application/validators/FechasContratoValidator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/application/validators/PrecioCondicionalValidator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/application/validators/ValidFechasContrato.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/application/validators/ValidPrecioCondicional.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/domain/exceptions/ContratoInvalidoException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/domain/exceptions/ContratoYaExisteException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/domain/exceptions/DomainException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/domain/exceptions/RecursoNoEncontradoException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/domain/exceptions/TransportistaNotFoundException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/domain/models/Seguro$SeguroBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/domain/models/Seguro.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/domain/models/Vehiculo$VehiculoBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/domain/models/Vehiculo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/domain/repositories/SeguroRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/domain/repositories/VehiculoRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/infrastructure/persistence/entities/SeguroEntity$SeguroEntityBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/infrastructure/persistence/entities/SeguroEntity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/infrastructure/persistence/entities/VehiculoEntity$VehiculoEntityBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/infrastructure/persistence/entities/VehiculoEntity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/infrastructure/persistence/repositories/SeguroJpaRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/infrastructure/persistence/repositories/SeguroRepositoryImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/infrastructure/persistence/repositories/VehiculoJpaRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/infrastructure/persistence/repositories/VehiculoRepositoryImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/com/logistica/contratos/infrastructure/web/controllers/ContratoController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/db/migration/V1__init_schema.sql" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/application/dtos/response/HistorialEstadoDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/application/dtos/response/LogSincronizacionDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/application/dtos/response/SincronizacionResultadoDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/application/ports/PackageStatusGateway.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/application/ports/PackageStatusResult.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/application/usecases/paquete/ObtenerHistorialUseCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/application/usecases/paquete/ObtenerLogsSincronizacionUseCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/application/usecases/paquete/SincronizarPaqueteUseCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/domain/enums/NovedadEstadoPaqueteEstadoPaquete.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/domain/exceptions/EstadoNoMapeadoException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/domain/exceptions/PaqueteNotFoundException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/domain/exceptions/SincronizacionException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/domain/models/HistorialEstado.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/domain/models/LogSincronizacion.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/domain/models/NovedadEstadoPaquetePaquete.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/domain/repositories/HistorialRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/domain/repositories/LogSincronizacionRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/domain/repositories/PaqueteRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/domain/services/EstadoPaqueteService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/infrastructure/config/AsyncExecutionConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/infrastructure/config/FeignConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/infrastructure/http/clients/GestionClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/infrastructure/http/dto/GestionPaqueteDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/infrastructure/http/service/ApiCallResult.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/infrastructure/http/service/PackageApiClientService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/infrastructure/persistence/entities/HistorialEstadoEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/infrastructure/persistence/entities/LogSincronizacionEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/infrastructure/persistence/entities/PaqueteEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/infrastructure/persistence/mapper/PaqueteEntityMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/infrastructure/persistence/repositories/HistorialJpaRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/infrastructure/persistence/repositories/HistorialRepositoryImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/infrastructure/persistence/repositories/LogSincronizacionJpaRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/infrastructure/persistence/repositories/LogSincronizacionRepositoryImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/infrastructure/persistence/repositories/PaqueteJpaRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/infrastructure/persistence/repositories/PaqueteRepositoryImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/infrastructure/web/controllers/PaqueteController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/infrastructure/web/handlers/NovedadEstadoPaqueteErrorResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/NovedadEstadoPaquete/infrastructure/web/handlers/NovedadEstadoPaqueteGlobalExceptionHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/application/dtos/request/ActualizarEstadoPagoRequestDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/application/dtos/request/EventoEstadoPagoRequestDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/application/dtos/response/EventoTransaccionResponseDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/application/dtos/response/PagoResponseDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/application/dtos/response/RecepcionEventoPagoResponseDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/application/dtos/response/RegistrarEstadoPagoEstadoPagoResponseDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/application/ports/EventoPagoAsyncPort.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/application/usecases/pago/ActualizarEstadoPagoUseCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/application/usecases/pago/ObtenerEstadoPagoUseCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/application/usecases/pago/ObtenerEventosTransaccionUseCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/application/usecases/pago/PagoService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/application/usecases/pago/ProcesarEventoPagoUseCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/application/usecases/pago/RecibirEventoPagoUseCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/application/usecases/pago/RegistrarEstadoPagoUseCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/enums/EstadoEventoTransaccion.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/enums/RegistrarEstadoPagoEstadoPagoEnum.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/enums/RegistrarEstadoPagoTipoEventoPago.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/exceptions/EstadoPagoInvalidoException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/exceptions/EventoPagoNoProcesableException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/exceptions/LiquidacionNoEncontradaException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/exceptions/RegistrarEstadoPagoEventoDuplicadoException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/exceptions/RegistrarEstadoPagoPagoNoEncontradoException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/exceptions/TransicionEstadoPagoInvalidaException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/models/LiquidacionReferencia.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/models/RegistrarEstadoPagoEstadoPago.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/models/RegistrarEstadoPagoEventoTransaccion.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/models/RegistrarEstadoPagoPago.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/repositories/EventoTransaccionRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/repositories/RegistrarEstadoPagoEstadoPagoRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/repositories/RegistrarEstadoPagoLiquidacionRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/repositories/RegistrarEstadoPagoPagoRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/services/EstadoPagoDomainService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/services/IdempotenciaEventoPagoService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/domain/services/TransicionEstadoPagoService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/adapters/EstadoPagoRepositoryAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/adapters/EventoTransaccionRepositoryAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/adapters/LiquidacionRepositoryAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/adapters/PagoMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/adapters/PagoRepositoryAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/async/config/AsyncPagoConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/async/processors/EventoPagoProcessor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/config/JpaConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/config/RegistrarEstadoPagoDomainServiceConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/config/WebhookConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/persistence/entities/EventoTransaccionEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/persistence/entities/LiquidacionReferenciaEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/persistence/entities/RegistrarEstadoPagoEstadoPagoEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/persistence/entities/RegistrarEstadoPagoPagoEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/persistence/repositories/EventoTransaccionJpaRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/persistence/repositories/RegistrarEstadoPagoEstadoPagoJpaRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/persistence/repositories/RegistrarEstadoPagoLiquidacionJpaRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/persistence/repositories/RegistrarEstadoPagoPagoJpaRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/web/controllers/RegistrarEstadoPagoLiquidacionController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/web/controllers/RegistrarEstadoPagoPagoController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/web/controllers/WebhookPagoController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/RegistrarEstadoPago/infrastructure/web/handlers/RegistrarEstadoPagoGlobalExceptionHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/application/dtos/request/WebhookPagoRequestDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/application/dtos/response/EventoProcesadoResponseDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/application/dtos/response/PagoListDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/application/dtos/response/VisualizarEstadoPagoEstadoPagoResponseDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/application/mappers/PagoDtoMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/application/usecases/pago/ConsultarEstadoPagoUseCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/application/usecases/pago/ListarPagosUseCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/domain/enums/VisualizarEstadoPagoEstadoPagoEnum.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/domain/enums/VisualizarEstadoPagoTipoEventoPago.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/domain/events/PagoProcesadoEvent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/domain/exceptions/AccessDeniedPaymentException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/domain/exceptions/StorageUnavailableException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/domain/exceptions/TransicionInvalidaException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/domain/exceptions/VisualizarEstadoPagoEventoDuplicadoException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/domain/exceptions/VisualizarEstadoPagoPagoNoEncontradoException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/domain/models/Penalidad.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/domain/models/VisualizarEstadoPagoEstadoPago.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/domain/models/VisualizarEstadoPagoEventoTransaccion.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/domain/models/VisualizarEstadoPagoPago.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/domain/repositories/EventoRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/domain/repositories/VisualizarEstadoPagoEstadoPagoRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/domain/repositories/VisualizarEstadoPagoPagoRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/domain/services/AuditoriaPagoService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/domain/services/IdempotenciaService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/domain/services/ProcesadorEstadoPagoService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/domain/validators/TransicionEstadoValidator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/infrastructure/adapters/EstadoPagoMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/infrastructure/adapters/EventoMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/infrastructure/adapters/PagoPersistenceMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/infrastructure/config/UseCaseConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/infrastructure/config/VisualizarEstadoPagoDomainServiceConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/infrastructure/persistence/entities/EventoEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/infrastructure/persistence/entities/VisualizarEstadoPagoEstadoPagoEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/infrastructure/persistence/entities/VisualizarEstadoPagoPagoEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/infrastructure/persistence/repositories/EstadoPagoRepositoryImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/infrastructure/persistence/repositories/EventoJpaRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/infrastructure/persistence/repositories/EventoRepositoryImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/infrastructure/persistence/repositories/PagoRepositoryImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/infrastructure/persistence/repositories/VisualizarEstadoPagoEstadoPagoJpaRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/infrastructure/persistence/repositories/VisualizarEstadoPagoPagoJpaRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/infrastructure/security/VisualizarEstadoPagoSecurityConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/infrastructure/web/controllers/VisualizarEstadoPagoPagoController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarEstadoPago/infrastructure/web/handlers/VisualizarEstadoPagoGlobalExceptionHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/application/dtos/request/VisualizarLiquidacionFiltroDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/application/dtos/response/VisualizarLiquidacionAjusteDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/application/dtos/response/VisualizarLiquidacionDetalleDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/application/dtos/response/VisualizarLiquidacionListItemDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/application/dtos/response/VisualizarLiquidacionListResponseDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/application/mappers/VisualizarLiquidacionDTOMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/application/security/VisualizarLiquidacionUsuarioAutenticado.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/application/usecases/liquidacion/VisualizarLiquidacionBuscarUseCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/application/usecases/liquidacion/VisualizarLiquidacionListarUseCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/application/usecases/liquidacion/VisualizarLiquidacionObtenerDetalleUseCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/domain/enums/EstadoLiquidacion.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/domain/exceptions/AccesoDenegadoException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/domain/exceptions/LiquidacionAunNoCalculadaException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/domain/exceptions/LiquidacionNoEncontradaException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/domain/models/Ajuste.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/domain/models/Liquidacion.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/domain/models/ResultadoBusquedaPorRuta.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/domain/models/Ruta.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/domain/repositories/LiquidacionRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/infrastructure/adapters/VisualizarLiquidacionMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/infrastructure/config/VisualizarLiquidacionPaginationConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/infrastructure/config/VisualizarLiquidacionSecurityConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/infrastructure/config/VisualizarLiquidacionWebConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/infrastructure/persistence/entities/VisualizarLiquidacionAjusteEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/infrastructure/persistence/entities/VisualizarLiquidacionEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/infrastructure/persistence/entities/VisualizarLiquidacionRutaEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/infrastructure/persistence/repositories/VisualizarLiquidacionJpaRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/infrastructure/persistence/repositories/VisualizarLiquidacionRepositoryImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/infrastructure/persistence/repositories/VisualizarLiquidacionRutaJpaRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/infrastructure/security/VisualizarLiquidacionJwtAuthenticationFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/infrastructure/security/VisualizarLiquidacionJwtService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/infrastructure/web/controllers/VisualizarLiquidacionController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/VisualizarLiquidación/infrastructure/web/handlers/VisualizarLiquidacionGlobalExceptionHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/application/dtos/request/CierreRutaConductorEventDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/application/dtos/request/CierreRutaParadaEventDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/application/dtos/request/CierreRutaRutaCerradaEventDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/application/dtos/request/CierreRutaVehiculoEventDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/application/dtos/response/CierreRutaParadaResponseDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/application/dtos/response/CierreRutaRutaProcesadaResponseDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/application/dtos/response/CierreRutaTransportistaResponseDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/application/mappers/CierreRutaParadaEventMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/application/mappers/CierreRutaParadaResponseMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/application/mappers/CierreRutaRutaEventMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/application/mappers/CierreRutaRutaResponseMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/application/mappers/CierreRutaTransportistaEventMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/application/mappers/CierreRutaTransportistaResponseMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/application/usecases/ruta/CierreRutaConsultarRutaUseCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/application/usecases/ruta/CierreRutaProcesarRutaCerradaUseCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/domain/enums/CierreRutaTipoVehiculo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/domain/enums/EstadoParada.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/domain/enums/EstadoProcesamiento.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/domain/enums/MotivoFalla.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/domain/enums/ResponsableFalla.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/domain/enums/TipoAlertaRuta.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/domain/events/RutaCerradaProcesadaEvent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/domain/exceptions/CierreRutaDomainException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/domain/exceptions/CierreRutaEventoDuplicadoException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/domain/exceptions/ParadaInvalidaException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/domain/exceptions/RutaInvalidaException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/domain/exceptions/RutaNotFoundException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/domain/models/CierreRutaRuta.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/domain/models/CierreRutaTransportista.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/domain/models/Parada.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/domain/ports/DomainEvent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/domain/ports/EventPublisher.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/domain/ports/TimeProvider.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/domain/repositories/CierreRutaTransportistaRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/domain/repositories/RutaRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/domain/services/ClasificacionRutaService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/infrastructure/CierreRutaSpringEventPublisher.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/infrastructure/adapters/CierreRutaParadaMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/infrastructure/adapters/CierreRutaRutaMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/infrastructure/adapters/CierreRutaTransportistaMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/infrastructure/config/CierreRutaJacksonConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/infrastructure/config/CierreRutaSecurityConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/infrastructure/messaging/config/CierreRutaSqsConsumerConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/infrastructure/messaging/consumers/CierreRutaRutaCerradaConsumer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/infrastructure/persistence/entities/CierreRutaParadaEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/infrastructure/persistence/entities/CierreRutaRutaEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/infrastructure/persistence/entities/CierreRutaTransportistaEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/infrastructure/persistence/repositories/CierreRutaRutaJpaRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/infrastructure/persistence/repositories/CierreRutaRutaRepositoryImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/infrastructure/persistence/repositories/CierreRutaTransportistaJpaRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/infrastructure/persistence/repositories/CierreRutaTransportistaRepositoryImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/infrastructure/time/CierreRutaSystemTimeProvider.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/infrastructure/web/controllers/CierreRutaRutaController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/infrastructure/web/handlers/CierreRutaErrorResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/infrastructure/web/handlers/CierreRutaGlobalExceptionHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/cierreRuta/infrastructure/web/handlers/CierreRutaRutaEventHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/application/dtos/request/ContratoRequestDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/application/dtos/request/SeguroRequestDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/application/dtos/response/ContratoResponseDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/application/dtos/response/ContratosTransportistaResponseDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/application/dtos/response/SeguroResponseDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/application/mappers/ContratoResponseMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/application/usecases/contrato/BuscarContratoUseCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/application/usecases/contrato/CrearContratoUseCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/application/usecases/contrato/ListarContratosUseCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/application/validators/FechasContratoValidator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/application/validators/PrecioCondicionalValidator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/application/validators/ValidFechasContrato.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/application/validators/ValidPrecioCondicional.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/domain/enums/ContratosTipoVehiculo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/domain/exceptions/ContratoInvalidoException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/domain/exceptions/ContratoYaExisteException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/domain/exceptions/ContratosContratoNotFoundException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/domain/exceptions/DomainException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/domain/exceptions/RecursoNoEncontradoException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/domain/exceptions/TransportistaNotFoundException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/domain/models/ContratosContrato.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/domain/models/ContratosTransportista.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/domain/models/Seguro.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/domain/models/Vehiculo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/domain/repositories/ContratosContratoRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/domain/repositories/ContratosTransportistaRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/domain/repositories/SeguroRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/domain/repositories/VehiculoRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/infrastructure/adapters/ContratosContratoMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/infrastructure/config/ContratosSecurityConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/infrastructure/persistence/entities/ContratosContratoEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/infrastructure/persistence/entities/ContratosTransportistaEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/infrastructure/persistence/entities/SeguroEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/infrastructure/persistence/entities/VehiculoEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/infrastructure/persistence/repositories/ContratosContratoJpaRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/infrastructure/persistence/repositories/ContratosContratoRepositoryImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/infrastructure/persistence/repositories/ContratosTransportistaJpaRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/infrastructure/persistence/repositories/ContratosTransportistaRepositoryImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/infrastructure/persistence/repositories/SeguroJpaRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/infrastructure/persistence/repositories/SeguroRepositoryImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/infrastructure/persistence/repositories/VehiculoJpaRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/infrastructure/persistence/repositories/VehiculoRepositoryImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/infrastructure/web/controllers/ContratoController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/infrastructure/web/handlers/ContratosErrorResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/contratos/infrastructure/web/handlers/ContratosGlobalExceptionHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/application/dtos/request/LiquidacionAjusteDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/application/dtos/request/LiquidacionCierreRutaEventDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/application/dtos/request/LiquidacionPaqueteDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/application/dtos/request/LiquidacionRecalcularRequestDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/application/dtos/request/placeholder.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/application/dtos/response/LiquidacionAjusteResponseDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/application/dtos/response/LiquidacionResponseDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/application/dtos/response/placeholder.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/application/usecases/LiquidacionCalcularUseCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/application/usecases/LiquidacionRecalcularUseCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/application/usecases/LiquidacionStrategyFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/application/usecases/placeholder.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/domain/enums/EstadoLiquidacion.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/domain/enums/LiquidacionEstadoPaquete.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/domain/enums/TipoAjuste.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/domain/enums/TipoContratacion.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/domain/enums/TipoOperacion.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/domain/enums/TipoResponsable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/domain/exceptions/LiquidacionContratoNotFoundException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/domain/exceptions/LiquidacionDomainException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/domain/exceptions/LiquidacionDuplicadaException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/domain/exceptions/LiquidacionNotFoundException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/domain/models/Ajuste.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/domain/models/AuditoriaLiquidacion.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/domain/models/Liquidacion.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/domain/models/LiquidacionContrato.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/domain/models/LiquidacionPaquete.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/domain/models/LiquidacionRuta.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/domain/models/placeholder.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/domain/repositories/AjusteRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/domain/repositories/AuditoriaLiquidacionRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/domain/repositories/LiquidacionContratoRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/domain/repositories/LiquidacionRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/domain/strategies/LiquidacionStrategy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/domain/strategies/PorParadaStrategy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/domain/strategies/RecorridoCompletoStrategy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/infrastructure/config/LiquidacionJwtAuthenticationFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/infrastructure/config/LiquidacionJwtService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/infrastructure/config/LiquidacionSecurityConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/infrastructure/persistence/entities/LiquidacionAjusteEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/infrastructure/persistence/entities/LiquidacionAuditoriaEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/infrastructure/persistence/entities/LiquidacionBaseEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/infrastructure/persistence/entities/LiquidacionContratoEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/infrastructure/persistence/entities/LiquidacionEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/infrastructure/persistence/entities/LiquidacionInmutableBaseEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/infrastructure/persistence/mapper/LiquidacionAjusteMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/infrastructure/persistence/mapper/LiquidacionAuditoriaMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/infrastructure/persistence/mapper/LiquidacionContratoMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/infrastructure/persistence/mapper/LiquidacionMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/infrastructure/persistence/mapper/LiquidacionRutaMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/infrastructure/persistence/repositories/LiquidacionAjusteJpaRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/infrastructure/persistence/repositories/LiquidacionAjusteRepositoryImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/infrastructure/persistence/repositories/LiquidacionAuditoriaJpaRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/infrastructure/persistence/repositories/LiquidacionAuditoriaRepositoryImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/infrastructure/persistence/repositories/LiquidacionContratoJpaRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/infrastructure/persistence/repositories/LiquidacionContratoRepositoryImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/infrastructure/persistence/repositories/LiquidacionJpaRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/infrastructure/persistence/repositories/LiquidacionRepositoryImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/infrastructure/web/controllers/LiquidacionController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/infrastructure/web/controllers/LiquidacionEventoController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/liquidacion/infrastructure/web/handlers/LiquidacionGlobalExceptionHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/VisualizarLiquidación/application/usecases/BuscarLiquidacionesUseCaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/logistica/VisualizarLiquidación/application/usecases/BuscarLiquidacionesUseCaseTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/VisualizarLiquidación/application/usecases/ListarLiquidacionesUseCaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/logistica/VisualizarLiquidación/application/usecases/ListarLiquidacionesUseCaseTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/VisualizarLiquidación/application/usecases/ObtenerDetalleLiquidacionUseCaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/logistica/VisualizarLiquidación/application/usecases/ObtenerDetalleLiquidacionUseCaseTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/VisualizarLiquidación/infrastructure/web/controllers/LiquidacionControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/logistica/VisualizarLiquidación/infrastructure/web/controllers/LiquidacionControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/application/dtos/RutaCerradaEventDTOMappingTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/logistica/application/dtos/RutaCerradaEventDTOMappingTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/application/usecases/ProcesarRutaCerradaUseCaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/logistica/application/usecases/ProcesarRutaCerradaUseCaseTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/cierreRuta/domain/models/RutaTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/cierreRuta/infrastructure/messaging/consumers/RutaCerradaConsumerTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/contratos/application/usecases/contrato/CrearContratoUseCaseTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/contratos/application/validators/FechasContratoValidatorTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/contratos/application/validators/PrecioCondicionalValidatorTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/contratos/domain/validators/FechasContratoValidatorTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/contratos/domain/validators/PrecioCondicionalValidatorTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/contratos/web/ContratoControllerIntegrationTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/domain/services/ClasificacionRutaServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/logistica/domain/services/ClasificacionRutaServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/domain/strategies/PorParadaStrategyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/logistica/domain/strategies/PorParadaStrategyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/infrastructure/persistence/repositories/AjusteRepositoryIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/logistica/infrastructure/persistence/repositories/AjusteRepositoryIT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/infrastructure/persistence/repositories/LiquidacionRepositoryIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/logistica/infrastructure/persistence/repositories/LiquidacionRepositoryIT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/infrastructure/persistence/repositories/RutaRepositoryIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/logistica/infrastructure/persistence/repositories/RutaRepositoryIT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/infrastructure/web/controllers/EventoControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/logistica/infrastructure/web/controllers/EventoControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/infrastructure/web/controllers/LiquidacionControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/logistica/infrastructure/web/controllers/LiquidacionControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/logistica/infrastructure/web/controllers/RutaControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/logistica/infrastructure/web/controllers/RutaControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/cierreRuta/dtos/request/ConductorEventDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/cierreRuta/dtos/request/ConductorEventDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/cierreRuta/dtos/request/ParadaEventDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/cierreRuta/dtos/request/ParadaEventDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/cierreRuta/dtos/request/RutaCerradaEventDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/cierreRuta/dtos/request/RutaCerradaEventDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/cierreRuta/dtos/request/VehiculoEventDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/cierreRuta/dtos/request/VehiculoEventDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/cierreRuta/dtos/response/ParadaResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/cierreRuta/dtos/response/ParadaResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/cierreRuta/dtos/response/RutaProcesadaResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/cierreRuta/dtos/response/RutaProcesadaResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/cierreRuta/dtos/response/TransportistaResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/cierreRuta/dtos/response/TransportistaResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/cierreRuta/mappers/TransportistaEventMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/cierreRuta/mappers/TransportistaEventMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/cierreRuta/mappers/TransportistaResponseMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/cierreRuta/mappers/TransportistaResponseMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/contratos/dtos/request/ContratoRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/contratos/dtos/request/ContratoRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/contratos/dtos/request/SeguroRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/contratos/dtos/request/SeguroRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/contratos/dtos/response/ContratoResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/contratos/dtos/response/ContratoResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/contratos/dtos/response/SeguroResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/contratos/dtos/response/SeguroResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/contratos/dtos/response/TransportistaResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/contratos/dtos/response/TransportistaResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/liquidacion/dtos/request/AjusteDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/liquidacion/dtos/request/AjusteDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/liquidacion/dtos/request/CierreRutaEventDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/liquidacion/dtos/request/CierreRutaEventDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/liquidacion/dtos/request/PaqueteDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/liquidacion/dtos/request/PaqueteDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/liquidacion/dtos/request/RecalcularRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/liquidacion/dtos/request/RecalcularRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/liquidacion/dtos/response/AjusteResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/liquidacion/dtos/response/AjusteResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/liquidacion/dtos/response/ResponseDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/liquidacion/usecases/CalcularUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/liquidacion/usecases/RecalcularUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/dtos/response/HistorialEstadoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/dtos/response/HistorialEstadoDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/dtos/response/LogSincronizacionDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/dtos/response/LogSincronizacionDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/dtos/response/SincronizacionResultadoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/dtos/response/SincronizacionResultadoDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/usecases/paquete/ObtenerHistorialUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/registrarEstadoPago/dtos/request/ActualizarEstadoPagoRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/registrarEstadoPago/dtos/request/ActualizarEstadoPagoRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/registrarEstadoPago/dtos/request/EventoEstadoPagoRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/registrarEstadoPago/dtos/request/EventoEstadoPagoRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/registrarEstadoPago/dtos/response/EventoTransaccionResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/registrarEstadoPago/dtos/response/EventoTransaccionResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/registrarEstadoPago/dtos/response/PagoResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/registrarEstadoPago/dtos/response/PagoResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/registrarEstadoPago/dtos/response/RecepcionEventoPagoResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/registrarEstadoPago/dtos/response/RecepcionEventoPagoResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/registrarEstadoPago/dtos/response/RegistrarEstadoPagoEstadoPagoResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/registrarEstadoPago/dtos/response/RegistrarEstadoPagoEstadoPagoResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/visualizarEstadoPago/dtos/request/WebhookPagoRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/visualizarEstadoPago/dtos/request/WebhookPagoRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/visualizarEstadoPago/dtos/response/EventoProcesadoResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/visualizarEstadoPago/dtos/response/EventoProcesadoResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/visualizarEstadoPago/dtos/response/PagoListDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/visualizarEstadoPago/dtos/response/PagoListDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/visualizarEstadoPago/dtos/response/VisualizarEstadoPagoEstadoPagoResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/visualizarEstadoPago/dtos/response/VisualizarEstadoPagoEstadoPagoResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/visualizarLiquidacion/dtos/request/VisualizarLiquidacionFiltroDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/visualizarLiquidacion/dtos/request/VisualizarLiquidacionFiltroDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/visualizarLiquidacion/dtos/response/VisualizarLiquidacionAjusteDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/visualizarLiquidacion/dtos/response/VisualizarLiquidacionAjusteDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/visualizarLiquidacion/dtos/response/VisualizarLiquidacionDetalleDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/visualizarLiquidacion/dtos/response/VisualizarLiquidacionDetalleDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/visualizarLiquidacion/dtos/response/VisualizarLiquidacionListItemDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/visualizarLiquidacion/dtos/response/VisualizarLiquidacionListItemDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/visualizarLiquidacion/dtos/response/VisualizarLiquidacionListResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/visualizarLiquidacion/dtos/response/VisualizarLiquidacionListResponseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/cierreRuta/adapters/RutaMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/cierreRuta/adapters/RutaMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/cierreRuta/adapters/TransportistaMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/cierreRuta/adapters/TransportistaMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/cierreRuta/persistence/entities/RutaEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/cierreRuta/persistence/entities/RutaEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/cierreRuta/persistence/entities/TransportistaEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/cierreRuta/persistence/repositories/CierreRutaTransportistaJpaRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/cierreRuta/persistence/repositories/TransportistaRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/cierreRuta/persistence/repositories/TransportistaRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/contratos/adapters/ContratoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/contratos/adapters/ContratoMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/contratos/persistence/entities/ContratoEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/contratos/persistence/entities/ContratoEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/contratos/persistence/entities/TransportistaEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/contratos/persistence/entities/TransportistaEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/contratos/persistence/repositories/ContratoTransportistaRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/contratos/persistence/repositories/ContratoTransportistaRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/liquidacion/persistence/entities/ContratoTarifaEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/liquidacion/persistence/entities/LiquidacionEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/liquidacion/persistence/entities/LiquidacionEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/liquidacion/persistence/mapper/LiquidacionContratoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/liquidacion/persistence/mapper/LiquidacionContratoMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/liquidacion/persistence/mapper/Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/liquidacion/persistence/mapper/Mapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/liquidacion/persistence/repositories/LiquidacionContratoJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/liquidacion/persistence/repositories/LiquidacionContratoJpaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/liquidacion/web/controllers/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/liquidacion/web/controllers/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/liquidacion/web/controllers/EventoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/liquidacion/web/controllers/EventoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/web/controllers/PaqueteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/web/controllers/PaqueteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/visualizarEstadoPago/adapters/EstadoPagoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/visualizarEstadoPago/adapters/EstadoPagoMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/visualizarEstadoPago/adapters/PagoPersistenceMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/visualizarEstadoPago/adapters/PagoPersistenceMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/visualizarEstadoPago/persistence/entities/EventoEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/visualizarEstadoPago/persistence/entities/EventoEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/visualizarEstadoPago/persistence/entities/VisualizarEstadoPagoEstadoPagoEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/visualizarEstadoPago/persistence/entities/VisualizarEstadoPagoPagoEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/visualizarEstadoPago/persistence/repositories/EstadoPagoRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/visualizarEstadoPago/persistence/repositories/EstadoPagoRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/visualizarEstadoPago/persistence/repositories/PagoRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/visualizarEstadoPago/persistence/repositories/PagoRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/visualizarEstadoPago/persistence/repositories/VisualizarEstadoPagoEstadoPagoJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/visualizarEstadoPago/persistence/repositories/VisualizarEstadoPagoEstadoPagoJpaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/visualizarEstadoPago/persistence/repositories/VisualizarEstadoPagoPagoJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/visualizarEstadoPago/persistence/repositories/VisualizarEstadoPagoPagoJpaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/visualizarLiquidacion/adapters/VisualizarLiquidacionMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/visualizarLiquidacion/adapters/VisualizarLiquidacionMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/visualizarLiquidacion/persistence/entities/VisualizarLiquidacionAjusteEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/visualizarLiquidacion/persistence/entities/VisualizarLiquidacionEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/visualizarLiquidacion/persistence/entities/VisualizarLiquidacionEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application-local.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-local.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V1__init_schema.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V2__create_paquete_schema.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V3__create_contratos_schema.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V4__fix_parada_ruta_fk.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V5__indexes_visualizacion_liquidacion.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V6__update_schema_to_match_entities.sql" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -441,6 +128,13 @@
         </projects_view>
       </state>
     </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -474,31 +168,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "Gradle.Build backend.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "Spring Boot.LogisticaApplication.executor": "Run",
-    "git-widget-placeholder": "massive-names-packages",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/LUIS/IdeaProjects/20261LogisticsInvoice/backend",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;Gradle.Build backend.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Spring Boot.LogisticaApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;massive-names-packages&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/LUIS/IdeaProjects/20261LogisticsInvoice/backend&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="LogisticaApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="logistica-backend.main" />
@@ -527,7 +221,8 @@
       <workItem from="1777111989173" duration="182000" />
       <workItem from="1777653117744" duration="14176000" />
       <workItem from="1777726128648" duration="1715000" />
-      <workItem from="1778006229113" duration="9193000" />
+      <workItem from="1778006229113" duration="13142000" />
+      <workItem from="1778062096644" duration="8162000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <option name="closed" value="true" />
@@ -545,7 +240,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777673724183</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="renombramiento masivo y ajuste de dominio, infraestructura y aplicacion">
+      <option name="closed" value="true" />
+      <created>1778027775072</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1778027775074</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -565,6 +268,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="." />
     <MESSAGE value="creacion de rama para la base de datos, modificaciones mayores de nombres para evitar confusion en el sistema" />
-    <option name="LAST_COMMIT_MESSAGE" value="creacion de rama para la base de datos, modificaciones mayores de nombres para evitar confusion en el sistema" />
+    <MESSAGE value="renombramiento masivo y ajuste de dominio, infraestructura y aplicacion" />
+    <MESSAGE value="reorganizacion y creacion de entidades unidas para evitar duplicaciones" />
+    <option name="LAST_COMMIT_MESSAGE" value="reorganizacion y creacion de entidades unidas para evitar duplicaciones" />
   </component>
 </project>

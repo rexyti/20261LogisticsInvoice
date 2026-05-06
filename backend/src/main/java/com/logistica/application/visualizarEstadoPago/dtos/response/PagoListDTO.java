@@ -1,9 +1,13 @@
 package com.logistica.application.visualizarEstadoPago.dtos.response;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class PagoListDTO {
 
     private final UUID pagoId;

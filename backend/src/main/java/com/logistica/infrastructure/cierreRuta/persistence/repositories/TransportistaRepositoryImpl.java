@@ -3,7 +3,7 @@ package com.logistica.infrastructure.cierreRuta.persistence.repositories;
 import com.logistica.domain.cierreRuta.models.TransportistaRuta;
 import com.logistica.domain.cierreRuta.repositories.TransportistaRutaRepository;
 import com.logistica.infrastructure.cierreRuta.adapters.TransportistaMapper;
-import com.logistica.infrastructure.cierreRuta.persistence.repositories.CierreRutaTransportistaJpaRepository;
+import com.logistica.infrastructure.contratos.persistence.repositories.ContratoTransportistaJpaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -14,12 +14,12 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class TransportistaRepositoryImpl implements TransportistaRutaRepository {
 
-    private final CierreRutaTransportistaJpaRepository jpaRepository;
+    private final ContratoTransportistaJpaRepository jpaRepository;
     private final TransportistaMapper mapper;
 
     @Override
     public Optional<TransportistaRuta> buscarPorTransportistaId(UUID transportistaId) {
-        return jpaRepository.findByConductorId(transportistaId)
+        return jpaRepository.findById(transportistaId)
                 .map(mapper::toDomain);
     }
 

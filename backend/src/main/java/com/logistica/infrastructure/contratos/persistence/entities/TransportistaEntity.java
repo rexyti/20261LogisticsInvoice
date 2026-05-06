@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "transportistas")
+@Table(name = "transportista")
 @Getter
 @Setter
 @Builder
@@ -18,8 +18,7 @@ public class TransportistaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "id_transportista")
-    private UUID idTransportista;
+    private UUID id;
 
     @Column(nullable = false)
     private String nombre;

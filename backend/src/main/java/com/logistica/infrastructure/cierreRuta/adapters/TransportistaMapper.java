@@ -1,7 +1,7 @@
 package com.logistica.infrastructure.cierreRuta.adapters;
 
 import com.logistica.domain.cierreRuta.models.TransportistaRuta;
-import com.logistica.infrastructure.cierreRuta.persistence.entities.TransportistaEntity;
+import com.logistica.infrastructure.contratos.persistence.entities.TransportistaEntity;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -15,7 +15,7 @@ public class TransportistaMapper {
         }
 
         return TransportistaEntity.builder()
-                .conductorId(transportista.getTransportistaId())
+                .id(transportista.getTransportistaId())
                 .nombre(transportista.getNombre())
                 .build();
     }
@@ -24,7 +24,7 @@ public class TransportistaMapper {
         if (entity == null) return null;
 
         return TransportistaRuta.builder()
-                .transportistaId(entity.getConductorId())
+                .transportistaId(entity.getId())
                 .nombre(entity.getNombre())
                 .build();
     }

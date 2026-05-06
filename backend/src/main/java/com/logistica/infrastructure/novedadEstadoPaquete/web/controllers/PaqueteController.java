@@ -3,7 +3,7 @@ package com.logistica.infrastructure.novedadEstadoPaquete.web.controllers;
 import com.logistica.application.novedadEstadoPaquete.dtos.response.HistorialEstadoDTO;
 import com.logistica.application.novedadEstadoPaquete.dtos.response.LogSincronizacionDTO;
 import com.logistica.application.novedadEstadoPaquete.dtos.response.SincronizacionResultadoDTO;
-import com.logistica.application.novedadEstadoPaquete.usecases.paquete.ObtenerHistorialUseCase;
+import com.logistica.application.novedadEstadoPaquete.usecases.paquete.PaqueteObtenerHistorialUseCase;
 import com.logistica.application.novedadEstadoPaquete.usecases.paquete.ObtenerLogsSincronizacionUseCase;
 import com.logistica.application.novedadEstadoPaquete.usecases.paquete.SincronizarPaqueteUseCase;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +23,7 @@ import java.util.List;
 public class PaqueteController {
 
     private final SincronizarPaqueteUseCase        sincronizarUseCase;
-    private final ObtenerHistorialUseCase           historialUseCase;
+    private final PaqueteObtenerHistorialUseCase     historialUseCase;
     private final ObtenerLogsSincronizacionUseCase  logsUseCase;
 
     /**

@@ -11,7 +11,7 @@ public class TransportistaResponseMapper {
         if (t == null) return null;
 
         return TransportistaResponseDTO.builder()
-                .TransportistaId(t.getTransportistaId())
+                .transportistaId(t.getTransportistaId())
                 .nombre(t.getNombre())
                 .build();
     }

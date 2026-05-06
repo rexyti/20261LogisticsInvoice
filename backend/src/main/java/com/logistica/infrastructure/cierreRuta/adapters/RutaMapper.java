@@ -5,8 +5,8 @@ import com.logistica.domain.cierreRuta.models.Parada;
 import com.logistica.domain.cierreRuta.models.RutaCerrada;
 import com.logistica.infrastructure.cierreRuta.persistence.entities.ParadaEntity;
 import com.logistica.infrastructure.cierreRuta.persistence.entities.RutaEntity;
-import com.logistica.infrastructure.cierreRuta.persistence.entities.TransportistaEntity;
-import com.logistica.infrastructure.cierreRuta.persistence.repositories.CierreRutaTransportistaJpaRepository;
+import com.logistica.infrastructure.contratos.persistence.entities.TransportistaEntity;
+import com.logistica.infrastructure.contratos.persistence.repositories.ContratoTransportistaJpaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +17,7 @@ import java.util.List;
 public class RutaMapper {
 
     private final TransportistaMapper transportistaMapper;
-    private final CierreRutaTransportistaJpaRepository transportistaJpaRepository;
+    private final ContratoTransportistaJpaRepository transportistaJpaRepository;
     private final ParadaMapper paradaMapper;
 
     public RutaEntity toEntity(RutaCerrada ruta) {
@@ -30,7 +30,7 @@ public class RutaMapper {
 
         // Recuperar la entidad gestionada por JPA para que el FK se resuelva correctamente.
         TransportistaEntity transportistaEntity = transportistaJpaRepository
-                .findByConductorId(ruta.getTransportista().getTransportistaId())
+                .findById(ruta.getTransportista().getTransportistaId())
                 .orElseThrow(() -> new IllegalStateException(
                         "Transportista no encontrado en BD para transportistaId: "
                         + ruta.getTransportista().getTransportistaId()));

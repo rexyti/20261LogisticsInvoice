@@ -18,7 +18,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class RecalcularUseCase {
+public class LiquidacionRecalcularUseCase {
 
     private final LiquidacionRepository liquidacionRepository;
     private final AjusteRepository ajusteRepository;
@@ -27,7 +27,6 @@ public class RecalcularUseCase {
     @Transactional
     public Liquidacion execute(UUID liquidacionId, List<Ajuste> nuevosAjustes, String responsableId) {
 
-        // 1. Buscar liquidación
         Liquidacion liquidacion = liquidacionRepository.findById(liquidacionId)
                 .orElseThrow(() -> new NotFoundException(liquidacionId));
 
@@ -37,24 +36,20 @@ public class RecalcularUseCase {
 
         BigDecimal valorAnterior = liquidacion.getValorFinal();
 
-        // 2. Asociar ajustes
         List<Ajuste> ajustesAsociados = nuevosAjustes.stream()
                 .map(a -> a.asociarALiquidacion(liquidacionId))
                 .toList();
 
-        // 3. Recalcular (dominio)
         liquidacion.recalcular(liquidacion.getValorBase(), ajustesAsociados);
 
-        // 4. Persistir
         ajusteRepository.saveAll(ajustesAsociados);
         Liquidacion liquidacionActualizada = liquidacionRepository.save(liquidacion);
 
-        // 5. Auditoría
         AuditoriaLiquidacion auditoria = AuditoriaLiquidacion.crearRecalculo(
                 liquidacionId,
                 valorAnterior,
                 liquidacionActualizada.getValorFinal(),
-                TipoResponsable.ADMINISTRADOR, // Asumimos que quien recalcula es un admin
+                TipoResponsable.ADMINISTRADOR,
                 responsableId
         );
 

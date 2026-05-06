@@ -1,5 +1,7 @@
 package com.logistica.application.cierreRuta.dtos.response;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.logistica.domain.cierreRuta.enums.EstadoParada;
 import com.logistica.domain.cierreRuta.enums.MotivoFalla;
 import com.logistica.domain.cierreRuta.enums.ResponsableFalla;
@@ -10,6 +12,7 @@ import java.util.UUID;
 
 @Getter
 @Builder
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class ParadaResponseDTO {
     private UUID paradaId;
     private UUID paqueteId;

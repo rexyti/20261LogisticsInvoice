@@ -26,7 +26,7 @@ public class ContratoMapper {
                 .fechaInicio(entity.getFechaInicio())
                 .fechaFinal(entity.getFechaFinal())
                 .transportista(entity.getTransportista() != null ? Transportista.builder()
-                        .transportistaId(entity.getTransportista().getIdTransportista())
+                        .transportistaId(entity.getTransportista().getId())
                         .nombre(entity.getTransportista().getNombre())
                         .build() : null)
                 .seguro(toSeguroDomain(entity.getSeguro()))

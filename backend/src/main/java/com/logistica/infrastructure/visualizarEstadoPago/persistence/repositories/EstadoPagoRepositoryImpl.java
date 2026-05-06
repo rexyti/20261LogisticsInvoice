@@ -2,8 +2,8 @@ package com.logistica.infrastructure.visualizarEstadoPago.persistence.repositori
 
 import com.logistica.domain.visualizarEstadoPago.models.VisualizarEstadoPagoEstadoPago;
 import com.logistica.domain.visualizarEstadoPago.repositories.VisualizarEstadoPagoEstadoPagoRepository;
+import com.logistica.infrastructure.registrarEstadoPago.persistence.entities.RegistrarEstadoPagoEstadoPagoEntity;
 import com.logistica.infrastructure.visualizarEstadoPago.adapters.EstadoPagoMapper;
-import com.logistica.infrastructure.visualizarEstadoPago.persistence.entities.VisualizarEstadoPagoEstadoPagoEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -26,8 +26,8 @@ public class EstadoPagoRepositoryImpl implements VisualizarEstadoPagoEstadoPagoR
 
     @Override
     public VisualizarEstadoPagoEstadoPago save(VisualizarEstadoPagoEstadoPago estadoPago) {
-        VisualizarEstadoPagoEstadoPagoEntity entity = estadoPagoMapper.toEntity(estadoPago);
-        VisualizarEstadoPagoEstadoPagoEntity savedEntity = jpaRepository.save(entity);
+        RegistrarEstadoPagoEstadoPagoEntity entity = estadoPagoMapper.toEntity(estadoPago);
+        RegistrarEstadoPagoEstadoPagoEntity savedEntity = jpaRepository.save(entity);
         return estadoPagoMapper.toDomain(savedEntity);
     }
 }

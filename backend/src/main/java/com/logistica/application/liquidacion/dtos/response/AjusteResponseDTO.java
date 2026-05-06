@@ -1,5 +1,7 @@
 package com.logistica.application.liquidacion.dtos.response;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.logistica.domain.liquidacion.enums.TipoAjuste;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,6 +12,7 @@ import java.util.UUID;
 
 @Getter
 @Builder
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class AjusteResponseDTO {
     private final UUID id;
     private final UUID idLiquidacion;
