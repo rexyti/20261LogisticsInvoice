@@ -1,12 +1,12 @@
-﻿package com.logistica.RegistrarEstadoPago.integration;
+package com.logistica.RegistrarEstadoPago.integration;
 
-import com.logistica.RegistrarEstadoPago.domain.enums.RegistrarEstadoPagoEstadoPagoEnum;
-import com.logistica.RegistrarEstadoPago.infrastructure.persistence.entities.LiquidacionReferenciaEntity;
-import com.logistica.RegistrarEstadoPago.infrastructure.persistence.entities.RegistrarEstadoPagoPagoEntity;
-import com.logistica.RegistrarEstadoPago.infrastructure.persistence.repositories.RegistrarEstadoPagoEstadoPagoJpaRepository;
-import com.logistica.RegistrarEstadoPago.infrastructure.persistence.repositories.EventoTransaccionJpaRepository;
-import com.logistica.RegistrarEstadoPago.infrastructure.persistence.repositories.RegistrarEstadoPagoLiquidacionJpaRepository;
-import com.logistica.RegistrarEstadoPago.infrastructure.persistence.repositories.RegistrarEstadoPagoPagoJpaRepository;
+import com.logistica.domain.registrarEstadoPago.enums.RegistrarEstadoPagoEstadoPagoEnum;
+import com.logistica.infrastructure.registrarEstadoPago.persistence.entities.LiquidacionReferenciaEntity;
+import com.logistica.infrastructure.registrarEstadoPago.persistence.entities.RegistrarEstadoPagoPagoEntity;
+import com.logistica.infrastructure.registrarEstadoPago.persistence.repositories.EventoTransaccionJpaRepository;
+import com.logistica.infrastructure.registrarEstadoPago.persistence.repositories.RegistrarEstadoPagoEstadoPagoJpaRepository;
+import com.logistica.infrastructure.registrarEstadoPago.persistence.repositories.RegistrarEstadoPagoLiquidacionJpaRepository;
+import com.logistica.infrastructure.registrarEstadoPago.persistence.repositories.RegistrarEstadoPagoPagoJpaRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,12 +48,12 @@ class EventoPagoAsincronoIntegrationTest {
     @Test
     void webhook_responde202_antesDeFinalizarProcesamiento() throws InterruptedException {
         Map<String, Object> body = Map.of(
-                "idEvento", "evt-async-001",
-                "idTransaccionBanco", "txn-async-001",
-                "idPago", idPago.toString(),
-                "idLiquidacion", idLiquidacion.toString(),
+                "id_evento", "evt-async-001",
+                "id_transaccion_banco", "txn-async-001",
+                "id_pago", idPago.toString(),
+                "id_liquidacion", idLiquidacion.toString(),
                 "estado", "EN_PROCESO",
-                "fechaEvento", "2026-04-26T10:30:00",
+                "fecha_evento", "2026-04-26T10:30:00",
                 "secuencia", 1
         );
 
@@ -81,12 +81,12 @@ class EventoPagoAsincronoIntegrationTest {
     void webhook_liquidacionInexistente_responde202_registraError() throws InterruptedException {
         UUID liquidacionFalsa = UUID.fromString("00000000-0000-0000-0000-000000000000");
         Map<String, Object> body = Map.of(
-                "idEvento", "evt-async-002",
-                "idTransaccionBanco", "txn-async-002",
-                "idPago", idPago.toString(),
-                "idLiquidacion", liquidacionFalsa.toString(),
+                "id_evento", "evt-async-002",
+                "id_transaccion_banco", "txn-async-002",
+                "id_pago", idPago.toString(),
+                "id_liquidacion", liquidacionFalsa.toString(),
                 "estado", "EN_PROCESO",
-                "fechaEvento", "2026-04-26T10:45:00",
+                "fecha_evento", "2026-04-26T10:45:00",
                 "secuencia", 1
         );
 
@@ -108,12 +108,12 @@ class EventoPagoAsincronoIntegrationTest {
     @Test
     void webhook_estadoDesconocido_retorna400() throws Exception {
         Map<String, Object> body = Map.of(
-                "idEvento", "evt-async-003",
-                "idTransaccionBanco", "txn-async-003",
-                "idPago", idPago.toString(),
-                "idLiquidacion", idLiquidacion.toString(),
+                "id_evento", "evt-async-003",
+                "id_transaccion_banco", "txn-async-003",
+                "id_pago", idPago.toString(),
+                "id_liquidacion", idLiquidacion.toString(),
                 "estado", "APROBADO_PARCIALMENTE",
-                "fechaEvento", "2026-04-26T10:50:00",
+                "fecha_evento", "2026-04-26T10:50:00",
                 "secuencia", 1
         );
 

@@ -1,17 +1,17 @@
 package com.logistica.VisualizarLiquidación.application.usecases;
 
-import com.logistica.VisualizarLiquidación.application.dtos.response.AjusteLiquidacionDTO;
-import com.logistica.VisualizarLiquidación.application.dtos.response.LiquidacionDetalleDTO;
-import com.logistica.VisualizarLiquidación.application.security.UsuarioAutenticado;
-import com.logistica.VisualizarLiquidación.application.usecases.liquidacion.ObtenerDetalleLiquidacionUseCase;
-import com.logistica.VisualizarLiquidación.domain.enums.EstadoLiquidacion;
-import com.logistica.VisualizarLiquidación.domain.exceptions.AccesoDenegadoException;
-import com.logistica.VisualizarLiquidación.domain.exceptions.LiquidacionNoEncontradaException;
-import com.logistica.VisualizarLiquidación.domain.models.Ajuste;
-import com.logistica.VisualizarLiquidación.domain.models.Liquidacion;
-import com.logistica.VisualizarLiquidación.domain.models.Ruta;
-import com.logistica.VisualizarLiquidación.domain.repositories.Repository;
-import com.logistica.VisualizarLiquidación.application.mappers.LiquidacionDTOMapper;
+import com.logistica.application.visualizarLiquidacion.dtos.response.VisualizarLiquidacionAjusteDTO;
+import com.logistica.application.visualizarLiquidacion.dtos.response.VisualizarLiquidacionDetalleDTO;
+import com.logistica.application.visualizarLiquidacion.mappers.VisualizarLiquidacionDTOMapper;
+import com.logistica.application.visualizarLiquidacion.security.VisualizarLiquidacionUsuarioAutenticado;
+import com.logistica.application.visualizarLiquidacion.usecases.liquidacion.VisualizarLiquidacionObtenerDetalleUseCase;
+import com.logistica.domain.visualizarLiquidacion.enums.EstadoLiquidacion;
+import com.logistica.domain.visualizarLiquidacion.exceptions.AccesoDenegadoException;
+import com.logistica.domain.visualizarLiquidacion.exceptions.LiquidacionNoEncontradaException;
+import com.logistica.domain.visualizarLiquidacion.models.Ajuste;
+import com.logistica.domain.visualizarLiquidacion.models.Liquidacion;
+import com.logistica.domain.visualizarLiquidacion.models.Ruta;
+import com.logistica.domain.visualizarLiquidacion.repositories.LiquidacionRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -31,24 +31,21 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.*;
 
-// T013 — busqueda por idLiquidacion retorna detalle correcto cuando existe
-// T015 — busqueda de liquidacion inexistente retorna respuesta controlada
-// T017 — usuario sin permisos no puede ver liquidaciones ajenas
 @ExtendWith(MockitoExtension.class)
 class ObtenerDetalleLiquidacionUseCaseTest {
 
     @Mock
-    private Repository repository;
+    private LiquidacionRepository repository;
 
     @Mock
-    private LiquidacionDTOMapper mapper;
+    private VisualizarLiquidacionDTOMapper mapper;
 
     @InjectMocks
-    private ObtenerDetalleLiquidacionUseCase useCase;
+    private VisualizarLiquidacionObtenerDetalleUseCase useCase;
 
     private UUID idLiquidacion;
     private Liquidacion liquidacion;
-    private LiquidacionDetalleDTO detalleEsperado;
+    private VisualizarLiquidacionDetalleDTO detalleEsperado;
     private final String propietario = "transportista-123";
 
     @BeforeEach
@@ -86,24 +83,23 @@ class ObtenerDetalleLiquidacionUseCaseTest {
                 .ajustes(List.of(ajuste))
                 .build();
 
-        detalleEsperado = new LiquidacionDetalleDTO(
+        detalleEsperado = new VisualizarLiquidacionDetalleDTO(
                 idLiquidacion, idContrato, idRuta,
                 ruta.getFechaInicio(), ruta.getFechaCierre(),
                 "CAMION", new BigDecimal("20000"), 4,
                 new BigDecimal("80000"), new BigDecimal("75000"),
                 "CALCULADA", liquidacion.getFechaCalculo(), propietario,
-                List.of(new AjusteLiquidacionDTO(ajuste.getId(), "PENALIZACION",
+                List.of(new VisualizarLiquidacionAjusteDTO(ajuste.getId(), "PENALIZACION",
                         new BigDecimal("5000"), "Paquete danado")));
     }
 
-    // T013: retorna detalle completo cuando la liquidacion existe y el usuario es el propietario
     @Test
     void dadoPropietario_cuandoObtenerDetalle_retornaDetalleCompleto() {
         when(repository.buscarPorId(idLiquidacion)).thenReturn(Optional.of(liquidacion));
         when(mapper.toDetalle(liquidacion)).thenReturn(detalleEsperado);
 
-        UsuarioAutenticado propietarioUser = usuarioConRol("ROLE_TRANSPORTISTA", propietario);
-        LiquidacionDetalleDTO resultado = useCase.ejecutar(idLiquidacion, propietarioUser);
+        VisualizarLiquidacionUsuarioAutenticado propietarioUser = usuarioConRol("ROLE_TRANSPORTISTA", propietario);
+        VisualizarLiquidacionDetalleDTO resultado = useCase.ejecutar(idLiquidacion, propietarioUser);
 
         assertThat(resultado.idLiquidacion()).isEqualTo(idLiquidacion);
         assertThat(resultado.estadoLiquidacion()).isEqualTo("CALCULADA");
@@ -115,48 +111,45 @@ class ObtenerDetalleLiquidacionUseCaseTest {
         assertThat(resultado.numeroParadas()).isEqualTo(4);
     }
 
-    // T013: gestor financiero obtiene detalle de cualquier liquidacion
     @Test
     void dadoGestorFinanciero_cuandoObtenerDetalle_retornaDetalleSinRestriccion() {
         when(repository.buscarPorId(idLiquidacion)).thenReturn(Optional.of(liquidacion));
         when(mapper.toDetalle(liquidacion)).thenReturn(detalleEsperado);
 
-        UsuarioAutenticado gestor = usuarioConRol("ROLE_GESTOR_FINANCIERO", "gestor-999");
-        LiquidacionDetalleDTO resultado = useCase.ejecutar(idLiquidacion, gestor);
+        VisualizarLiquidacionUsuarioAutenticado gestor = usuarioConRol("ROLE_GESTOR_FINANCIERO", "gestor-999");
+        VisualizarLiquidacionDetalleDTO resultado = useCase.ejecutar(idLiquidacion, gestor);
 
         assertThat(resultado).isNotNull();
         assertThat(resultado.usuarioId()).isEqualTo(propietario);
     }
 
-    // T015: liquidacion inexistente lanza LiquidacionNoEncontradaException
     @Test
     void dadoIdInexistente_cuandoObtenerDetalle_lanzaLiquidacionNoEncontradaException() {
         UUID idInexistente = UUID.randomUUID();
         when(repository.buscarPorId(idInexistente)).thenReturn(Optional.empty());
 
-        UsuarioAutenticado gestor = usuarioConRol("ROLE_GESTOR_FINANCIERO", "gestor-999");
+        VisualizarLiquidacionUsuarioAutenticado gestor = usuarioConRol("ROLE_GESTOR_FINANCIERO", "gestor-999");
 
         assertThatThrownBy(() -> useCase.ejecutar(idInexistente, gestor))
                 .isInstanceOf(LiquidacionNoEncontradaException.class)
                 .hasMessageContaining(idInexistente.toString());
     }
 
-    // T017: transportista no puede ver liquidaciones de otro transportista
     @Test
     void dadoTransportistaAjeno_cuandoObtenerDetalle_lanzaAccesoDenegadoException() {
         when(repository.buscarPorId(idLiquidacion)).thenReturn(Optional.of(liquidacion));
 
-        UsuarioAutenticado otro = usuarioConRol("ROLE_TRANSPORTISTA", "otro-transportista");
+        VisualizarLiquidacionUsuarioAutenticado otro = usuarioConRol("ROLE_TRANSPORTISTA", "otro-transportista");
 
         assertThatThrownBy(() -> useCase.ejecutar(idLiquidacion, otro))
                 .isInstanceOf(AccesoDenegadoException.class)
                 .hasMessageContaining("permisos");
     }
 
-    private UsuarioAutenticado usuarioConRol(String rol, String usuarioId) {
+    private VisualizarLiquidacionUsuarioAutenticado usuarioConRol(String rol, String usuarioId) {
         Authentication auth = mock(Authentication.class);
         when(auth.getName()).thenReturn(usuarioId);
         when(auth.getAuthorities()).thenAnswer(inv -> List.of(new SimpleGrantedAuthority(rol)));
-        return UsuarioAutenticado.from(auth);
+        return VisualizarLiquidacionUsuarioAutenticado.from(auth);
     }
 }

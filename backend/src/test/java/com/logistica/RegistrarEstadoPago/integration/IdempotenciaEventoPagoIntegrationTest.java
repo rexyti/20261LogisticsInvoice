@@ -1,15 +1,15 @@
-﻿package com.logistica.RegistrarEstadoPago.integration;
+package com.logistica.RegistrarEstadoPago.integration;
 
-import com.logistica.RegistrarEstadoPago.domain.enums.EstadoEventoTransaccion;
-import com.logistica.RegistrarEstadoPago.domain.enums.RegistrarEstadoPagoEstadoPagoEnum;
-import com.logistica.RegistrarEstadoPago.infrastructure.persistence.entities.RegistrarEstadoPagoEstadoPagoEntity;
-import com.logistica.RegistrarEstadoPago.infrastructure.persistence.entities.EventoTransaccionEntity;
-import com.logistica.RegistrarEstadoPago.infrastructure.persistence.entities.LiquidacionReferenciaEntity;
-import com.logistica.RegistrarEstadoPago.infrastructure.persistence.entities.RegistrarEstadoPagoPagoEntity;
-import com.logistica.RegistrarEstadoPago.infrastructure.persistence.repositories.RegistrarEstadoPagoEstadoPagoJpaRepository;
-import com.logistica.RegistrarEstadoPago.infrastructure.persistence.repositories.EventoTransaccionJpaRepository;
-import com.logistica.RegistrarEstadoPago.infrastructure.persistence.repositories.RegistrarEstadoPagoLiquidacionJpaRepository;
-import com.logistica.RegistrarEstadoPago.infrastructure.persistence.repositories.RegistrarEstadoPagoPagoJpaRepository;
+import com.logistica.domain.registrarEstadoPago.enums.EstadoEventoTransaccion;
+import com.logistica.domain.registrarEstadoPago.enums.RegistrarEstadoPagoEstadoPagoEnum;
+import com.logistica.infrastructure.registrarEstadoPago.persistence.entities.EventoTransaccionEntity;
+import com.logistica.infrastructure.registrarEstadoPago.persistence.entities.LiquidacionReferenciaEntity;
+import com.logistica.infrastructure.registrarEstadoPago.persistence.entities.RegistrarEstadoPagoEstadoPagoEntity;
+import com.logistica.infrastructure.registrarEstadoPago.persistence.entities.RegistrarEstadoPagoPagoEntity;
+import com.logistica.infrastructure.registrarEstadoPago.persistence.repositories.EventoTransaccionJpaRepository;
+import com.logistica.infrastructure.registrarEstadoPago.persistence.repositories.RegistrarEstadoPagoEstadoPagoJpaRepository;
+import com.logistica.infrastructure.registrarEstadoPago.persistence.repositories.RegistrarEstadoPagoLiquidacionJpaRepository;
+import com.logistica.infrastructure.registrarEstadoPago.persistence.repositories.RegistrarEstadoPagoPagoJpaRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,12 +52,12 @@ class IdempotenciaEventoPagoIntegrationTest {
     @Test
     void mismoidTransaccionBanco_noGeneraRegistrosDuplicados() throws InterruptedException {
         Map<String, Object> body = Map.of(
-                "idEvento", "evt-idem-001",
-                "idTransaccionBanco", "txn-idem-unico",
-                "idPago", idPago.toString(),
-                "idLiquidacion", idLiquidacion.toString(),
+                "id_evento", "evt-idem-001",
+                "id_transaccion_banco", "txn-idem-unico",
+                "id_pago", idPago.toString(),
+                "id_liquidacion", idLiquidacion.toString(),
                 "estado", "EN_PROCESO",
-                "fechaEvento", "2026-04-26T10:30:00",
+                "fecha_evento", "2026-04-26T10:30:00",
                 "secuencia", 1
         );
 
@@ -89,7 +89,7 @@ class IdempotenciaEventoPagoIntegrationTest {
                 .findByIdPagoOrderByFechaRegistroDesc(idPago);
         assertThat(estadosDespues).hasSize(estadosAntesDelDuplicado);
 
-        // No debe crearse un nuevo RegistrarEstadoPagoEventoTransaccion (duplicado ignorado silenciosamente)
+        // No debe crearse un nuevo EventoTransaccion (duplicado ignorado silenciosamente)
         List<EventoTransaccionEntity> eventosDespues = eventoTransaccionJpaRepository
                 .findByIdPagoOrderByFechaRecepcionAsc(idPago);
         assertThat(eventosDespues).hasSize(eventosAntesDuplicado);

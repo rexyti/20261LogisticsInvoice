@@ -4,7 +4,7 @@ import com.logistica.domain.cierreRuta.enums.EstadoParada;
 import com.logistica.domain.cierreRuta.enums.EstadoProcesamiento;
 import com.logistica.infrastructure.cierreRuta.persistence.entities.ParadaEntity;
 import com.logistica.infrastructure.cierreRuta.persistence.entities.RutaEntity;
-import com.logistica.infrastructure.cierreRuta.persistence.entities.TransportistaEntity;
+import com.logistica.infrastructure.contratos.persistence.entities.TransportistaEntity;
 import com.logistica.infrastructure.cierreRuta.persistence.repositories.RutaJpaRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -31,7 +31,6 @@ class RutaRepositoryIT extends AbstractRepositoryIT {
     void shouldPersistFullRuta() {
         // Given
         TransportistaEntity transportista = TransportistaEntity.builder()
-                .conductorId(UUID.randomUUID())
                 .nombre("Juan Transport")
                 .build();
         entityManager.persist(transportista);

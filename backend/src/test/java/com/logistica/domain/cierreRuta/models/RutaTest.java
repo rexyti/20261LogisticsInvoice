@@ -7,6 +7,7 @@ import com.logistica.domain.cierreRuta.exceptions.RutaInvalidaException;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,7 +15,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RutaTest {
 
-    //Metodo Auxiliar
+    private TransportistaRuta transportistaValido() {
+        return new TransportistaRuta(UUID.randomUUID(), "Transportista Test");
+    }
+
     private Parada paradaValida() {
         return Parada.builder()
                 .paradaId(UUID.randomUUID())
@@ -23,19 +27,18 @@ class RutaTest {
                 .build();
     }
 
-
-    // CASO FELIZ
     @Test
     void deberia_procesar_ruta_valida_correctamente() {
 
-        Ruta ruta = Ruta.builder()
+        RutaCerrada ruta = RutaCerrada.builder()
                 .rutaId(UUID.randomUUID())
+                .transportista(transportistaValido())
                 .tipoVehiculo(TipoVehiculo.NHR)
                 .modeloContrato("STANDARD")
                 .paradas(List.of(paradaValida()))
                 .build();
 
-        LocalDateTime ahora = LocalDateTime.of(2024,1,1,0,0);
+        LocalDateTime ahora = LocalDateTime.of(2024, 1, 1, 0, 0);
 
         ruta.procesar(ahora);
 
@@ -43,12 +46,11 @@ class RutaTest {
         assertFalse(ruta.obtenerEventos().isEmpty());
     }
 
-    // VALIDACIONES
-
     @Test
     void deberia_fallar_si_ruta_no_tiene_id() {
 
-        Ruta ruta = Ruta.builder()
+        RutaCerrada ruta = RutaCerrada.builder()
+                .transportista(transportistaValido())
                 .tipoVehiculo(TipoVehiculo.NHR)
                 .modeloContrato("STANDARD")
                 .paradas(List.of(paradaValida()))
@@ -61,8 +63,9 @@ class RutaTest {
     @Test
     void deberia_fallar_si_no_tiene_paradas() {
 
-        Ruta ruta = Ruta.builder()
+        RutaCerrada ruta = RutaCerrada.builder()
                 .rutaId(UUID.randomUUID())
+                .transportista(transportistaValido())
                 .tipoVehiculo(TipoVehiculo.NHR)
                 .modeloContrato("STANDARD")
                 .paradas(List.of())
@@ -75,11 +78,12 @@ class RutaTest {
     @Test
     void deberia_fallar_si_hay_parada_nula() {
 
-        Ruta ruta = Ruta.builder()
+        RutaCerrada ruta = RutaCerrada.builder()
                 .rutaId(UUID.randomUUID())
+                .transportista(transportistaValido())
                 .tipoVehiculo(TipoVehiculo.NHR)
                 .modeloContrato("STANDARD")
-                .paradas(List.of((Parada) null))
+                .paradas(Arrays.asList((Parada) null))
                 .build();
 
         assertThrows(RutaInvalidaException.class,
@@ -95,8 +99,9 @@ class RutaTest {
                 .estado(null)
                 .build();
 
-        Ruta ruta = Ruta.builder()
+        RutaCerrada ruta = RutaCerrada.builder()
                 .rutaId(UUID.randomUUID())
+                .transportista(transportistaValido())
                 .tipoVehiculo(TipoVehiculo.NHR)
                 .modeloContrato("STANDARD")
                 .paradas(List.of(parada))
@@ -116,8 +121,9 @@ class RutaTest {
                 .motivoFalla(null)
                 .build();
 
-        Ruta ruta = Ruta.builder()
+        RutaCerrada ruta = RutaCerrada.builder()
                 .rutaId(UUID.randomUUID())
+                .transportista(transportistaValido())
                 .tipoVehiculo(TipoVehiculo.NHR)
                 .modeloContrato("STANDARD")
                 .paradas(List.of(parada))
@@ -130,8 +136,9 @@ class RutaTest {
     @Test
     void deberia_marcar_revision_si_contrato_es_nulo() {
 
-        Ruta ruta = Ruta.builder()
+        RutaCerrada ruta = RutaCerrada.builder()
                 .rutaId(UUID.randomUUID())
+                .transportista(transportistaValido())
                 .tipoVehiculo(TipoVehiculo.NHR)
                 .modeloContrato(null)
                 .paradas(List.of(paradaValida()))
@@ -145,8 +152,9 @@ class RutaTest {
     @Test
     void deberia_marcar_revision_si_tipo_vehiculo_es_nulo() {
 
-        Ruta ruta = Ruta.builder()
+        RutaCerrada ruta = RutaCerrada.builder()
                 .rutaId(UUID.randomUUID())
+                .transportista(transportistaValido())
                 .tipoVehiculo(null)
                 .modeloContrato("STANDARD")
                 .paradas(List.of(paradaValida()))
@@ -156,5 +164,4 @@ class RutaTest {
 
         assertEquals(EstadoProcesamiento.REQUIERE_REVISION, ruta.getEstadoProcesamiento());
     }
-
 }

@@ -1,8 +1,8 @@
-﻿package com.logistica.RegistrarEstadoPago.unit;
+package com.logistica.RegistrarEstadoPago.unit;
 
-import com.logistica.RegistrarEstadoPago.domain.enums.RegistrarEstadoPagoEstadoPagoEnum;
-import com.logistica.RegistrarEstadoPago.domain.services.EstadoPagoDomainService;
-import com.logistica.RegistrarEstadoPago.domain.exceptions.EstadoPagoInvalidoException;
+import com.logistica.domain.registrarEstadoPago.enums.RegistrarEstadoPagoEstadoPagoEnum;
+import com.logistica.domain.registrarEstadoPago.services.EstadoPagoDomainService;
+import com.logistica.domain.registrarEstadoPago.exceptions.EstadoPagoInvalidoException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

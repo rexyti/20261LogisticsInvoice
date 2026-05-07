@@ -1,18 +1,21 @@
-﻿package com.logistica.RegistrarEstadoPago.infrastructure.controllers.web;
+package com.logistica.RegistrarEstadoPago.infrastructure.controllers.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.logistica.RegistrarEstadoPago.application.dtos.response.EventoTransaccionResponseDTO;
-import com.logistica.RegistrarEstadoPago.application.dtos.response.PagoResponseDTO;
-import com.logistica.RegistrarEstadoPago.application.usecases.pago.ObtenerEstadoPagoUseCase;
-import com.logistica.RegistrarEstadoPago.application.usecases.pago.ObtenerEventosTransaccionUseCase;
-import com.logistica.RegistrarEstadoPago.infrastructure.web.controllers.RegistrarEstadoPagoPagoController;
-import com.logistica.RegistrarEstadoPago.domain.enums.EstadoEventoTransaccion;
-import com.logistica.RegistrarEstadoPago.domain.enums.RegistrarEstadoPagoEstadoPagoEnum;
-import com.logistica.RegistrarEstadoPago.domain.exceptions.RegistrarEstadoPagoPagoNoEncontradoException;
+import com.logistica.application.registrarEstadoPago.dtos.response.EventoTransaccionResponseDTO;
+import com.logistica.application.registrarEstadoPago.dtos.response.PagoResponseDTO;
+import com.logistica.application.registrarEstadoPago.usecases.pago.ObtenerEstadoPagoUseCase;
+import com.logistica.application.registrarEstadoPago.usecases.pago.ObtenerEventosTransaccionUseCase;
+import com.logistica.domain.registrarEstadoPago.enums.EstadoEventoTransaccion;
+import com.logistica.domain.registrarEstadoPago.enums.RegistrarEstadoPagoEstadoPagoEnum;
+import com.logistica.domain.registrarEstadoPago.exceptions.RegistrarEstadoPagoPagoNoEncontradoException;
+import com.logistica.infrastructure.registrarEstadoPago.web.controllers.RegistrarEstadoPagoPagoController;
+import com.logistica.infrastructure.shared.security.JwtAuthenticationFilter;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.Instant;
@@ -26,6 +29,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(RegistrarEstadoPagoPagoController.class)
+@AutoConfigureMockMvc(addFilters = false)
+@WithMockUser
 class PagoControllerTest {
 
     @Autowired
@@ -40,6 +45,9 @@ class PagoControllerTest {
     @MockBean
     private ObtenerEventosTransaccionUseCase obtenerEventosTransaccionUseCase;
 
+    @MockBean
+    private JwtAuthenticationFilter jwtAuthenticationFilter;
+
     @Test
     void get_estadoPago_existente_retorna200() throws Exception {
         UUID idPago = UUID.randomUUID();
@@ -50,7 +58,7 @@ class PagoControllerTest {
         mockMvc.perform(get("/api/v1/pagos/{idPago}/estado", idPago))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.estado").value("PAGADO"))
-                .andExpect(jsonPath("$.ultimaSecuenciaProcesada").value(2));
+                .andExpect(jsonPath("$.ultima_secuencia_procesada").value(2));
     }
 
     @Test
@@ -76,8 +84,8 @@ class PagoControllerTest {
 
         mockMvc.perform(get("/api/v1/pagos/{idPago}/eventos", idPago))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].idTransaccionBanco").value("txn-001"))
-                .andExpect(jsonPath("$[0].estadoProcesamiento").value("PROCESADO"));
+                .andExpect(jsonPath("$[0].id_transaccion_banco").value("txn-001"))
+                .andExpect(jsonPath("$[0].estado_procesamiento").value("PROCESADO"));
     }
 
     @Test

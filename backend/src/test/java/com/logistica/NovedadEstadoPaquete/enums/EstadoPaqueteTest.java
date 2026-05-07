@@ -1,15 +1,12 @@
-﻿package com.logistica.NovedadEstadoPaquete.enums;
+package com.logistica.NovedadEstadoPaquete.enums;
 
-import com.logistica.NovedadEstadoPaquete.domain.enums.NovedadEstadoPaqueteEstadoPaquete;
+import com.logistica.domain.novedadEstadoPaquete.enums.NovedadEstadoPaqueteEstadoPaquete;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-/**
- * T008 – Unit test: verifica que cada estado del Enum mapea al porcentaje correcto.
- */
 class EstadoPaqueteTest {
 
     @Test

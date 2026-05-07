@@ -1,10 +1,10 @@
-﻿package com.logistica.RegistrarEstadoPago.unit;
+package com.logistica.RegistrarEstadoPago.unit;
 
-import com.logistica.RegistrarEstadoPago.domain.enums.EstadoEventoTransaccion;
-import com.logistica.RegistrarEstadoPago.domain.enums.RegistrarEstadoPagoEstadoPagoEnum;
-import com.logistica.RegistrarEstadoPago.domain.models.RegistrarEstadoPagoEventoTransaccion;
-import com.logistica.RegistrarEstadoPago.domain.repositories.EventoTransaccionRepository;
-import com.logistica.RegistrarEstadoPago.domain.services.IdempotenciaEventoPagoService;
+import com.logistica.domain.registrarEstadoPago.enums.EstadoEventoTransaccion;
+import com.logistica.domain.registrarEstadoPago.enums.RegistrarEstadoPagoEstadoPagoEnum;
+import com.logistica.domain.registrarEstadoPago.models.RegistrarEstadoPagoEventoTransaccion;
+import com.logistica.domain.registrarEstadoPago.repositories.EventoTransaccionRepository;
+import com.logistica.domain.registrarEstadoPago.services.IdempotenciaEventoPagoService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

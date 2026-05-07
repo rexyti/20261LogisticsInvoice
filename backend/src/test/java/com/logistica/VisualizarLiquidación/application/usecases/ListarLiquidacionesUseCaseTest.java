@@ -1,14 +1,14 @@
 package com.logistica.VisualizarLiquidación.application.usecases;
 
-import com.logistica.VisualizarLiquidación.application.dtos.response.LiquidacionListItemDTO;
-import com.logistica.VisualizarLiquidación.application.dtos.response.LiquidacionListResponseDTO;
-import com.logistica.VisualizarLiquidación.application.security.UsuarioAutenticado;
-import com.logistica.VisualizarLiquidación.application.usecases.liquidacion.ListarLiquidacionesUseCase;
-import com.logistica.VisualizarLiquidación.domain.enums.EstadoLiquidacion;
-import com.logistica.VisualizarLiquidación.domain.models.Liquidacion;
-import com.logistica.VisualizarLiquidación.domain.models.Ruta;
-import com.logistica.VisualizarLiquidación.domain.repositories.Repository;
-import com.logistica.VisualizarLiquidación.application.mappers.LiquidacionDTOMapper;
+import com.logistica.application.visualizarLiquidacion.dtos.response.VisualizarLiquidacionListItemDTO;
+import com.logistica.application.visualizarLiquidacion.dtos.response.VisualizarLiquidacionListResponseDTO;
+import com.logistica.application.visualizarLiquidacion.mappers.VisualizarLiquidacionDTOMapper;
+import com.logistica.application.visualizarLiquidacion.security.VisualizarLiquidacionUsuarioAutenticado;
+import com.logistica.application.visualizarLiquidacion.usecases.liquidacion.VisualizarLiquidacionListarUseCase;
+import com.logistica.domain.visualizarLiquidacion.enums.EstadoLiquidacion;
+import com.logistica.domain.visualizarLiquidacion.models.Liquidacion;
+import com.logistica.domain.visualizarLiquidacion.models.Ruta;
+import com.logistica.domain.visualizarLiquidacion.repositories.LiquidacionRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -30,20 +30,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-// T011 — usuario autorizado puede consultar listado paginado de liquidaciones
-// T017 — usuario sin permiso global solo ve sus propias liquidaciones
-// T018 — gestor financiero ve todas las liquidaciones autorizadas
 @ExtendWith(MockitoExtension.class)
 class ListarLiquidacionesUseCaseTest {
 
     @Mock
-    private Repository repository;
+    private LiquidacionRepository repository;
 
     @Mock
-    private LiquidacionDTOMapper mapper;
+    private VisualizarLiquidacionDTOMapper mapper;
 
     @InjectMocks
-    private ListarLiquidacionesUseCase useCase;
+    private VisualizarLiquidacionListarUseCase useCase;
 
     private Liquidacion liquidacionA;
     private Liquidacion liquidacionB;
@@ -86,7 +83,6 @@ class ListarLiquidacionesUseCaseTest {
                 .build();
     }
 
-    // T011 / T018: gestor financiero (permiso global) recibe todas las liquidaciones
     @Test
     void dadoGestorFinanciero_cuandoListar_retornaTodasLasLiquidaciones() {
         Pageable pageable = PageRequest.of(0, 10);
@@ -94,7 +90,7 @@ class ListarLiquidacionesUseCaseTest {
         when(repository.listarTodas(pageable)).thenReturn(new PageImpl<>(todas, pageable, 2));
         when(mapper.toListItem(any())).thenAnswer(inv -> itemDesde(inv.getArgument(0)));
 
-        LiquidacionListResponseDTO respuesta = useCase.ejecutar(pageable, buildUsuario("ROLE_GESTOR_FINANCIERO", "gestor-1"));
+        VisualizarLiquidacionListResponseDTO respuesta = useCase.ejecutar(pageable, buildUsuario("ROLE_GESTOR_FINANCIERO", "gestor-1"));
 
         assertThat(respuesta.contenido()).hasSize(2);
         assertThat(respuesta.totalElementos()).isEqualTo(2);
@@ -102,7 +98,6 @@ class ListarLiquidacionesUseCaseTest {
         verify(repository, never()).listarPorUsuario(any(), any());
     }
 
-    // T017: transportista sin permiso global solo ve sus propias liquidaciones
     @Test
     void dadoTransportistaSinPermisoGlobal_cuandoListar_soloRetornaSusLiquidaciones() {
         Pageable pageable = PageRequest.of(0, 10);
@@ -110,7 +105,7 @@ class ListarLiquidacionesUseCaseTest {
                 .thenReturn(new PageImpl<>(List.of(liquidacionA), pageable, 1));
         when(mapper.toListItem(liquidacionA)).thenReturn(itemDesde(liquidacionA));
 
-        LiquidacionListResponseDTO respuesta = useCase.ejecutar(pageable, buildUsuario("ROLE_TRANSPORTISTA", usuarioA));
+        VisualizarLiquidacionListResponseDTO respuesta = useCase.ejecutar(pageable, buildUsuario("ROLE_TRANSPORTISTA", usuarioA));
 
         assertThat(respuesta.contenido()).hasSize(1);
         assertThat(respuesta.contenido().get(0).idLiquidacion()).isEqualTo(liquidacionA.getId());
@@ -118,7 +113,6 @@ class ListarLiquidacionesUseCaseTest {
         verify(repository, never()).listarTodas(any());
     }
 
-    // T011: metadatos de paginacion se propagan correctamente en la respuesta
     @Test
     void dadoGestorFinanciero_cuandoListarSegundaPagina_retornaPaginacionCorrecta() {
         Pageable pageable = PageRequest.of(1, 5);
@@ -126,7 +120,7 @@ class ListarLiquidacionesUseCaseTest {
                 .thenReturn(new PageImpl<>(List.of(liquidacionA), pageable, 6));
         when(mapper.toListItem(any())).thenReturn(itemDesde(liquidacionA));
 
-        LiquidacionListResponseDTO respuesta = useCase.ejecutar(pageable, buildUsuario("ROLE_GESTOR_FINANCIERO", "gestor-1"));
+        VisualizarLiquidacionListResponseDTO respuesta = useCase.ejecutar(pageable, buildUsuario("ROLE_GESTOR_FINANCIERO", "gestor-1"));
 
         assertThat(respuesta.pagina()).isEqualTo(1);
         assertThat(respuesta.tamano()).isEqualTo(5);
@@ -135,17 +129,15 @@ class ListarLiquidacionesUseCaseTest {
         assertThat(respuesta.esUltima()).isTrue();
     }
 
-    // ── helpers ──────────────────────────────────────────────────────────────
-
-    private UsuarioAutenticado buildUsuario(String rol, String userId) {
+    private VisualizarLiquidacionUsuarioAutenticado buildUsuario(String rol, String userId) {
         Authentication auth = mock(Authentication.class);
         when(auth.getName()).thenReturn(userId);
         when(auth.getAuthorities()).thenAnswer(inv -> List.of(new SimpleGrantedAuthority(rol)));
-        return UsuarioAutenticado.from(auth);
+        return VisualizarLiquidacionUsuarioAutenticado.from(auth);
     }
 
-    private LiquidacionListItemDTO itemDesde(Liquidacion liq) {
-        return new LiquidacionListItemDTO(
+    private VisualizarLiquidacionListItemDTO itemDesde(Liquidacion liq) {
+        return new VisualizarLiquidacionListItemDTO(
                 liq.getId(), liq.getIdRuta(), null, null, null, null, null,
                 liq.getMontoBruto(), liq.getMontoNeto(),
                 liq.getEstadoLiquidacion().name(), liq.getFechaCalculo(), List.of());

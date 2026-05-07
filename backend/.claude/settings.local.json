@@ -47,7 +47,20 @@
       "Bash(awk 'NR%2{printf \"%s \", $0; next} 1')",
       "Bash(awk '$1 > 1')",
       "Bash(xargs -I {} bash -c 'echo \"{}:\"; grep -h \"public class\" {}')",
-      "Bash(xargs -I {} bash -c 'echo \"{}\"; grep -h \"public interface\" {}')"
+      "Bash(xargs -I {} bash -c 'echo \"{}\"; grep -h \"public interface\" {}')",
+      "Bash(Measure-Object)",
+      "Bash(Select-Object -ExpandProperty Count)",
+      "Bash(./gradlew compileTestJava)",
+      "Bash(grep -v \"^$\")",
+      "PowerShell(head *)",
+      "Bash(python3 -c ' *)",
+      "PowerShell($xml = [xml]\\(Get-Content \"C:\\\\Users\\\\LUIS\\\\IdeaProjects\\\\20261LogisticsInvoice\\\\backend\\\\build\\\\test-results\\\\test\\\\TEST-com.logistica.infrastructure.web.controllers.EventoControllerTest.xml\"\\); $xml.testsuite.testcase | Where-Object { $_.failure } | ForEach-Object { Write-Host \"$\\($_.name\\): $\\($_.failure.message.Substring\\(0, [Math]::Min\\(300, $_.failure.message.Length\\)\\)\\)\"; Write-Host \"---\" })",
+      "Bash(./gradlew --stop)",
+      "Bash(./gradlew compileJava --rerun-tasks)",
+      "Bash(grep \" FAILED$\")",
+      "Bash(printenv)",
+      "PowerShell([System.Environment]::GetEnvironmentVariable\\('DB_URL', 'Machine'\\); [System.Environment]::GetEnvironmentVariable\\('DB_URL', 'User'\\); [System.Environment]::GetEnvironmentVariable\\('SPRING_DATASOURCE_URL', 'Machine'\\))",
+      "Bash(git -C \"C:\\\\Users\\\\LUIS\\\\IdeaProjects\\\\20261LogisticsInvoice\\\\backend\" diff --name-only HEAD)"
     ]
   }
 }

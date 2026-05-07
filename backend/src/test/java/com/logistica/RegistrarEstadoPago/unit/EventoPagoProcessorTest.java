@@ -1,9 +1,9 @@
-﻿package com.logistica.RegistrarEstadoPago.unit;
+package com.logistica.RegistrarEstadoPago.unit;
 
-import com.logistica.RegistrarEstadoPago.application.dtos.request.EventoEstadoPagoRequestDTO;
-import com.logistica.RegistrarEstadoPago.application.usecases.pago.ProcesarEventoPagoUseCase;
-import com.logistica.RegistrarEstadoPago.domain.enums.RegistrarEstadoPagoEstadoPagoEnum;
-import com.logistica.RegistrarEstadoPago.infrastructure.async.processors.EventoPagoProcessor;
+import com.logistica.application.registrarEstadoPago.dtos.request.EventoEstadoPagoRequestDTO;
+import com.logistica.application.registrarEstadoPago.usecases.pago.ProcesarEventoPagoUseCase;
+import com.logistica.domain.registrarEstadoPago.enums.RegistrarEstadoPagoEstadoPagoEnum;
+import com.logistica.infrastructure.registrarEstadoPago.async.processors.EventoPagoProcessor;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

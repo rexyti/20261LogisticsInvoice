@@ -2,9 +2,10 @@ package com.logistica.infrastructure.web.controllers;
 
 import com.logistica.application.cierreRuta.dtos.response.RutaProcesadaResponseDTO;
 import com.logistica.application.cierreRuta.usecases.ruta.ConsultarRutaUseCase;
+import com.logistica.application.cierreRuta.usecases.ruta.ProcesarRutaCerradaUseCase;
 import com.logistica.domain.cierreRuta.exceptions.RutaNotFoundException;
-import com.logistica.infrastructure.cierreRuta.config.SecurityConfig;
 import com.logistica.infrastructure.cierreRuta.web.controllers.RutaController;
+import com.logistica.infrastructure.shared.security.JwtAuthenticationFilter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,26 +33,19 @@ class RutaControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private SecurityConfig cierreRutaSecurityConfig;
+    private JwtAuthenticationFilter jwtAuthenticationFilter;
 
     @MockBean
     private ConsultarRutaUseCase consultarRutaUseCase;
 
-    // ─────────────────────────────────────────────
-    // GET /{id}
-    // ─────────────────────────────────────────────
-
+    @MockBean
+    private ProcesarRutaCerradaUseCase procesarRutaCerradaUseCase;
 
     @Test
     @DisplayName("Debe retornar 200 y la ruta cuando existe")
     void debe_obtener_ruta_ok() throws Exception {
-
         UUID id = UUID.randomUUID();
-
-        RutaProcesadaResponseDTO response = RutaProcesadaResponseDTO.builder()
-                .rutaId(id)
-                .build();
-
+        RutaProcesadaResponseDTO response = RutaProcesadaResponseDTO.builder().rutaId(id).build();
         when(consultarRutaUseCase.ejecutar(id)).thenReturn(response);
 
         mockMvc.perform(get("/api/v1/rutas/{id}", id))
@@ -64,35 +58,21 @@ class RutaControllerTest {
     @Test
     @DisplayName("Debe retornar 404 cuando la ruta no existe")
     void debe_retornar_404_si_no_existe() throws Exception {
-
         UUID id = UUID.randomUUID();
-
-        when(consultarRutaUseCase.ejecutar(id))
-                .thenThrow(new RutaNotFoundException(id));
+        when(consultarRutaUseCase.ejecutar(id)).thenThrow(new RutaNotFoundException(id));
 
         mockMvc.perform(get("/api/v1/rutas/{id}", id))
                 .andExpect(status().isNotFound())
-                .andExpect(content().string("Ruta no encontrada: " + id));
+                .andExpect(jsonPath("$.codigo").value("RECURSO_NO_ENCONTRADO"));
 
         verify(consultarRutaUseCase).ejecutar(id);
     }
 
-    // ─────────────────────────────────────────────
-    // GET /
-    // ─────────────────────────────────────────────
-
     @Test
     @DisplayName("Debe listar rutas correctamente")
     void debe_listar_rutas() throws Exception {
-
-        RutaProcesadaResponseDTO r1 = RutaProcesadaResponseDTO.builder()
-                .rutaId(UUID.randomUUID())
-                .build();
-
-        RutaProcesadaResponseDTO r2 = RutaProcesadaResponseDTO.builder()
-                .rutaId(UUID.randomUUID())
-                .build();
-
+        RutaProcesadaResponseDTO r1 = RutaProcesadaResponseDTO.builder().rutaId(UUID.randomUUID()).build();
+        RutaProcesadaResponseDTO r2 = RutaProcesadaResponseDTO.builder().rutaId(UUID.randomUUID()).build();
         when(consultarRutaUseCase.listarTodas(isNull(), any(Pageable.class)))
                 .thenReturn(new PageImpl<>(List.of(r1, r2)));
 
@@ -106,7 +86,6 @@ class RutaControllerTest {
     @Test
     @DisplayName("Debe retornar lista vacía si no hay rutas")
     void debe_retornar_lista_vacia() throws Exception {
-
         when(consultarRutaUseCase.listarTodas(isNull(), any(Pageable.class)))
                 .thenReturn(new PageImpl<>(List.of()));
 

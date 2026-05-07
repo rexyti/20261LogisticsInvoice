@@ -1,14 +1,17 @@
 package com.logistica.RegistrarEstadoPago.infrastructure.controllers.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.logistica.RegistrarEstadoPago.application.dtos.response.RecepcionEventoPagoResponseDTO;
-import com.logistica.RegistrarEstadoPago.application.usecases.pago.RecibirEventoPagoUseCase;
-import com.logistica.RegistrarEstadoPago.infrastructure.web.controllers.WebhookPagoController;
+import com.logistica.application.registrarEstadoPago.dtos.response.RecepcionEventoPagoResponseDTO;
+import com.logistica.application.registrarEstadoPago.usecases.pago.RecibirEventoPagoUseCase;
+import com.logistica.infrastructure.registrarEstadoPago.web.controllers.WebhookPagoController;
+import com.logistica.infrastructure.shared.security.JwtAuthenticationFilter;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Map;
@@ -21,6 +24,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(WebhookPagoController.class)
+@AutoConfigureMockMvc(addFilters = false)
+@WithMockUser
 class WebhookPagoControllerTest {
 
     @Autowired
@@ -31,6 +36,9 @@ class WebhookPagoControllerTest {
 
     @MockBean
     private RecibirEventoPagoUseCase recibirEventoPagoUseCase;
+
+    @MockBean
+    private JwtAuthenticationFilter jwtAuthenticationFilter;
 
     @Test
     void post_eventoValido_retorna202() throws Exception {
@@ -46,7 +54,7 @@ class WebhookPagoControllerTest {
                         .content(objectMapper.writeValueAsString(body)))
                 .andExpect(status().isAccepted())
                 .andExpect(jsonPath("$.mensaje").value("Evento de pago recibido correctamente"))
-                .andExpect(jsonPath("$.idEvento").value("evt-001"))
+                .andExpect(jsonPath("$.id_evento").value("evt-001"))
                 .andExpect(jsonPath("$.procesamiento").value("ASINCRONO"));
     }
 
@@ -84,29 +92,29 @@ class WebhookPagoControllerTest {
                         .content(objectMapper.writeValueAsString(body)))
                 .andExpect(status().isAccepted())
                 .andExpect(jsonPath("$.mensaje").exists())
-                .andExpect(jsonPath("$.idEvento").exists())
+                .andExpect(jsonPath("$.id_evento").exists())
                 .andExpect(jsonPath("$.procesamiento").exists());
     }
 
     private Map<String, Object> buildRequestBody(String estado) {
         return Map.of(
-                "idEvento", "evt-001",
-                "idTransaccionBanco", "txn-001",
-                "idPago", UUID.randomUUID().toString(),
-                "idLiquidacion", UUID.randomUUID().toString(),
+                "id_evento", "evt-001",
+                "id_transaccion_banco", "txn-001",
+                "id_pago", UUID.randomUUID().toString(),
+                "id_liquidacion", UUID.randomUUID().toString(),
                 "estado", estado,
-                "fechaEvento", "2026-04-26T10:30:00"
+                "fecha_evento", "2026-04-26T10:30:00"
         );
     }
 
     private Map<String, Object> buildRequestBodyConEstado(String estado) {
         return Map.of(
-                "idEvento", "evt-005",
-                "idTransaccionBanco", "txn-005",
-                "idPago", UUID.randomUUID().toString(),
-                "idLiquidacion", UUID.randomUUID().toString(),
+                "id_evento", "evt-005",
+                "id_transaccion_banco", "txn-005",
+                "id_pago", UUID.randomUUID().toString(),
+                "id_liquidacion", UUID.randomUUID().toString(),
                 "estado", estado,
-                "fechaEvento", "2026-04-26T10:50:00"
+                "fecha_evento", "2026-04-26T10:50:00"
         );
     }
 }

@@ -1,15 +1,14 @@
 package com.logistica.VisualizarLiquidación.infrastructure.web.controllers;
 
-import com.logistica.VisualizarLiquidación.application.dtos.request.FiltroLiquidacionDTO;
-import com.logistica.VisualizarLiquidación.application.dtos.response.LiquidacionDetalleDTO;
-import com.logistica.VisualizarLiquidación.application.dtos.response.LiquidacionListItemDTO;
-import com.logistica.VisualizarLiquidación.application.dtos.response.LiquidacionListResponseDTO;
-import com.logistica.VisualizarLiquidación.application.usecases.liquidacion.BuscarLiquidacionesUseCase;
-import com.logistica.VisualizarLiquidación.application.usecases.liquidacion.ListarLiquidacionesUseCase;
-import com.logistica.VisualizarLiquidación.application.usecases.liquidacion.ObtenerDetalleLiquidacionUseCase;
-import com.logistica.VisualizarLiquidación.infrastructure.security.JwtAuthenticationFilter;
-import com.logistica.VisualizarLiquidación.infrastructure.security.JwtService;
-import com.logistica.VisualizarLiquidación.infrastructure.web.controllers.Controller;
+import com.logistica.application.visualizarLiquidacion.dtos.request.VisualizarLiquidacionFiltroDTO;
+import com.logistica.application.visualizarLiquidacion.dtos.response.VisualizarLiquidacionDetalleDTO;
+import com.logistica.application.visualizarLiquidacion.dtos.response.VisualizarLiquidacionListItemDTO;
+import com.logistica.application.visualizarLiquidacion.dtos.response.VisualizarLiquidacionListResponseDTO;
+import com.logistica.application.visualizarLiquidacion.usecases.liquidacion.VisualizarLiquidacionBuscarUseCase;
+import com.logistica.application.visualizarLiquidacion.usecases.liquidacion.VisualizarLiquidacionListarUseCase;
+import com.logistica.application.visualizarLiquidacion.usecases.liquidacion.VisualizarLiquidacionObtenerDetalleUseCase;
+import com.logistica.infrastructure.shared.security.JwtAuthenticationFilter;
+import com.logistica.infrastructure.visualizarLiquidacion.web.controllers.VisualizarLiquidacionController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -36,7 +35,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(Controller.class)
+@WebMvcTest(VisualizarLiquidacionController.class)
 @AutoConfigureMockMvc(addFilters = false)
 class LiquidacionControllerTest {
 
@@ -47,36 +46,25 @@ class LiquidacionControllerTest {
     private JwtAuthenticationFilter jwtAuthenticationFilter;
 
     @MockBean
-    private JwtService jwtService;
+    private VisualizarLiquidacionListarUseCase listarUseCase;
 
     @MockBean
-    private ListarLiquidacionesUseCase listarUseCase;
+    private VisualizarLiquidacionObtenerDetalleUseCase obtenerDetalleUseCase;
 
     @MockBean
-    private ObtenerDetalleLiquidacionUseCase obtenerDetalleUseCase;
-
-    @MockBean
-    private BuscarLiquidacionesUseCase buscarUseCase;
+    private VisualizarLiquidacionBuscarUseCase buscarUseCase;
 
     @Test
     void listar_ok_contenido() throws Exception {
-        LiquidacionListItemDTO item = new LiquidacionListItemDTO(
-                UUID.randomUUID(),
-                UUID.randomUUID(),
-                LocalDateTime.now(),
-                LocalDateTime.now(),
-                "CAMION",
-                BigDecimal.valueOf(1000),
-                5,
-                BigDecimal.valueOf(5000),
-                BigDecimal.valueOf(4500),
-                "CALCULADA",
-                LocalDateTime.now(),
-                List.of()
-
+        VisualizarLiquidacionListItemDTO item = new VisualizarLiquidacionListItemDTO(
+                UUID.randomUUID(), UUID.randomUUID(),
+                LocalDateTime.now(), LocalDateTime.now(),
+                "CAMION", BigDecimal.valueOf(1000), 5,
+                BigDecimal.valueOf(5000), BigDecimal.valueOf(4500),
+                "CALCULADA", LocalDateTime.now(), List.of()
         );
 
-        LiquidacionListResponseDTO response = new LiquidacionListResponseDTO(
+        VisualizarLiquidacionListResponseDTO response = new VisualizarLiquidacionListResponseDTO(
                 List.of(item), 0, 10, 1, 1, true
         );
 
@@ -97,21 +85,12 @@ class LiquidacionControllerTest {
     @Test
     void obtenerDetalle_ok() throws Exception {
         UUID id = UUID.randomUUID();
-        LiquidacionDetalleDTO response = new LiquidacionDetalleDTO(
-                id,
-                UUID.randomUUID(),
-                UUID.randomUUID(),
-                LocalDateTime.now(),
-                LocalDateTime.now(),
-                "CAMION",
-                BigDecimal.valueOf(1000),
-                5,
-                BigDecimal.valueOf(5000),
-                BigDecimal.valueOf(4500),
-                "CALCULADA",
-                LocalDateTime.now(),
-                "user-id",
-                List.of()
+        VisualizarLiquidacionDetalleDTO response = new VisualizarLiquidacionDetalleDTO(
+                id, UUID.randomUUID(), UUID.randomUUID(),
+                LocalDateTime.now(), LocalDateTime.now(),
+                "CAMION", BigDecimal.valueOf(1000), 5,
+                BigDecimal.valueOf(5000), BigDecimal.valueOf(4500),
+                "CALCULADA", LocalDateTime.now(), "user-id", List.of()
         );
 
         when(obtenerDetalleUseCase.ejecutar(eq(id), any())).thenReturn(response);
@@ -127,24 +106,15 @@ class LiquidacionControllerTest {
     @Test
     void buscar_ok() throws Exception {
         UUID id = UUID.randomUUID();
-        LiquidacionDetalleDTO response = new LiquidacionDetalleDTO(
-                id,
-                UUID.randomUUID(),
-                UUID.randomUUID(),
-                LocalDateTime.now(),
-                LocalDateTime.now(),
-                "CAMION",
-                BigDecimal.valueOf(1000),
-                5,
-                BigDecimal.valueOf(5000),
-                BigDecimal.valueOf(4500),
-                "CALCULADA",
-                LocalDateTime.now(),
-                "user-id",
-                List.of()
+        VisualizarLiquidacionDetalleDTO response = new VisualizarLiquidacionDetalleDTO(
+                id, UUID.randomUUID(), UUID.randomUUID(),
+                LocalDateTime.now(), LocalDateTime.now(),
+                "CAMION", BigDecimal.valueOf(1000), 5,
+                BigDecimal.valueOf(5000), BigDecimal.valueOf(4500),
+                "CALCULADA", LocalDateTime.now(), "user-id", List.of()
         );
 
-        when(buscarUseCase.ejecutar(any(FiltroLiquidacionDTO.class), any())).thenReturn(response);
+        when(buscarUseCase.ejecutar(any(VisualizarLiquidacionFiltroDTO.class), any())).thenReturn(response);
 
         mockMvc.perform(get("/api/liquidaciones/buscar")
                         .with(autenticado("user-id", "ROLE_GESTOR_FINANCIERO"))
@@ -160,15 +130,9 @@ class LiquidacionControllerTest {
                         .with(autenticado("user-id", "ROLE_GESTOR_FINANCIERO"))
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.codigo").value("PARAMETROS_INVALIDOS"));
+                .andExpect(jsonPath("$.codigo").value("VALIDACION_FALLIDA"));
     }
 
-    /**
-     * Con addFilters=false, SecurityContextHolderAwareRequestFilter no corre,
-     * por lo que request.getUserPrincipal() retorna null y Spring MVC inyecta
-     * null para el parametro Authentication. Se soluciona seteando setUserPrincipal()
-     * directamente en el MockHttpServletRequest ademas de SecurityContextHolder.
-     */
     private static RequestPostProcessor autenticado(String userId, String... roles) {
         return request -> {
             var authorities = Arrays.stream(roles)

@@ -16,9 +16,24 @@ spring:
   flyway:
     enabled: false
 
+  cloud:
+    aws:
+      region:
+        static: us-east-1
+      credentials:
+        access-key: test
+        secret-key: test
+      sqs:
+        enabled: false
+
 package:
   api:
     url: http://localhost:8089
+
+app:
+  sqs:
+    queue:
+      ruta-cerrada: ruta-cerrada-queue
 
 resilience4j:
   timelimiter:

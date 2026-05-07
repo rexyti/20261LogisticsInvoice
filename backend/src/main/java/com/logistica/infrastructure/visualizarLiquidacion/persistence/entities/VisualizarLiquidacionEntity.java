@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Immutable;
 
+import static jakarta.persistence.ConstraintMode.NO_CONSTRAINT;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -27,14 +29,14 @@ public class VisualizarLiquidacionEntity {
     private UUID id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_ruta", nullable = false)
+    @JoinColumn(name = "id_ruta", nullable = false, foreignKey = @ForeignKey(NO_CONSTRAINT))
     private VisualizarLiquidacionRutaEntity ruta;
 
     @Column(name = "id_contrato")
     private UUID idContrato;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "estado_liquidacion", nullable = false, length = 50)
+    @Column(name = "estado_liquidacion", length = 50)
     private EstadoLiquidacion estadoLiquidacion;
 
     @Column(name = "monto_bruto", precision = 12, scale = 2)
@@ -43,10 +45,10 @@ public class VisualizarLiquidacionEntity {
     @Column(name = "monto_neto", precision = 12, scale = 2)
     private BigDecimal montoNeto;
 
-    @Column(name = "fecha_calculo", nullable = false)
+    @Column(name = "fecha_calculo")
     private LocalDateTime fechaCalculo;
 
-    @Column(name = "usuario_id", nullable = false, length = 255)
+    @Column(name = "usuario_id", length = 255)
     private String usuarioId;
 
     @OneToMany(fetch = FetchType.LAZY)

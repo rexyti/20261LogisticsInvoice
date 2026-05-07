@@ -1,13 +1,13 @@
-﻿package com.logistica.VisualizarEstadoPago.application.usecases.pago;
+package com.logistica.VisualizarEstadoPago.application.usecases.pago;
 
-import com.logistica.VisualizarEstadoPago.application.dtos.response.VisualizarEstadoPagoEstadoPagoResponseDTO;
-import com.logistica.VisualizarEstadoPago.application.usecases.pago.ConsultarEstadoPagoUseCase;
-import com.logistica.VisualizarEstadoPago.domain.enums.VisualizarEstadoPagoEstadoPagoEnum;
-import com.logistica.VisualizarEstadoPago.domain.exceptions.AccessDeniedPaymentException;
-import com.logistica.VisualizarEstadoPago.domain.exceptions.VisualizarEstadoPagoPagoNoEncontradoException;
-import com.logistica.VisualizarEstadoPago.domain.models.VisualizarEstadoPagoPago;
-import com.logistica.VisualizarEstadoPago.domain.repositories.VisualizarEstadoPagoPagoRepository;
-import com.logistica.VisualizarEstadoPago.domain.services.AuditoriaPagoService;
+import com.logistica.application.visualizarEstadoPago.dtos.response.VisualizarEstadoPagoEstadoPagoResponseDTO;
+import com.logistica.application.visualizarEstadoPago.usecases.pago.ConsultarEstadoPagoUseCase;
+import com.logistica.domain.visualizarEstadoPago.enums.VisualizarEstadoPagoEstadoPagoEnum;
+import com.logistica.domain.visualizarEstadoPago.exceptions.AccessDeniedPaymentException;
+import com.logistica.domain.visualizarEstadoPago.exceptions.VisualizarEstadoPagoPagoNoEncontradoException;
+import com.logistica.domain.visualizarEstadoPago.models.VisualizarEstadoPagoPago;
+import com.logistica.domain.visualizarEstadoPago.repositories.VisualizarEstadoPagoPagoRepository;
+import com.logistica.domain.visualizarEstadoPago.services.AuditoriaPagoService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

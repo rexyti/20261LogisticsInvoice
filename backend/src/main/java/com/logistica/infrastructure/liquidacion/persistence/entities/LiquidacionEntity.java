@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 @jakarta.persistence.Entity
-@Table(name = "liquidaciones")
+@Table(name = "liquidaciones", uniqueConstraints = @UniqueConstraint(name = "uk_liquidacion_contrato", columnNames = "id_contrato"))
 @Getter
 @Setter
 public class LiquidacionEntity extends BaseEntity {
@@ -21,7 +21,7 @@ public class LiquidacionEntity extends BaseEntity {
     private UUID idRuta;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_contrato", nullable = false)
+    @JoinColumn(name = "id_contrato", nullable = false, unique = true)
     private ContratoEntity contrato;
 
     @Enumerated(EnumType.STRING)

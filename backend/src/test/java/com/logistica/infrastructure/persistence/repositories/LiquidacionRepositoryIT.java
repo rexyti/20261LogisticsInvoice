@@ -2,9 +2,10 @@ package com.logistica.infrastructure.persistence.repositories;
 
 import com.logistica.domain.liquidacion.enums.EstadoLiquidacion;
 import com.logistica.domain.liquidacion.enums.TipoContratacion;
-import com.logistica.infrastructure.liquidacion.persistence.entities.ContratoEntity;
-import com.logistica.infrastructure.liquidacion.persistence.entities.Entity;
-import com.logistica.infrastructure.liquidacion.persistence.repositories.JpaRepository;
+import com.logistica.infrastructure.contratos.persistence.entities.ContratoEntity;
+import com.logistica.infrastructure.contratos.persistence.entities.TransportistaEntity;
+import com.logistica.infrastructure.liquidacion.persistence.entities.LiquidacionEntity;
+import com.logistica.infrastructure.liquidacion.persistence.repositories.LiquidacionJpaRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.dao.DataIntegrityViolationException;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 import java.util.UUID;
@@ -23,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class LiquidacionRepositoryIT extends AbstractRepositoryIT {
 
     @Autowired
-    private JpaRepository repository;
+    private LiquidacionJpaRepository repository;
 
     @Autowired
     private TestEntityManager entityManager;
@@ -31,21 +33,17 @@ class LiquidacionRepositoryIT extends AbstractRepositoryIT {
     @Test
     @DisplayName("Debe guardar y encontrar una liquidación por su ID con relación OneToOne a Contrato")
     void shouldSaveAndFindByIdWithOneToOneContrato() {
-        // Given: Un contrato persistido
         ContratoEntity contrato = createContrato();
         entityManager.persist(contrato);
 
-        // Given: Una entidad liquidación válida
         UUID rutaId = UUID.randomUUID();
-        Entity entity = createLiquidacion(rutaId, contrato);
+        LiquidacionEntity entity = createLiquidacion(rutaId, contrato);
 
-        // When
-        Entity saved = repository.saveAndFlush(entity);
-        entityManager.clear(); // Limpiar cache para forzar lectura de DB
-        
-        Optional<Entity> found = repository.findById(saved.getId());
+        LiquidacionEntity saved = repository.saveAndFlush(entity);
+        entityManager.clear();
 
-        // Then
+        Optional<LiquidacionEntity> found = repository.findById(saved.getId());
+
         assertThat(found).isPresent();
         assertThat(found.get().getIdRuta()).isEqualTo(rutaId);
         assertThat(found.get().getContrato()).isNotNull();
@@ -55,33 +53,40 @@ class LiquidacionRepositoryIT extends AbstractRepositoryIT {
     @Test
     @DisplayName("Debe fallar al intentar asociar el mismo contrato a dos liquidaciones (Restricción OneToOne)")
     void shouldFailWhenSameContratoIsUsedInTwoLiquidaciones() {
-        // Given: Un contrato y una liquidación ya persistida
         ContratoEntity contrato = createContrato();
         entityManager.persist(contrato);
-        
-        Entity liq1 = createLiquidacion(UUID.randomUUID(), contrato);
+
+        LiquidacionEntity liq1 = createLiquidacion(UUID.randomUUID(), contrato);
         repository.saveAndFlush(liq1);
 
-        // When & Then: Intentar guardar otra liquidación con el MISMO contrato
-        Entity liq2 = createLiquidacion(UUID.randomUUID(), contrato);
-        
+        LiquidacionEntity liq2 = createLiquidacion(UUID.randomUUID(), contrato);
+
         assertThrows(DataIntegrityViolationException.class, () -> {
             repository.saveAndFlush(liq2);
         }, "Debe lanzar excepción por violación de unicidad en id_contrato (OneToOne)");
     }
 
-    // --- Helpers de Creación (Clean Code) ---
-
     private ContratoEntity createContrato() {
+        TransportistaEntity transportista = TransportistaEntity.builder()
+                .nombre("Test Transportista")
+                .build();
+        entityManager.persist(transportista);
+
         ContratoEntity contrato = new ContratoEntity();
-        contrato.setId(UUID.randomUUID());
-        contrato.setTipoContratacion(TipoContratacion.POR_PARADA);
+        contrato.setIdContrato("CONT-" + UUID.randomUUID().toString().replace("-", "").substring(0, 8));
+        contrato.setTipoContrato("MENSAJERIA");
+        contrato.setEsPorParada(false);
+        contrato.setTipoVehiculo("VAN");
+        contrato.setFechaInicio(LocalDateTime.now());
+        contrato.setFechaFinal(LocalDateTime.now().plusMonths(1));
+        contrato.setTransportista(transportista);
+        contrato.setTipoContratacion(TipoContratacion.POR_PARADA.name());
         contrato.setTarifa(new BigDecimal("10.0000"));
         return contrato;
     }
 
-    private Entity createLiquidacion(UUID rutaId, ContratoEntity contrato) {
-        Entity entity = new Entity();
+    private LiquidacionEntity createLiquidacion(UUID rutaId, ContratoEntity contrato) {
+        LiquidacionEntity entity = new LiquidacionEntity();
         entity.setId(UUID.randomUUID());
         entity.setIdRuta(rutaId);
         entity.setContrato(contrato);

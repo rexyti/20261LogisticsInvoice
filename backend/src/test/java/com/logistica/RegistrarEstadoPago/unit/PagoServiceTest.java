@@ -1,23 +1,23 @@
-﻿package com.logistica.RegistrarEstadoPago.unit;
+package com.logistica.RegistrarEstadoPago.unit;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.logistica.RegistrarEstadoPago.application.dtos.request.EventoEstadoPagoRequestDTO;
-import com.logistica.RegistrarEstadoPago.application.dtos.response.PagoResponseDTO;
-import com.logistica.RegistrarEstadoPago.application.usecases.pago.PagoService;
-import com.logistica.RegistrarEstadoPago.domain.enums.EstadoEventoTransaccion;
-import com.logistica.RegistrarEstadoPago.domain.enums.RegistrarEstadoPagoEstadoPagoEnum;
-import com.logistica.RegistrarEstadoPago.domain.models.RegistrarEstadoPagoEventoTransaccion;
-import com.logistica.RegistrarEstadoPago.domain.models.LiquidacionReferencia;
-import com.logistica.RegistrarEstadoPago.domain.models.RegistrarEstadoPagoPago;
-import com.logistica.RegistrarEstadoPago.domain.repositories.RegistrarEstadoPagoEstadoPagoRepository;
-import com.logistica.RegistrarEstadoPago.domain.repositories.EventoTransaccionRepository;
-import com.logistica.RegistrarEstadoPago.domain.repositories.RegistrarEstadoPagoLiquidacionRepository;
-import com.logistica.RegistrarEstadoPago.domain.repositories.RegistrarEstadoPagoPagoRepository;
-import com.logistica.RegistrarEstadoPago.domain.services.EstadoPagoDomainService;
-import com.logistica.RegistrarEstadoPago.domain.services.IdempotenciaEventoPagoService;
-import com.logistica.RegistrarEstadoPago.domain.services.TransicionEstadoPagoService;
-import com.logistica.RegistrarEstadoPago.domain.exceptions.RegistrarEstadoPagoPagoNoEncontradoException;
-import com.logistica.RegistrarEstadoPago.domain.exceptions.TransicionEstadoPagoInvalidaException;
+import com.logistica.application.registrarEstadoPago.dtos.request.EventoEstadoPagoRequestDTO;
+import com.logistica.application.registrarEstadoPago.dtos.response.PagoResponseDTO;
+import com.logistica.application.registrarEstadoPago.usecases.pago.PagoService;
+import com.logistica.domain.registrarEstadoPago.enums.EstadoEventoTransaccion;
+import com.logistica.domain.registrarEstadoPago.enums.RegistrarEstadoPagoEstadoPagoEnum;
+import com.logistica.domain.registrarEstadoPago.models.RegistrarEstadoPagoEventoTransaccion;
+import com.logistica.domain.registrarEstadoPago.models.LiquidacionReferencia;
+import com.logistica.domain.registrarEstadoPago.models.RegistrarEstadoPagoPago;
+import com.logistica.domain.registrarEstadoPago.repositories.RegistrarEstadoPagoEstadoPagoRepository;
+import com.logistica.domain.registrarEstadoPago.repositories.EventoTransaccionRepository;
+import com.logistica.domain.registrarEstadoPago.repositories.RegistrarEstadoPagoLiquidacionRepository;
+import com.logistica.domain.registrarEstadoPago.repositories.RegistrarEstadoPagoPagoRepository;
+import com.logistica.domain.registrarEstadoPago.services.EstadoPagoDomainService;
+import com.logistica.domain.registrarEstadoPago.services.IdempotenciaEventoPagoService;
+import com.logistica.domain.registrarEstadoPago.services.TransicionEstadoPagoService;
+import com.logistica.domain.registrarEstadoPago.exceptions.RegistrarEstadoPagoPagoNoEncontradoException;
+import com.logistica.domain.registrarEstadoPago.exceptions.TransicionEstadoPagoInvalidaException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -76,7 +76,6 @@ class PagoServiceTest {
 
         verify(pagoRepository, atLeast(2)).save(any());
         verify(estadoPagoRepository).save(any());
-        // RECIBIDO + PROCESADO = 2 saves
         verify(eventoTransaccionRepository, times(2)).save(any());
     }
 
@@ -175,12 +174,10 @@ class PagoServiceTest {
                 .thenReturn(Optional.of(new LiquidacionReferencia(ID_LIQUIDACION)));
         when(pagoRepository.findById(ID_PAGO)).thenReturn(Optional.of(pagoEnSecuenciaAlta));
 
-        // Estado igual al actual, se trata como idempotente antes de llegar al check de secuencia
         pagoService.procesarEvento(dto);
 
         ArgumentCaptor<RegistrarEstadoPagoEventoTransaccion> captor = ArgumentCaptor.forClass(RegistrarEstadoPagoEventoTransaccion.class);
         verify(eventoTransaccionRepository, times(2)).save(captor.capture());
-        // Mismo estado → PROCESADO idempotente
         assertThat(captor.getAllValues().get(1).estadoProcesamiento()).isEqualTo(EstadoEventoTransaccion.PROCESADO);
     }
 

@@ -3,9 +3,10 @@ package com.logistica.infrastructure.persistence.repositories;
 import com.logistica.domain.liquidacion.enums.EstadoLiquidacion;
 import com.logistica.domain.liquidacion.enums.TipoAjuste;
 import com.logistica.domain.liquidacion.enums.TipoContratacion;
+import com.logistica.infrastructure.contratos.persistence.entities.ContratoEntity;
+import com.logistica.infrastructure.contratos.persistence.entities.TransportistaEntity;
 import com.logistica.infrastructure.liquidacion.persistence.entities.AjusteEntity;
-import com.logistica.infrastructure.liquidacion.persistence.entities.ContratoEntity;
-import com.logistica.infrastructure.liquidacion.persistence.entities.Entity;
+import com.logistica.infrastructure.liquidacion.persistence.entities.LiquidacionEntity;
 import com.logistica.infrastructure.liquidacion.persistence.repositories.AjusteJpaRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -31,41 +33,46 @@ class AjusteRepositoryIT extends AbstractRepositoryIT {
     @Test
     @DisplayName("Debe encontrar ajustes por el ID de la liquidación")
     void shouldFindByLiquidacionId() {
-        // Given: Un contrato y una liquidación persistida
         ContratoEntity contrato = createContrato();
         entityManager.persist(contrato);
-        
-        Entity liq = createLiquidacion(UUID.randomUUID(), contrato);
+
+        LiquidacionEntity liq = createLiquidacion(UUID.randomUUID(), contrato);
         entityManager.persist(liq);
 
-        // Given: Dos ajustes asociados
         AjusteEntity a1 = createAjuste(liq, TipoAjuste.BONO, "10.0000", "Bono 1");
         AjusteEntity a2 = createAjuste(liq, TipoAjuste.PENALIZACION, "5.0000", "Descuento 1");
-        
-        ajusteRepository.saveAllAndFlush(List.of(a1, a2));
-        entityManager.clear(); // Forzar carga de DB
 
-        // When
+        ajusteRepository.saveAllAndFlush(List.of(a1, a2));
+        entityManager.clear();
+
         List<AjusteEntity> results = ajusteRepository.findByLiquidacion_Id(liq.getId());
 
-        // Then
         assertThat(results).hasSize(2);
         assertThat(results).extracting(AjusteEntity::getMotivo)
                 .containsExactlyInAnyOrder("Bono 1", "Descuento 1");
     }
 
-    // --- Helpers de Creación ---
-
     private ContratoEntity createContrato() {
+        TransportistaEntity transportista = TransportistaEntity.builder()
+                .nombre("Test Transportista")
+                .build();
+        entityManager.persist(transportista);
+
         ContratoEntity contrato = new ContratoEntity();
-        contrato.setId(UUID.randomUUID());
-        contrato.setTipoContratacion(TipoContratacion.POR_PARADA);
+        contrato.setIdContrato("CONT-" + UUID.randomUUID().toString().replace("-", "").substring(0, 8));
+        contrato.setTipoContrato("MENSAJERIA");
+        contrato.setEsPorParada(false);
+        contrato.setTipoVehiculo("VAN");
+        contrato.setFechaInicio(LocalDateTime.now());
+        contrato.setFechaFinal(LocalDateTime.now().plusMonths(1));
+        contrato.setTransportista(transportista);
+        contrato.setTipoContratacion(TipoContratacion.POR_PARADA.name());
         contrato.setTarifa(new BigDecimal("10.0000"));
         return contrato;
     }
 
-    private Entity createLiquidacion(UUID rutaId, ContratoEntity contrato) {
-        Entity entity = new Entity();
+    private LiquidacionEntity createLiquidacion(UUID rutaId, ContratoEntity contrato) {
+        LiquidacionEntity entity = new LiquidacionEntity();
         entity.setId(UUID.randomUUID());
         entity.setIdRuta(rutaId);
         entity.setContrato(contrato);
@@ -78,7 +85,7 @@ class AjusteRepositoryIT extends AbstractRepositoryIT {
         return entity;
     }
 
-    private AjusteEntity createAjuste(Entity liq, TipoAjuste tipo, String monto, String motivo) {
+    private AjusteEntity createAjuste(LiquidacionEntity liq, TipoAjuste tipo, String monto, String motivo) {
         AjusteEntity ajuste = new AjusteEntity();
         ajuste.setId(UUID.randomUUID());
         ajuste.setLiquidacion(liq);

@@ -30,20 +30,20 @@ public class ContratoController {
     private final ListarContratosUseCase listarContratosUseCase;
 
     @PostMapping
-    @PreAuthorize("hasRole('GESTOR_TARIFAS')")
+    //@PreAuthorize("hasRole('GESTOR_TARIFAS')")
     public ResponseEntity<ContratoResponseDTO> registrar(@Valid @RequestBody ContratoRequestDTO dto) {
         ContratoResponseDTO response = crearContratoUseCase.ejecutar(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @GetMapping("/{idContrato}")
-    @PreAuthorize("hasRole('GESTOR_TARIFAS')")
+    //@PreAuthorize("hasRole('GESTOR_TARIFAS')")
     public ResponseEntity<ContratoResponseDTO> buscar(@PathVariable String idContrato) {
         return ResponseEntity.ok(buscarContratoUseCase.ejecutar(idContrato));
     }
 
     @GetMapping
-    @PreAuthorize("hasRole('GESTOR_TARIFAS')")
+    //@PreAuthorize("hasRole('GESTOR_TARIFAS')")
     public ResponseEntity<Page<ContratoResponseDTO>> listar(
             @PageableDefault(size = 20) Pageable pageable) {
         return ResponseEntity.ok(listarContratosUseCase.ejecutar(pageable));

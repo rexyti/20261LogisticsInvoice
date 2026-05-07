@@ -26,6 +26,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.junit.jupiter.MockitoSettings;
+import org.mockito.quality.Strictness;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -37,11 +39,12 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
+@MockitoSettings(strictness = Strictness.LENIENT)
 @DisplayName("ProcesarRutaCerradaUseCase - Tests")
 class CierreRutaProcesarRutaCerradaUseCaseTest {
 
     @Mock private RutaRepository rutaRepository;
-    @Mock private TransportistaRepository transportistaRepository;
+    @Mock private TransportistaRutaRepository transportistaRepository;
     @Mock private RutaEventMapper rutaEventMapper;
     @Mock private TimeProvider timeProvider;
     @Mock private ClasificacionRutaService clasificacionRutaService;

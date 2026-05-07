@@ -1,14 +1,17 @@
-﻿package com.logistica.RegistrarEstadoPago.infrastructure.controllers.web;
+package com.logistica.RegistrarEstadoPago.infrastructure.controllers.web;
 
-import com.logistica.RegistrarEstadoPago.application.dtos.response.PagoResponseDTO;
-import com.logistica.RegistrarEstadoPago.application.usecases.pago.ObtenerEstadoPagoUseCase;
-import com.logistica.RegistrarEstadoPago.infrastructure.web.controllers.RegistrarEstadoPagoLiquidacionController;
-import com.logistica.RegistrarEstadoPago.domain.enums.RegistrarEstadoPagoEstadoPagoEnum;
-import com.logistica.RegistrarEstadoPago.domain.exceptions.RegistrarEstadoPagoPagoNoEncontradoException;
+import com.logistica.application.registrarEstadoPago.dtos.response.PagoResponseDTO;
+import com.logistica.application.registrarEstadoPago.usecases.pago.ObtenerEstadoPagoUseCase;
+import com.logistica.domain.registrarEstadoPago.enums.RegistrarEstadoPagoEstadoPagoEnum;
+import com.logistica.domain.registrarEstadoPago.exceptions.RegistrarEstadoPagoPagoNoEncontradoException;
+import com.logistica.infrastructure.registrarEstadoPago.web.controllers.RegistrarEstadoPagoLiquidacionController;
+import com.logistica.infrastructure.shared.security.JwtAuthenticationFilter;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.Instant;
@@ -21,6 +24,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(RegistrarEstadoPagoLiquidacionController.class)
+@AutoConfigureMockMvc(addFilters = false)
+@WithMockUser
 class LiquidacionControllerTest {
 
     @Autowired
@@ -28,6 +33,9 @@ class LiquidacionControllerTest {
 
     @MockBean
     private ObtenerEstadoPagoUseCase obtenerEstadoPagoUseCase;
+
+    @MockBean
+    private JwtAuthenticationFilter jwtAuthenticationFilter;
 
     @Test
     void get_estadoPagoPorLiquidacion_existente_retorna200() throws Exception {
@@ -40,7 +48,7 @@ class LiquidacionControllerTest {
         mockMvc.perform(get("/api/v1/liquidaciones/{idLiquidacion}/pago/estado", idLiquidacion))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.estado").value("PAGADO"))
-                .andExpect(jsonPath("$.idPago").value(idPago.toString()));
+                .andExpect(jsonPath("$.id_pago").value(idPago.toString()));
     }
 
     @Test

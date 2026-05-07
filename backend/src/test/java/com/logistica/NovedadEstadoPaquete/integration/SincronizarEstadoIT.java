@@ -1,16 +1,19 @@
-﻿package com.logistica.NovedadEstadoPaquete.integration;
+package com.logistica.NovedadEstadoPaquete.integration;
 
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
-import com.logistica.NovedadEstadoPaquete.application.dtos.response.SincronizacionResultadoDTO;
-import com.logistica.NovedadEstadoPaquete.application.usecases.paquete.SincronizarPaqueteUseCase;
-import com.logistica.NovedadEstadoPaquete.domain.models.HistorialEstado;
-import com.logistica.NovedadEstadoPaquete.domain.models.LogSincronizacion;
-import com.logistica.NovedadEstadoPaquete.infrastructure.persistence.repositories.HistorialJpaRepository;
-import com.logistica.NovedadEstadoPaquete.infrastructure.persistence.repositories.LogSincronizacionJpaRepository;
+import com.logistica.application.novedadEstadoPaquete.dtos.response.SincronizacionResultadoDTO;
+import com.logistica.application.novedadEstadoPaquete.usecases.paquete.SincronizarPaqueteUseCase;
+import com.logistica.infrastructure.novedadEstadoPaquete.persistence.entities.HistorialEstadoEntity;
+import com.logistica.infrastructure.novedadEstadoPaquete.persistence.entities.LogSincronizacionEntity;
+import com.logistica.infrastructure.novedadEstadoPaquete.persistence.repositories.HistorialJpaRepository;
+import com.logistica.infrastructure.novedadEstadoPaquete.persistence.repositories.LogSincronizacionJpaRepository;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
@@ -18,11 +21,6 @@ import java.util.List;
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
-/**
- * Integration tests T007, T009, T010, T011, T012, T013.
- * WireMock simulates the Package Management Module on port 8089.
- * H2 in-memory DB is used (application-test.yml).
- */
 @SpringBootTest
 @ActiveProfiles("test")
 class SincronizarEstadoIT {
@@ -81,7 +79,9 @@ class SincronizarEstadoIT {
 
         sincronizarUseCase.execute(1L, 20L);
 
-        List<HistorialEstado> historial = historialRepository.findByIdPaqueteOrderByFechaDesc(20L);
+        List<HistorialEstadoEntity> historial = historialRepository
+                .findByIdPaquete(20L, PageRequest.of(0, 100, Sort.by(Sort.Direction.DESC, "fecha")))
+                .getContent();
         assertThat(historial).isNotEmpty();
         assertThat(historial.get(0).getEstado()).isEqualTo("DEVUELTO");
     }
@@ -109,7 +109,9 @@ class SincronizarEstadoIT {
                         .withBody("{\"id_paquete\": \"30\", \"estado\": \"ENTREGADO\"}")));
         sincronizarUseCase.execute(1L, 30L);
 
-        List<HistorialEstado> historial = historialRepository.findByIdPaqueteOrderByFechaDesc(30L);
+        List<HistorialEstadoEntity> historial = historialRepository
+                .findByIdPaquete(30L, PageRequest.of(0, 100, Sort.by(Sort.Direction.DESC, "fecha")))
+                .getContent();
         assertThat(historial).hasSize(2);
         assertThat(historial.get(0).getEstado()).isEqualTo("ENTREGADO");
         assertThat(historial.get(1).getEstado()).isEqualTo("DEVUELTO");
@@ -130,7 +132,8 @@ class SincronizarEstadoIT {
 
         assertThat(resultado.resultado()).isEqualTo("PAQUETE_NO_ENCONTRADO");
 
-        List<LogSincronizacion> logs = logSincronizacionRepository.findByIdPaquete(99L);
+        List<LogSincronizacionEntity> logs = logSincronizacionRepository
+                .findByIdPaquete(99L, Pageable.unpaged()).getContent();
         assertThat(logs).isNotEmpty();
         assertThat(logs.get(0).getCodigoRespuestaHTTP()).isEqualTo(404);
     }
@@ -140,7 +143,6 @@ class SincronizarEstadoIT {
     // -----------------------------------------------------------------------
     @Test
     void t012_delay_mayor_a_timeout_activa_retry_y_marca_pendiente() {
-        // 3 second delay exceeds the 2s TimeLimiter configured in application-test.yml
         stubFor(get(urlPathEqualTo("/route/1/package/50"))
                 .willReturn(aResponse()
                         .withStatus(200)
@@ -153,7 +155,8 @@ class SincronizarEstadoIT {
         assertThat(resultado.resultado()).isEqualTo("PENDIENTE");
         assertThat(resultado.estadoActual()).isEqualTo("PENDIENTE_SINCRONIZACION");
 
-        List<LogSincronizacion> logs = logSincronizacionRepository.findByIdPaquete(50L);
+        List<LogSincronizacionEntity> logs = logSincronizacionRepository
+                .findByIdPaquete(50L, Pageable.unpaged()).getContent();
         assertThat(logs).isNotEmpty();
     }
 
@@ -173,7 +176,8 @@ class SincronizarEstadoIT {
         assertThat(resultado.resultado()).isEqualTo("ESTADO_NO_MAPEADO");
         assertThat(resultado.porcentajePago()).isNull();
 
-        List<LogSincronizacion> logs = logSincronizacionRepository.findByIdPaquete(60L);
+        List<LogSincronizacionEntity> logs = logSincronizacionRepository
+                .findByIdPaquete(60L, Pageable.unpaged()).getContent();
         assertThat(logs).isNotEmpty();
         assertThat(logs.get(0).getCodigoRespuestaHTTP()).isEqualTo(200);
     }

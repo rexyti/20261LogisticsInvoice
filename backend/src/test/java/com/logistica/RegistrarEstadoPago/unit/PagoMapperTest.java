@@ -1,16 +1,16 @@
-﻿package com.logistica.RegistrarEstadoPago.unit;
+package com.logistica.RegistrarEstadoPago.unit;
 
-import com.logistica.RegistrarEstadoPago.domain.enums.EstadoEventoTransaccion;
-import com.logistica.RegistrarEstadoPago.domain.enums.RegistrarEstadoPagoEstadoPagoEnum;
-import com.logistica.RegistrarEstadoPago.domain.models.RegistrarEstadoPagoEstadoPago;
-import com.logistica.RegistrarEstadoPago.domain.models.RegistrarEstadoPagoEventoTransaccion;
-import com.logistica.RegistrarEstadoPago.domain.models.LiquidacionReferencia;
-import com.logistica.RegistrarEstadoPago.domain.models.RegistrarEstadoPagoPago;
-import com.logistica.RegistrarEstadoPago.infrastructure.adapters.PagoMapper;
-import com.logistica.RegistrarEstadoPago.infrastructure.persistence.entities.RegistrarEstadoPagoEstadoPagoEntity;
-import com.logistica.RegistrarEstadoPago.infrastructure.persistence.entities.EventoTransaccionEntity;
-import com.logistica.RegistrarEstadoPago.infrastructure.persistence.entities.LiquidacionReferenciaEntity;
-import com.logistica.RegistrarEstadoPago.infrastructure.persistence.entities.RegistrarEstadoPagoPagoEntity;
+import com.logistica.domain.registrarEstadoPago.enums.EstadoEventoTransaccion;
+import com.logistica.domain.registrarEstadoPago.enums.RegistrarEstadoPagoEstadoPagoEnum;
+import com.logistica.domain.registrarEstadoPago.models.LiquidacionReferencia;
+import com.logistica.domain.registrarEstadoPago.models.RegistrarEstadoPagoEstadoPago;
+import com.logistica.domain.registrarEstadoPago.models.RegistrarEstadoPagoEventoTransaccion;
+import com.logistica.domain.registrarEstadoPago.models.RegistrarEstadoPagoPago;
+import com.logistica.infrastructure.registrarEstadoPago.adapters.PagoMapper;
+import com.logistica.infrastructure.registrarEstadoPago.persistence.entities.EventoTransaccionEntity;
+import com.logistica.infrastructure.registrarEstadoPago.persistence.entities.LiquidacionReferenciaEntity;
+import com.logistica.infrastructure.registrarEstadoPago.persistence.entities.RegistrarEstadoPagoEstadoPagoEntity;
+import com.logistica.infrastructure.registrarEstadoPago.persistence.entities.RegistrarEstadoPagoPagoEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

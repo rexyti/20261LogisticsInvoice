@@ -5,7 +5,7 @@ import com.logistica.application.contratos.dtos.request.ContratoRequestDTO;
 import com.logistica.application.contratos.dtos.request.SeguroRequestDTO;
 import com.logistica.domain.shared.enums.TipoVehiculo;
 import com.logistica.infrastructure.contratos.persistence.entities.TransportistaEntity;
-import com.logistica.infrastructure.contratos.persistence.repositories.TransportistaJpaRepository;
+import com.logistica.infrastructure.contratos.persistence.repositories.ContratoTransportistaJpaRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,6 +14,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,6 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@ActiveProfiles("test")
 @Transactional
 class ContratoControllerIntegrationTest {
 
@@ -39,7 +41,7 @@ class ContratoControllerIntegrationTest {
     private ObjectMapper objectMapper;
 
     @Autowired
-    private TransportistaJpaRepository transportistaJpaRepository;
+    private ContratoTransportistaJpaRepository transportistaJpaRepository;
 
     private UUID transportistaId;
 
@@ -48,7 +50,7 @@ class ContratoControllerIntegrationTest {
         TransportistaEntity transportista = TransportistaEntity.builder()
                 .nombre("Test Transportista")
                 .build();
-        transportistaId = transportistaJpaRepository.save(transportista).getIdTransportista();
+        transportistaId = transportistaJpaRepository.save(transportista).getId();
     }
 
     private ContratoRequestDTO dtoValido() {
@@ -95,7 +97,7 @@ class ContratoControllerIntegrationTest {
                         .content(objectMapper.writeValueAsString(dtoIncompleto)))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.mensaje").exists())
-                .andExpect(jsonPath("$.errores").isMap());
+                .andExpect(jsonPath("$.detalles").isMap());
     }
 
     @Test
@@ -111,7 +113,7 @@ class ContratoControllerIntegrationTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(dto)))
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.errores.fechaFinal").exists());
+                .andExpect(jsonPath("$.detalles.fechaFinal").exists());
     }
 
     @Test

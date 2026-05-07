@@ -9,7 +9,9 @@ import com.logistica.infrastructure.liquidacion.persistence.mapper.AjusteMapper;
 import com.logistica.infrastructure.liquidacion.persistence.mapper.Mapper;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,35 +19,23 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/liquidaciones")
-@Tag(name = "Liquidaciones", description = "Endpoints para la gestión de liquidaciones.")
-public class Controller {
+@Tag(name = "Liquidaciones", description = "Gestión y recálculo de liquidaciones.")
+@RequiredArgsConstructor
+public class LiquidacionRecalcularController {
 
-    private final LiquidacionRecalcularUseCase recalcularLiquidacionUseCase;
+    private final LiquidacionRecalcularUseCase recalcularUseCase;
     private final Mapper liquidacionMapper;
     private final AjusteMapper ajusteMapper;
 
-    public Controller(
-            LiquidacionRecalcularUseCase recalcularLiquidacionUseCase,
-            Mapper liquidacionMapper,
-            AjusteMapper ajusteMapper
-    ) {
-        this.recalcularLiquidacionUseCase = recalcularLiquidacionUseCase;
-        this.liquidacionMapper = liquidacionMapper;
-        this.ajusteMapper = ajusteMapper;
-    }
-
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}/recalcular")
     public ResponseEntity<LiquidacionResponseDTO> recalcularLiquidacion(
             @PathVariable UUID id,
-            @RequestBody @Valid RecalcularRequestDTO request) {
+            @Valid @RequestBody RecalcularRequestDTO request) {
 
         List<Ajuste> nuevosAjustes = ajusteMapper.toModelList(request.getAjustes());
+        Liquidacion liquidacion = recalcularUseCase.execute(id, nuevosAjustes, request.getResponsable());
 
-        Liquidacion liquidacion = recalcularLiquidacionUseCase
-                .execute(id, nuevosAjustes, request.getResponsable());
-
-        return ResponseEntity.ok(
-                liquidacionMapper.toResponseDTO(liquidacion)
-        );
+        return ResponseEntity.ok(liquidacionMapper.toResponseDTO(liquidacion));
     }
 }
