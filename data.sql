@@ -45,7 +45,10 @@ INSERT INTO contratos (id, id_contrato, tipo_contrato, es_por_parada, precio_par
 
 -- 5. Ruta
 INSERT INTO ruta (id, ruta_id, transportista_id, vehiculo_id, tipo_vehiculo, modelo_contrato, fecha_inicio_transito, fecha_cierre, estado_procesamiento) VALUES
-('r1a2b3c4-d5e6-f789-0123-456789abcdef', 'r-negocio-1a2b3c4d', 'a1b2c3d4-e5f6-7890-1234-567890abcdef', 'v1a2b3c4-d5e6-f789-0123-456789abcdef', 'CAMION', 'REPARTO', '2024-05-20 08:00:00', '2024-05-20 18:00:00', 'PROCESADO');
+('r1a2b3c4-d5e6-f789-0123-456789abcdef', 'r-negocio-1a2b3c4d', 'a1b2c3d4-e5f6-7890-1234-567890abcdef', 'v1a2b3c4-d5e6-f789-0123-456789abcdef', 'CAMION', 'REPARTO', '2024-05-20 08:00:00', '2024-05-20 18:00:00', 'PROCESADO'),
+('r2a2b3c4-d5e6-f789-0123-456789abcdef', 'r-negocio-2a2b3c4d', 'a1b2c3d4-e5f6-7890-1234-567890abcdef', 'v2a2b3c4-d5e6-f789-0123-456789abcdef', 'FURGONETA', 'REPARTO', '2024-05-21 08:00:00', '2024-05-21 18:00:00', 'PENDIENTE'),
+('r3a2b3c4-d5e6-f789-0123-456789abcdef', 'r-negocio-3a2b3c4d', 'a1b2c3d4-e5f6-7890-1234-567890abcdef', 'v1a2b3c4-d5e6-f789-0123-456789abcdef', 'CAMION', 'REPARTO', '2024-05-22 08:00:00', '2024-05-22 18:00:00', 'ERROR');
+
 
 -- 6. Parada
 INSERT INTO parada (id, paquete_id, parada_id, ruta_entity_id, estado, motivo_falla) VALUES

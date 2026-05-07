@@ -1,0 +1,50 @@
+.app-container {
+  display: flex;
+}
+
+.main-nav {
+  width: 250px;
+  background-color: #1e293b;
+  height: 100vh;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-logo h2 {
+  color: #ffffff;
+  border: none;
+  margin: 0 0 2rem 0;
+  text-align: center;
+}
+
+.main-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.main-nav ul li a {
+  display: block;
+  padding: 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #94a3b8;
+  font-weight: 500;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.main-nav ul li a:hover {
+  background-color: #334155;
+  color: #ffffff;
+}
+
+.main-nav ul li a.active {
+  background-color: #4f46e5; /* Highlight color for active link */
+  color: #ffffff;
+}
+
+.page-container {
+  flex-grow: 1;
+  padding: 2rem;
+}

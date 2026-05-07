@@ -1,0 +1,12 @@
+[
+  {
+    "id_vehiculo": "v1a2b3c4-d5e6-f789-0123-456789abcdef",
+    "id_transportista": "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+    "tipo": "CAMION"
+  },
+  {
+    "id_vehiculo": "v2a2b3c4-d5e6-f789-0123-456789abcdef",
+    "id_transportista": "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+    "tipo": "FURGONETA"
+  }
+]

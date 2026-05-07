@@ -5,14 +5,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17e9b87a-fadc-44c3-8b48-1742cb0ad6f5" name="Changes" comment="Visualizar liquidacion nuevo">
-      <change afterPath="$PROJECT_DIR$/data.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.claude/settings.local.json" beforeDir="false" afterPath="$PROJECT_DIR$/.claude/settings.local.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/data/ajustes.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/data/contratos.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/data/eventos_transaccion.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/data/liquidaciones.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/data/pagos.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/data/parada.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/data/ruta.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/data/seguros.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/data/transportista.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/data/vehiculos.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/public/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/App.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/Navigation.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/global.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/modules/cierreRuta/components/Rutas.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/modules/cierreRuta/components/RutasTable.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/modules/cierreRuta/hooks/useRutas.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/modules/cierreRuta/pages/RutasPage.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/modules/cierreRuta/services/rutaService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/modules/sincronizacion/placeholder.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/data.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="653" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -31,7 +56,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/InsoftUnimag/20261LogisticsInvoice.git&quot;,
-    &quot;accountId&quot;: &quot;cf4f57ea-4cbc-4f66-8a7a-10f9a6dab070&quot;
+    &quot;accountId&quot;: &quot;b0484f90-023c-4304-a2b3-6f48192351c0&quot;
   }
 }</component>
   <component name="McpProjectServerCommands">
@@ -49,31 +74,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.C:/Users/Sebastian/IdeaProjects/20261LogisticsInvoice/backend/build.gradle.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "massive-names-packages",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Sebastian/IdeaProjects/20261LogisticsInvoice",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "ml.llm.AcpAgentsConfigurable",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.C:/Users/Sebastian/IdeaProjects/20261LogisticsInvoice/backend/build.gradle.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;1rs-feature-implementation&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Sebastian/IdeaProjects/20261LogisticsInvoice&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;ml.llm.AcpAgentsConfigurable&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="20261LogisticsInvoice" />
@@ -125,17 +150,6 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <method v="2" />
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="20261LogisticsInvoice" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="20261LogisticsInvoice" />
-      <option name="filePath" />
-      <method v="2" />
-    </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -157,6 +171,8 @@
       <workItem from="1776910025110" duration="1705000" />
       <workItem from="1777065837131" duration="823000" />
       <workItem from="1777066717493" duration="7160000" />
+      <workItem from="1778192049010" duration="474000" />
+      <workItem from="1778192561695" duration="3217000" />
     </task>
     <task id="LOCAL-00001" summary="Visualizar liquidacion nuevo">
       <option name="closed" value="true" />
@@ -174,7 +190,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777069838964</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Visualizar liquidacion nuevo">
+      <option name="closed" value="true" />
+      <created>1778186379342</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1778186379342</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

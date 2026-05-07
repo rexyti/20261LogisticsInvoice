@@ -1,0 +1,26 @@
+[
+  {
+    "id": "p1a2b3c4-d5e6-f789-0123-456789abcdef",
+    "paquete_id": "pkg-001",
+    "parada_id": "parada-001",
+    "ruta_entity_id": "r1a2b3c4-d5e6-f789-0123-456789abcdef",
+    "estado": "ENTREGADO",
+    "motivo_falla": null
+  },
+  {
+    "id": "p2a2b3c4-d5e6-f789-0123-456789abcdef",
+    "paquete_id": "pkg-002",
+    "parada_id": "parada-002",
+    "ruta_entity_id": "r1a2b3c4-d5e6-f789-0123-456789abcdef",
+    "estado": "ENTREGADO",
+    "motivo_falla": null
+  },
+  {
+    "id": "p3a2b3c4-d5e6-f789-0123-456789abcdef",
+    "paquete_id": "pkg-003",
+    "parada_id": "parada-003",
+    "ruta_entity_id": "r1a2b3c4-d5e6-f789-0123-456789abcdef",
+    "estado": "FALLIDO",
+    "motivo_falla": "DIRECCION_INCORRECTA"
+  }
+]
