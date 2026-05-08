@@ -27,8 +27,8 @@ public class VisualizarLiquidacionUsuarioAutenticado {
 
     public boolean tienePermisoGlobal() {
         return authorities.stream()
-                .anyMatch(a -> a.getAuthority().equals("ROLE_GESTOR_FINANCIERO")
-                        || a.getAuthority().equals("ROLE_ADMIN"));
+                .anyMatch(a -> a.getAuthority().equals("GESTOR_FINANCIERO")
+                        || a.getAuthority().equals("ADMIN"));
     }
 
     public void verificarAcceso(Liquidacion liquidacion) {

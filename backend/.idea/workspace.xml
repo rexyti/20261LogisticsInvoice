@@ -4,14 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70668f6f-3f6d-47f4-bd56-df4d94437e6e" name="Changes" comment="Cambio de ids Longs a id UUID las cuales se implementan en el proyecto">
+    <list default="true" id="70668f6f-3f6d-47f4-bd56-df4d94437e6e" name="Changes" comment="Cambio de la generacion del valor de id a tipo UUID">
       <change beforePath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/visualizarLiquidacion/security/VisualizarLiquidacionUsuarioAutenticado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/visualizarLiquidacion/security/VisualizarLiquidacionUsuarioAutenticado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/contratos/persistence/repositories/ContratoRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/contratos/persistence/repositories/ContratoRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/persistence/repositories/HistorialRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/persistence/repositories/HistorialRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V1__init_clean_schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V1__init_clean_schema.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +156,7 @@
       <workItem from="1778186865991" duration="6723000" />
       <workItem from="1778203688134" duration="1601000" />
       <workItem from="1778236653327" duration="6405000" />
-      <workItem from="1778261324314" duration="2158000" />
+      <workItem from="1778261324314" duration="6954000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <option name="closed" value="true" />
@@ -224,7 +230,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778270009320</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Cambio de la generacion del valor de id a tipo UUID">
+      <option name="closed" value="true" />
+      <created>1778270384854</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1778270384854</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -249,6 +263,7 @@
     <MESSAGE value="implementacion total de test( cada uno funcional), creacion de endpoint para conseguir el rol del usuario (actualmente hardcodeado) renombramiento masivo terminado y funcional" />
     <MESSAGE value="cambio de informacion para hacer que los datos de test sean reales al proyecto, creacion de json para uso de endpoints funcionales" />
     <MESSAGE value="Cambio de ids Longs a id UUID las cuales se implementan en el proyecto" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cambio de ids Longs a id UUID las cuales se implementan en el proyecto" />
+    <MESSAGE value="Cambio de la generacion del valor de id a tipo UUID" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cambio de la generacion del valor de id a tipo UUID" />
   </component>
 </project>

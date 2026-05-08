@@ -37,7 +37,7 @@ public class HistorialRepositoryImpl implements HistorialRepository {
         PageRequest pageRequest = PageRequest.of(
                 safePage,
                 safeSize,
-                Sort.by(Sort.Direction.DESC, "createdAt")
+                Sort.by(Sort.Direction.DESC, "fecha")
         );
 
         return jpa.findByIdPaquete(idPaquete, pageRequest)

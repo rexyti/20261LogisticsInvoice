@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.Optional;
 
 @Repository
@@ -44,6 +46,7 @@ public class ContratoRepositoryImpl implements ContratoRepository {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Page<Contrato> listar(Pageable pageable) {
         return jpaRepository.findAll(pageable)
                 .map(mapper::toDomain);
