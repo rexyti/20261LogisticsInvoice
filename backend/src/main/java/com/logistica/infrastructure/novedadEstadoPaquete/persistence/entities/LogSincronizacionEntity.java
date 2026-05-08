@@ -10,14 +10,14 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "log_sincronizacion",
-       indexes = @Index(name = "idx_log_id_paquete", columnList = "id_paquete"))
+        indexes = @Index(name = "idx_log_id_paquete", columnList = "id_paquete"))
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class LogSincronizacionEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(name = "id_paquete", nullable = false)
