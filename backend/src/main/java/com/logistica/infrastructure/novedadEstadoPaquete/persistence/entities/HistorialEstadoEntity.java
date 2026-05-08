@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Table(name = "historial_estados",
@@ -20,10 +21,10 @@ public class HistorialEstadoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private UUID id;
 
     @Column(name = "id_paquete", nullable = false)
-    private Long idPaquete;
+    private UUID idPaquete;
 
     @Column(name = "estado", nullable = false, length = 50)
     private String estado;

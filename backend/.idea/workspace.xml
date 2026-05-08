@@ -4,44 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70668f6f-3f6d-47f4-bd56-df4d94437e6e" name="Changes" comment="cambio de informacion para hacer que los datos de test sean reales al proyecto, creacion de json para uso de endpoints funcionales">
-      <change beforePath="$PROJECT_DIR$/.gradle/8.6/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.6/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_security_spring_security_core_6_2_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_security_spring_security_core_6_2_3.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/dtos/response/HistorialEstadoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/dtos/response/HistorialEstadoDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/dtos/response/LogSincronizacionDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/dtos/response/LogSincronizacionDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/dtos/response/SincronizacionResultadoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/dtos/response/SincronizacionResultadoDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/ports/PackageStatusGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/ports/PackageStatusGateway.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/usecases/paquete/ObtenerLogsSincronizacionUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/usecases/paquete/ObtenerLogsSincronizacionUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/usecases/paquete/PaqueteObtenerHistorialUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/usecases/paquete/PaqueteObtenerHistorialUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/usecases/paquete/SincronizarPaqueteUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/usecases/paquete/SincronizarPaqueteUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/novedadEstadoPaquete/models/HistorialEstado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/domain/novedadEstadoPaquete/models/HistorialEstado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/novedadEstadoPaquete/models/LogSincronizacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/domain/novedadEstadoPaquete/models/LogSincronizacion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/novedadEstadoPaquete/models/NovedadEstadoPaquetePaquete.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/domain/novedadEstadoPaquete/models/NovedadEstadoPaquetePaquete.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/novedadEstadoPaquete/repositories/HistorialRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/domain/novedadEstadoPaquete/repositories/HistorialRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/novedadEstadoPaquete/repositories/LogSincronizacionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/domain/novedadEstadoPaquete/repositories/LogSincronizacionRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/novedadEstadoPaquete/repositories/PaqueteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/domain/novedadEstadoPaquete/repositories/PaqueteRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/contratos/web/controllers/ContratoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/contratos/web/controllers/ContratoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/http/clients/GestionClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/http/clients/GestionClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/http/service/PackageApiClientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/http/service/PackageApiClientService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/persistence/repositories/HistorialJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/persistence/repositories/HistorialJpaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/persistence/repositories/HistorialRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/persistence/repositories/HistorialRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/persistence/repositories/LogSincronizacionJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/persistence/repositories/LogSincronizacionJpaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/persistence/repositories/LogSincronizacionRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/persistence/repositories/LogSincronizacionRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/persistence/repositories/PaqueteJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/persistence/repositories/PaqueteJpaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/persistence/repositories/PaqueteRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/persistence/repositories/PaqueteRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/web/controllers/PaqueteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/web/controllers/PaqueteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/shared/web/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/shared/web/GlobalExceptionHandler.java" afterDir="false" />
-    </list>
+    <list default="true" id="70668f6f-3f6d-47f4-bd56-df4d94437e6e" name="Changes" comment="Cambio de ids Longs a id UUID las cuales se implementan en el proyecto" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -179,7 +142,7 @@
       <workItem from="1778186865991" duration="6723000" />
       <workItem from="1778203688134" duration="1601000" />
       <workItem from="1778236653327" duration="6405000" />
-      <workItem from="1778261324314" duration="1403000" />
+      <workItem from="1778261324314" duration="1728000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <option name="closed" value="true" />
@@ -237,7 +200,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778261416422</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Cambio de ids Longs a id UUID las cuales se implementan en el proyecto">
+      <option name="closed" value="true" />
+      <created>1778269716184</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1778269716184</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -261,6 +232,7 @@
     <MESSAGE value="reorganizacion y creacion de entidades unidas para evitar duplicaciones" />
     <MESSAGE value="implementacion total de test( cada uno funcional), creacion de endpoint para conseguir el rol del usuario (actualmente hardcodeado) renombramiento masivo terminado y funcional" />
     <MESSAGE value="cambio de informacion para hacer que los datos de test sean reales al proyecto, creacion de json para uso de endpoints funcionales" />
-    <option name="LAST_COMMIT_MESSAGE" value="cambio de informacion para hacer que los datos de test sean reales al proyecto, creacion de json para uso de endpoints funcionales" />
+    <MESSAGE value="Cambio de ids Longs a id UUID las cuales se implementan en el proyecto" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cambio de ids Longs a id UUID las cuales se implementan en el proyecto" />
   </component>
 </project>

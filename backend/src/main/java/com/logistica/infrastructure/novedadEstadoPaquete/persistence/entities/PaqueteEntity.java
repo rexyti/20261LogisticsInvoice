@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Table(name = "paquetes")
@@ -19,10 +20,10 @@ public class PaqueteEntity {
 
     @Id
     @Column(name = "id_paquete")
-    private Long idPaquete;
+    private UUID idPaquete;
 
     @Column(name = "id_ruta", nullable = false)
-    private Long idRuta;
+    private UUID idRuta;
 
     @Column(name = "estado_actual", length = 50)
     private String estadoActual;
