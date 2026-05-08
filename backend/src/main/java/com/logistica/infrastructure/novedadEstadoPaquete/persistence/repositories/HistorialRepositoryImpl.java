@@ -9,6 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.UUID;
 
 @Repository
 @RequiredArgsConstructor
@@ -29,7 +30,7 @@ public class HistorialRepositoryImpl implements HistorialRepository {
     }
 
     @Override
-    public List<HistorialEstado> findByIdPaquete(Long idPaquete, int page, int size) {
+    public List<HistorialEstado> findByIdPaquete(UUID idPaquete, int page, int size) {
         int safePage = Math.max(page, 0);
         int safeSize = sanitizeSize(size);
 

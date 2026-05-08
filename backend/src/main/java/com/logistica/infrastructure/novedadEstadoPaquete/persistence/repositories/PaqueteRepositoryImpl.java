@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 @RequiredArgsConstructor
@@ -16,7 +17,7 @@ public class PaqueteRepositoryImpl implements PaqueteRepository {
     private final PaqueteEntityMapper mapper;
 
     @Override
-    public Optional<NovedadEstadoPaquetePaquete> findByIdPaquete(Long idPaquete) {
+    public Optional<NovedadEstadoPaquetePaquete> findByIdPaquete(UUID idPaquete) {
         return jpa.findByIdPaquete(idPaquete).map(mapper::toDomain);
     }
 

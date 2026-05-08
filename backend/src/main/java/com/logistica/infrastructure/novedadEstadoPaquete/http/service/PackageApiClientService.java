@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 
@@ -43,11 +44,11 @@ public class PackageApiClientService implements PackageStatusGateway {
     @CircuitBreaker(name = "packageApi", fallbackMethod = "fallback")
     @Retry(name = "packageApi")
     @TimeLimiter(name = "packageApi")
-    public CompletableFuture<PackageStatusResult> consultarEstado(Long idRuta, Long idPaquete) {
+    public CompletableFuture<PackageStatusResult> consultarEstado(UUID idRuta, UUID idPaquete) {
         return CompletableFuture.supplyAsync(() -> ejecutarConsulta(idRuta, idPaquete), packageApiExecutor);
     }
 
-    private PackageStatusResult ejecutarConsulta(Long idRuta, Long idPaquete) {
+    private PackageStatusResult ejecutarConsulta(UUID idRuta, UUID idPaquete) {
         try {
             GestionPaqueteDTO dto = gestionClient.getEstadoPaquete(idRuta, idPaquete);
             String json = objectMapper.writeValueAsString(dto);
@@ -66,7 +67,7 @@ public class PackageApiClientService implements PackageStatusGateway {
         }
     }
 
-    public CompletableFuture<PackageStatusResult> fallback(Long idRuta, Long idPaquete, Throwable ex) {
+    public CompletableFuture<PackageStatusResult> fallback(UUID idRuta, UUID idPaquete, Throwable ex) {
         Throwable cause = rootCause(ex);
         if (cause instanceof FeignException feignException) {
             log.error("Fallo HTTP persistente {} para idRuta={} idPaquete={}", feignException.status(), idRuta, idPaquete);

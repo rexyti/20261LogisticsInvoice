@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-
+import java.util.UUID;
 
 
 @RestController
@@ -33,15 +33,15 @@ public class PaqueteController {
      */
     @PostMapping("/rutas/{idRuta}/paquetes/{idPaquete}/sincronizar")
     public ResponseEntity<SincronizacionResultadoDTO> sincronizar(
-            @PathVariable Long idRuta,
-            @PathVariable Long idPaquete) {
+            @PathVariable UUID idRuta,
+            @PathVariable UUID idPaquete) {
         return ResponseEntity.ok(sincronizarUseCase.execute(idRuta, idPaquete));
     }
 
     /** Returns state history for a package ordered by fecha DESC. */
     @GetMapping("/paquetes/{idPaquete}/historial")
     public ResponseEntity<List<HistorialEstadoDTO>> obtenerHistorial(
-            @PathVariable Long idPaquete,
+            @PathVariable UUID idPaquete,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "50") int size
     ) {
@@ -58,7 +58,7 @@ public class PaqueteController {
 
     @GetMapping("/sincronizacion/logs/paquetes/{idPaquete}")
     public ResponseEntity<List<LogSincronizacionDTO>> obtenerLogsPorPaquete(
-            @PathVariable Long idPaquete,
+            @PathVariable UUID idPaquete,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "50") int size
     ) {

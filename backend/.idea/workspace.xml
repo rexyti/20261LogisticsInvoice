@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70668f6f-3f6d-47f4-bd56-df4d94437e6e" name="Changes" comment="implementacion total de test( cada uno funcional), creacion de endpoint para conseguir el rol del usuario (actualmente hardcodeado) renombramiento masivo terminado y funcional">
+    <list default="true" id="70668f6f-3f6d-47f4-bd56-df4d94437e6e" name="Changes" comment="cambio de informacion para hacer que los datos de test sean reales al proyecto, creacion de json para uso de endpoints funcionales">
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.bin" afterDir="false" />
@@ -12,11 +14,33 @@
       <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_security_spring_security_core_6_2_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_security_spring_security_core_6_2_3.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/dtos/response/HistorialEstadoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/dtos/response/HistorialEstadoDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/dtos/response/LogSincronizacionDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/dtos/response/LogSincronizacionDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/dtos/response/SincronizacionResultadoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/dtos/response/SincronizacionResultadoDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/ports/PackageStatusGateway.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/ports/PackageStatusGateway.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/usecases/paquete/ObtenerLogsSincronizacionUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/usecases/paquete/ObtenerLogsSincronizacionUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/usecases/paquete/PaqueteObtenerHistorialUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/usecases/paquete/PaqueteObtenerHistorialUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/usecases/paquete/SincronizarPaqueteUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/usecases/paquete/SincronizarPaqueteUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/novedadEstadoPaquete/models/HistorialEstado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/domain/novedadEstadoPaquete/models/HistorialEstado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/novedadEstadoPaquete/models/LogSincronizacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/domain/novedadEstadoPaquete/models/LogSincronizacion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/novedadEstadoPaquete/models/NovedadEstadoPaquetePaquete.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/domain/novedadEstadoPaquete/models/NovedadEstadoPaquetePaquete.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/novedadEstadoPaquete/repositories/HistorialRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/domain/novedadEstadoPaquete/repositories/HistorialRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/novedadEstadoPaquete/repositories/LogSincronizacionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/domain/novedadEstadoPaquete/repositories/LogSincronizacionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/novedadEstadoPaquete/repositories/PaqueteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/domain/novedadEstadoPaquete/repositories/PaqueteRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/contratos/web/controllers/ContratoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/contratos/web/controllers/ContratoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/http/clients/GestionClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/http/clients/GestionClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/http/service/PackageApiClientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/http/service/PackageApiClientService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/persistence/repositories/HistorialJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/persistence/repositories/HistorialJpaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/persistence/repositories/HistorialRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/persistence/repositories/HistorialRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/persistence/repositories/LogSincronizacionJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/persistence/repositories/LogSincronizacionJpaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/persistence/repositories/LogSincronizacionRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/persistence/repositories/LogSincronizacionRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/persistence/repositories/PaqueteJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/persistence/repositories/PaqueteJpaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/persistence/repositories/PaqueteRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/persistence/repositories/PaqueteRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/web/controllers/PaqueteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/web/controllers/PaqueteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/shared/web/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/shared/web/GlobalExceptionHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,6 +112,7 @@
   &quot;keyToString&quot;: {
     &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
     &quot;Gradle.Build backend.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
     &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
@@ -113,6 +138,11 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\LUIS\IdeaProjects\20261LogisticsInvoice\backend\src\main\resources" />
     </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="paquete" />
+    </option>
   </component>
   <component name="RunManager">
     <configuration name="LogisticaApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
@@ -146,7 +176,10 @@
       <workItem from="1778062096644" duration="26477000" />
       <workItem from="1778174942303" duration="651000" />
       <workItem from="1778176444850" duration="1478000" />
-      <workItem from="1778186865991" duration="6037000" />
+      <workItem from="1778186865991" duration="6723000" />
+      <workItem from="1778203688134" duration="1601000" />
+      <workItem from="1778236653327" duration="6405000" />
+      <workItem from="1778261324314" duration="1403000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <option name="closed" value="true" />
@@ -188,7 +221,23 @@
       <option name="project" value="LOCAL" />
       <updated>1778176773094</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="implementacion total de test( cada uno funcional), creacion de endpoint para conseguir el rol del usuario (actualmente hardcodeado) renombramiento masivo terminado y funcional">
+      <option name="closed" value="true" />
+      <created>1778197250304</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1778197250305</updated>
+    </task>
+    <task id="LOCAL-00007" summary="cambio de informacion para hacer que los datos de test sean reales al proyecto, creacion de json para uso de endpoints funcionales">
+      <option name="closed" value="true" />
+      <created>1778261416422</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1778261416422</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -211,6 +260,7 @@
     <MESSAGE value="renombramiento masivo y ajuste de dominio, infraestructura y aplicacion" />
     <MESSAGE value="reorganizacion y creacion de entidades unidas para evitar duplicaciones" />
     <MESSAGE value="implementacion total de test( cada uno funcional), creacion de endpoint para conseguir el rol del usuario (actualmente hardcodeado) renombramiento masivo terminado y funcional" />
-    <option name="LAST_COMMIT_MESSAGE" value="implementacion total de test( cada uno funcional), creacion de endpoint para conseguir el rol del usuario (actualmente hardcodeado) renombramiento masivo terminado y funcional" />
+    <MESSAGE value="cambio de informacion para hacer que los datos de test sean reales al proyecto, creacion de json para uso de endpoints funcionales" />
+    <option name="LAST_COMMIT_MESSAGE" value="cambio de informacion para hacer que los datos de test sean reales al proyecto, creacion de json para uso de endpoints funcionales" />
   </component>
 </project>

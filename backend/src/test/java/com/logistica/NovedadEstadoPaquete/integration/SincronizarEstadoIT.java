@@ -17,6 +17,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
+import java.util.UUID;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -24,6 +25,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 @ActiveProfiles("test")
 class SincronizarEstadoIT {
+
+    // UUIDs fijos para garantizar reproducibilidad entre ejecuciones
+    private static final UUID RUTA_ID      = UUID.fromString("00000000-0000-0000-0000-000000000001");
+    private static final UUID PAQUETE_T007 = UUID.fromString("00000000-0000-0000-0000-000000000010");
+    private static final UUID PAQUETE_T009 = UUID.fromString("00000000-0000-0000-0000-000000000020");
+    private static final UUID PAQUETE_T010 = UUID.fromString("00000000-0000-0000-0000-000000000030");
+    private static final UUID PAQUETE_T011 = UUID.fromString("00000000-0000-0000-0000-000000000099");
+    private static final UUID PAQUETE_T012 = UUID.fromString("00000000-0000-0000-0000-000000000050");
+    private static final UUID PAQUETE_T013 = UUID.fromString("00000000-0000-0000-0000-000000000060");
 
     private static WireMockServer wireMock;
 
@@ -53,13 +63,13 @@ class SincronizarEstadoIT {
     // -----------------------------------------------------------------------
     @Test
     void t007_respuesta_exitosa_200_deserializa_estado_entregado() {
-        stubFor(get(urlPathEqualTo("/route/1/package/10"))
+        stubFor(get(urlPathEqualTo("/route/" + RUTA_ID + "/package/" + PAQUETE_T007))
                 .willReturn(aResponse()
                         .withStatus(200)
                         .withHeader("Content-Type", "application/json")
-                        .withBody("{\"id_paquete\": \"10\", \"estado\": \"ENTREGADO\"}")));
+                        .withBody("{\"id_paquete\": \"" + PAQUETE_T007 + "\", \"estado\": \"ENTREGADO\"}")));
 
-        SincronizacionResultadoDTO resultado = sincronizarUseCase.execute(1L, 10L);
+        SincronizacionResultadoDTO resultado = sincronizarUseCase.execute(RUTA_ID, PAQUETE_T007);
 
         assertThat(resultado.resultado()).isEqualTo("EXITOSO");
         assertThat(resultado.estadoActual()).isEqualTo("ENTREGADO");
@@ -71,16 +81,16 @@ class SincronizarEstadoIT {
     // -----------------------------------------------------------------------
     @Test
     void t009_estado_persistido_coincide_con_respuesta_del_modulo() {
-        stubFor(get(urlPathEqualTo("/route/1/package/20"))
+        stubFor(get(urlPathEqualTo("/route/" + RUTA_ID + "/package/" + PAQUETE_T009))
                 .willReturn(aResponse()
                         .withStatus(200)
                         .withHeader("Content-Type", "application/json")
-                        .withBody("{\"id_paquete\": \"20\", \"estado\": \"DEVUELTO\"}")));
+                        .withBody("{\"id_paquete\": \"" + PAQUETE_T009 + "\", \"estado\": \"DEVUELTO\"}")));
 
-        sincronizarUseCase.execute(1L, 20L);
+        sincronizarUseCase.execute(RUTA_ID, PAQUETE_T009);
 
         List<HistorialEstadoEntity> historial = historialRepository
-                .findByIdPaquete(20L, PageRequest.of(0, 100, Sort.by(Sort.Direction.DESC, "fecha")))
+                .findByIdPaquete(PAQUETE_T009, PageRequest.of(0, 100, Sort.by(Sort.Direction.DESC, "fecha")))
                 .getContent();
         assertThat(historial).isNotEmpty();
         assertThat(historial.get(0).getEstado()).isEqualTo("DEVUELTO");
@@ -92,25 +102,25 @@ class SincronizarEstadoIT {
     @Test
     void t010_segunda_consulta_agrega_entrada_sin_sobrescribir_historial() {
         // Primera consulta: DEVUELTO
-        stubFor(get(urlPathEqualTo("/route/1/package/30"))
+        stubFor(get(urlPathEqualTo("/route/" + RUTA_ID + "/package/" + PAQUETE_T010))
                 .willReturn(aResponse()
                         .withStatus(200)
                         .withHeader("Content-Type", "application/json")
-                        .withBody("{\"id_paquete\": \"30\", \"estado\": \"DEVUELTO\"}")));
-        sincronizarUseCase.execute(1L, 30L);
+                        .withBody("{\"id_paquete\": \"" + PAQUETE_T010 + "\", \"estado\": \"DEVUELTO\"}")));
+        sincronizarUseCase.execute(RUTA_ID, PAQUETE_T010);
 
         wireMock.resetAll();
 
         // Segunda consulta: ENTREGADO
-        stubFor(get(urlPathEqualTo("/route/1/package/30"))
+        stubFor(get(urlPathEqualTo("/route/" + RUTA_ID + "/package/" + PAQUETE_T010))
                 .willReturn(aResponse()
                         .withStatus(200)
                         .withHeader("Content-Type", "application/json")
-                        .withBody("{\"id_paquete\": \"30\", \"estado\": \"ENTREGADO\"}")));
-        sincronizarUseCase.execute(1L, 30L);
+                        .withBody("{\"id_paquete\": \"" + PAQUETE_T010 + "\", \"estado\": \"ENTREGADO\"}")));
+        sincronizarUseCase.execute(RUTA_ID, PAQUETE_T010);
 
         List<HistorialEstadoEntity> historial = historialRepository
-                .findByIdPaquete(30L, PageRequest.of(0, 100, Sort.by(Sort.Direction.DESC, "fecha")))
+                .findByIdPaquete(PAQUETE_T010, PageRequest.of(0, 100, Sort.by(Sort.Direction.DESC, "fecha")))
                 .getContent();
         assertThat(historial).hasSize(2);
         assertThat(historial.get(0).getEstado()).isEqualTo("ENTREGADO");
@@ -122,18 +132,18 @@ class SincronizarEstadoIT {
     // -----------------------------------------------------------------------
     @Test
     void t011_http_404_registra_error_en_log_y_detiene_calculo() {
-        stubFor(get(urlPathEqualTo("/route/1/package/99"))
+        stubFor(get(urlPathEqualTo("/route/" + RUTA_ID + "/package/" + PAQUETE_T011))
                 .willReturn(aResponse()
                         .withStatus(404)
                         .withHeader("Content-Type", "application/json")
                         .withBody("{\"error\": \"Package not found\"}")));
 
-        SincronizacionResultadoDTO resultado = sincronizarUseCase.execute(1L, 99L);
+        SincronizacionResultadoDTO resultado = sincronizarUseCase.execute(RUTA_ID, PAQUETE_T011);
 
         assertThat(resultado.resultado()).isEqualTo("PAQUETE_NO_ENCONTRADO");
 
         List<LogSincronizacionEntity> logs = logSincronizacionRepository
-                .findByIdPaquete(99L, Pageable.unpaged()).getContent();
+                .findByIdPaquete(PAQUETE_T011, Pageable.unpaged()).getContent();
         assertThat(logs).isNotEmpty();
         assertThat(logs.get(0).getCodigoRespuestaHTTP()).isEqualTo(404);
     }
@@ -143,20 +153,20 @@ class SincronizarEstadoIT {
     // -----------------------------------------------------------------------
     @Test
     void t012_delay_mayor_a_timeout_activa_retry_y_marca_pendiente() {
-        stubFor(get(urlPathEqualTo("/route/1/package/50"))
+        stubFor(get(urlPathEqualTo("/route/" + RUTA_ID + "/package/" + PAQUETE_T012))
                 .willReturn(aResponse()
                         .withStatus(200)
                         .withHeader("Content-Type", "application/json")
-                        .withBody("{\"id_paquete\": \"50\", \"estado\": \"ENTREGADO\"}")
+                        .withBody("{\"id_paquete\": \"" + PAQUETE_T012 + "\", \"estado\": \"ENTREGADO\"}")
                         .withFixedDelay(3000)));
 
-        SincronizacionResultadoDTO resultado = sincronizarUseCase.execute(1L, 50L);
+        SincronizacionResultadoDTO resultado = sincronizarUseCase.execute(RUTA_ID, PAQUETE_T012);
 
         assertThat(resultado.resultado()).isEqualTo("PENDIENTE");
         assertThat(resultado.estadoActual()).isEqualTo("PENDIENTE_SINCRONIZACION");
 
         List<LogSincronizacionEntity> logs = logSincronizacionRepository
-                .findByIdPaquete(50L, Pageable.unpaged()).getContent();
+                .findByIdPaquete(PAQUETE_T012, Pageable.unpaged()).getContent();
         assertThat(logs).isNotEmpty();
     }
 
@@ -165,19 +175,19 @@ class SincronizarEstadoIT {
     // -----------------------------------------------------------------------
     @Test
     void t013_estado_desconocido_omite_calculo_pero_registra_log() {
-        stubFor(get(urlPathEqualTo("/route/1/package/60"))
+        stubFor(get(urlPathEqualTo("/route/" + RUTA_ID + "/package/" + PAQUETE_T013))
                 .willReturn(aResponse()
                         .withStatus(200)
                         .withHeader("Content-Type", "application/json")
-                        .withBody("{\"id_paquete\": \"60\", \"estado\": \"EN_INSPECCION\"}")));
+                        .withBody("{\"id_paquete\": \"" + PAQUETE_T013 + "\", \"estado\": \"EN_INSPECCION\"}")));
 
-        SincronizacionResultadoDTO resultado = sincronizarUseCase.execute(1L, 60L);
+        SincronizacionResultadoDTO resultado = sincronizarUseCase.execute(RUTA_ID, PAQUETE_T013);
 
         assertThat(resultado.resultado()).isEqualTo("ESTADO_NO_MAPEADO");
         assertThat(resultado.porcentajePago()).isNull();
 
         List<LogSincronizacionEntity> logs = logSincronizacionRepository
-                .findByIdPaquete(60L, Pageable.unpaged()).getContent();
+                .findByIdPaquete(PAQUETE_T013, Pageable.unpaged()).getContent();
         assertThat(logs).isNotEmpty();
         assertThat(logs.get(0).getCodigoRespuestaHTTP()).isEqualTo(200);
     }

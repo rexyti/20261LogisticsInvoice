@@ -5,14 +5,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class NovedadEstadoPaquetePaquete {
 
-    private Long idPaquete;
-    private Long idRuta;
+    private UUID idPaquete;
+    private UUID idRuta;
     private String estadoActual;
     private LocalDateTime updatedAt;
 }

@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -14,7 +15,7 @@ public class PaqueteObtenerHistorialUseCase {
 
     private final HistorialRepository historialRepository;
 
-    public List<HistorialEstadoDTO> execute(Long idPaquete, int page, int size) {
+    public List<HistorialEstadoDTO> execute(UUID idPaquete, int page, int size) {
         return historialRepository.findByIdPaquete(idPaquete, page, size)
                 .stream()
                 .map(this::toDto)

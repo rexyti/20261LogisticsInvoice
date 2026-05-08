@@ -58,10 +58,16 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<ApiError> handleUnreadable(HttpMessageNotReadableException ex) {
-        String msg = ex.getMessage() != null && ex.getMessage().contains("Enum")
+        ex.printStackTrace();
+
+
+        String detalle = ex.getMostSpecificCause() != null
+                ? ex.getMostSpecificCause().getMessage()
+                : ex.getMessage();
+       /* String msg = ex.getMessage() != null && ex.getMessage().contains("Enum")
                 ? "Valor de enumeración no soportado en la solicitud"
-                : "El cuerpo de la solicitud no puede ser leído o contiene un valor inválido";
-        return ResponseEntity.badRequest().body(ApiError.of("SOLICITUD_INVALIDA", msg));
+                : "El cuerpo de la solicitud no puede ser leído o contiene un valor inválido";*/
+        return ResponseEntity.badRequest().body(ApiError.of("SOLICITUD_INVALIDA", detalle));
     }
 
     @ExceptionHandler({IllegalArgumentException.class, IllegalStateException.class})

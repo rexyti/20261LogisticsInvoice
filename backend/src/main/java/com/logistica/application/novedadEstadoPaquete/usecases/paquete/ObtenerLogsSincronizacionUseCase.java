@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -21,7 +22,7 @@ public class ObtenerLogsSincronizacionUseCase {
                 .toList();
     }
 
-    public List<LogSincronizacionDTO> findByIdPaquete(Long idPaquete, int page, int size) {
+    public List<LogSincronizacionDTO> findByIdPaquete(UUID idPaquete, int page, int size) {
         return logSincronizacionRepository.findByIdPaquete(idPaquete, page, size)
                 .stream()
                 .map(this::toDto)

@@ -6,14 +6,15 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Getter
 @AllArgsConstructor
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class LogSincronizacionDTO {
 
-    private Long id;
-    private Long idPaquete;
+    private UUID id;
+    private UUID idPaquete;
     private Integer codigoRespuestaHTTP;
     private String jsonRecibido;
     private LocalDateTime fechaSincronizacion;

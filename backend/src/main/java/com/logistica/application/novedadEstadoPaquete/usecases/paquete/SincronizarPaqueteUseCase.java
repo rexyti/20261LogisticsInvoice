@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.concurrent.CompletionException;
 /**
  * Application use case. It depends only on domain repositories/services and on
@@ -36,7 +37,7 @@ public class SincronizarPaqueteUseCase {
     private final EstadoPaqueteService estadoPaqueteService;
 
     @Transactional
-    public SincronizacionResultadoDTO execute(Long idRuta, Long idPaquete) {
+    public SincronizacionResultadoDTO execute(UUID idRuta, UUID idPaquete) {
         PackageStatusResult resultado = consultarApi(idRuta, idPaquete);
         guardarLog(idPaquete, resultado);
 
@@ -72,7 +73,7 @@ public class SincronizarPaqueteUseCase {
         );
     }
 
-    private PackageStatusResult consultarApi(Long idRuta, Long idPaquete) {
+    private PackageStatusResult consultarApi(UUID idRuta, UUID idPaquete) {
         try {
             return packageStatusGateway.consultarEstado(idRuta, idPaquete).join();
         } catch (CompletionException ex) {
@@ -81,7 +82,7 @@ public class SincronizarPaqueteUseCase {
         }
     }
 
-    private void guardarLog(Long idPaquete, PackageStatusResult resultado) {
+    private void guardarLog(UUID idPaquete, PackageStatusResult resultado) {
         logSincronizacionRepository.save(new LogSincronizacion(
                 null,
                 idPaquete,
@@ -91,7 +92,7 @@ public class SincronizarPaqueteUseCase {
         ));
     }
 
-    private void actualizarEstadoPaquete(Long idPaquete, Long idRuta, String estado) {
+    private void actualizarEstadoPaquete(UUID idPaquete, UUID idRuta, String estado) {
         NovedadEstadoPaquetePaquete paquete = paqueteRepository.findByIdPaquete(idPaquete)
                 .orElse(new NovedadEstadoPaquetePaquete(idPaquete, idRuta, null, null));
         paquete.setIdRuta(idRuta);
