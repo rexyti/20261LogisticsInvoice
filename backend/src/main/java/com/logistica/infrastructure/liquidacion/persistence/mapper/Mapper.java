@@ -7,7 +7,9 @@ import com.logistica.infrastructure.contratos.persistence.entities.ContratoEntit
 import com.logistica.infrastructure.liquidacion.persistence.entities.LiquidacionEntity;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class Mapper {
@@ -67,8 +69,7 @@ public class Mapper {
                 .ajustes(entity.getAjustes() != null
                         ? entity.getAjustes().stream()
                         .map(ajusteMapper::toModel)
-                        .toList()
-                        : List.of())
+                        .collect(Collectors.toCollection(ArrayList::new)) : new ArrayList<>())
                 .build();
     }
 

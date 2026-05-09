@@ -7,8 +7,10 @@ import com.logistica.infrastructure.liquidacion.persistence.entities.AjusteEntit
 import com.logistica.infrastructure.liquidacion.persistence.entities.LiquidacionEntity;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Component
 public class AjusteMapper {
@@ -89,6 +91,6 @@ public class AjusteMapper {
 
         return dtos.stream()
                 .map(this::toModel)
-                .toList();
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 }

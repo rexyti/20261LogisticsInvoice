@@ -65,6 +65,7 @@ public class Liquidacion {
         }
 
         this.valorBase = nuevoBase;
+        this.ajustes = new ArrayList<>(this.ajustes);
         this.ajustes.clear();
         if (nuevosAjustes != null){
             this.ajustes.addAll(nuevosAjustes);

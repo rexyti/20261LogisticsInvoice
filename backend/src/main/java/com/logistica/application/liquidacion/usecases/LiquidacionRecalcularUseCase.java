@@ -13,8 +13,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -38,12 +40,14 @@ public class LiquidacionRecalcularUseCase {
 
         List<Ajuste> ajustesAsociados = nuevosAjustes.stream()
                 .map(a -> a.asociarALiquidacion(liquidacionId))
-                .toList();
+                .collect(Collectors.toCollection(ArrayList::new));
 
         liquidacion.recalcular(liquidacion.getValorBase(), ajustesAsociados);
 
-        ajusteRepository.saveAll(ajustesAsociados);
         Liquidacion liquidacionActualizada = liquidacionRepository.save(liquidacion);
+
+        ajusteRepository.saveAll(ajustesAsociados);
+
 
         AuditoriaLiquidacion auditoria = AuditoriaLiquidacion.crearRecalculo(
                 liquidacionId,

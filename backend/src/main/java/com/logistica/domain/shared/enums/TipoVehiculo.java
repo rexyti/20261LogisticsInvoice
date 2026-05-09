@@ -6,6 +6,7 @@ public enum TipoVehiculo {
     MOTO,
     VAN,
     NHR,
+    CAMION,
     TURBO;
 
     public static TipoVehiculo from(String tipo) {

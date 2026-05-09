@@ -1,11 +1,11 @@
 /api/eventos/cierre-ruta
 --
- organizar un prueba local insertando nuevos datos del contrato
+ organizar un prueba local insertando nuevos datos del contrato jijijii
 --
 
 /api/liquidaciones/{id}/recalcular con rol ADMIN
  --
- 77777777-7777-7777-7777-777777777777
+77777777-7777-7777-7777-777777777777
  --
 
  /api/v1/rutas/cerrar con el rol ADMIN
@@ -33,6 +33,10 @@
      }
    ]
  }
+ --
+ /api/v1/rutas
+ --
+ fechaCierre, modeloContrato, estadoProcesamiento, fechaInicioTransito
  --
 
  /api/v1/pagos/webhook/estado
