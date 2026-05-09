@@ -4,24 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70668f6f-3f6d-47f4-bd56-df4d94437e6e" name="Changes" comment="Cambio de la generacion del valor de id a tipo UUID">
-      <change beforePath="$PROJECT_DIR$/.gradle/8.6/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/checksums/checksums.lock" afterDir="false" />
+    <list default="true" id="70668f6f-3f6d-47f4-bd56-df4d94437e6e" name="Changes" comment="ajustes y organizacion para funcionamiento del endpoint recalcular">
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_spring_tx_6_1_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_spring_tx_6_1_5.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/json" beforeDir="false" afterPath="$PROJECT_DIR$/src/json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/liquidacion/usecases/LiquidacionRecalcularUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/liquidacion/usecases/LiquidacionRecalcularUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/liquidacion/models/Liquidacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/domain/liquidacion/models/Liquidacion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/shared/enums/TipoVehiculo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/domain/shared/enums/TipoVehiculo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/liquidacion/persistence/mapper/AjusteMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/liquidacion/persistence/mapper/AjusteMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/liquidacion/persistence/mapper/Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/liquidacion/persistence/mapper/Mapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +154,7 @@
       <workItem from="1778261324314" duration="6954000" />
       <workItem from="1778333500109" duration="3032000" />
       <workItem from="1778336612683" duration="835000" />
-      <workItem from="1778342021061" duration="1367000" />
+      <workItem from="1778342021061" duration="3383000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <option name="closed" value="true" />
@@ -245,7 +236,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778270384854</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="ajustes y organizacion para funcionamiento del endpoint recalcular">
+      <option name="closed" value="true" />
+      <created>1778343457677</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1778343457679</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -271,6 +270,7 @@
     <MESSAGE value="cambio de informacion para hacer que los datos de test sean reales al proyecto, creacion de json para uso de endpoints funcionales" />
     <MESSAGE value="Cambio de ids Longs a id UUID las cuales se implementan en el proyecto" />
     <MESSAGE value="Cambio de la generacion del valor de id a tipo UUID" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cambio de la generacion del valor de id a tipo UUID" />
+    <MESSAGE value="ajustes y organizacion para funcionamiento del endpoint recalcular" />
+    <option name="LAST_COMMIT_MESSAGE" value="ajustes y organizacion para funcionamiento del endpoint recalcular" />
   </component>
 </project>
