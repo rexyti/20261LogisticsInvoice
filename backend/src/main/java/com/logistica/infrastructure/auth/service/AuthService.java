@@ -27,9 +27,29 @@ public class AuthService {
     // Cada entrada: email -> [password, roles...]
     // ---------------------------------------------------------------------------
     private static final Map<String, HardcodedUser> USUARIOS_TEMPORALES = Map.of(
-            "admin@test.com", new HardcodedUser("admin@test.com", "123456", List.of("ADMIN")),
-            "gestor@test.com", new HardcodedUser("gestor@test.com", "123456", List.of("GESTOR_FINANCIERO")),
-            "transportista@test.com", new HardcodedUser("transportista@test.com", "123456", List.of("TRANSPORTISTA"))
+            "admin@test.com",
+            new HardcodedUser(
+                    "00000000-0000-0000-0000-000000000001",
+                    "admin@test.com",
+                    "123456",
+                    List.of("ADMIN")
+            ),
+
+            "gestor@test.com",
+            new HardcodedUser(
+                    "00000000-0000-0000-0000-000000000002",
+                    "gestor@test.com",
+                    "123456",
+                    List.of("GESTOR_FINANCIERO")
+            ),
+
+            "transportista@test.com",
+            new HardcodedUser(
+                    "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+                    "transportista@test.com",
+                    "123456",
+                    List.of("TRANSPORTISTA")
+            )
     );
     // ---------------------------------------------------------------------------
 
@@ -47,7 +67,7 @@ public class AuthService {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Credenciales inválidas");
         }
 
-        String token = jwtService.generarToken(usuario.email(), usuario.roles());
+        String token = jwtService.generarToken(usuario.id(), usuario.roles());
 
         return LoginResponseDTO.builder()
                 .accessToken(token)
@@ -57,5 +77,4 @@ public class AuthService {
     }
 
     /** Record interno que representa un usuario hardcodeado. */
-    private record HardcodedUser(String email, String password, List<String> roles) {}
-}
+    private record HardcodedUser(String id, String email, String password, List<String> roles) {}}
