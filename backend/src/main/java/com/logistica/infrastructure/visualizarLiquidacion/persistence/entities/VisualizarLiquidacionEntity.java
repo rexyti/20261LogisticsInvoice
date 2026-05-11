@@ -1,6 +1,6 @@
 package com.logistica.infrastructure.visualizarLiquidacion.persistence.entities;
 
-import com.logistica.domain.visualizarLiquidacion.enums.EstadoLiquidacion;
+import com.logistica.domain.liquidacion.enums.EstadoLiquidacion;
 import com.logistica.infrastructure.liquidacion.persistence.entities.AjusteEntity;
 import jakarta.persistence.*;
 import lombok.*;
