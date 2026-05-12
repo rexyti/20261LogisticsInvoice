@@ -1,0 +1,15 @@
+[
+  {
+    "id_pago": "pay1a2b3c4-d5e6-f789-0123-456789abcdef",
+    "id_usuario": "00000000-0000-0000-0000-000000000000",
+    "montoBase": 350.00,
+    "fecha": "2024-05-23T12:00:00Z",
+    "id_penalidad": null,
+    "montoNeto": 350.00,
+    "id_liquidacion": "l1a2b3c4-d5e6-f789-0123-456789abcdef",
+    "estado_actual": "PAGADO",
+    "fecha_ultima_actualizacion": "2024-05-23T12:00:00Z",
+    "ultima_secuencia_procesada": 1,
+    "version": 0
+  }
+]

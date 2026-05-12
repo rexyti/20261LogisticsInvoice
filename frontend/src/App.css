@@ -1,0 +1,142 @@
+/* Global Styles */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #0F172A; /* Dark blue background */
+  color: #F9FAFB; /* Light text */
+}
+
+/* App container */
+.app-container {
+  padding: 2rem;
+}
+
+/* Page header */
+.page-header h1 {
+  font-size: 2.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.page-header p {
+  font-size: 1rem;
+  color: #9CA3AF; /* Lighter gray for subtitles */
+  margin-top: 0;
+}
+
+/* Filter and actions container */
+.controls-container {
+  background-color: #1F2937;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filter-group label {
+  margin-right: 1rem;
+  color: #D1D5DB;
+}
+
+.filter-group select {
+  background-color: #374151;
+  color: #F9FAFB;
+  border: 1px solid #4B5563;
+  border-radius: 0.375rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+/* Table styles */
+.table-container {
+  background-color: #1F2937;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 1rem;
+  text-align: left;
+}
+
+thead {
+  border-bottom: 1px solid #374151;
+}
+
+th {
+  color: #9CA3AF;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+tbody tr {
+  border-bottom: 1px solid #374151;
+}
+
+tbody tr:last-child {
+  border-bottom: none;
+}
+
+/* Status Badges */
+.status-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.75rem;
+  display: inline-block;
+  text-align: center;
+}
+
+.status-procesado {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: #10B981;
+}
+
+.status-pendiente {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: #F59E0B;
+}
+
+.status-error {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #EF4444;
+}
+
+/* Pagination */
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.pagination-controls button {
+  background-color: #374151;
+  color: #F9FAFB;
+  border: none;
+  border-radius: 0.375rem;
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem;
+  cursor: pointer;
+}
+
+.pagination-controls button:disabled {
+  background-color: #4B5563;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.pagination-controls span {
+  color: #9CA3AF;
+}

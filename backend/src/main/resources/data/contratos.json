@@ -1,0 +1,18 @@
+[
+  {
+    "id": "c1a2b3c4-d5e6-f789-0123-456789abcdef",
+    "id_contrato": "CONTR-001",
+    "tipo_contrato": "REPARTO",
+    "es_por_parada": true,
+    "precio_paradas": 150.00,
+    "precio": null,
+    "tipo_vehiculo": "CAMION",
+    "fecha_inicio": "2024-01-01 00:00:00",
+    "fecha_final": "2024-12-31 23:59:59",
+    "id_transportista": "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+    "id_seguro": "s1a2b3c4-d5e6-f789-0123-456789abcdef",
+    "tipo_contratacion": "TARIFA_PLANA",
+    "tarifa": 150.0000,
+    "created_at": "2024-05-23T12:00:00Z"
+  }
+]

@@ -1,0 +1,15 @@
+[
+  {
+    "id_evento": "et1a2b3c4-d5e6-f789-0123-456789abcdef",
+    "id_transaccion_banco": "banco-trans-001",
+    "id_pago": "pay1a2b3c4-d5e6-f789-0123-456789abcdef",
+    "id_liquidacion": "l1a2b3c4-d5e6-f789-0123-456789abcdef",
+    "payload_recibido": "{\"status\":\"completed\"}",
+    "fecha_recepcion": "2024-05-23T12:00:00Z",
+    "fecha_evento_banco": "2024-05-23T12:00:00Z",
+    "secuencia": 1,
+    "estado_solicitado": "PAGADO",
+    "estado_procesamiento": "PROCESADO",
+    "procesado": true
+  }
+]

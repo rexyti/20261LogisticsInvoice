@@ -1,0 +1,11 @@
+[
+  {
+    "id": "aj1a2b3c4-d5e6-f789-0123-456789abcdef",
+    "created_at": "2024-05-23T12:00:00Z",
+    "updated_at": "2024-05-23T12:00:00Z",
+    "id_liquidacion": "l1a2b3c4-d5e6-f789-0123-456789abcdef",
+    "tipo": "BONIFICACION",
+    "monto": 50.0000,
+    "motivo": "Bono por buen servicio"
+  }
+]
