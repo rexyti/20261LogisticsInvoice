@@ -1,0 +1,356 @@
+================================================================
+GUÍA PGADMIN — Proyecto 20261LogisticsInvoice
+Backend: Spring Boot 3.2.4 | PostgreSQL 15 | pgAdmin 4
+================================================================
+
+CREDENCIALES (de docker-compose.yml)
+──────────────────────────────────────
+  pgAdmin URL:   http://localhost:5050
+  pgAdmin email: admin@admin.com
+  pgAdmin pass:  admin
+
+  PostgreSQL host:   localhost  (o "db" dentro de Docker)
+  PostgreSQL puerto: 5432
+  PostgreSQL usuario:   luis
+  PostgreSQL contraseña: 123456789
+  Base de datos producción: logistica
+  Base de datos de prueba:  logistica_test
+
+  JWT (para autenticar en Swagger UI):
+    admin@test.com         / 123456  → rol ADMIN
+    gestor@test.com        / 123456  → rol GESTOR_FINANCIERO
+    transportista@test.com / 123456  → rol TRANSPORTISTA
+
+
+================================================================
+PASO 1 — Levantar los servicios Docker
+================================================================
+
+1. Abre una terminal en la carpeta del proyecto (donde está docker-compose.yml)
+2. Ejecuta:
+     docker-compose up -d
+3. Espera ~30 segundos a que PostgreSQL esté listo (healthcheck)
+4. Verifica:
+     docker ps
+   Debes ver tres contenedores corriendo:
+     - longistica-app   (puerto 8080)
+     - postgres-db      (puerto 5432)
+     - pgadmin          (puerto 5050)
+
+
+================================================================
+PASO 2 — Conectar pgAdmin al servidor PostgreSQL
+================================================================
+
+1. Abre el navegador en: http://localhost:5050
+2. Inicia sesión con:
+     Email:    admin@admin.com
+     Password: admin
+
+3. En el panel izquierdo, clic derecho sobre "Servers" → "Register" → "Server..."
+
+4. Pestaña "General":
+     Name: logistica-local   (cualquier nombre descriptivo)
+
+5. Pestaña "Connection":
+     Host name/address: db          ← nombre del contenedor Docker
+     Port:              5432
+     Maintenance database: logistica
+     Username:          luis
+     Password:          123456789
+     [✓] Save password
+
+6. Clic "Save"
+
+   NOTA: Si accedes a pgAdmin FUERA de Docker (instalado local), usa:
+     Host name/address: localhost   (en lugar de "db")
+
+
+================================================================
+PASO 3 — Crear la base de datos de prueba
+================================================================
+
+Opción A — Desde pgAdmin (recomendada):
+
+1. En el panel izquierdo, expande:
+     Servers → logistica-local → Databases
+2. Clic derecho en "Databases" → "Create" → "Database..."
+3. Rellena:
+     Database: logistica_test
+     Owner:    luis
+4. Clic "Save"
+5. Verifica que "logistica_test" aparece en la lista de bases de datos
+
+
+Opción B — Desde la Query Tool (conectado a "logistica"):
+
+1. Clic derecho sobre la BD "logistica" → "Query Tool"
+2. Ejecuta:
+     DROP DATABASE IF EXISTS logistica_test;
+     CREATE DATABASE logistica_test WITH OWNER = luis ENCODING = 'UTF8';
+3. Ejecuta con F5 o el botón ▶ "Execute/Refresh"
+
+
+================================================================
+PASO 4 — Importar y ejecutar test_database_seed.sql
+================================================================
+
+1. En el panel izquierdo, clic derecho sobre "logistica_test" → "Query Tool"
+   (IMPORTANTE: conectado a logistica_test, NO a logistica)
+
+2. Clic en el ícono de carpeta o menú "File" → "Open File..."
+   Navega hasta:
+     C:\Users\LUIS\IdeaProjects\20261LogisticsInvoice\backend\test_database_seed.sql
+
+3. Selecciona el archivo y ábrelo
+
+4. Elimina o comenta las líneas de PARTE A (DROP/CREATE DATABASE)
+   porque ya creaste la BD en el paso anterior:
+     -- DROP DATABASE IF EXISTS logistica_test;
+     -- CREATE DATABASE logistica_test ...;
+
+5. Ejecuta el script completo con F5 o ▶
+
+6. Verifica en el panel de mensajes que dice:
+     "Query returned successfully"
+
+7. Ejecuta la consulta de verificación que está al final del script:
+     SELECT tabla, registros FROM ( ... )
+   Debes ver algo como:
+     ajustes                | 3
+     auditoria_liquidacion  | 5
+     contratos              | 5
+     estados_pago           | 8
+     eventos                | 4
+     eventos_transaccion    | 9
+     historial_estados      | 7
+     liquidaciones          | 5
+     liquidaciones_referencia| 4
+     log_sincronizacion     | 5
+     pagos                  | 4
+     parada                 | 9
+     paquetes               | 7
+     rutas (read model)     | 5
+     ruta (write model)     | 4
+     seguros                | 5
+     transportista          | 3
+     vehiculos              | 3
+
+
+================================================================
+PASO 5 — Explorar datos por endpoint
+================================================================
+
+Para cada endpoint, abre Query Tool en logistica_test y ejecuta:
+
+──────────────────────────────────────────────────────────────
+AUTENTICACIÓN — POST /auth/login
+──────────────────────────────────────────────────────────────
+No usa BD (usuarios hardcodeados en AuthService).
+Usuarios disponibles:
+  admin@test.com / 123456          → ADMIN
+  gestor@test.com / 123456         → GESTOR_FINANCIERO
+  transportista@test.com / 123456  → TRANSPORTISTA
+
+Para obtener un token (desde Swagger http://localhost:8080/swagger-ui.html):
+  1. POST /auth/login con body: {"email":"admin@test.com","password":"123456"}
+  2. Copia el campo "access_token" de la respuesta
+  3. Clic "Authorize" en Swagger → pega el token
+
+──────────────────────────────────────────────────────────────
+CIERRE RUTA — GET /api/v1/rutas y GET /api/v1/rutas/{id}
+──────────────────────────────────────────────────────────────
+SELECT r.id, r.ruta_id, r.tipo_vehiculo, r.estado_procesamiento,
+       r.fecha_inicio_transito, r.fecha_cierre,
+       t.nombre AS transportista
+FROM ruta r
+JOIN transportista t ON r.transportista_id = t.id
+ORDER BY r.fecha_inicio_transito;
+
+-- ID de ejemplo para GET /api/v1/rutas/{id}:
+-- 39000001-0000-0000-0000-000000000001  (CAMION, estado OK)
+-- 39000001-0000-0000-0000-000000000002  (FURGON, estado REQUIERE_REVISION)
+
+-- Ver paradas de una ruta:
+SELECT p.parada_id, p.estado, p.motivo_falla, p.paquete_id
+FROM parada p
+WHERE p.ruta_entity_id = '39000001-0000-0000-0000-000000000001';
+
+──────────────────────────────────────────────────────────────
+CONTRATOS — GET /api/contratos y GET /api/contratos/{idContrato}
+──────────────────────────────────────────────────────────────
+SELECT c.id, c.id_contrato, c.tipo_contrato, c.tipo_contratacion,
+       c.es_por_parada, c.precio_paradas, c.tipo_vehiculo,
+       t.nombre AS transportista, s.numero_poliza, s.estado AS estado_seguro
+FROM contratos c
+JOIN transportista t ON c.id_transportista = t.id
+LEFT JOIN seguros s ON c.id_seguro = s.id_seguro
+ORDER BY c.created_at;
+
+-- idContrato para GET /api/contratos/{idContrato}:
+--   CON-2024-001  (CAMION, por parada)
+--   CON-2024-002  (FURGON, recorrido completo)
+--   CON-2024-003  (MOTO,   por parada)
+
+──────────────────────────────────────────────────────────────
+LIQUIDACIONES — GET /api/liquidaciones y GET /api/liquidaciones/{id}
+──────────────────────────────────────────────────────────────
+SELECT l.id, l.estado, l.valor_base, l.valor_final,
+       l.fecha_calculo, c.id_contrato, r.tipo_vehiculo, r.numero_paradas
+FROM liquidaciones l
+JOIN contratos c ON l.id_contrato = c.id
+LEFT JOIN rutas r ON l.id_ruta = r.id
+ORDER BY l.fecha_calculo;
+
+-- IDs para GET /api/liquidaciones/{id}:
+--   f6000001-0000-0000-0000-000000000001  (CALCULADA, 96000)
+--   f6000001-0000-0000-0000-000000000002  (RECALCULADA, tiene ajustes)
+--   f6000001-0000-0000-0000-000000000003  (PAGADA)
+
+-- Ajustes de una liquidación:
+SELECT a.tipo, a.monto, a.motivo
+FROM ajustes a
+WHERE a.id_liquidacion = 'f6000001-0000-0000-0000-000000000002';
+
+-- Para recalcular (requiere ADMIN):
+--   PUT /api/liquidaciones/f6000001-0000-0000-0000-000000000001/recalcular
+
+──────────────────────────────────────────────────────────────
+PAQUETES — GET /api/paquetes/{idPaquete}/historial
+──────────────────────────────────────────────────────────────
+-- Paquetes disponibles:
+SELECT id_paquete, estado_actual, id_ruta FROM paquetes;
+
+-- Historial de estados de un paquete:
+SELECT h.estado, h.fecha
+FROM historial_estados h
+WHERE h.id_paquete = '5b000001-0000-0000-0000-000000000003'
+ORDER BY h.fecha;
+
+-- Logs de sincronización:
+SELECT l.id_paquete, l.codigo_respuesta_http, l.json_recibido, l.created_at
+FROM log_sincronizacion l
+ORDER BY l.created_at;
+
+──────────────────────────────────────────────────────────────
+PAGOS — GET /api/v1/pagos/{idPago}/estado
+──────────────────────────────────────────────────────────────
+SELECT p.id_pago, p.estado_actual, p.monto_neto, p.id_liquidacion,
+       p.fecha_ultima_actualizacion, p.ultima_secuencia_procesada
+FROM pagos p;
+
+-- IDs para GET /api/v1/pagos/{idPago}/estado:
+--   6c000001-0000-0000-0000-000000000001  (PENDIENTE)
+--   6c000001-0000-0000-0000-000000000002  (PAGADO, flujo completo)
+--   6c000001-0000-0000-0000-000000000003  (RECHAZADO)
+
+-- Historial de estados de un pago:
+SELECT ep.estado, ep.fecha_registro, ep.secuencia_evento
+FROM estados_pago ep
+WHERE ep.id_pago = '6c000001-0000-0000-0000-000000000002'
+ORDER BY ep.secuencia_evento;
+
+──────────────────────────────────────────────────────────────
+PAGOS — GET /api/pagos  (visualizarEstadoPago, filtra por JWT sub)
+──────────────────────────────────────────────────────────────
+-- El endpoint filtra por id_usuario == sub del token.
+-- Con token de transportista@test.com (sub: a1b2c3d4-e5f6-7890-1234-567890abcdef):
+SELECT p.id_pago, p.estado_actual, p.monto_neto
+FROM pagos p
+WHERE p.id_usuario = 'a1b2c3d4-e5f6-7890-1234-567890abcdef';
+-- Devuelve: PG1 (PENDIENTE) y PG3 (RECHAZADO)
+
+──────────────────────────────────────────────────────────────
+ESTADO DE PAGO POR LIQUIDACION — GET /api/v1/liquidaciones/{idLiquidacion}/pago/estado
+──────────────────────────────────────────────────────────────
+SELECT p.id_pago, p.estado_actual, p.id_liquidacion
+FROM pagos p
+WHERE p.id_liquidacion = 'f6000001-0000-0000-0000-000000000002';
+
+──────────────────────────────────────────────────────────────
+EVENTOS TRANSACCIÓN — GET /api/v1/pagos/{idPago}/eventos
+──────────────────────────────────────────────────────────────
+SELECT et.id_transaccion_banco, et.estado_solicitado, et.estado_procesamiento,
+       et.fecha_recepcion, et.procesado, et.mensaje_error
+FROM eventos_transaccion et
+WHERE et.id_pago = '6c000001-0000-0000-0000-000000000002'
+ORDER BY et.secuencia;
+
+
+================================================================
+PASO 6 — Resetear la base de datos
+================================================================
+
+Para volver al estado inicial, ejecuta el archivo completo de nuevo:
+
+1. Conecta a logistica_test en Query Tool
+2. Abre test_database_seed.sql
+3. Comenta DROP/CREATE DATABASE (ya existe la BD)
+4. Ejecuta con F5
+
+El script tiene DELETE FROM de todas las tablas antes de re-insertar,
+por lo que es seguro ejecutarlo múltiples veces.
+
+Alternativa rápida (solo borra datos, mantiene estructura):
+   DELETE FROM eventos;
+   DELETE FROM eventos_transaccion;
+   DELETE FROM estados_pago;
+   DELETE FROM pagos;
+   DELETE FROM liquidaciones_referencia;
+   DELETE FROM log_sincronizacion;
+   DELETE FROM historial_estados;
+   DELETE FROM paquetes;
+   DELETE FROM auditoria_liquidacion;
+   DELETE FROM ajustes;
+   DELETE FROM liquidaciones;
+   DELETE FROM parada;
+   DELETE FROM ruta;
+   DELETE FROM contratos;
+   DELETE FROM vehiculos;
+   DELETE FROM seguros;
+   DELETE FROM rutas;
+   DELETE FROM transportista;
+
+
+================================================================
+PASO 7 — Solución de errores comunes
+================================================================
+
+ERROR: "could not connect to server"
+  → Verifica que Docker esté corriendo: docker ps
+  → Verifica el host: usa "db" desde dentro de Docker, "localhost" desde fuera
+  → Verifica el puerto: 5432 (no debe estar bloqueado por firewall)
+
+ERROR: "password authentication failed for user luis"
+  → Contraseña correcta: 123456789
+  → Reinicia el contenedor: docker-compose restart db
+
+ERROR: "database logistica_test does not exist"
+  → Crear la BD manualmente (ver Paso 3)
+  → O ejecutar solo las dos primeras líneas del script (DROP/CREATE) conectado a "postgres"
+
+ERROR: "relation does not exist" al ejecutar queries
+  → El script de seed crea las tablas; asegúrate de haber ejecutado test_database_seed.sql
+  → Verifica que estás conectado a logistica_test (no a logistica)
+
+ERROR: "duplicate key value violates unique constraint"
+  → El seed ya tiene un bloque DELETE al inicio para evitar esto
+  → Si persiste, ejecuta el bloque DELETE manualmente (ver Paso 6)
+
+ERROR: "ERROR: syntax error" al ejecutar seed
+  → Asegúrate de haber eliminado o comentado las líneas de PARTE A
+    (DROP DATABASE y CREATE DATABASE) si ya creaste la BD
+
+pgAdmin no carga en http://localhost:5050
+  → Verifica que el contenedor pgadmin esté corriendo: docker ps
+  → Ejecuta: docker-compose up -d pgadmin
+  → Espera 30 segundos y recarga el navegador
+
+Token JWT rechazado (401 Unauthorized)
+  → El token expira en 24 horas (app.jwt.expiration-ms=86400000 ms)
+  → Obtén un nuevo token: POST /auth/login
+  → En Swagger, haz clic "Authorize" y pega el token nuevo (sin "Bearer " al inicio)
+
+Swagger UI no carga
+  → URL correcta: http://localhost:8080/swagger-ui.html
+  → Verifica que la app esté corriendo: docker ps | grep logistica-app

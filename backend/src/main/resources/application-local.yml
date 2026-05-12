@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/logistica
+    url: jdbc:postgresql://localhost:5432/logistica_test
     username: luis
     password: 123456789
   jackson:
@@ -8,5 +8,5 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
     show-sql: true
