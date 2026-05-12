@@ -12,7 +12,7 @@ public class PagoDtoMapper {
         }
         return new VisualizarEstadoPagoEstadoPagoResponseDTO(
                 pago.getId(),
-                pago.getEstado().name(),
+                pago.getEstado() != null ? pago.getEstado().name() : null,
                 pago.getFecha(),
                 pago.getMontoNeto(),
                 null,
@@ -29,7 +29,7 @@ public class PagoDtoMapper {
                 pago.getLiquidacionId(),
                 pago.getFecha(),
                 pago.getMontoNeto(),
-                pago.getEstado().name()
+                pago.getEstado() != null ? pago.getEstado().name() : null
         );
     }
 }

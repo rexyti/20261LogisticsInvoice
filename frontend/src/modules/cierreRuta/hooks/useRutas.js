@@ -16,7 +16,7 @@ export const useRutas = () => {
     try {
       const response = await rutaService.getRutas(page, 20, filter);
       setRutas(response.data.content);
-      setTotalPages(response.data.totalPages);
+      setTotalPages(response.data.total_pages);
     } catch (err) {
       setError('Error al cargar las rutas.');
       console.error(err);

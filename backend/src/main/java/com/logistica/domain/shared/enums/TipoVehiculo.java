@@ -7,7 +7,8 @@ public enum TipoVehiculo {
     VAN,
     NHR,
     CAMION,
-    TURBO;
+    TURBO,
+    FURGON;
 
     public static TipoVehiculo from(String tipo) {
         if (tipo == null) return null;

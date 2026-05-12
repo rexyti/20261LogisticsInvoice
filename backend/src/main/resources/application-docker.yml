@@ -4,6 +4,10 @@ spring:
     username: luis
     password: 123456789
 
+  sql:
+    init:
+      mode: never
+
   jpa:
     hibernate:
       ddl-auto: none
