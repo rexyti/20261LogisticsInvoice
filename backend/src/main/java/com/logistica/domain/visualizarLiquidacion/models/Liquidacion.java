@@ -1,6 +1,6 @@
 package com.logistica.domain.visualizarLiquidacion.models;
 
-import com.logistica.domain.visualizarLiquidacion.enums.EstadoLiquidacion;
+import com.logistica.domain.liquidacion.enums.EstadoLiquidacion;
 import lombok.Builder;
 import lombok.Getter;
 

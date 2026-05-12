@@ -5,7 +5,7 @@ import com.logistica.application.visualizarLiquidacion.dtos.response.VisualizarL
 import com.logistica.application.visualizarLiquidacion.mappers.VisualizarLiquidacionDTOMapper;
 import com.logistica.application.visualizarLiquidacion.security.VisualizarLiquidacionUsuarioAutenticado;
 import com.logistica.application.visualizarLiquidacion.usecases.liquidacion.VisualizarLiquidacionObtenerDetalleUseCase;
-import com.logistica.domain.visualizarLiquidacion.enums.EstadoLiquidacion;
+import com.logistica.domain.liquidacion.enums.EstadoLiquidacion;
 import com.logistica.domain.visualizarLiquidacion.exceptions.AccesoDenegadoException;
 import com.logistica.domain.visualizarLiquidacion.exceptions.LiquidacionNoEncontradaException;
 import com.logistica.domain.visualizarLiquidacion.models.Ajuste;
