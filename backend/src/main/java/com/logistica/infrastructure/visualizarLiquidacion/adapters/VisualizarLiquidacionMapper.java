@@ -23,6 +23,7 @@ public class VisualizarLiquidacionMapper {
                 .montoNeto(entity.getMontoNeto())
                 .fechaCalculo(entity.getFechaCalculo())
                 .usuarioId(entity.getUsuarioId())
+                .conductorNombre(entity.getConductorNombre())
                 .ruta(toRutaDomain(entity.getRuta()))
                 .ajustes(toAjustesDomain(entity.getAjustes()))
                 .build();

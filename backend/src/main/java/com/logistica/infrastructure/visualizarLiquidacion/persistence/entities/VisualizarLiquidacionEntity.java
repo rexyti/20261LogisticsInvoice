@@ -4,6 +4,7 @@ import com.logistica.domain.liquidacion.enums.EstadoLiquidacion;
 import com.logistica.infrastructure.liquidacion.persistence.entities.AjusteEntity;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Formula;
 import org.hibernate.annotations.Immutable;
 
 import static jakarta.persistence.ConstraintMode.NO_CONSTRAINT;
@@ -50,6 +51,9 @@ public class VisualizarLiquidacionEntity {
 
     @Column(name = "usuario_id", length = 255)
     private String usuarioId;
+
+    @Formula("(SELECT t.nombre FROM contratos c JOIN transportista t ON c.id_transportista = t.id WHERE c.id = id_contrato)")
+    private String conductorNombre;
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_liquidacion", insertable = false, updatable = false)

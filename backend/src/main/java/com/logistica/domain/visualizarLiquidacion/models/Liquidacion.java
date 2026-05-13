@@ -20,6 +20,7 @@ public class Liquidacion {
     private BigDecimal montoNeto;
     private LocalDateTime fechaCalculo;
     private String usuarioId;
+    private String conductorNombre;
     private Ruta ruta;
     private List<Ajuste> ajustes;
 }

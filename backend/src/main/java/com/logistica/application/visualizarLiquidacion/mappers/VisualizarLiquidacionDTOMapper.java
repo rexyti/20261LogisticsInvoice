@@ -18,6 +18,7 @@ public class VisualizarLiquidacionDTOMapper {
         return new VisualizarLiquidacionListItemDTO(
                 liq.getId(),
                 liq.getIdRuta(),
+                liq.getConductorNombre(),
                 ruta != null ? ruta.getFechaInicio() : null,
                 ruta != null ? ruta.getFechaCierre() : null,
                 ruta != null ? ruta.getTipoVehiculo() : null,

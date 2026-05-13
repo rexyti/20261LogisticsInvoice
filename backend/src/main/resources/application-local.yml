@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/logistica_test
+    url: jdbc:postgresql://localhost:5432/logistica
     username: luis
     password: 123456789
   jackson:

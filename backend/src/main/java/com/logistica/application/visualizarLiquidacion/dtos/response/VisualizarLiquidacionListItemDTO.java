@@ -12,6 +12,7 @@ import java.util.UUID;
 public record VisualizarLiquidacionListItemDTO(
         UUID idLiquidacion,
         UUID idRuta,
+        String conductorNombre,
         LocalDateTime fechaInicio,
         LocalDateTime fechaCierre,
         String tipoVehiculo,
