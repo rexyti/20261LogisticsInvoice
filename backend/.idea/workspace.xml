@@ -4,17 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70668f6f-3f6d-47f4-bd56-df4d94437e6e" name="Changes" comment="cambios docker compose final">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/contratos/dtos/request/SeguroEventDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/contratos/dtos/request/TransportistaEventDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="70668f6f-3f6d-47f4-bd56-df4d94437e6e" name="Changes" comment="cambios minimos contratoSqs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/contratos/dtos/event/ContratoCreadoEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/contratos/dtos/request/ContratoCreadoEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/contratos/mappers/ContratoEventMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/contratos/mappers/ContratoEventMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/contratos/usecases/contrato/ProcesarContratoCreadoUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/contratos/usecases/contrato/ProcesarContratoCreadoUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/contratos/messaging/consumer/ContratoCreadoConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/contratos/messaging/consumer/ContratoCreadoConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/dtos/response/SincronizacionResultadoDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/ports/PackageStatusGateway.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/ports/PackageStatusResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/usecases/paquete/SincronizarPaqueteUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/config/AsyncExecutionConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/config/FeignConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/http/clients/GestionClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/http/dto/GestionPaqueteDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/http/service/ApiCallResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/http/service/PackageApiClientService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/web/controllers/PaqueteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/web/controllers/PaqueteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application-docker.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-docker.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application-local.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-local.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,6 +113,9 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.logistica.application.contratos.dtos.request" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\LUIS\IdeaProjects\20261LogisticsInvoice\backend\src\main\resources\db\migration" />
       <recent name="C:\Users\LUIS\IdeaProjects\20261LogisticsInvoice\backend\src\main\resources" />
@@ -161,7 +168,7 @@
       <workItem from="1778342021061" duration="3454000" />
       <workItem from="1778376305662" duration="2975000" />
       <workItem from="1778550074568" duration="4775000" />
-      <workItem from="1778960822266" duration="553000" />
+      <workItem from="1778960822266" duration="1350000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <option name="closed" value="true" />
@@ -267,7 +274,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778550182346</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="cambios minimos contratoSqs">
+      <option name="closed" value="true" />
+      <created>1778961406626</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1778961406627</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -296,6 +311,7 @@
     <MESSAGE value="ajustes y organizacion para funcionamiento del endpoint recalcular" />
     <MESSAGE value="implementacion de pgadmin al docker-compose.yml" />
     <MESSAGE value="cambios docker compose final" />
-    <option name="LAST_COMMIT_MESSAGE" value="cambios docker compose final" />
+    <MESSAGE value="cambios minimos contratoSqs" />
+    <option name="LAST_COMMIT_MESSAGE" value="cambios minimos contratoSqs" />
   </component>
 </project>

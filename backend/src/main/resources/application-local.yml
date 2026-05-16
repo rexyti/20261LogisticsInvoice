@@ -16,3 +16,4 @@ app:
     queue:
       ruta-cerrada: ruta-cerrada-queue
       contrato-creado: contrato-creado-queue
+      novedad-estado-paquete: novedad-estado-paquete-queue
