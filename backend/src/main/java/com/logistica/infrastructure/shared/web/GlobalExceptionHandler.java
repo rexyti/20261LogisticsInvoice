@@ -3,11 +3,7 @@ package com.logistica.infrastructure.shared.web;
 import com.logistica.domain.cierreRuta.exceptions.EventoDuplicadoException;
 import com.logistica.domain.cierreRuta.exceptions.ParadaInvalidaException;
 import com.logistica.domain.cierreRuta.exceptions.RutaNotFoundException;
-import com.logistica.domain.contratos.exceptions.ContratoInvalidoException;
-import com.logistica.domain.contratos.exceptions.ContratoNotFoundException;
-import com.logistica.domain.contratos.exceptions.ContratoYaExisteException;
 import com.logistica.domain.contratos.exceptions.RecursoNoEncontradoException;
-import com.logistica.domain.contratos.exceptions.TransportistaNotFoundException;
 import com.logistica.domain.liquidacion.exceptions.ContratoTarifaNoEncontradaException;
 import com.logistica.domain.liquidacion.exceptions.DuplicadaException;
 import com.logistica.domain.liquidacion.exceptions.NotFoundException;
@@ -75,8 +71,7 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(ApiError.of("SOLICITUD_INVALIDA", ex.getMessage()));
     }
 
-    @ExceptionHandler({ParadaInvalidaException.class, ContratoInvalidoException.class,
-            EstadoPagoInvalidoException.class})
+    @ExceptionHandler({ParadaInvalidaException.class, EstadoPagoInvalidoException.class})
     public ResponseEntity<ApiError> handleDomainBadRequest(RuntimeException ex) {
         return ResponseEntity.badRequest().body(ApiError.of("ERROR_DOMINIO", ex.getMessage()));
     }
@@ -104,8 +99,8 @@ public class GlobalExceptionHandler {
 
     // ── 404 Not Found ────────────────────────────────────────────────────────
 
-    @ExceptionHandler({RutaNotFoundException.class, ContratoNotFoundException.class,
-            TransportistaNotFoundException.class, RecursoNoEncontradoException.class,
+    @ExceptionHandler({RutaNotFoundException.class,
+            RecursoNoEncontradoException.class,
             ContratoTarifaNoEncontradaException.class, NotFoundException.class,
             PaqueteNotFoundException.class, RegistrarEstadoPagoPagoNoEncontradoException.class,
             VisualizarEstadoPagoPagoNoEncontradoException.class})
@@ -127,7 +122,7 @@ public class GlobalExceptionHandler {
     // ── 409 Conflict ─────────────────────────────────────────────────────────
 
     @ExceptionHandler({EventoDuplicadoException.class, DuplicadaException.class,
-            ContratoYaExisteException.class, RegistrarEstadoPagoEventoDuplicadoException.class,
+            RegistrarEstadoPagoEventoDuplicadoException.class,
             TransicionEstadoPagoInvalidaException.class})
     public ResponseEntity<ApiError> handleConflict(RuntimeException ex) {
         return ResponseEntity.status(HttpStatus.CONFLICT)
