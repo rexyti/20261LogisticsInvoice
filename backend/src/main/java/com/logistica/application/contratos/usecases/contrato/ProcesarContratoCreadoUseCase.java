@@ -1,6 +1,6 @@
 package com.logistica.application.contratos.usecases.contrato;
 
-import com.logistica.application.contratos.dtos.event.ContratoCreadoEvent;
+import com.logistica.application.contratos.dtos.request.ContratoCreadoEvent;
 import com.logistica.application.contratos.mappers.ContratoEventMapper;
 import com.logistica.domain.contratos.models.Contrato;
 import com.logistica.domain.contratos.models.Transportista;

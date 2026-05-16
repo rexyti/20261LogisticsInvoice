@@ -4,49 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17e9b87a-fadc-44c3-8b48-1742cb0ad6f5" name="Changes" comment="Visualizar liquidacion nuevo">
-      <change beforePath="$PROJECT_DIR$/.claude/settings.local.json" beforeDir="false" afterPath="$PROJECT_DIR$/.claude/settings.local.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/logistica/application/contratos/dtos/request/ContratoRequestDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/logistica/application/contratos/dtos/request/SeguroRequestDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/logistica/application/contratos/dtos/response/ContratoResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/logistica/application/contratos/dtos/response/ContratoResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/logistica/application/contratos/dtos/response/SeguroResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/logistica/application/contratos/dtos/response/SeguroResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/logistica/application/contratos/dtos/response/TransportistaResponseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/logistica/application/contratos/dtos/response/TransportistaResponseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/logistica/application/contratos/mappers/ContratoResponseMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/logistica/application/contratos/mappers/ContratoResponseMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/logistica/application/contratos/usecases/contrato/BuscarContratoUseCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/logistica/application/contratos/usecases/contrato/CrearContratoUseCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/logistica/application/contratos/usecases/contrato/ListarContratosUseCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/logistica/application/contratos/validators/FechasContratoValidator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/logistica/application/contratos/validators/PrecioCondicionalValidator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/logistica/application/contratos/validators/ValidFechasContrato.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/logistica/application/contratos/validators/ValidPrecioCondicional.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/logistica/domain/contratos/exceptions/ContratoInvalidoException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/logistica/domain/contratos/exceptions/ContratoNotFoundException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/logistica/domain/contratos/exceptions/ContratoYaExisteException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/logistica/domain/contratos/exceptions/TransportistaNotFoundException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/logistica/domain/contratos/models/Contrato.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/logistica/domain/contratos/models/Contrato.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/logistica/domain/contratos/repositories/ContratoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/logistica/domain/contratos/repositories/ContratoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/logistica/domain/contratos/repositories/SeguroRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/logistica/domain/contratos/repositories/TransportistaRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/logistica/domain/contratos/repositories/VehiculoRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/logistica/infrastructure/contratos/adapters/ContratoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/logistica/infrastructure/contratos/adapters/ContratoMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/logistica/infrastructure/contratos/persistence/repositories/ContratoJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/logistica/infrastructure/contratos/persistence/repositories/ContratoJpaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/logistica/infrastructure/contratos/persistence/repositories/ContratoRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/logistica/infrastructure/contratos/persistence/repositories/ContratoRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/logistica/infrastructure/contratos/persistence/repositories/ContratoTransportistaJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/logistica/infrastructure/contratos/persistence/repositories/ContratoTransportistaJpaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/logistica/infrastructure/contratos/persistence/repositories/ContratoTransportistaRepositoryImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/logistica/infrastructure/contratos/persistence/repositories/SeguroJpaRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/logistica/infrastructure/contratos/persistence/repositories/SeguroRepositoryImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/logistica/infrastructure/contratos/persistence/repositories/VehiculoJpaRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/logistica/infrastructure/contratos/persistence/repositories/VehiculoRepositoryImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/logistica/infrastructure/contratos/web/controllers/ContratoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/logistica/infrastructure/contratos/web/controllers/ContratoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/logistica/infrastructure/shared/web/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/logistica/infrastructure/shared/web/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application-local.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application-local.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/logistica/application/contratos/usecases/contrato/CrearContratoUseCaseTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/logistica/application/contratos/validators/FechasContratoValidatorTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/logistica/application/contratos/validators/PrecioCondicionalValidatorTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/logistica/domain/contratos/validators/FechasContratoValidatorTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/logistica/domain/contratos/validators/PrecioCondicionalValidatorTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/logistica/infrastructure/contratos/web/ContratoControllerIntegrationTest.java" beforeDir="false" />
+    <list default="true" id="17e9b87a-fadc-44c3-8b48-1742cb0ad6f5" name="Changes" comment="cambios contrato: se recibe como sqs implementacion">
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/logistica/application/contratos/dtos/event/ContratoCreadoEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/logistica/application/contratos/dtos/event/ContratoCreadoEvent.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -210,7 +169,23 @@
       <option name="project" value="LOCAL" />
       <updated>1777069838964</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="cambios contrato: se recibe como sqs">
+      <option name="closed" value="true" />
+      <created>1778960658566</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1778960658566</updated>
+    </task>
+    <task id="LOCAL-00004" summary="cambios contrato: se recibe como sqs implementacion">
+      <option name="closed" value="true" />
+      <created>1778960691303</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1778960691303</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -241,7 +216,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Visualizar liquidacion nuevo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Visualizar liquidacion nuevo" />
+    <MESSAGE value="cambios contrato: se recibe como sqs" />
+    <MESSAGE value="cambios contrato: se recibe como sqs implementacion" />
+    <option name="LAST_COMMIT_MESSAGE" value="cambios contrato: se recibe como sqs implementacion" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

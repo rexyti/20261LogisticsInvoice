@@ -1,6 +1,6 @@
 package com.logistica.infrastructure.contratos.messaging.consumer;
 
-import com.logistica.application.contratos.dtos.event.ContratoCreadoEvent;
+import com.logistica.application.contratos.dtos.request.ContratoCreadoEvent;
 import com.logistica.application.contratos.usecases.contrato.ProcesarContratoCreadoUseCase;
 import io.awspring.cloud.sqs.annotation.SqsListener;
 import io.awspring.cloud.sqs.listener.acknowledgement.Acknowledgement;

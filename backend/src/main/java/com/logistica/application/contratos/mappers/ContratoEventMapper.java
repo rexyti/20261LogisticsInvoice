@@ -1,6 +1,6 @@
 package com.logistica.application.contratos.mappers;
 
-import com.logistica.application.contratos.dtos.event.ContratoCreadoEvent;
+import com.logistica.application.contratos.dtos.request.ContratoCreadoEvent;
 import com.logistica.domain.contratos.models.Contrato;
 import com.logistica.domain.contratos.models.Seguro;
 import com.logistica.domain.contratos.models.Transportista;
@@ -23,8 +23,8 @@ public class ContratoEventMapper {
         }
 
         Transportista transportista = Transportista.builder()
-                .transportistaId(evento.getTransportistaId())
-                .nombre(evento.getNombreTransportista())
+                .transportistaId(evento.getTransportista().getTransportistaId())
+                .nombre(evento.getTransportista().getNombre())
                 .build();
 
         return Contrato.builder()

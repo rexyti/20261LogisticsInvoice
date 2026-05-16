@@ -1,4 +1,4 @@
-package com.logistica.application.contratos.dtos.event;
+package com.logistica.application.contratos.dtos.request;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
@@ -7,7 +7,6 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -19,8 +18,7 @@ public class ContratoCreadoEvent {
     private String idContrato;
     private String tipoContrato;
 
-    private UUID transportistaId;
-    private String nombreTransportista;
+    private TransportistaEventDTO transportista;
 
     private String tipoVehiculo;
 
@@ -33,11 +31,4 @@ public class ContratoCreadoEvent {
 
     private SeguroEventDTO seguro;
 
-    @Getter
-    @Setter
-    @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-    public static class SeguroEventDTO {
-        private String numeroPoliza;
-        private String estado;
-    }
 }
