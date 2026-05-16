@@ -5,6 +5,7 @@ import com.logistica.domain.cierreRuta.enums.MotivoFalla;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -47,5 +48,7 @@ public class ParadaEntity {
     @Column(name = "motivo_falla")
     private MotivoFalla motivoFalla;
 
+    @Column(name = "fecha_hora_gestion")
+    private LocalDateTime fechaHoraGestion;
 
 }

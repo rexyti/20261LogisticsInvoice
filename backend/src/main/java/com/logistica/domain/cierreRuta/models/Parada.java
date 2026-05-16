@@ -6,6 +6,7 @@ import com.logistica.domain.cierreRuta.enums.ResponsableFalla;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
@@ -16,6 +17,7 @@ public class Parada {
     private UUID paqueteId;
     private EstadoParada estado;
     private MotivoFalla motivoFalla;
+    private LocalDateTime fechaHoraGestion;
 
     public  ResponsableFalla getResponsable(){
         return motivoFalla != null ? motivoFalla.getResponsable() : null;

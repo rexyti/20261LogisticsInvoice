@@ -27,6 +27,7 @@ public class ParadaEventMapper {
                 .paqueteId(dto.getPaqueteId())
                 .estado(dto.getEstado())
                 .motivoFalla(motivo)
+                .fechaHoraGestion(dto.getFechaHoraGestion())
                 .build();
     }
 }

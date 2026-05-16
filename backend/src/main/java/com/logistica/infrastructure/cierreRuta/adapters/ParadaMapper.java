@@ -15,6 +15,7 @@ public class ParadaMapper {
                 .paqueteId(parada.getPaqueteId())
                 .estado(parada.getEstado())
                 .motivoFalla(parada.getMotivoFalla())
+                .fechaHoraGestion(parada.getFechaHoraGestion())
                 .build();
     }
 
@@ -23,8 +24,10 @@ public class ParadaMapper {
 
         return Parada.builder()
                 .paradaId(entity.getParadaId())
+                .paqueteId(entity.getPaqueteId())
                 .estado(entity.getEstado())
                 .motivoFalla(entity.getMotivoFalla())
+                .fechaHoraGestion(entity.getFechaHoraGestion())
                 .build();
     }
 }
