@@ -52,7 +52,7 @@ public class VisualizarLiquidacionEntity {
     @Column(name = "usuario_id", length = 255)
     private String usuarioId;
 
-    @Formula("(SELECT t.nombre FROM contratos c JOIN transportista t ON c.id_transportista = t.id WHERE c.id = id_contrato)")
+    @Formula("(SELECT t.nombre FROM contratos c JOIN transportista t ON c.id_transportista = t.id WHERE c.id = {alias}.id_contrato)")
     private String conductorNombre;
 
     @OneToMany(fetch = FetchType.LAZY)
