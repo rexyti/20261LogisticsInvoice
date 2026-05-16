@@ -1,0 +1,206 @@
+/* ── Page header ── */
+.liq-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.liq-page-header h1 {
+  font-size: 2.25rem;
+  margin: 0 0 0.25rem;
+}
+
+.liq-page-header p {
+  font-size: 0.9rem;
+  color: #9CA3AF;
+  margin: 0;
+}
+
+.liq-header-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* ── Buttons ── */
+.btn-primary {
+  background-color: #3B82F6;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.btn-primary:hover {
+  background-color: #2563EB;
+}
+
+.btn-secondary {
+  background-color: #374151;
+  color: #F9FAFB;
+  border: 1px solid #4B5563;
+  border-radius: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.btn-secondary:hover {
+  background-color: #4B5563;
+}
+
+/* ── Filters bar ── */
+.liq-filters-bar {
+  background-color: #1F2937;
+  border-radius: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.liq-search-group {
+  position: relative;
+  flex: 1;
+  min-width: 220px;
+}
+
+.liq-search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6B7280;
+  pointer-events: none;
+}
+
+.liq-search-input {
+  width: 100%;
+  background-color: #374151;
+  color: #F9FAFB;
+  border: 1px solid #4B5563;
+  border-radius: 0.5rem;
+  padding: 0.6rem 0.75rem 0.6rem 2.25rem;
+  font-size: 0.875rem;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.liq-search-input::placeholder {
+  color: #6B7280;
+}
+
+.liq-search-input:focus {
+  border-color: #3B82F6;
+}
+
+.liq-filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 160px;
+}
+
+.liq-filter-group label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.liq-filter-group select {
+  background-color: #374151;
+  color: #F9FAFB;
+  border: 1px solid #4B5563;
+  border-radius: 0.5rem;
+  padding: 0.6rem 1rem;
+  font-size: 0.875rem;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.liq-filter-group select:focus {
+  border-color: #3B82F6;
+}
+
+/* ── Action buttons in table ── */
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #374151;
+  color: #9CA3AF;
+  border: 1px solid #4B5563;
+  border-radius: 0.375rem;
+  padding: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.action-btn:hover {
+  background-color: #4B5563;
+  color: #F9FAFB;
+}
+
+/* ── Summary cards ── */
+.liq-summary-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.liq-summary-card {
+  background-color: #1F2937;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+}
+
+.liq-summary-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 0.5rem;
+}
+
+.liq-summary-value {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #F9FAFB;
+  margin: 0 0 0.25rem;
+}
+
+.liq-summary-subtitle {
+  font-size: 0.8rem;
+  color: #9CA3AF;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .liq-page-header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .liq-summary-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .liq-filters-bar {
+    flex-direction: column;
+  }
+}
