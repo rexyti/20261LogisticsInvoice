@@ -1,4 +1,4 @@
-package com.logistica.infrastructure.cierreRuta.messaging.config;
+package com.logistica.infrastructure.messaging.config;
 
 import io.awspring.cloud.sqs.config.SqsMessageListenerContainerFactory;
 import io.awspring.cloud.sqs.listener.acknowledgement.handler.AcknowledgementMode;

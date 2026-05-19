@@ -2,6 +2,7 @@ package com.logistica.application.contratos.usecases.contrato;
 
 import com.logistica.application.contratos.dtos.request.ContratoCreadoEvent;
 import com.logistica.application.contratos.mappers.ContratoEventMapper;
+import com.logistica.application.contratos.ports.in.ProcesarContratoCreadoPort;
 import com.logistica.domain.contratos.models.Contrato;
 import com.logistica.domain.contratos.models.Transportista;
 import com.logistica.domain.contratos.repositories.ContratoRepository;
@@ -14,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class ProcesarContratoCreadoUseCase {
+public class ProcesarContratoCreadoUseCase implements ProcesarContratoCreadoPort {
 
     private final ContratoRepository contratoRepository;
     private final TransportistaContratoRepository transportistaRepository;

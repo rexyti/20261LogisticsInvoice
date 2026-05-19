@@ -11,6 +11,17 @@ spring:
       ddl-auto: validate
     show-sql: true
 
+  cloud:
+    aws:
+      sqs:
+        enabled: true
+        endpoint: http://localhost:4566
+      region:
+        static: us-east-1
+      credentials:
+        access-key: test
+        secret-key: test
+
 app:
   sqs:
     queue:

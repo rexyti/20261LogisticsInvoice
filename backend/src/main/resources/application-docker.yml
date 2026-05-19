@@ -9,6 +9,17 @@ spring:
       ddl-auto: none
     show-sql: true
 
+  cloud:
+    aws:
+      sqs:
+        enabled: true
+        endpoint: http://localstack:4566
+      region:
+        static: us-east-1
+      credentials:
+        access-key: test
+        secret-key: test
+
 app:
   sqs:
     queue:

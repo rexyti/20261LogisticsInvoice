@@ -1,6 +1,7 @@
 package com.logistica.application.novedadEstadoPaquete.usecases.paquete;
 
 import com.logistica.application.novedadEstadoPaquete.dtos.request.NovedadEstadoPaqueteEvent;
+import com.logistica.application.novedadEstadoPaquete.ports.in.ProcesarEstadoPaquetePort;
 import com.logistica.domain.novedadEstadoPaquete.enums.NovedadEstadoPaqueteEstadoPaquete;
 import com.logistica.domain.novedadEstadoPaquete.models.HistorialEstado;
 import com.logistica.domain.novedadEstadoPaquete.models.NovedadEstadoPaquetePaquete;
@@ -19,7 +20,7 @@ import java.util.UUID;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class ProcesarNovedadEstadoPaqueteUseCase {
+public class ProcesarNovedadEstadoPaqueteUseCase implements ProcesarEstadoPaquetePort {
 
     private final PaqueteRepository paqueteRepository;
     private final HistorialRepository historialRepository;
