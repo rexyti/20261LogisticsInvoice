@@ -1,0 +1,19 @@
+{
+  "tipo_evento": "CONTRATO_CREADO",
+  "id_contrato": "CTR-2026-001",
+  "tipo_contrato": "TERCERIZADO",
+  "transportista": {
+    "transportista_id": "550e8400-e29b-41d4-a716-446655440010",
+    "nombre": "Carlos Perez"
+  },
+  "tipo_vehiculo": "MOTO",
+  "es_por_parada": true,
+  "precio_paradas": 3500.00,
+  "precio": 0.00,
+  "fecha_inicio": "2026-05-01T00:00:00",
+  "fecha_final": "2026-12-31T23:59:59",
+  "seguro": {
+    "numero_poliza": "POL-2026-9988",
+    "estado": "ACTIVO"
+  }
+}

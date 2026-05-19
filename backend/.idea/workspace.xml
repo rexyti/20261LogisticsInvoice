@@ -4,19 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70668f6f-3f6d-47f4-bd56-df4d94437e6e" name="Changes" comment="cambios minimos para tener igual el json de cierra de ruta habilitado">
-      <change beforePath="$PROJECT_DIR$/.claude/settings.local.json" beforeDir="false" afterPath="$PROJECT_DIR$/.claude/settings.local.json" afterDir="false" />
+    <list default="true" id="70668f6f-3f6d-47f4-bd56-df4d94437e6e" name="Changes" comment="organizacion de mensajeria, consumer para contrato, rutaCerrada y novedadEstadoPaquete, configuracion inicial (falta RegistroPago)">
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ENDPOINTS_TEST_GUIDE.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/ENDPOINTS_TEST_GUIDE.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUIA_PGADMIN.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/GUIA_PGADMIN.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/cierreRuta/usecases/ruta/ProcesarRutaCerradaUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/cierreRuta/usecases/ruta/ProcesarRutaCerradaUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/contratos/usecases/contrato/ProcesarContratoCreadoUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/contratos/usecases/contrato/ProcesarContratoCreadoUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/usecases/paquete/ProcesarNovedadEstadoPaqueteUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/novedadEstadoPaquete/usecases/paquete/ProcesarNovedadEstadoPaqueteUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/cierreRuta/messaging/config/SqsConsumerConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/cierreRuta/messaging/consumers/RutaCerradaConsumer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/contratos/messaging/consumer/ContratoCreadoConsumer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/novedadEstadoPaquete/messaging/consumer/NovedadEstadoPaqueteConsumer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application-docker.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-docker.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application-local.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-local.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -117,6 +110,7 @@
       <recent name="com.logistica.application.contratos.dtos.request" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\LUIS\IdeaProjects\20261LogisticsInvoice\20261LogisticsInvoice\backend\docs" />
       <recent name="C:\Users\LUIS\IdeaProjects\20261LogisticsInvoice\backend\src\main\resources\db\migration" />
       <recent name="C:\Users\LUIS\IdeaProjects\20261LogisticsInvoice\backend\src\main\resources" />
     </key>
@@ -172,7 +166,7 @@
       <workItem from="1778969162109" duration="2101000" />
       <workItem from="1779069011634" duration="548000" />
       <workItem from="1779144373183" duration="1173000" />
-      <workItem from="1779217737043" duration="3232000" />
+      <workItem from="1779217737043" duration="6888000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <option name="closed" value="true" />
@@ -310,7 +304,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778971260807</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="organizacion de mensajeria, consumer para contrato, rutaCerrada y novedadEstadoPaquete, configuracion inicial (falta RegistroPago)">
+      <option name="closed" value="true" />
+      <created>1779221092909</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1779221092909</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -342,6 +344,7 @@
     <MESSAGE value="cambios minimos contratoSqs" />
     <MESSAGE value="cambios de sincronizacion de novedadEstadoPaquete a sqs" />
     <MESSAGE value="cambios minimos para tener igual el json de cierra de ruta habilitado" />
-    <option name="LAST_COMMIT_MESSAGE" value="cambios minimos para tener igual el json de cierra de ruta habilitado" />
+    <MESSAGE value="organizacion de mensajeria, consumer para contrato, rutaCerrada y novedadEstadoPaquete, configuracion inicial (falta RegistroPago)" />
+    <option name="LAST_COMMIT_MESSAGE" value="organizacion de mensajeria, consumer para contrato, rutaCerrada y novedadEstadoPaquete, configuracion inicial (falta RegistroPago)" />
   </component>
 </project>
