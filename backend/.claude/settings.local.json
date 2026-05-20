@@ -73,7 +73,8 @@
       "Bash(Remove-Item -Recurse -Force \"C:\\\\Users\\\\LUIS\\\\IdeaProjects\\\\20261LogisticsInvoice\\\\20261LogisticsInvoice\\\\backend\\\\src\\\\main\\\\java\\\\com\\\\logistica\\\\application\\\\registrarPago\")",
       "Bash(Remove-Item -Recurse -Force \"C:\\\\Users\\\\LUIS\\\\IdeaProjects\\\\20261LogisticsInvoice\\\\20261LogisticsInvoice\\\\backend\\\\src\\\\main\\\\java\\\\com\\\\logistica\\\\infrastructure\\\\registrarPago\")",
       "Bash(Write-Output \"Eliminados\")",
-      "Bash(git stash *)"
+      "Bash(git stash *)",
+      "Bash(xargs grep -h 'tests=')"
     ]
   }
 }
