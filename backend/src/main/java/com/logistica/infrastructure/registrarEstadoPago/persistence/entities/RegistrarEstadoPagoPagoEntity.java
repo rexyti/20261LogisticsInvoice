@@ -49,6 +49,12 @@ public class RegistrarEstadoPagoPagoEntity {
     @Column(name = "ultima_secuencia_procesada", nullable = false)
     private Long ultimaSecuenciaProcesada;
 
+    @Column(name = "numero_voucher")
+    private String numeroVoucher;
+
+    @Column(name = "fecha_procesamiento")
+    private java.time.Instant fechaProcesamiento;
+
     @Version
     private Long version;
 }

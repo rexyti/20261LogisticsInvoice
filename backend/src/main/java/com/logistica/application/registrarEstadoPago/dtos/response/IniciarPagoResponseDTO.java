@@ -9,13 +9,11 @@ import java.time.Instant;
 import java.util.UUID;
 
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public record PagoResponseDTO(
+public record IniciarPagoResponseDTO(
         UUID idPago,
         UUID idLiquidacion,
-        RegistrarEstadoPagoEstadoPagoEnum estado,
+        RegistrarEstadoPagoEstadoPagoEnum estadoPago,
         BigDecimal monto,
-        Instant fechaUltimaActualizacion,
-        Long ultimaSecuenciaProcesada,
         String numeroVoucher,
         Instant fechaProcesamiento
 ) {}

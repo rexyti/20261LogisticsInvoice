@@ -141,7 +141,7 @@ public class PagoService implements RecibirEventoPagoUseCase, ProcesarEventoPago
         estadoPagoDomainService.validarEstadoConocido(estado);
 
         RegistrarEstadoPagoPago nuevoPago = new RegistrarEstadoPagoPago(idPago, null, null, Instant.now(), null, null,
-                idLiquidacion, RegistrarEstadoPagoEstadoPagoEnum.PENDIENTE, Instant.now(), 0L);
+                idLiquidacion, RegistrarEstadoPagoEstadoPagoEnum.PENDIENTE, Instant.now(), 0L, null, null);
         pagoRepository.save(nuevoPago);
 
         transicionEstadoPagoService.validarTransicion(RegistrarEstadoPagoEstadoPagoEnum.PENDIENTE, estado);
@@ -173,7 +173,8 @@ public class PagoService implements RecibirEventoPagoUseCase, ProcesarEventoPago
         RegistrarEstadoPagoPago pago = pagoRepository.findById(idPago)
                 .orElseThrow(() -> new RegistrarEstadoPagoPagoNoEncontradoException(idPago.toString()));
         return new PagoResponseDTO(pago.idPago(), pago.idLiquidacion(), pago.estadoActual(),
-                pago.fechaUltimaActualizacion(), pago.ultimaSecuenciaProcesada());
+                pago.montoNeto(), pago.fechaUltimaActualizacion(), pago.ultimaSecuenciaProcesada(),
+                pago.numeroVoucher(), pago.fechaProcesamiento());
     }
 
     @Override
@@ -181,7 +182,8 @@ public class PagoService implements RecibirEventoPagoUseCase, ProcesarEventoPago
         RegistrarEstadoPagoPago pago = pagoRepository.findByIdLiquidacion(idLiquidacion)
                 .orElseThrow(() -> new RegistrarEstadoPagoPagoNoEncontradoException("liquidacion:" + idLiquidacion));
         return new PagoResponseDTO(pago.idPago(), pago.idLiquidacion(), pago.estadoActual(),
-                pago.fechaUltimaActualizacion(), pago.ultimaSecuenciaProcesada());
+                pago.montoNeto(), pago.fechaUltimaActualizacion(), pago.ultimaSecuenciaProcesada(),
+                pago.numeroVoucher(), pago.fechaProcesamiento());
     }
 
     @Override

@@ -42,6 +42,8 @@ public class PagoRepositoryAdapter implements RegistrarEstadoPagoPagoRepository 
                     existing.setEstadoActual(pago.estadoActual());
                     existing.setFechaUltimaActualizacion(pago.fechaUltimaActualizacion());
                     existing.setUltimaSecuenciaProcesada(pago.ultimaSecuenciaProcesada());
+                    existing.setNumeroVoucher(pago.numeroVoucher());
+                    existing.setFechaProcesamiento(pago.fechaProcesamiento());
                     return existing;
                 })
                 .orElse(pagoMapper.toEntity(pago));

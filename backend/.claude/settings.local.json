@@ -68,7 +68,11 @@
       "Bash(Remove-Item \"C:\\\\Users\\\\LUIS\\\\IdeaProjects\\\\20261LogisticsInvoice\\\\20261LogisticsInvoice\\\\backend\\\\src\\\\main\\\\java\\\\com\\\\logistica\\\\infrastructure\\\\cierreRuta\\\\messaging\\\\consumers\\\\RutaCerradaConsumer.java\" -Force)",
       "Bash(Remove-Item \"C:\\\\Users\\\\LUIS\\\\IdeaProjects\\\\20261LogisticsInvoice\\\\20261LogisticsInvoice\\\\backend\\\\src\\\\main\\\\java\\\\com\\\\logistica\\\\infrastructure\\\\novedadEstadoPaquete\\\\messaging\\\\consumer\\\\NovedadEstadoPaqueteConsumer.java\" -Force)",
       "Bash(Remove-Item \"C:\\\\Users\\\\LUIS\\\\IdeaProjects\\\\20261LogisticsInvoice\\\\20261LogisticsInvoice\\\\backend\\\\src\\\\main\\\\java\\\\com\\\\logistica\\\\infrastructure\\\\cierreRuta\\\\messaging\\\\config\\\\SqsConsumerConfig.java\" -Force)",
-      "PowerShell(New-Item *)"
+      "PowerShell(New-Item *)",
+      "Bash(Remove-Item -Recurse -Force \"C:\\\\Users\\\\LUIS\\\\IdeaProjects\\\\20261LogisticsInvoice\\\\20261LogisticsInvoice\\\\backend\\\\src\\\\main\\\\java\\\\com\\\\logistica\\\\domain\\\\registrarPago\")",
+      "Bash(Remove-Item -Recurse -Force \"C:\\\\Users\\\\LUIS\\\\IdeaProjects\\\\20261LogisticsInvoice\\\\20261LogisticsInvoice\\\\backend\\\\src\\\\main\\\\java\\\\com\\\\logistica\\\\application\\\\registrarPago\")",
+      "Bash(Remove-Item -Recurse -Force \"C:\\\\Users\\\\LUIS\\\\IdeaProjects\\\\20261LogisticsInvoice\\\\20261LogisticsInvoice\\\\backend\\\\src\\\\main\\\\java\\\\com\\\\logistica\\\\infrastructure\\\\registrarPago\")",
+      "Bash(Write-Output \"Eliminados\")"
     ]
   }
 }

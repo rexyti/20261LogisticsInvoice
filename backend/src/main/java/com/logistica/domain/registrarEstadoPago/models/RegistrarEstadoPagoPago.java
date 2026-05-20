@@ -16,10 +16,18 @@ public record RegistrarEstadoPagoPago(
         UUID idLiquidacion,
         RegistrarEstadoPagoEstadoPagoEnum estadoActual,
         Instant fechaUltimaActualizacion,
-        Long ultimaSecuenciaProcesada
+        Long ultimaSecuenciaProcesada,
+        String numeroVoucher,
+        Instant fechaProcesamiento
 ) {
-    public RegistrarEstadoPagoPago actualizarEstado(RegistrarEstadoPagoEstadoPagoEnum nuevoEstado, Instant fechaActualizacion, Long secuencia) {
+    public RegistrarEstadoPagoPago actualizarEstado(RegistrarEstadoPagoEstadoPagoEnum nuevoEstado,
+                                                     Instant fechaActualizacion, Long secuencia) {
         return new RegistrarEstadoPagoPago(idPago, idUsuario, montoBase, fecha, idPenalidad, montoNeto,
-                idLiquidacion, nuevoEstado, fechaActualizacion, secuencia);
+                idLiquidacion, nuevoEstado, fechaActualizacion, secuencia, numeroVoucher, fechaProcesamiento);
+    }
+
+    public RegistrarEstadoPagoPago conVoucher(String voucher, Instant fechaProc) {
+        return new RegistrarEstadoPagoPago(idPago, idUsuario, montoBase, fecha, idPenalidad, montoNeto,
+                idLiquidacion, estadoActual, fechaUltimaActualizacion, ultimaSecuenciaProcesada, voucher, fechaProc);
     }
 }

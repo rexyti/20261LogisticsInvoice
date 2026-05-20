@@ -28,3 +28,9 @@ app:
       ruta-cerrada: ruta-cerrada-queue
       contrato-creado: contrato-creado-queue
       novedad-estado-paquete: novedad-estado-paquete-queue
+  servicios:
+    conductores:
+      base-url: http://localhost:8081
+    banco:
+      base-url: http://localhost:8082
+      timeout-segundos: 10
