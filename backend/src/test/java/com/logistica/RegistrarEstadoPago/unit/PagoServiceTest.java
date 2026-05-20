@@ -261,7 +261,7 @@ class PagoServiceTest {
 
     private RegistrarEstadoPagoPago pagoConEstado(RegistrarEstadoPagoEstadoPagoEnum estado, Long secuencia) {
         return new RegistrarEstadoPagoPago(ID_PAGO, null, null, Instant.now(), null, null,
-                ID_LIQUIDACION, estado, Instant.now(), secuencia);
+                ID_LIQUIDACION, estado, Instant.now(), secuencia, null, null);
     }
 
     private RegistrarEstadoPagoEventoTransaccion eventoConEstado(EstadoEventoTransaccion estadoProc) {

@@ -13,6 +13,10 @@ spring:
         dialect: org.hibernate.dialect.H2Dialect
     open-in-view: false
 
+  sql:
+    init:
+      mode: never
+
   flyway:
     enabled: false
 
@@ -34,6 +38,12 @@ app:
   sqs:
     queue:
       ruta-cerrada: ruta-cerrada-queue
+  servicios:
+    conductores:
+      base-url: http://localhost:9991
+    banco:
+      base-url: http://localhost:9992
+      timeout-segundos: 5
 
 resilience4j:
   timelimiter:
