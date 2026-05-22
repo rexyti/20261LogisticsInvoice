@@ -17,6 +17,9 @@ public class BancoRestClientConfig {
     @Value("${app.servicios.banco.timeout-segundos:10}")
     private int timeoutSegundos;
 
+    @Value("${app.servicios.banco.api-key}")
+    private String apiKey;
+
     @Bean("bancoPagoRestClient")
     public RestClient bancoRestClient() {
         SimpleClientHttpRequestFactory factory = new SimpleClientHttpRequestFactory();
@@ -26,6 +29,8 @@ public class BancoRestClientConfig {
         return RestClient.builder()
                 .baseUrl(baseUrl)
                 .defaultHeader("Content-Type", "application/json")
+                .defaultHeader("Accept", "application/json")
+                .defaultHeader("x-api-key", apiKey)
                 .requestFactory(factory)
                 .build();
     }

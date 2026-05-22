@@ -30,7 +30,8 @@ app:
       novedad-estado-paquete: novedad-estado-paquete-queue
   servicios:
     conductores:
-      base-url: http://localhost:8081
+      base-url: https://6cfdb063-a734-47f4-911b-c0a53a6124c6.mock.pstmn.io
     banco:
-      base-url: http://localhost:8082
+      base-url: https://6cfdb063-a734-47f4-911b-c0a53a6124c6.mock.pstmn.io
       timeout-segundos: 10
+      api-key: PMAK-6a10d0b1bc2b820001adf990-64e7079e13a1a40cd649ecd87a0eca9d3d

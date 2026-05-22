@@ -40,6 +40,13 @@ public class BancoGatewayImpl implements BancoGateway {
                     .uri("/pagos")
                     .body(requestBody)
                     .retrieve()
+                    .onStatus(HttpStatusCode::is4xxClientError, (req, res) -> {
+                        String body = new String(res.getBody().readAllBytes());
+
+                        log.warn("Pago rechazado por el banco: {}", body);
+
+                        throw new PagoRechazadoBancoException(idLiquidacion, body);
+                    })
                     .onStatus(HttpStatusCode::is5xxServerError, (req, res) -> {
                         log.error("Error interno del servicio bancario. id_liquidacion: {}", idLiquidacion);
                         throw new ErrorComunicacionBancoException("El servicio bancario respondió con error interno");
