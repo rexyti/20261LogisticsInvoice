@@ -1,1 +1,464 @@
-
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="70668f6f-3f6d-47f4-bd56-df4d94437e6e" name="Changes" comment="cambios bases para funcionamiento de mensajeria cola">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/cierreRuta/dtos/request/ParadaEventDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/cierreRuta/dtos/request/ParadaEventDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/cierreRuta/enums/EstadoParada.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/domain/cierreRuta/enums/EstadoParada.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/cierreRuta/enums/MotivoFalla.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/domain/cierreRuta/enums/MotivoFalla.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/cierreRuta/models/Parada.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/domain/cierreRuta/models/Parada.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/cierreRuta/services/ClasificacionRutaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/domain/cierreRuta/services/ClasificacionRutaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/messaging/config/SqsConsumerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/messaging/config/SqsConsumerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/messaging/consumers/JsonNodeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/messaging/consumers/JsonNodeMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/messaging/consumers/RutaCerradaConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/messaging/consumers/RutaCerradaConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/messaging/mappers/RutaCerradaMensajeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/messaging/mappers/RutaCerradaMensajeMapper.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="logistica-backend" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="massive-names-packages" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;luifdo&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/InsoftUnimag/20261LogisticsInvoice.git&quot;,
+    &quot;accountId&quot;: &quot;4f7a8a8e-b34a-4ce6-9648-f01755d0504f&quot;
+  }
+}</component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="3CqSpWWYlE9Kp4F66eEs9E9uPrw" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;Gradle.Build backend.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Tests in 'com.logistica.RegistrarEstadoPago'.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHELLCHECK.PATH&quot;: &quot;I do mind&quot;,
+    &quot;Spring Boot.LogisticaApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;configuracion__aws&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/LUIS/IdeaProjects/20261LogisticsInvoice/20261LogisticsInvoice/backend&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.logistica.application.contratos.dtos.request" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\LUIS\IdeaProjects\20261LogisticsInvoice\20261LogisticsInvoice\backend\docs" />
+      <recent name="C:\Users\LUIS\IdeaProjects\20261LogisticsInvoice\backend\src\main\resources\db\migration" />
+      <recent name="C:\Users\LUIS\IdeaProjects\20261LogisticsInvoice\backend\src\main\resources" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="paquete" />
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.LogisticaApplication">
+    <configuration name="Tests in 'com.logistica.RegistrarEstadoPago'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.logistica.RegistrarEstadoPago.*&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="LogisticaApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" singleton="false" nameIsGenerated="true">
+      <option name="ACTIVE_PROFILES" value="local" />
+      <module name="logistica-backend.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.logistica.LogisticaApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Gradle.Tests in 'com.logistica.RegistrarEstadoPago'" />
+      <item itemvalue="Spring Boot.LogisticaApplication" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.Tests in 'com.logistica.RegistrarEstadoPago'" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.28539.33" />
+        <option value="bundled-js-predefined-d6986cc7102b-a71380e98a7c-JavaScript-IU-252.28539.33" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="70668f6f-3f6d-47f4-bd56-df4d94437e6e" name="Changes" comment="" />
+      <created>1777111794233</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1777111794233</updated>
+      <workItem from="1777111796715" duration="168000" />
+      <workItem from="1777111989173" duration="182000" />
+      <workItem from="1777653117744" duration="14176000" />
+      <workItem from="1777726128648" duration="1715000" />
+      <workItem from="1778006229113" duration="13142000" />
+      <workItem from="1778062096644" duration="26477000" />
+      <workItem from="1778174942303" duration="651000" />
+      <workItem from="1778176444850" duration="1478000" />
+      <workItem from="1778186865991" duration="6723000" />
+      <workItem from="1778203688134" duration="1601000" />
+      <workItem from="1778236653327" duration="6405000" />
+      <workItem from="1778261324314" duration="6954000" />
+      <workItem from="1778333500109" duration="3032000" />
+      <workItem from="1778336612683" duration="835000" />
+      <workItem from="1778342021061" duration="3454000" />
+      <workItem from="1778376305662" duration="2975000" />
+      <workItem from="1778550074568" duration="4775000" />
+      <workItem from="1778960822266" duration="2610000" />
+      <workItem from="1778969162109" duration="2101000" />
+      <workItem from="1779069011634" duration="548000" />
+      <workItem from="1779144373183" duration="1173000" />
+      <workItem from="1779217737043" duration="7780000" />
+      <workItem from="1779304547045" duration="3883000" />
+      <workItem from="1779387312858" duration="464000" />
+      <workItem from="1779472817195" duration="5741000" />
+      <workItem from="1779484431518" duration="3609000" />
+      <workItem from="1779505780876" duration="7082000" />
+      <workItem from="1779570307154" duration="7515000" />
+      <workItem from="1779579370904" duration="457000" />
+    </task>
+    <task id="LOCAL-00001" summary=".">
+      <option name="closed" value="true" />
+      <created>1777111873932</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1777111873932</updated>
+    </task>
+    <task id="LOCAL-00002" summary="creacion de rama para la base de datos, modificaciones mayores de nombres para evitar confusion en el sistema">
+      <option name="closed" value="true" />
+      <created>1777673724183</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1777673724183</updated>
+    </task>
+    <task id="LOCAL-00003" summary="renombramiento masivo y ajuste de dominio, infraestructura y aplicacion">
+      <option name="closed" value="true" />
+      <created>1778027775072</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1778027775074</updated>
+    </task>
+    <task id="LOCAL-00004" summary="reorganizacion y creacion de entidades unidas para evitar duplicaciones">
+      <option name="closed" value="true" />
+      <created>1778104580462</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1778104580464</updated>
+    </task>
+    <task id="LOCAL-00005" summary="implementacion total de test( cada uno funcional), creacion de endpoint para conseguir el rol del usuario (actualmente hardcodeado) renombramiento masivo terminado y funcional">
+      <option name="closed" value="true" />
+      <created>1778176773094</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1778176773094</updated>
+    </task>
+    <task id="LOCAL-00006" summary="implementacion total de test( cada uno funcional), creacion de endpoint para conseguir el rol del usuario (actualmente hardcodeado) renombramiento masivo terminado y funcional">
+      <option name="closed" value="true" />
+      <created>1778197250304</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1778197250305</updated>
+    </task>
+    <task id="LOCAL-00007" summary="cambio de informacion para hacer que los datos de test sean reales al proyecto, creacion de json para uso de endpoints funcionales">
+      <option name="closed" value="true" />
+      <created>1778261416422</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1778261416422</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Cambio de ids Longs a id UUID las cuales se implementan en el proyecto">
+      <option name="closed" value="true" />
+      <created>1778269716184</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1778269716184</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Cambio de ids Longs a id UUID las cuales se implementan en el proyecto">
+      <option name="closed" value="true" />
+      <created>1778270009320</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1778270009320</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Cambio de la generacion del valor de id a tipo UUID">
+      <option name="closed" value="true" />
+      <created>1778270384854</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1778270384854</updated>
+    </task>
+    <task id="LOCAL-00011" summary="ajustes y organizacion para funcionamiento del endpoint recalcular">
+      <option name="closed" value="true" />
+      <created>1778343457677</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1778343457679</updated>
+    </task>
+    <task id="LOCAL-00012" summary="implementacion de pgadmin al docker-compose.yml">
+      <option name="closed" value="true" />
+      <created>1778347426886</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1778347426886</updated>
+    </task>
+    <task id="LOCAL-00013" summary="cambios docker compose final">
+      <option name="closed" value="true" />
+      <created>1778550182346</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1778550182346</updated>
+    </task>
+    <task id="LOCAL-00014" summary="cambios minimos contratoSqs">
+      <option name="closed" value="true" />
+      <created>1778961406626</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1778961406627</updated>
+    </task>
+    <task id="LOCAL-00015" summary="cambios de sincronizacion de novedadEstadoPaquete a sqs">
+      <option name="closed" value="true" />
+      <created>1778962215096</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1778962215096</updated>
+    </task>
+    <task id="LOCAL-00016" summary="cambios de sincronizacion de novedadEstadoPaquete a sqs">
+      <option name="closed" value="true" />
+      <created>1778962232467</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1778962232467</updated>
+    </task>
+    <task id="LOCAL-00017" summary="cambios minimos para tener igual el json de cierra de ruta habilitado">
+      <option name="closed" value="true" />
+      <created>1778971260807</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1778971260807</updated>
+    </task>
+    <task id="LOCAL-00018" summary="organizacion de mensajeria, consumer para contrato, rutaCerrada y novedadEstadoPaquete, configuracion inicial (falta RegistroPago)">
+      <option name="closed" value="true" />
+      <created>1779221092909</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1779221092909</updated>
+    </task>
+    <task id="LOCAL-00019" summary="creacion de doc para la guia y aplicacion de localstack, creacion de json de prueba para usar en el entorno de aws sqs">
+      <option name="closed" value="true" />
+      <created>1779224807906</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1779224807906</updated>
+    </task>
+    <task id="LOCAL-00020" summary="ajustes de test, y configuracion de pruebas de inteegracion sobre comunicacion sincronica">
+      <option name="closed" value="true" />
+      <created>1779314029726</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1779314029726</updated>
+    </task>
+    <task id="LOCAL-00021" summary="ajustes de test, y configuracion de pruebas de integracion sobre comunicacion sincronica conductor">
+      <option name="closed" value="true" />
+      <created>1779314861003</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1779314861003</updated>
+    </task>
+    <task id="LOCAL-00022" summary="configuracion comunicacion entre postman y spring (solo probamos el caso feliz, no sabemos probar otros posibles casos&#10;)">
+      <option name="closed" value="true" />
+      <created>1779487511472</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1779487511473</updated>
+    </task>
+    <task id="LOCAL-00023" summary="configuracion base de aws con modulo ruta cerrada">
+      <option name="closed" value="true" />
+      <created>1779508554342</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1779508554342</updated>
+    </task>
+    <task id="LOCAL-00024" summary="cambios bases para funcionamiento de mensajeria cola">
+      <option name="closed" value="true" />
+      <created>1779552822007</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1779552822007</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="." />
+    <MESSAGE value="creacion de rama para la base de datos, modificaciones mayores de nombres para evitar confusion en el sistema" />
+    <MESSAGE value="renombramiento masivo y ajuste de dominio, infraestructura y aplicacion" />
+    <MESSAGE value="reorganizacion y creacion de entidades unidas para evitar duplicaciones" />
+    <MESSAGE value="implementacion total de test( cada uno funcional), creacion de endpoint para conseguir el rol del usuario (actualmente hardcodeado) renombramiento masivo terminado y funcional" />
+    <MESSAGE value="cambio de informacion para hacer que los datos de test sean reales al proyecto, creacion de json para uso de endpoints funcionales" />
+    <MESSAGE value="Cambio de ids Longs a id UUID las cuales se implementan en el proyecto" />
+    <MESSAGE value="Cambio de la generacion del valor de id a tipo UUID" />
+    <MESSAGE value="ajustes y organizacion para funcionamiento del endpoint recalcular" />
+    <MESSAGE value="implementacion de pgadmin al docker-compose.yml" />
+    <MESSAGE value="cambios docker compose final" />
+    <MESSAGE value="cambios minimos contratoSqs" />
+    <MESSAGE value="cambios de sincronizacion de novedadEstadoPaquete a sqs" />
+    <MESSAGE value="cambios minimos para tener igual el json de cierra de ruta habilitado" />
+    <MESSAGE value="organizacion de mensajeria, consumer para contrato, rutaCerrada y novedadEstadoPaquete, configuracion inicial (falta RegistroPago)" />
+    <MESSAGE value="creacion de doc para la guia y aplicacion de localstack, creacion de json de prueba para usar en el entorno de aws sqs" />
+    <MESSAGE value="ajustes de test, y configuracion de pruebas de inteegracion sobre comunicacion sincronica" />
+    <MESSAGE value="ajustes de test, y configuracion de pruebas de integracion sobre comunicacion sincronica conductor" />
+    <MESSAGE value="configuracion comunicacion entre postman y spring (solo probamos el caso feliz, no sabemos probar otros posibles casos&#10;)" />
+    <MESSAGE value="configuracion base de aws con modulo ruta cerrada" />
+    <MESSAGE value="cambios bases para funcionamiento de mensajeria cola" />
+    <option name="LAST_COMMIT_MESSAGE" value="cambios bases para funcionamiento de mensajeria cola" />
+  </component>
+</project>
