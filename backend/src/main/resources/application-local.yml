@@ -3,6 +3,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/logistica
     username: luis
     password: 123456789
+
   jackson:
     property-naming-strategy: SNAKE_CASE
 
@@ -15,23 +16,26 @@ spring:
     aws:
       sqs:
         enabled: true
-        endpoint: http://localhost:4566
+
       region:
-        static: us-east-1
+        static: us-east-2
+
       credentials:
-        access-key: test
-        secret-key: test
+        access-key: ${AWS_ACCESS_KEY_ID}
+        secret-key: ${AWS_SECRET_ACCESS_KEY}
 
 app:
   sqs:
     queue:
-      ruta-cerrada: ruta-cerrada-queue
+      ruta-cerrada: logistics-cierre-ruta
       contrato-creado: contrato-creado-queue
       novedad-estado-paquete: novedad-estado-paquete-queue
+
   servicios:
     conductores:
       base-url: https://6cfdb063-a734-47f4-911b-c0a53a6124c6.mock.pstmn.io
+
     banco:
       base-url: https://6cfdb063-a734-47f4-911b-c0a53a6124c6.mock.pstmn.io
       timeout-segundos: 10
-      api-key: PMAK-6a10d0b1bc2b820001adf990-64e7079e13a1a40cd649ecd87a0eca9d3d
+      api-key: PMAK-6a10d0b1bc2b820001adf990-64e7079e13a1a40cd649ecd87a0eca9d
