@@ -33,7 +33,7 @@ public class Parada {
             throw new IllegalArgumentException("estado no puede ser null");
         }
 
-        if (estado == EstadoParada.FALLIDA && motivoFalla == null) {
+        if ((estado == EstadoParada.FALLIDA || estado == EstadoParada.NOVEDAD) && motivoFalla == null) {
             throw new IllegalArgumentException(
                     "Parada fallida sin motivo. paradaId: " + paradaId
             );

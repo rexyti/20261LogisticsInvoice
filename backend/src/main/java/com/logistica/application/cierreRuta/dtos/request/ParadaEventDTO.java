@@ -32,9 +32,12 @@ public class ParadaEventDTO {
 
     private LocalDateTime fechaHoraGestion;
 
-    @AssertTrue(message = "Una parada FALLIDA debe tener motivoNoEntrega")
+    @AssertTrue(message = "Una parada FALLIDA o NOVEDAD debe tener motivoNoEntrega")
     private boolean isMotivoValido() {
-        return estado != EstadoParada.FALLIDA ||
-                (motivoNoEntrega != null && !motivoNoEntrega.isBlank());
+        if (estado == EstadoParada.FALLIDA || estado == EstadoParada.NOVEDAD) {
+            return motivoNoEntrega != null &&
+                    !motivoNoEntrega.isBlank();
+        }
+        return true;
     }
 }

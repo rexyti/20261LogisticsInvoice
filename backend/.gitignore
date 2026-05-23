@@ -1,31 +1,25 @@
-# ====== Gradle ======
-.gradle/
-build/
-
-# Archivos generados por Gradle
-*.bin
-*.lock
-
-# Wrapper (ESTO SÍ se sube parcialmente)
-!gradle/wrapper/gradle-wrapper.jar
-
-# ====== IntelliJ IDEA ======
+# ===== IntelliJ =====
 .idea/
 *.iml
 out/
+.idea/workspace.xml
 
-# ====== Logs ======
+# ===== Gradle =====
+.gradle/
+build/
+
+# ===== AWS / Secrets =====
+.env
+*.pem
+application-local.properties
+application-dev.properties
+
+# ===== Logs =====
 *.log
 
-# ====== Sistema ======
+# ===== Sistema =====
 .DS_Store
 Thumbs.db
 
-# ====== Java ======
+# ===== Java =====
 *.class
-
-# ====== Variables de entorno ======
-.env
-
-# ====== Docker ======
-docker-compose.override.yml

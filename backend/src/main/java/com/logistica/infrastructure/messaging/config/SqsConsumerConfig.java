@@ -28,6 +28,8 @@ public class SqsConsumerConfig {
 
         converter.doNotSendPayloadTypeHeader();
 
+        converter.setPayloadTypeMapper(message -> Object.class);
+
         return SqsMessageListenerContainerFactory.builder()
                 .sqsAsyncClient(sqsAsyncClient)
                 .configure(options -> options

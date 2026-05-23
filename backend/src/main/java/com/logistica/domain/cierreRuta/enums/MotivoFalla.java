@@ -6,14 +6,56 @@ import lombok.Getter;
 @Getter
 public enum MotivoFalla {
 
-    DIRECCION_ERRONEA("DIRECCIÓN_ERRONEA", ResponsableFalla.CLIENTE, 0.30, 0.50, false),
-    CLIENTE_AUSENTE("CLIENTE_AUSENTE", ResponsableFalla.CLIENTE, 0.30, 0.50, false),
-    RECHAZADO("RECHAZADO", ResponsableFalla.CLIENTE, 0.30, 0.50, false),
-    PAQUETE_DANADO("PAQUETE_DAÑADO", ResponsableFalla.TRANSPORTISTA, 0.0, 0.0, false),
-    PERDIDA_PAQUETE("PÉRDIDA_PAQUETE", ResponsableFalla.TRANSPORTISTA, 0.0, 0.0, false),
+    DIRECCION_ERRONEA(
+            "DIRECCION_INCORRECTA",
+            ResponsableFalla.CLIENTE,
+            0.30,
+            0.50,
+            false
+    ),
+
+    CLIENTE_AUSENTE(
+            "CLIENTE_AUSENTE",
+            ResponsableFalla.CLIENTE,
+            0.30,
+            0.50,
+            false
+    ),
+
+    RECHAZADO(
+            "RECHAZADO_POR_CLIENTE",
+            ResponsableFalla.CLIENTE,
+            0.30,
+            0.50,
+            false
+    ),
+
+    PAQUETE_DANADO(
+            "DAÑADO_EN_RUTA",
+            ResponsableFalla.TRANSPORTISTA,
+            0.0,
+            0.0,
+            false
+    ),
+
+    PERDIDA_PAQUETE(
+            "EXTRAVIADO",
+            ResponsableFalla.TRANSPORTISTA,
+            0.0,
+            0.0,
+            false
+    ),
+
+    DEVOLUCION(
+            "DEVOLUCION",
+            ResponsableFalla.EMPRESA,
+            0.0,
+            0.0,
+            false
+    ),
 
     ZONA_DIFICIL_ACCESO(
-            "ZONA DE DIFÍCIL ACCESO / ORDEN PÚBLICO",
+            "ZONA_DIFICIL_ACCESO",
             ResponsableFalla.EMPRESA,
             0.0,
             0.0,
@@ -26,7 +68,13 @@ public enum MotivoFalla {
     private final double porcentajeMaximo;
     private final boolean porcentajePendiente;
 
-    MotivoFalla(String valorJson, ResponsableFalla responsable, double porcentajeMinimo, double porcentajeMaximo, boolean porcentajePendiente) {
+    MotivoFalla(
+            String valorJson,
+            ResponsableFalla responsable,
+            double porcentajeMinimo,
+            double porcentajeMaximo,
+            boolean porcentajePendiente
+    ) {
         this.valorJson = valorJson;
         this.responsable = responsable;
         this.porcentajeMinimo = porcentajeMinimo;
@@ -36,12 +84,23 @@ public enum MotivoFalla {
 
     @JsonCreator
     public static MotivoFalla fromValue(String valor) {
-        if (valor == null) return null;
+
+        if (valor == null || valor.isBlank()) {
+            return null;
+        }
+
+        String normalizado = valor.trim().toUpperCase();
+
         for (MotivoFalla m : values()) {
-            if (m.valorJson.equalsIgnoreCase(valor) || m.name().equalsIgnoreCase(valor)) {
+
+            if (m.valorJson.equalsIgnoreCase(normalizado)
+                    || m.name().equalsIgnoreCase(normalizado)) {
+
                 return m;
             }
         }
-        throw new IllegalArgumentException("Motivo de falla desconocido: " + valor);
+
+        throw new IllegalArgumentException(
+                "Motivo de falla desconocido: " + valor);
     }
 }

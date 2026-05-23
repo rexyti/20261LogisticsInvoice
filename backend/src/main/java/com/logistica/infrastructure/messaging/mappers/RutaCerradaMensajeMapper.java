@@ -50,11 +50,27 @@ public class RutaCerradaMensajeMapper {
 
     private ParadaEventDTO mapParada(ParadaMensajeDTO p) {
         ParadaEventDTO parada = new ParadaEventDTO();
+
         parada.setParadaId(p.getParadaId());
         parada.setPaqueteId(p.getPaqueteId());
-        parada.setEstado(EstadoParada.valueOf(p.getEstado()));
+
+        parada.setEstado(mapEstado(p.getEstado()));
+
         parada.setMotivoNoEntrega(p.getMotivoNoEntrega());
         parada.setFechaHoraGestion(p.getFechaHoraGestion());
+
         return parada;
+    }
+
+    private EstadoParada mapEstado(String estado) {
+        if (estado == null) {
+            throw new IllegalArgumentException("Estado null en mensaje");
+        }
+
+        try {
+            return EstadoParada.fromValue(estado);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Estado inválido recibido: " + estado);
+        }
     }
 }

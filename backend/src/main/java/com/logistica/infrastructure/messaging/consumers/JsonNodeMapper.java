@@ -1,13 +1,16 @@
 package com.logistica.infrastructure.messaging.consumers;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.io.IOException;
 
 public class JsonNodeMapper {
 
-    private static final ObjectMapper objectMapper = new ObjectMapper();
+    private static final ObjectMapper objectMapper = JsonMapper.builder()
+            .addModule(new JavaTimeModule()).build();
 
     /**
      * Convierte cualquier objeto Java a JsonNode
