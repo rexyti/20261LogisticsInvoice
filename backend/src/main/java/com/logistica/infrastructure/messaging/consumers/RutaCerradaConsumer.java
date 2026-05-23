@@ -1,5 +1,7 @@
 package com.logistica.infrastructure.messaging.consumers;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.logistica.application.cierreRuta.ports.in.ProcesarRutaCerradaPort;
 import com.logistica.infrastructure.messaging.dtos.RutaCerradaMensajeDTO;
 import com.logistica.infrastructure.messaging.mappers.RutaCerradaMensajeMapper;
@@ -16,23 +18,26 @@ public class RutaCerradaConsumer {
 
     private final ProcesarRutaCerradaPort procesarRutaCerradaPort;
     private final RutaCerradaMensajeMapper mapper;
+    private final ObjectMapper objectMapper;
 
     @SqsListener("https://sqs.us-east-2.amazonaws.com/383941187903/logistics-cierre-ruta")
-    public void consumir(RutaCerradaMensajeDTO mensaje, Acknowledgement ack) {
-        log.info("Evento RUTA_CERRADA recibido para ruta_id: {}", mensaje.getRutaId());
+    public void consumir(JsonNode payload, Acknowledgement ack) {
 
         try {
-            procesarRutaCerradaPort.ejecutar(mapper.toApplicationEvent(mensaje));
+
+            RutaCerradaMensajeDTO mensaje = JsonNodeMapper.fromJsonNode(payload, RutaCerradaMensajeDTO.class);
+
+            log.info("Evento RUTA_CERRADA recibido para ruta_id: {}", mensaje.getRutaId());
+
+            procesarRutaCerradaPort.ejecutar(
+                    mapper.toApplicationEvent(mensaje)
+            );
+
             ack.acknowledge();
 
-        } catch (IllegalArgumentException e) {
-            log.error("Error de validación no recuperable para ruta {}: {}",
-                    mensaje.getRutaId(), e.getMessage());
-            throw e;
-
         } catch (Exception e) {
-            log.error("Error procesando ruta {}. Se reintentará.", mensaje.getRutaId(), e);
-            throw e;
+            log.error("Error procesando mensaje", e);
+            throw new RuntimeException(e);
         }
     }
 }

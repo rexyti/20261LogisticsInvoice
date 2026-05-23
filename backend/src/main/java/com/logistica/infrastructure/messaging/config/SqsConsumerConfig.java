@@ -2,6 +2,7 @@ package com.logistica.infrastructure.messaging.config;
 
 import io.awspring.cloud.sqs.config.SqsMessageListenerContainerFactory;
 import io.awspring.cloud.sqs.listener.acknowledgement.handler.AcknowledgementMode;
+import io.awspring.cloud.sqs.support.converter.SqsMessagingMessageConverter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
@@ -21,12 +22,19 @@ public class SqsConsumerConfig {
     public SqsMessageListenerContainerFactory<Object> defaultSqsListenerContainerFactory(
             SqsAsyncClient sqsAsyncClient) {
 
+        SqsMessagingMessageConverter converter =
+                new SqsMessagingMessageConverter();
+
+
+        converter.doNotSendPayloadTypeHeader();
+
         return SqsMessageListenerContainerFactory.builder()
                 .sqsAsyncClient(sqsAsyncClient)
                 .configure(options -> options
                         .maxConcurrentMessages(10)
                         .maxMessagesPerPoll(10)
                         .acknowledgementMode(AcknowledgementMode.MANUAL)
+                        .messageConverter(converter)
                 )
                 .build();
     }
