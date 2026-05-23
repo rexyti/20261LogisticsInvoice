@@ -1,5 +1,6 @@
 package com.logistica.infrastructure.messaging.consumers;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.logistica.application.novedadEstadoPaquete.ports.in.ProcesarEstadoPaquetePort;
 import com.logistica.infrastructure.messaging.dtos.EstadoPaqueteMensajeDTO;
 import com.logistica.infrastructure.messaging.mappers.EstadoPaqueteMensajeMapper;
@@ -18,21 +19,26 @@ public class EstadoPaqueteConsumer {
     private final EstadoPaqueteMensajeMapper mapper;
 
    // @SqsListener("${app.sqs.queue.novedad-estado-paquete}")
-    public void consumir(EstadoPaqueteMensajeDTO mensaje, Acknowledgement ack) {
-        log.info("Evento ESTADO_PAQUETE recibido para id_paquete: {}", mensaje.getIdPaquete());
+   public void consumir(JsonNode payload, Acknowledgement ack) {
+       try {
 
-        try {
-            procesarEstadoPaquetePort.ejecutar(mapper.toApplicationEvent(mensaje));
-            ack.acknowledge();
+           EstadoPaqueteMensajeDTO mensaje =
+                   JsonNodeMapper.fromJsonNode(payload, EstadoPaqueteMensajeDTO.class);
 
-        } catch (IllegalArgumentException e) {
-            log.error("Error de validación no recuperable para paquete {}: {}",
-                    mensaje.getIdPaquete(), e.getMessage());
-            throw e;
+           log.info(
+                   "Evento ESTADO_PAQUETE recibido para id_paquete: {}",
+                   mensaje.getIdPaquete()
+           );
+           procesarEstadoPaquetePort.ejecutar(mapper.toApplicationEvent(mensaje));
+           ack.acknowledge();
+       } catch (IllegalArgumentException e) {
 
-        } catch (Exception e) {
-            log.error("Error procesando paquete {}. Se reintentará.", mensaje.getIdPaquete(), e);
-            throw e;
-        }
-    }
+           log.error("Error de validación no recuperable para paquete {}: {}", payload, e.getMessage());
+           throw e;
+       } catch (Exception e) {
+
+           log.error("Error procesando mensaje ESTADO_PAQUETE",e);
+           throw new RuntimeException(e);
+       }
+   }
 }
