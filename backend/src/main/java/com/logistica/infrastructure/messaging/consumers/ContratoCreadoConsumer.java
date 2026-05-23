@@ -17,7 +17,7 @@ public class ContratoCreadoConsumer {
     private final ProcesarContratoCreadoPort procesarContratoCreadoPort;
     private final ContratoCreadoMensajeMapper mapper;
 
-    @SqsListener("${app.sqs.queue.contrato-creado}")
+   // @SqsListener("${app.sqs.queue.contrato-creado}")
     public void consumir(ContratoCreadoMensajeDTO mensaje, Acknowledgement ack) {
         log.info("Evento CONTRATO_CREADO recibido para id_contrato: {}", mensaje.getIdContrato());
 

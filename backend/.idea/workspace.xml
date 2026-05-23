@@ -4,8 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70668f6f-3f6d-47f4-bd56-df4d94437e6e" name="Changes" comment="configuracion comunicacion entre postman y spring (solo probamos el caso feliz, no sabemos probar otros posibles casos&#10;)">
+    <list default="true" id="70668f6f-3f6d-47f4-bd56-df4d94437e6e" name="Changes" comment="configuracion base de aws con modulo ruta cerrada">
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/messaging/consumers/ContratoCreadoConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/messaging/consumers/ContratoCreadoConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/messaging/consumers/EstadoPaqueteConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/messaging/consumers/EstadoPaqueteConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/messaging/consumers/RutaCerradaConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/messaging/consumers/RutaCerradaConsumer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application-local.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-local.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -144,12 +155,20 @@
     </configuration>
     <configuration name="LogisticaApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="ACTIVE_PROFILES" value="local" />
+      <envs>
+        <env name="AWS_ACCESS_KEY_ID" value="AKIASVRA2BTWCZTRVPN7" />
+        <env name="AWS_SECRET_ACCESS_KEY" value="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 " />
+      </envs>
       <module name="logistica-backend.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.logistica.LogisticaApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Gradle.Tests in 'com.logistica.RegistrarEstadoPago'" />
+      <item itemvalue="Spring Boot.LogisticaApplication" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.Tests in 'com.logistica.RegistrarEstadoPago'" />
@@ -197,7 +216,7 @@
       <workItem from="1779387312858" duration="464000" />
       <workItem from="1779472817195" duration="5741000" />
       <workItem from="1779484431518" duration="3609000" />
-      <workItem from="1779505780876" duration="2475000" />
+      <workItem from="1779505780876" duration="7082000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <option name="closed" value="true" />
@@ -375,7 +394,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779487511473</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="configuracion base de aws con modulo ruta cerrada">
+      <option name="closed" value="true" />
+      <created>1779508554342</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1779508554342</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -412,6 +439,7 @@
     <MESSAGE value="ajustes de test, y configuracion de pruebas de inteegracion sobre comunicacion sincronica" />
     <MESSAGE value="ajustes de test, y configuracion de pruebas de integracion sobre comunicacion sincronica conductor" />
     <MESSAGE value="configuracion comunicacion entre postman y spring (solo probamos el caso feliz, no sabemos probar otros posibles casos&#10;)" />
-    <option name="LAST_COMMIT_MESSAGE" value="configuracion comunicacion entre postman y spring (solo probamos el caso feliz, no sabemos probar otros posibles casos&#10;)" />
+    <MESSAGE value="configuracion base de aws con modulo ruta cerrada" />
+    <option name="LAST_COMMIT_MESSAGE" value="configuracion base de aws con modulo ruta cerrada" />
   </component>
 </project>

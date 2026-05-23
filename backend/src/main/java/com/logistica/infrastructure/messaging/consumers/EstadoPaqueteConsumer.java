@@ -17,7 +17,7 @@ public class EstadoPaqueteConsumer {
     private final ProcesarEstadoPaquetePort procesarEstadoPaquetePort;
     private final EstadoPaqueteMensajeMapper mapper;
 
-    @SqsListener("${app.sqs.queue.novedad-estado-paquete}")
+   // @SqsListener("${app.sqs.queue.novedad-estado-paquete}")
     public void consumir(EstadoPaqueteMensajeDTO mensaje, Acknowledgement ack) {
         log.info("Evento ESTADO_PAQUETE recibido para id_paquete: {}", mensaje.getIdPaquete());
 

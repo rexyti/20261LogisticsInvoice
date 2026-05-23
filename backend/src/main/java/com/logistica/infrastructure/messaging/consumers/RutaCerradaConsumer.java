@@ -17,7 +17,7 @@ public class RutaCerradaConsumer {
     private final ProcesarRutaCerradaPort procesarRutaCerradaPort;
     private final RutaCerradaMensajeMapper mapper;
 
-    @SqsListener("${app.sqs.queue.ruta-cerrada}")
+    @SqsListener("https://sqs.us-east-2.amazonaws.com/383941187903/logistics-cierre-ruta")
     public void consumir(RutaCerradaMensajeDTO mensaje, Acknowledgement ack) {
         log.info("Evento RUTA_CERRADA recibido para ruta_id: {}", mensaje.getRutaId());
 

@@ -16,6 +16,8 @@ spring:
     aws:
       sqs:
         enabled: true
+        listener:
+          queue-creation-policy: never
 
       region:
         static: us-east-2
@@ -28,8 +30,6 @@ app:
   sqs:
     queue:
       ruta-cerrada: logistics-cierre-ruta
-      contrato-creado: contrato-creado-queue
-      novedad-estado-paquete: novedad-estado-paquete-queue
 
   servicios:
     conductores:
