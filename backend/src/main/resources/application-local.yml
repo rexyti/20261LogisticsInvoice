@@ -3,6 +3,9 @@ spring:
     url: jdbc:postgresql://localhost:5432/logistica
     username: luis
     password: 123456789
+  sql:
+    init:
+      mode: never
 
   jackson:
     property-naming-strategy: SNAKE_CASE
