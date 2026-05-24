@@ -3,6 +3,11 @@ spring:
     url: jdbc:postgresql://localhost:5432/logistica
     username: luis
     password: 123456789
+
+  sql:
+    init:
+      mode: never
+
   jackson:
     property-naming-strategy: SNAKE_CASE
 
@@ -28,6 +33,7 @@ app:
       ruta-cerrada: ruta-cerrada-queue
       contrato-creado: contrato-creado-queue
       novedad-estado-paquete: novedad-estado-paquete-queue
+
   servicios:
     conductores:
       base-url: https://6cfdb063-a734-47f4-911b-c0a53a6124c6.mock.pstmn.io
