@@ -1,8 +1,29 @@
 import React from 'react';
 
+const ESTADO_STYLES = {
+  PAGADO:     { bg: 'rgba(16,185,129,0.15)',  color: '#10B981' },
+  EN_PROCESO: { bg: 'rgba(96,165,250,0.15)',  color: '#60A5FA' },
+  PENDIENTE:  { bg: 'rgba(245,158,11,0.15)',  color: '#F59E0B' },
+  RECHAZADO:  { bg: 'rgba(239,68,68,0.15)',   color: '#EF4444' },
+};
+
 const StatusBadge = ({ status }) => {
   if (!status) return <span style={{ color: '#6B7280' }}>—</span>;
-  return <span className={`status-badge status-${status}`}>{status}</span>;
+  const style = ESTADO_STYLES[status] ?? { bg: 'rgba(107,114,128,0.15)', color: '#9CA3AF' };
+  return (
+    <span style={{
+      padding: '0.25rem 0.75rem',
+      borderRadius: '9999px',
+      fontWeight: 600,
+      fontSize: '0.75rem',
+      display: 'inline-block',
+      backgroundColor: style.bg,
+      color: style.color,
+      whiteSpace: 'nowrap',
+    }}>
+      {status.replace('_', ' ')}
+    </span>
+  );
 };
 
 const formatCurrency = (value) =>

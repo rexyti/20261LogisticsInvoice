@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../pages/Liquidaciones.css';
 
 const AVATAR_COLORS = ['#3B82F6', '#8B5CF6', '#10B981', '#F59E0B', '#EF4444', '#EC4899'];
 
@@ -93,14 +94,85 @@ const formatCurrency = (value) =>
     ? `$${Number(value).toLocaleString('es-CO', { minimumFractionDigits: 2 })}`
     : '—';
 
+const formatDate = (dt) =>
+  dt ? new Date(dt).toLocaleString('es-CO', { dateStyle: 'medium', timeStyle: 'short' }) : '—';
+
+const ComprobanteModal = ({ liq, onClose }) => {
+  const ajustes = liq.ajustes ?? [];
+  return (
+    <div className="liq-modal-overlay" onClick={onClose}>
+      <div className="liq-modal" onClick={(e) => e.stopPropagation()}>
+        <div className="liq-modal-header">
+          <div>
+            <h2 className="liq-modal-title">Comprobante de Liquidación</h2>
+            <p className="liq-modal-subtitle" style={{ fontFamily: 'monospace', fontSize: '0.75rem', color: '#9CA3AF', margin: 0 }}>
+              {liq.id_liquidacion}
+            </p>
+          </div>
+          <EstadoBadge estado={liq.estado_liquidacion} />
+        </div>
+
+        <div className="liq-modal-section-title">Información de la Ruta</div>
+        <div className="liq-modal-grid">
+          <div className="liq-modal-field"><span className="liq-modal-label">Conductor</span><span>{liq.conductor_nombre ?? '—'}</span></div>
+          <div className="liq-modal-field"><span className="liq-modal-label">Tipo Vehículo</span><span>{liq.tipo_vehiculo ?? '—'}</span></div>
+          <div className="liq-modal-field"><span className="liq-modal-label">Fecha Inicio</span><span>{formatDate(liq.fecha_inicio)}</span></div>
+          <div className="liq-modal-field"><span className="liq-modal-label">Fecha Cierre</span><span>{formatDate(liq.fecha_cierre)}</span></div>
+          <div className="liq-modal-field"><span className="liq-modal-label">N° Paradas</span><span>{liq.numero_paradas ?? '—'}</span></div>
+          <div className="liq-modal-field"><span className="liq-modal-label">Precio / Parada</span><span>{formatCurrency(liq.precio_parada)}</span></div>
+        </div>
+
+        <div className="liq-modal-section-title">Montos</div>
+        <div className="liq-modal-grid">
+          <div className="liq-modal-field"><span className="liq-modal-label">Monto Bruto</span><span style={{ fontWeight: 600 }}>{formatCurrency(liq.monto_bruto)}</span></div>
+          <div className="liq-modal-field"><span className="liq-modal-label">Monto Neto</span><span style={{ fontWeight: 700, color: '#10B981' }}>{formatCurrency(liq.monto_neto)}</span></div>
+        </div>
+
+        {ajustes.length > 0 && (
+          <>
+            <div className="liq-modal-section-title">Ajustes</div>
+            <table className="liq-modal-ajustes-table">
+              <thead>
+                <tr>
+                  <th>Tipo</th><th>Monto</th><th>Razón</th>
+                </tr>
+              </thead>
+              <tbody>
+                {ajustes.map((a) => (
+                  <tr key={a.id}>
+                    <td><AjusteBadge ajustes={[a]} /></td>
+                    <td style={{ fontWeight: 600 }}>{formatCurrency(a.monto)}</td>
+                    <td style={{ color: '#9CA3AF' }}>{a.razon ?? '—'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </>
+        )}
+
+        <div className="liq-modal-footer">
+          <span style={{ fontSize: '0.75rem', color: '#6B7280' }}>Fecha cálculo: {formatDate(liq.fecha_calculo)}</span>
+          <div style={{ display: 'flex', gap: '0.5rem' }}>
+            <button className="btn-secondary" onClick={() => window.print()}>Imprimir</button>
+            <button className="btn-primary" onClick={onClose}>Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const LiquidacionesTable = ({ liquidaciones = [] }) => {
   const navigate = useNavigate();
+  const [comprobante, setComprobante] = useState(null);
 
   if (liquidaciones.length === 0) {
     return <p style={{ color: '#9CA3AF', padding: '1rem 0' }}>No hay liquidaciones para mostrar.</p>;
   }
 
   return (
+    <>
+    {comprobante && <ComprobanteModal liq={comprobante} onClose={() => setComprobante(null)} />}
     <table>
       <thead>
         <tr>
@@ -160,7 +232,11 @@ const LiquidacionesTable = ({ liquidaciones = [] }) => {
                   >
                     <EyeIcon />
                   </button>
-                  <button className="action-btn" title="Ver comprobante">
+                  <button
+                    className="action-btn"
+                    title="Ver comprobante"
+                    onClick={() => setComprobante(liq)}
+                  >
                     <ReceiptIcon />
                   </button>
                 </div>
@@ -170,6 +246,7 @@ const LiquidacionesTable = ({ liquidaciones = [] }) => {
         })}
       </tbody>
     </table>
+    </>
   );
 };
 

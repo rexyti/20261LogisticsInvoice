@@ -1,3 +1,27 @@
+/* Scrollbar global */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #334155 transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #334155;
+  border-radius: 9999px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #475569;
+}
+
 /* Global Styles */
 body {
   margin: 0;
@@ -10,10 +34,7 @@ body {
   color: #F9FAFB; /* Light text */
 }
 
-/* App container */
-.app-container {
-  padding: 2rem;
-}
+/* App container — layout handled by Navigation.css */
 
 /* Page header */
 .page-header h1 {

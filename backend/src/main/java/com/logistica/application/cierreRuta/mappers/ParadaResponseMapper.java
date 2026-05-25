@@ -12,6 +12,7 @@ public class ParadaResponseMapper {
 
         return ParadaResponseDTO.builder()
                 .paradaId(p.getParadaId())
+                .paqueteId(p.getPaqueteId())
                 .estado(p.getEstado() != null ? p.getEstado() : null)
                 .motivoFalla(p.getMotivoFalla() != null ? p.getMotivoFalla() : null)
                 .responsable(p.getResponsable() != null ? p.getResponsable() : null)

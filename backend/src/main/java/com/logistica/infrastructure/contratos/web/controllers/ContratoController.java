@@ -37,13 +37,13 @@ public class ContratoController {
     }
 
     @GetMapping("/{idContrato}")
-    @PreAuthorize("hasRole('GESTOR_FINANCIERO')")
+    @PreAuthorize("hasAnyRole('GESTOR_FINANCIERO', 'ADMIN')")
     public ResponseEntity<ContratoResponseDTO> buscar(@PathVariable String idContrato) {
         return ResponseEntity.ok(buscarContratoUseCase.ejecutar(idContrato));
     }
 
     @GetMapping
-    @PreAuthorize("hasRole('GESTOR_FINANCIERO')")
+    @PreAuthorize("hasAnyRole('GESTOR_FINANCIERO', 'ADMIN')")
     public ResponseEntity<Page<ContratoResponseDTO>> listar(
             @PageableDefault(size = 20) Pageable pageable) {
         return ResponseEntity.ok(listarContratosUseCase.ejecutar(pageable));

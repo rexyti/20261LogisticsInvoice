@@ -4,9 +4,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17e9b87a-fadc-44c3-8b48-1742cb0ad6f5" name="Changes" comment="Corrección de estado de pago">
-      <change afterPath="$PROJECT_DIR$/frontend/.gitignore" afterDir="false" />
+    <list default="true" id="17e9b87a-fadc-44c3-8b48-1742cb0ad6f5" name="Changes" comment="Actualizacion :p">
+      <change beforePath="$PROJECT_DIR$/.claude/settings.local.json" beforeDir="false" afterPath="$PROJECT_DIR$/.claude/settings.local.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gradle/8.6/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.gradle/8.6/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gradle/8.6/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.gradle/8.6/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gradle/8.6/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.gradle/8.6/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gradle/8.6/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.gradle/8.6/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gradle/8.6/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.gradle/8.6/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gradle/8.6/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.gradle/8.6/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/backend/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/logistica/application/cierreRuta/mappers/ParadaResponseMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/logistica/application/cierreRuta/mappers/ParadaResponseMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/logistica/infrastructure/cierreRuta/adapters/ParadaMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/logistica/infrastructure/cierreRuta/adapters/ParadaMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/logistica/infrastructure/contratos/web/controllers/ContratoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/logistica/infrastructure/contratos/web/controllers/ContratoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Navigation.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Navigation.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/cierreRuta/components/RutasTable.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/cierreRuta/components/RutasTable.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/estadoPago/components/PagosTable.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/estadoPago/components/PagosTable.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/estadoPago/hooks/usePagos.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/estadoPago/hooks/usePagos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/estadoPago/pages/PagosPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/estadoPago/pages/PagosPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/estadoPago/services/pagoService.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/estadoPago/services/pagoService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/liquidacion/components/LiquidacionesTable.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/liquidacion/components/LiquidacionesTable.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/liquidacion/hooks/useLiquidaciones.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/liquidacion/hooks/useLiquidaciones.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/liquidacion/pages/Liquidaciones.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/liquidacion/pages/Liquidaciones.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/liquidacion/pages/LiquidacionesPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/liquidacion/pages/LiquidacionesPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/modules/liquidacion/services/liquidacionService.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/modules/liquidacion/services/liquidacionService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,7 +39,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="1064" />
+    <option name="cachedIndexableFilesCount" value="1082" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -153,7 +178,8 @@
       <workItem from="1778651157526" duration="24000" />
       <workItem from="1778909401947" duration="3244000" />
       <workItem from="1778936489433" duration="538000" />
-      <workItem from="1778937218434" duration="360000" />
+      <workItem from="1778937218434" duration="9784000" />
+      <workItem from="1779541980299" duration="23000" />
     </task>
     <task id="LOCAL-00001" summary="Visualizar liquidacion nuevo">
       <option name="closed" value="true" />
@@ -195,7 +221,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778936559375</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Configuración del .gitignore">
+      <option name="closed" value="true" />
+      <created>1778937622640</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1778937622640</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -227,7 +261,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Visualizar liquidacion nuevo" />
     <MESSAGE value="Corrección de estado de pago" />
-    <option name="LAST_COMMIT_MESSAGE" value="Corrección de estado de pago" />
+    <MESSAGE value="Configuración del .gitignore" />
+    <MESSAGE value="Actualizacion :p" />
+    <option name="LAST_COMMIT_MESSAGE" value="Actualizacion :p" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

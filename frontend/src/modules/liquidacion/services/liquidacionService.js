@@ -8,4 +8,22 @@ const getLiquidacionById = (id) => {
   return api.get(`/api/liquidaciones/${id}`);
 };
 
-export const liquidacionService = { getLiquidaciones, getLiquidacionById };
+const buscarLiquidacion = (params) => {
+  return api.get('/api/liquidaciones/buscar', { params });
+};
+
+const recalcularLiquidacion = (id, payload) => {
+  return api.put(`/api/liquidaciones/${id}/recalcular`, payload);
+};
+
+const getEstadoPagoPorLiquidacion = (id) => {
+  return api.get(`/api/v1/liquidaciones/${id}/pago/estado`);
+};
+
+export const liquidacionService = {
+  getLiquidaciones,
+  getLiquidacionById,
+  buscarLiquidacion,
+  recalcularLiquidacion,
+  getEstadoPagoPorLiquidacion,
+};

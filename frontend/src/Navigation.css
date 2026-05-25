@@ -1,36 +1,48 @@
 .app-container {
   display: flex;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .main-nav {
-  width: 250px;
+  width: 270px;
+  min-width: 300px;
   background-color: #1e293b;
   height: 100vh;
-  padding: 1.5rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
+  box-sizing: border-box;
 }
 
 .nav-logo h2 {
   color: #ffffff;
   border: none;
-  margin: 0 0 2rem 0;
+  margin: 0 0 1.25rem 0;
   text-align: center;
+  font-size: 1.2rem;
 }
 
 .main-nav ul {
   list-style: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
 }
 
 .main-nav ul li a {
   display: block;
-  padding: 1rem;
+  padding: 0.6rem 0.875rem;
   border-radius: 6px;
   text-decoration: none;
   color: #94a3b8;
   font-weight: 500;
+  font-size: 1rem;
   transition: background-color 0.2s, color 0.2s;
 }
 
@@ -47,4 +59,28 @@
 .page-container {
   flex-grow: 1;
   padding: 2rem;
+  overflow-y: auto;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.nav-logout-btn {
+  margin-top: auto;
+  width: 100%;
+  padding: 0.6rem 0.875rem;
+  background: transparent;
+  border: 1px solid #475569;
+  border-radius: 6px;
+  color: #94a3b8;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.nav-logout-btn:hover {
+  background-color: #ef4444;
+  border-color: #ef4444;
+  color: #ffffff;
 }

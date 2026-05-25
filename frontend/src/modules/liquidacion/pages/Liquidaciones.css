@@ -204,3 +204,119 @@
     flex-direction: column;
   }
 }
+
+/* ── Modal comprobante ── */
+.liq-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.liq-modal {
+  background: #1F2937;
+  border-radius: 0.875rem;
+  width: 100%;
+  max-width: 580px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.liq-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.liq-modal-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 0.2rem;
+  color: #F9FAFB;
+}
+
+.liq-modal-section-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #6B7280;
+  border-bottom: 1px solid #374151;
+  padding-bottom: 0.4rem;
+}
+
+.liq-modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem 1.5rem;
+}
+
+.liq-modal-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.liq-modal-label {
+  font-size: 0.72rem;
+  color: #9CA3AF;
+  font-weight: 600;
+}
+
+.liq-modal-ajustes-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.liq-modal-ajustes-table th {
+  text-align: left;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #6B7280;
+  padding: 0.4rem 0.5rem;
+  border-bottom: 1px solid #374151;
+}
+
+.liq-modal-ajustes-table td {
+  padding: 0.6rem 0.5rem;
+  font-size: 0.85rem;
+  color: #F9FAFB;
+  border-bottom: 1px solid #374151;
+}
+
+.liq-modal-ajustes-table tr:last-child td {
+  border-bottom: none;
+}
+
+.liq-modal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #374151;
+  padding-top: 1rem;
+  margin-top: 0.25rem;
+}
+
+@media print {
+  .liq-modal-overlay {
+    position: static;
+    background: none;
+  }
+  .liq-modal {
+    max-height: none;
+    box-shadow: none;
+  }
+  .liq-modal-footer button {
+    display: none;
+  }
+}

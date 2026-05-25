@@ -23,6 +23,7 @@ public class ParadaMapper {
 
         return Parada.builder()
                 .paradaId(entity.getParadaId())
+                .paqueteId(entity.getPaqueteId())
                 .estado(entity.getEstado())
                 .motivoFalla(entity.getMotivoFalla())
                 .build();

@@ -6,6 +6,30 @@ import './Liquidaciones.css';
 const formatCurrency = (value) =>
   `$${Number(value).toLocaleString('es-CO', { minimumFractionDigits: 2 })}`;
 
+const exportarCSV = (liquidaciones) => {
+  const headers = ['ID Liquidacion', 'ID Ruta', 'Conductor', 'Tipo Vehiculo', 'Paradas', 'Precio Parada', 'Monto Bruto', 'Monto Neto', 'Estado', 'Fecha Calculo'];
+  const filas = liquidaciones.map((l) => [
+    l.id_liquidacion ?? '',
+    l.id_ruta ?? '',
+    l.conductor_nombre ?? '',
+    l.tipo_vehiculo ?? '',
+    l.numero_paradas ?? '',
+    l.precio_parada ?? '',
+    l.monto_bruto ?? '',
+    l.monto_neto ?? '',
+    l.estado_liquidacion ?? '',
+    l.fecha_calculo ? new Date(l.fecha_calculo).toLocaleString('es-CO') : '',
+  ]);
+  const contenido = [headers, ...filas].map((r) => r.join(';')).join('\n');
+  const blob = new Blob(['﻿' + contenido], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `liquidaciones_${new Date().toISOString().slice(0, 10)}.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
+};
+
 const SummaryCard = ({ label, value, subtitle, accentColor }) => (
   <div className="liq-summary-card">
     <p className="liq-summary-label" style={{ color: accentColor }}>{label}</p>
@@ -56,7 +80,7 @@ const LiquidacionesPage = () => {
         </div>
         <div className="liq-header-actions">
           <button className="btn-secondary" onClick={retry}>↻ Recalcular Todo</button>
-          <button className="btn-primary">↓ Exportar Reporte</button>
+          <button className="btn-primary" onClick={() => exportarCSV(todasLiquidaciones)}>↓ Exportar Reporte</button>
         </div>
       </div>
 
