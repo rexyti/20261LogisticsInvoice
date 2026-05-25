@@ -1,0 +1,428 @@
+/* ── Header ── */
+.liqd-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1.75rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.liqd-header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.liqd-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #374151;
+  color: #9CA3AF;
+  border: 1px solid #4B5563;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+  flex-shrink: 0;
+}
+
+.liqd-back-btn:hover {
+  background-color: #4B5563;
+  color: #F9FAFB;
+}
+
+.liqd-title-block h1 {
+  font-size: 1.75rem;
+  margin: 0 0 0.2rem;
+}
+
+.liqd-title-block p {
+  font-size: 0.85rem;
+  color: #9CA3AF;
+  margin: 0;
+  font-family: monospace;
+}
+
+/* ── KPI cards ── */
+.liqd-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.liqd-kpi-card {
+  background: #1F2937;
+  border-radius: 0.75rem;
+  padding: 1.25rem 1.5rem;
+}
+
+.liqd-kpi-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 0.4rem;
+}
+
+.liqd-kpi-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #F9FAFB;
+  margin: 0;
+}
+
+.liqd-kpi-sub {
+  font-size: 0.75rem;
+  color: #9CA3AF;
+  margin: 0.2rem 0 0;
+}
+
+/* ── Two-column layout ── */
+.liqd-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+/* ── Info card ── */
+.liqd-card {
+  background: #1F2937;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+}
+
+.liqd-card-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #6B7280;
+  margin: 0 0 1.1rem;
+  border-bottom: 1px solid #374151;
+  padding-bottom: 0.6rem;
+}
+
+.liqd-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid #374151;
+  gap: 1rem;
+}
+
+.liqd-field:last-child {
+  border-bottom: none;
+}
+
+.liqd-field-label {
+  font-size: 0.8rem;
+  color: #9CA3AF;
+  flex-shrink: 0;
+}
+
+.liqd-field-value {
+  font-size: 0.85rem;
+  color: #F9FAFB;
+  text-align: right;
+  font-family: monospace;
+  word-break: break-all;
+}
+
+/* ── Ajustes table ── */
+.liqd-ajustes-card {
+  grid-column: 1 / -1;
+}
+
+.liqd-ajustes-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.liqd-ajustes-table th {
+  text-align: left;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #6B7280;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #374151;
+}
+
+.liqd-ajustes-table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #374151;
+  font-size: 0.875rem;
+  color: #F9FAFB;
+  vertical-align: middle;
+}
+
+.liqd-ajustes-table tr:last-child td {
+  border-bottom: none;
+}
+
+.liqd-empty-ajustes {
+  text-align: center;
+  color: #6B7280;
+  padding: 1.5rem 0;
+  font-size: 0.875rem;
+}
+
+/* ── State badge ── */
+.liqd-badge {
+  display: inline-block;
+  padding: 0.3rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .liqd-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .liqd-body {
+    grid-template-columns: 1fr;
+  }
+
+  .liqd-ajustes-card {
+    grid-column: 1;
+  }
+}
+
+@media (max-width: 540px) {
+  .liqd-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .liqd-header {
+    flex-direction: column;
+  }
+}
+
+/* ── Header actions (badge + recalcular btn) ── */
+.liqd-header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+/* ── Estado de pago ── */
+.liqd-pago-card {
+  grid-column: 1 / -1;
+}
+
+.liqd-pago-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem 1.5rem;
+}
+
+/* ── Recalcular modal ── */
+.liqd-recalc-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.liqd-recalc-modal {
+  background: #1F2937;
+  border-radius: 0.875rem;
+  width: 100%;
+  max-width: 620px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.liqd-recalc-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #F9FAFB;
+  margin: 0;
+}
+
+.liqd-recalc-section {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #6B7280;
+  border-bottom: 1px solid #374151;
+  padding-bottom: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+
+.liqd-recalc-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.liqd-recalc-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.liqd-recalc-input,
+.liqd-recalc-select {
+  background: #374151;
+  border: 1px solid #4B5563;
+  border-radius: 0.5rem;
+  color: #F9FAFB;
+  padding: 0.55rem 0.8rem;
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 0.15s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.liqd-recalc-input:focus,
+.liqd-recalc-select:focus {
+  border-color: #3B82F6;
+}
+
+.liqd-recalc-input::placeholder {
+  color: #6B7280;
+}
+
+.liqd-recalc-ajuste-form {
+  display: grid;
+  grid-template-columns: 140px 1fr 1fr auto;
+  gap: 0.6rem;
+  align-items: end;
+}
+
+.liqd-recalc-add-btn {
+  background: #374151;
+  color: #9CA3AF;
+  border: 1px solid #4B5563;
+  border-radius: 0.5rem;
+  padding: 0.55rem 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+
+.liqd-recalc-add-btn:hover {
+  background: #4B5563;
+  color: #F9FAFB;
+}
+
+.liqd-recalc-ajuste-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.liqd-recalc-ajuste-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #374151;
+  border-radius: 0.5rem;
+  padding: 0.6rem 0.9rem;
+  gap: 1rem;
+}
+
+.liqd-recalc-ajuste-item-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.liqd-recalc-ajuste-motivo {
+  font-size: 0.8rem;
+  color: #9CA3AF;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.liqd-recalc-remove-btn {
+  background: transparent;
+  border: none;
+  color: #6B7280;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.1rem 0.3rem;
+  flex-shrink: 0;
+  transition: color 0.15s;
+}
+
+.liqd-recalc-remove-btn:hover {
+  color: #EF4444;
+}
+
+.liqd-recalc-error {
+  background: rgba(239, 68, 68, 0.1);
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  color: #EF4444;
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.liqd-recalc-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  border-top: 1px solid #374151;
+  padding-top: 1rem;
+}
+
+.liqd-recalc-submit-btn {
+  background: #3B82F6;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.6rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.liqd-recalc-submit-btn:hover:not(:disabled) {
+  background: #2563EB;
+}
+
+.liqd-recalc-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 640px) {
+  .liqd-recalc-ajuste-form {
+    grid-template-columns: 1fr 1fr;
+  }
+  .liqd-pago-grid {
+    grid-template-columns: 1fr;
+  }
+}

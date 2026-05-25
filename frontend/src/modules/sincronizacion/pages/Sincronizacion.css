@@ -1,0 +1,123 @@
+/* ── Header ── */
+.sinc-header { margin-bottom: 1.75rem; }
+.sinc-header h1 { font-size: 2.25rem; margin: 0 0 0.25rem; }
+.sinc-header p  { font-size: 0.9rem; color: #9CA3AF; margin: 0; }
+
+/* ── Section card ── */
+.sinc-section {
+  background: #1F2937; border-radius: 0.75rem;
+  padding: 1.5rem; margin-bottom: 1.25rem;
+}
+
+.sinc-section-title {
+  font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.07em; color: #6B7280;
+  border-bottom: 1px solid #374151; padding-bottom: 0.5rem; margin: 0 0 1.25rem;
+}
+
+/* ── Buttons ── */
+.sinc-btn-primary {
+  background: #3B82F6; color: #fff; border: none;
+  border-radius: 0.5rem; padding: 0.6rem 1.25rem;
+  font-size: 0.875rem; font-weight: 600; cursor: pointer; transition: background 0.15s;
+}
+.sinc-btn-primary:hover:not(:disabled) { background: #2563EB; }
+.sinc-btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.sinc-btn-secondary {
+  background: #374151; color: #F9FAFB; border: 1px solid #4B5563;
+  border-radius: 0.5rem; padding: 0.6rem 1.25rem;
+  font-size: 0.875rem; font-weight: 600; cursor: pointer; transition: background 0.15s;
+}
+.sinc-btn-secondary:hover { background: #4B5563; }
+
+/* ── Form rows ── */
+.sinc-form-row {
+  display: flex; gap: 1rem; align-items: flex-end; flex-wrap: wrap;
+}
+
+.sinc-field {
+  display: flex; flex-direction: column; gap: 0.35rem; flex: 1; min-width: 220px;
+}
+
+.sinc-field label {
+  font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.05em; color: #9CA3AF;
+}
+
+.sinc-field input {
+  background: #374151; border: 1px solid #4B5563;
+  border-radius: 0.5rem; color: #F9FAFB;
+  padding: 0.55rem 0.8rem; font-size: 0.875rem;
+  outline: none; transition: border-color 0.15s; width: 100%; box-sizing: border-box;
+}
+.sinc-field input:focus { border-color: #3B82F6; }
+.sinc-field input::placeholder { color: #6B7280; }
+
+/* ── Sync result ── */
+.sinc-result {
+  margin-top: 1rem; border-radius: 0.5rem; padding: 1rem 1.25rem;
+  display: flex; flex-direction: column; gap: 0.4rem;
+}
+
+.sinc-result-EXITOSO     { background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); }
+.sinc-result-ERROR_HTTP,
+.sinc-result-ESTADO_NO_MAPEADO,
+.sinc-result-PAQUETE_NO_ENCONTRADO { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); }
+.sinc-result-PENDIENTE   { background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); }
+
+.sinc-result-label {
+  font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.06em; color: #6B7280;
+}
+
+.sinc-result-value { font-size: 0.95rem; color: #F9FAFB; font-weight: 600; }
+
+/* ── Table ── */
+.sinc-table {
+  width: 100%; border-collapse: collapse; margin-top: 0.25rem;
+}
+
+.sinc-table th {
+  text-align: left; font-size: 0.72rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em; color: #6B7280;
+  padding: 0.5rem 0.75rem; border-bottom: 1px solid #374151;
+}
+
+.sinc-table td {
+  padding: 0.75rem; font-size: 0.875rem; color: #F9FAFB;
+  border-bottom: 1px solid #374151; font-family: monospace;
+}
+
+.sinc-table tr:last-child td { border-bottom: none; }
+
+/* ── Search row ── */
+.sinc-search-row {
+  display: flex; gap: 0.75rem; align-items: flex-end;
+  margin-bottom: 1rem; flex-wrap: wrap;
+}
+
+/* ── Badge ── */
+.sinc-badge {
+  display: inline-block; padding: 0.2rem 0.6rem;
+  border-radius: 9999px; font-size: 0.7rem; font-weight: 600;
+  white-space: nowrap; font-family: sans-serif;
+}
+
+/* ── Pagination ── */
+.sinc-pagination {
+  display: flex; justify-content: center; align-items: center;
+  gap: 0.75rem; margin-top: 1rem;
+}
+
+.sinc-pagination button {
+  background: #374151; color: #F9FAFB; border: none;
+  border-radius: 0.375rem; padding: 0.4rem 0.9rem;
+  cursor: pointer; font-size: 0.8rem;
+}
+.sinc-pagination button:disabled { opacity: 0.4; cursor: not-allowed; }
+.sinc-pagination span { font-size: 0.8rem; color: #6B7280; }
+
+@media (max-width: 640px) {
+  .sinc-form-row { flex-direction: column; }
+}
