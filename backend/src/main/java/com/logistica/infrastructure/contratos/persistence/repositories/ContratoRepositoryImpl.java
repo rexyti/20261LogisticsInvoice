@@ -23,6 +23,14 @@ public class ContratoRepositoryImpl implements ContratoRepository {
     private final ContratoTransportistaJpaRepository transportistaJpaRepository;
     private final ContratoMapper mapper;
 
+
+    @Override
+    public Optional<Contrato> buscarActivoPorTransportistaId(UUID transportistaId) {
+        return jpaRepository
+                .findFirstByTransportista_IdOrderByFechaInicioDesc(transportistaId)
+                .map(mapper::toDomain);
+    }
+
     @Override
     @Transactional
     public Contrato guardar(Contrato contrato) {

@@ -7,6 +7,9 @@ import com.logistica.domain.contratos.models.Contrato;
 import com.logistica.domain.contratos.models.Transportista;
 import com.logistica.domain.contratos.repositories.ContratoRepository;
 import com.logistica.domain.contratos.repositories.TransportistaContratoRepository;
+import com.logistica.domain.liquidacion.enums.TipoContratacion;
+import com.logistica.domain.liquidacion.models.ContratoTarifa;
+import com.logistica.domain.liquidacion.repositories.ContratoTarifaRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -20,6 +23,7 @@ public class ProcesarContratoCreadoUseCase implements ProcesarContratoCreadoPort
     private final ContratoRepository contratoRepository;
     private final TransportistaContratoRepository transportistaRepository;
     private final ContratoEventMapper eventMapper;
+    private final ContratoTarifaRepository contratoTarifaRepository;
 
     @Transactional
     public void ejecutar(ContratoCreadoEvent evento) {
@@ -57,5 +61,14 @@ public class ProcesarContratoCreadoUseCase implements ProcesarContratoCreadoPort
 
         contratoRepository.guardar(contratoConTransportista);
         log.info("Contrato {} persistido localmente desde evento", idContrato);
+
+        ContratoTarifa tarifa = ContratoTarifa.builder()
+                .id(contratoConTransportista.getId())
+                .tipoContratacion(contratoConTransportista.getEsPorParada() ? TipoContratacion.POR_PARADA : TipoContratacion.RECORRIDO_COMPLETO)
+                .tarifa(contratoConTransportista.getEsPorParada() ? contratoConTransportista.getPrecioParadas() : contratoConTransportista.getPrecio())
+                .build();
+
+        contratoTarifaRepository.save(tarifa);
+        log.info("ContratoTarifa sincronizada para contrato {}", idContrato);
     }
 }

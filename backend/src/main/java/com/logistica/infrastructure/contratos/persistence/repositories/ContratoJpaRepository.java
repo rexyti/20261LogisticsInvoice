@@ -11,6 +11,9 @@ import java.util.UUID;
 
 public interface ContratoJpaRepository extends JpaRepository<ContratoEntity, UUID> {
 
+
+    Optional<ContratoEntity> findFirstByTransportista_IdOrderByFechaInicioDesc(UUID transportistaId);
+
     @EntityGraph(attributePaths = {"transportista", "seguro"})
     Optional<ContratoEntity> findByIdContrato(String idContrato);
 

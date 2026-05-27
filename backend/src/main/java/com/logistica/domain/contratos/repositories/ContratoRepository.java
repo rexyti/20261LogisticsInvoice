@@ -8,6 +8,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface ContratoRepository {
+    Optional<Contrato> buscarActivoPorTransportistaId(UUID transportistaId);
     Contrato guardar(Contrato contrato);
     boolean existePorIdContrato(String idContrato);
     Optional<Contrato> buscarPorIdContrato(String idContrato);
