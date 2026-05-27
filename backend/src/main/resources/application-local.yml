@@ -30,6 +30,10 @@ spring:
         secret-key: ${AWS_SECRET_ACCESS_KEY}
 
 app:
+  mock:
+    tarifa:
+      por-parada: 15000
+      recorrido-completo: 80000
   sqs:
     queue:
       ruta-cerrada: logistics-cierre-ruta

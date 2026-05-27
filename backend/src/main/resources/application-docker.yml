@@ -21,6 +21,10 @@ spring:
         secret-key: test
 
 app:
+  mock:
+    tarifa:
+      por-parada: 15000
+      recorrido-completo: 80000
   sqs:
     queue:
       ruta-cerrada: ruta-cerrada-queue
