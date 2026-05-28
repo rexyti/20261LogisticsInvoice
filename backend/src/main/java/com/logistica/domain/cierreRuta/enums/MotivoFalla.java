@@ -49,14 +49,14 @@ public enum MotivoFalla {
     DEVOLUCION(
             "DEVOLUCION",
             ResponsableFalla.EMPRESA,
-            0.0,
-            0.0,
+            0.30,
+            0.50,
             false
     ),
 
     ZONA_DIFICIL_ACCESO(
             "ZONA_DIFICIL_ACCESO",
-            ResponsableFalla.EMPRESA,
+            ResponsableFalla.TRANSPORTISTA,
             0.0,
             0.0,
             true
