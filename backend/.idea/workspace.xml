@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70668f6f-3f6d-47f4-bd56-df4d94437e6e" name="Changes" comment="modificaciones minimas de los motivos de falla, creacion de importancia de los estados del paquete dada por el modulo de paquetes (si no existe hacemos un fallback para usar el estado que el modulo de cierre de rutas da).">
+    <list default="true" id="70668f6f-3f6d-47f4-bd56-df4d94437e6e" name="Changes" comment="logica de validacion para el conductor">
+      <change afterPath="$PROJECT_DIR$/docs/FLUJO_COMPLETO_MODULO_FINANCIERO.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/liquidacion/handlers/LiquidacionEventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/liquidacion/handlers/LiquidacionEventHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/messaging/consumers/EstadoPaqueteConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/messaging/consumers/EstadoPaqueteConsumer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -219,7 +220,8 @@
       <workItem from="1779833543881" duration="613000" />
       <workItem from="1779913028624" duration="32000" />
       <workItem from="1779913686003" duration="8320000" />
-      <workItem from="1779927575941" duration="3704000" />
+      <workItem from="1779927575941" duration="3832000" />
+      <workItem from="1780009229816" duration="1475000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <option name="closed" value="true" />
@@ -437,7 +439,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779931392947</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="logica de validacion para el conductor">
+      <option name="closed" value="true" />
+      <created>1779932698420</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1779932698420</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -479,6 +489,7 @@
     <MESSAGE value="conexión de la liquidacion con la rutaCerrada, creación del mock para crear un contrato y mejora de repositorios para la conexión de liquidacion-rutaCerrdad" />
     <MESSAGE value="mock de tarifas" />
     <MESSAGE value="modificaciones minimas de los motivos de falla, creacion de importancia de los estados del paquete dada por el modulo de paquetes (si no existe hacemos un fallback para usar el estado que el modulo de cierre de rutas da)." />
-    <option name="LAST_COMMIT_MESSAGE" value="modificaciones minimas de los motivos de falla, creacion de importancia de los estados del paquete dada por el modulo de paquetes (si no existe hacemos un fallback para usar el estado que el modulo de cierre de rutas da)." />
+    <MESSAGE value="logica de validacion para el conductor" />
+    <option name="LAST_COMMIT_MESSAGE" value="logica de validacion para el conductor" />
   </component>
 </project>
