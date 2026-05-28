@@ -8,6 +8,10 @@ import com.logistica.domain.cierreRuta.events.RutaCerradaProcesadaEvent;
 import com.logistica.domain.cierreRuta.models.Parada;
 import com.logistica.domain.cierreRuta.models.RutaCerrada;
 import com.logistica.domain.cierreRuta.repositories.RutaRepository;
+import com.logistica.domain.conductor.enums.EstadoConductor;
+import com.logistica.domain.conductor.exceptions.ConductorNoEncontradoException;
+import com.logistica.domain.conductor.models.Conductor;
+import com.logistica.domain.conductor.ports.ConductorGateway;
 import com.logistica.domain.contratos.models.Contrato;
 import com.logistica.domain.contratos.repositories.ContratoRepository;
 import com.logistica.domain.liquidacion.enums.EstadoPaquete;
@@ -43,6 +47,7 @@ public class LiquidacionEventHandler {
     private final ContratoTarifaRepository contratoTarifaRepository;
     private final PaqueteRepository paqueteRepository;
     private final TarifaMockProperties tarifaMockProperties;
+    private final ConductorGateway conductorGateway;
 
     @EventListener
     public void handle(RutaCerradaProcesadaEvent event) {
@@ -61,9 +66,23 @@ public class LiquidacionEventHandler {
                 .orElseThrow(() -> new IllegalStateException(
                         "Ruta no encontrada: " + rutaId));
 
+        //1.5 Validar conductor
+        UUID transportistaId = ruta.getTransportista().getTransportistaId();
+        try {
+            Conductor conductor = conductorGateway.consultar(transportistaId);
+            if (conductor.getEstado() != EstadoConductor.ACTIVO) {
+                log.warn("Conductor {} inactivo, se omite liquidación", transportistaId);
+                return;
+            }
+            log.info("Conductor {} validado correctamente", transportistaId);
+        } catch (ConductorNoEncontradoException e) {
+            log.error("Conductor {} no encontrado, se omite liquidación", transportistaId);
+            return;
+        }
+
         // 2. Resolver contrato (real o mock)
         ContratoTarifa contratoTarifa = resolverContratoTarifa(
-                ruta.getTransportista().getTransportistaId(),
+                transportistaId,
                 ruta.getModeloContrato()
         );
 
