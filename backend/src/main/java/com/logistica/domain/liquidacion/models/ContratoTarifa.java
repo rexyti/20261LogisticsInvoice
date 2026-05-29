@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
@@ -16,6 +17,11 @@ public class ContratoTarifa {
     private final UUID id;
     private final TipoContratacion tipoContratacion;
     private final BigDecimal tarifa;
+    private final String tipoContrato;
+    private final String tipoVehiculo;
+    private final Boolean esPorParada;
+    private final LocalDateTime fechaInicio;
+    private final LocalDateTime fechaFinal;
 
     public BigDecimal getTarifaSegura() {
         if (tarifa == null || tarifa.compareTo(BigDecimal.ZERO) <= 0) {

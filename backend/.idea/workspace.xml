@@ -4,26 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70668f6f-3f6d-47f4-bd56-df4d94437e6e" name="Changes" comment="cambios bases para funcionamiento de mensajeria cola">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="70668f6f-3f6d-47f4-bd56-df4d94437e6e" name="Changes" comment="documentacion tecnica y flujo de accion integrado">
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/application/cierreRuta/dtos/request/ParadaEventDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/application/cierreRuta/dtos/request/ParadaEventDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/cierreRuta/enums/EstadoParada.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/domain/cierreRuta/enums/EstadoParada.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/cierreRuta/enums/MotivoFalla.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/domain/cierreRuta/enums/MotivoFalla.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/cierreRuta/models/Parada.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/domain/cierreRuta/models/Parada.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/cierreRuta/services/ClasificacionRutaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/domain/cierreRuta/services/ClasificacionRutaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/messaging/config/SqsConsumerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/messaging/config/SqsConsumerConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/messaging/consumers/JsonNodeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/messaging/consumers/JsonNodeMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/messaging/consumers/RutaCerradaConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/messaging/consumers/RutaCerradaConsumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/messaging/mappers/RutaCerradaMensajeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/messaging/mappers/RutaCerradaMensajeMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/domain/liquidacion/models/ContratoTarifa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/domain/liquidacion/models/ContratoTarifa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/liquidacion/handlers/LiquidacionEventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/liquidacion/handlers/LiquidacionEventHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/liquidacion/persistence/mapper/LiquidacionContratoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/logistica/infrastructure/liquidacion/persistence/mapper/LiquidacionContratoMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +106,7 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;SHELLCHECK.PATH&quot;: &quot;I do mind&quot;,
     &quot;Spring Boot.LogisticaApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;configuracion__aws&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Frontend-implementation&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/LUIS/IdeaProjects/20261LogisticsInvoice/20261LogisticsInvoice/backend&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -227,6 +223,7 @@
       <workItem from="1779505780876" duration="7082000" />
       <workItem from="1779570307154" duration="7515000" />
       <workItem from="1779579370904" duration="457000" />
+      <workItem from="1780090624857" duration="963000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <option name="closed" value="true" />

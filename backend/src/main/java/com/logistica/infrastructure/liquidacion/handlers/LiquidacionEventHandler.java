@@ -29,6 +29,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.List;
 import java.util.Map;
@@ -83,7 +84,8 @@ public class LiquidacionEventHandler {
         // 2. Resolver contrato (real o mock)
         ContratoTarifa contratoTarifa = resolverContratoTarifa(
                 transportistaId,
-                ruta.getModeloContrato()
+                ruta.getModeloContrato(),
+                ruta.getTipoVehiculo() != null ? ruta.getTipoVehiculo().name() : "DESCONOCIDO"
         );
 
         // 3. Obtener estados finales del módulo de paquetes (fuente de verdad)
@@ -143,7 +145,8 @@ public class LiquidacionEventHandler {
     // RESOLVER CONTRATO: real o mock
     // =============================================
     private ContratoTarifa resolverContratoTarifa(UUID transportistaId,
-                                                  String modeloContrato) {
+                                                  String modeloContrato,
+                                                  String tipoVehiculo) {
         Optional<Contrato> contratoReal =
                 contratoRepository.buscarActivoPorTransportistaId(transportistaId);
 
@@ -165,6 +168,12 @@ public class LiquidacionEventHandler {
                                         .tarifa(contrato.getEsPorParada()
                                                 ? contrato.getPrecioParadas()
                                                 : contrato.getPrecio())
+                                        .tipoContrato(contrato.getTipoContrato())
+                                        .tipoVehiculo(contrato.getTipoVehiculo() != null
+                                                ? contrato.getTipoVehiculo().name() : "DESCONOCIDO")
+                                        .esPorParada(contrato.getEsPorParada())
+                                        .fechaInicio(contrato.getFechaInicio())
+                                        .fechaFinal(contrato.getFechaFinal())
                                         .build()
                         );
                     });
@@ -183,6 +192,11 @@ public class LiquidacionEventHandler {
                         .id(UUID.randomUUID())
                         .tipoContratacion(tipo)
                         .tarifa(tarifa)
+                        .tipoContrato(modeloContrato != null ? modeloContrato : "MOCK")
+                        .tipoVehiculo(tipoVehiculo)
+                        .esPorParada(tipo == TipoContratacion.POR_PARADA)
+                        .fechaInicio(LocalDateTime.now())
+                        .fechaFinal(LocalDateTime.now().plusYears(1))
                         .build()
         );
     }
@@ -233,8 +247,14 @@ public class LiquidacionEventHandler {
     // PARSEO DEL MODELO DE CONTRATO
     // =============================================
     private TipoContratacion parsearTipo(String modeloContrato) {
+        if (modeloContrato == null) return TipoContratacion.POR_PARADA;
+
+        String normalizado = modeloContrato.trim()
+                .toUpperCase()
+                .replace(" ", "_");
+
         try {
-            return TipoContratacion.valueOf(modeloContrato.toUpperCase().trim());
+            return TipoContratacion.valueOf(normalizado);
         } catch (IllegalArgumentException e) {
             log.error("Modelo de contrato no reconocido: {}, usando POR_PARADA por defecto",
                     modeloContrato);
