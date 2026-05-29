@@ -1,0 +1,69 @@
+package com.logistica.infrastructure.messaging.consumers;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
+import java.io.IOException;
+
+public class JsonNodeMapper {
+
+    private static final ObjectMapper objectMapper = JsonMapper.builder()
+            .addModule(new JavaTimeModule()).build();
+
+    /**
+     * Convierte cualquier objeto Java a JsonNode
+     */
+    public static <T> JsonNode toJsonNode(T object) {
+        try {
+            return objectMapper.valueToTree(object);
+        } catch (Exception e) {
+            throw new RuntimeException("Error al convertir objeto a JsonNode", e);
+        }
+    }
+
+    /**
+     * Convierte un JsonNode a cualquier clase Java
+     */
+    public static <T> T fromJsonNode(JsonNode jsonNode, Class<T> targetClass) {
+        try {
+            return objectMapper.treeToValue(jsonNode, targetClass);
+        } catch (Exception e) {
+            throw new RuntimeException("Error al convertir JsonNode a " + targetClass.getSimpleName(), e);
+        }
+    }
+
+    /**
+     * Convierte un JsonNode a un objeto con manejo de excepciones seguro
+     */
+    public static <T> T fromJsonNode(JsonNode jsonNode, Class<T> targetClass, T defaultValue) {
+        try {
+            return objectMapper.treeToValue(jsonNode, targetClass);
+        } catch (Exception e) {
+            return defaultValue;
+        }
+    }
+
+    /**
+     * Combina dos JsonNode (útil para merges)
+     */
+    public static JsonNode merge(JsonNode source, JsonNode target) {
+        ObjectNode result = objectMapper.createObjectNode();
+
+        try {
+            objectMapper.readerForUpdating(result).readValue(source);
+            objectMapper.readerForUpdating(result).readValue(target);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return result;
+    }
+
+    /**
+     * Obtiene el ObjectMapper si necesitas operaciones custom
+     */
+    public static ObjectMapper getObjectMapper() {
+        return objectMapper;
+    }
+}

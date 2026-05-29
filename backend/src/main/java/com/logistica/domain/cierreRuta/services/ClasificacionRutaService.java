@@ -23,15 +23,29 @@ public class ClasificacionRutaService {
         if(parada == null){
             throw new ParadaInvalidaException("Parada inválida");
         }
-        if(parada.getEstado() == EstadoParada.FALLIDA){
+
+        if(parada.getEstado() == null){
+            throw new ParadaInvalidaException("Estado null en parada: " + parada.getParadaId());
+        }
+
+        if(parada.getEstado() == EstadoParada.FALLIDA ||
+                parada.getEstado() == EstadoParada.NOVEDAD){
             validarParadaFallida(parada);
         }
     }
 
     public void validarParadaFallida(Parada parada){
-        if(parada.getMotivoFalla() == null) {
+        if (parada.getEstado() == null) {
+            throw new ParadaInvalidaException("Estado null en parada: " + parada.getParadaId());
+        }
+
+        if ((parada.getEstado() == EstadoParada.FALLIDA ||
+                parada.getEstado() == EstadoParada.NOVEDAD)
+                && parada.getMotivoFalla() == null) {
+
             throw new ParadaInvalidaException(
-                    "Parada fallida sin motivoFalla. paradaId: " + parada.getParadaId());
+                    "Parada " + parada.getEstado() + " sin motivoFalla: " + parada.getParadaId()
+            );
         }
     }
 
@@ -42,7 +56,7 @@ public class ClasificacionRutaService {
         return paradas.stream()
                 .filter(Objects::nonNull)
                 .filter(p -> p.getMotivoFalla() != null)
-                .filter(p -> p.getEstado() == EstadoParada.FALLIDA)
+                .filter(p -> p.getEstado() == EstadoParada.FALLIDA || p.getEstado() == EstadoParada.NOVEDAD)
                 .filter(p -> p.getMotivoFalla().getResponsable() == responsable)
                 .count();
     }

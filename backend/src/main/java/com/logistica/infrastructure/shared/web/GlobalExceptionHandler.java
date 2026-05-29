@@ -3,11 +3,10 @@ package com.logistica.infrastructure.shared.web;
 import com.logistica.domain.cierreRuta.exceptions.EventoDuplicadoException;
 import com.logistica.domain.cierreRuta.exceptions.ParadaInvalidaException;
 import com.logistica.domain.cierreRuta.exceptions.RutaNotFoundException;
-import com.logistica.domain.contratos.exceptions.ContratoInvalidoException;
-import com.logistica.domain.contratos.exceptions.ContratoNotFoundException;
-import com.logistica.domain.contratos.exceptions.ContratoYaExisteException;
+import com.logistica.domain.conductor.exceptions.ConductorInactivoException;
+import com.logistica.domain.conductor.exceptions.ConductorNoEncontradoException;
 import com.logistica.domain.contratos.exceptions.RecursoNoEncontradoException;
-import com.logistica.domain.contratos.exceptions.TransportistaNotFoundException;
+import com.logistica.domain.registrarEstadoPago.exceptions.PagoRechazadoBancoException;
 import com.logistica.domain.liquidacion.exceptions.ContratoTarifaNoEncontradaException;
 import com.logistica.domain.liquidacion.exceptions.DuplicadaException;
 import com.logistica.domain.liquidacion.exceptions.NotFoundException;
@@ -75,8 +74,7 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(ApiError.of("SOLICITUD_INVALIDA", ex.getMessage()));
     }
 
-    @ExceptionHandler({ParadaInvalidaException.class, ContratoInvalidoException.class,
-            EstadoPagoInvalidoException.class})
+    @ExceptionHandler({ParadaInvalidaException.class, EstadoPagoInvalidoException.class})
     public ResponseEntity<ApiError> handleDomainBadRequest(RuntimeException ex) {
         return ResponseEntity.badRequest().body(ApiError.of("ERROR_DOMINIO", ex.getMessage()));
     }
@@ -102,13 +100,26 @@ public class GlobalExceptionHandler {
                 .body(ApiError.of("ACCESO_DENEGADO", "No tiene permisos para realizar esta acción"));
     }
 
+    @ExceptionHandler(ConductorInactivoException.class)
+    public ResponseEntity<ApiError> handleConductorInactivo(ConductorInactivoException ex) {
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
+                .body(ApiError.of("CONDUCTOR_INACTIVO", ex.getMessage()));
+    }
+
+    @ExceptionHandler(PagoRechazadoBancoException.class)
+    public ResponseEntity<ApiError> handlePagoRechazado(PagoRechazadoBancoException ex) {
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
+                .body(ApiError.of("PAGO_RECHAZADO", ex.getMessage()));
+    }
+
     // ── 404 Not Found ────────────────────────────────────────────────────────
 
-    @ExceptionHandler({RutaNotFoundException.class, ContratoNotFoundException.class,
-            TransportistaNotFoundException.class, RecursoNoEncontradoException.class,
+    @ExceptionHandler({RutaNotFoundException.class,
+            RecursoNoEncontradoException.class,
             ContratoTarifaNoEncontradaException.class, NotFoundException.class,
             PaqueteNotFoundException.class, RegistrarEstadoPagoPagoNoEncontradoException.class,
-            VisualizarEstadoPagoPagoNoEncontradoException.class})
+            VisualizarEstadoPagoPagoNoEncontradoException.class,
+            ConductorNoEncontradoException.class})
     public ResponseEntity<ApiError> handleNotFound(RuntimeException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(ApiError.of("RECURSO_NO_ENCONTRADO", ex.getMessage()));
@@ -127,7 +138,7 @@ public class GlobalExceptionHandler {
     // ── 409 Conflict ─────────────────────────────────────────────────────────
 
     @ExceptionHandler({EventoDuplicadoException.class, DuplicadaException.class,
-            ContratoYaExisteException.class, RegistrarEstadoPagoEventoDuplicadoException.class,
+            RegistrarEstadoPagoEventoDuplicadoException.class,
             TransicionEstadoPagoInvalidaException.class})
     public ResponseEntity<ApiError> handleConflict(RuntimeException ex) {
         return ResponseEntity.status(HttpStatus.CONFLICT)
@@ -150,7 +161,8 @@ public class GlobalExceptionHandler {
     // ── 503 Service Unavailable ───────────────────────────────────────────────
 
     @ExceptionHandler({SincronizacionException.class, StorageUnavailableException.class,
-            DataAccessResourceFailureException.class})
+            DataAccessResourceFailureException.class,
+            com.logistica.domain.registrarEstadoPago.exceptions.ErrorComunicacionBancoException.class})
     public ResponseEntity<ApiError> handleServiceUnavailable(RuntimeException ex) {
         log.error("Servicio no disponible", ex);
         return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)

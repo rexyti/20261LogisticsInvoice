@@ -2,43 +2,23 @@ package com.logistica.infrastructure.novedadEstadoPaquete.web.controllers;
 
 import com.logistica.application.novedadEstadoPaquete.dtos.response.HistorialEstadoDTO;
 import com.logistica.application.novedadEstadoPaquete.dtos.response.LogSincronizacionDTO;
-import com.logistica.application.novedadEstadoPaquete.dtos.response.SincronizacionResultadoDTO;
 import com.logistica.application.novedadEstadoPaquete.usecases.paquete.PaqueteObtenerHistorialUseCase;
 import com.logistica.application.novedadEstadoPaquete.usecases.paquete.ObtenerLogsSincronizacionUseCase;
-import com.logistica.application.novedadEstadoPaquete.usecases.paquete.SincronizarPaqueteUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.UUID;
-
 
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
 public class PaqueteController {
 
-    private final SincronizarPaqueteUseCase        sincronizarUseCase;
-    private final PaqueteObtenerHistorialUseCase     historialUseCase;
-    private final ObtenerLogsSincronizacionUseCase  logsUseCase;
+    private final PaqueteObtenerHistorialUseCase historialUseCase;
+    private final ObtenerLogsSincronizacionUseCase logsUseCase;
 
-    /**
-     * Triggers synchronous consultation with the Package Management Module.
-     * Called automatically by the liquidation process; also exposed for integration testing.
-     * FR-001: GET /route/{idRoute}/package/{idPaquete} is the external call made inside.
-     */
-    @PostMapping("/rutas/{idRuta}/paquetes/{idPaquete}/sincronizar")
-    public ResponseEntity<SincronizacionResultadoDTO> sincronizar(
-            @PathVariable UUID idRuta,
-            @PathVariable UUID idPaquete) {
-        return ResponseEntity.ok(sincronizarUseCase.execute(idRuta, idPaquete));
-    }
-
-    /** Returns state history for a package ordered by fecha DESC. */
     @GetMapping("/paquetes/{idPaquete}/historial")
     public ResponseEntity<List<HistorialEstadoDTO>> obtenerHistorial(
             @PathVariable UUID idPaquete,

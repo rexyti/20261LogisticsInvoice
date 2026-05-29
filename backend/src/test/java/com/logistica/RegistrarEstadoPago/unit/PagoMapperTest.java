@@ -57,7 +57,7 @@ class PagoMapperTest {
         UUID idLiquidacion = UUID.randomUUID();
         RegistrarEstadoPagoPago domain = new RegistrarEstadoPagoPago(idPago, null, new BigDecimal("500.00"), Instant.now(),
                 null, new BigDecimal("450.00"), idLiquidacion,
-                RegistrarEstadoPagoEstadoPagoEnum.PAGADO, Instant.now(), 2L);
+                RegistrarEstadoPagoEstadoPagoEnum.PAGADO, Instant.now(), 2L, null, null);
 
         RegistrarEstadoPagoPagoEntity entity = mapper.toEntity(domain);
 

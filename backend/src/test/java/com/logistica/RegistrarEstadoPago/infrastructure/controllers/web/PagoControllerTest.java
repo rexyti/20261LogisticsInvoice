@@ -52,7 +52,7 @@ class PagoControllerTest {
     void get_estadoPago_existente_retorna200() throws Exception {
         UUID idPago = UUID.randomUUID();
         PagoResponseDTO response = new PagoResponseDTO(idPago, UUID.randomUUID(),
-                RegistrarEstadoPagoEstadoPagoEnum.PAGADO, Instant.now(), 2L);
+                RegistrarEstadoPagoEstadoPagoEnum.PAGADO, null, Instant.now(), 2L, null, null);
         when(obtenerEstadoPagoUseCase.obtenerEstadoPago(any())).thenReturn(response);
 
         mockMvc.perform(get("/api/v1/pagos/{idPago}/estado", idPago))

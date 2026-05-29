@@ -1,6 +1,7 @@
 package com.logistica.RegistrarEstadoPago.infrastructure.controllers.web;
 
 import com.logistica.application.registrarEstadoPago.dtos.response.PagoResponseDTO;
+import com.logistica.application.registrarEstadoPago.usecases.pago.IniciarPagoBancarioUseCase;
 import com.logistica.application.registrarEstadoPago.usecases.pago.ObtenerEstadoPagoUseCase;
 import com.logistica.domain.registrarEstadoPago.enums.RegistrarEstadoPagoEstadoPagoEnum;
 import com.logistica.domain.registrarEstadoPago.exceptions.RegistrarEstadoPagoPagoNoEncontradoException;
@@ -31,18 +32,16 @@ class LiquidacionControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
-    private ObtenerEstadoPagoUseCase obtenerEstadoPagoUseCase;
-
-    @MockBean
-    private JwtAuthenticationFilter jwtAuthenticationFilter;
+    @MockBean private ObtenerEstadoPagoUseCase obtenerEstadoPagoUseCase;
+    @MockBean private IniciarPagoBancarioUseCase iniciarPagoBancarioUseCase;
+    @MockBean private JwtAuthenticationFilter jwtAuthenticationFilter;
 
     @Test
     void get_estadoPagoPorLiquidacion_existente_retorna200() throws Exception {
         UUID idLiquidacion = UUID.randomUUID();
         UUID idPago = UUID.randomUUID();
         PagoResponseDTO response = new PagoResponseDTO(idPago, idLiquidacion,
-                RegistrarEstadoPagoEstadoPagoEnum.PAGADO, Instant.now(), 3L);
+                RegistrarEstadoPagoEstadoPagoEnum.PAGADO, null, Instant.now(), 3L, null, null);
         when(obtenerEstadoPagoUseCase.obtenerEstadoPagoPorLiquidacion(any())).thenReturn(response);
 
         mockMvc.perform(get("/api/v1/liquidaciones/{idLiquidacion}/pago/estado", idLiquidacion))

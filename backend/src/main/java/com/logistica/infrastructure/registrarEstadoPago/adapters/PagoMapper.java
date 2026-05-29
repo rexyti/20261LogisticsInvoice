@@ -24,7 +24,9 @@ public class PagoMapper {
                 entity.getIdLiquidacion(),
                 entity.getEstadoActual(),
                 entity.getFechaUltimaActualizacion(),
-                entity.getUltimaSecuenciaProcesada()
+                entity.getUltimaSecuenciaProcesada(),
+                entity.getNumeroVoucher(),
+                entity.getFechaProcesamiento()
         );
     }
 
@@ -40,6 +42,8 @@ public class PagoMapper {
                 .estadoActual(domain.estadoActual())
                 .fechaUltimaActualizacion(domain.fechaUltimaActualizacion())
                 .ultimaSecuenciaProcesada(domain.ultimaSecuenciaProcesada())
+                .numeroVoucher(domain.numeroVoucher())
+                .fechaProcesamiento(domain.fechaProcesamiento())
                 .build();
     }
 

@@ -6,6 +6,7 @@ import com.logistica.infrastructure.novedadEstadoPaquete.persistence.mapper.Paqu
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -19,6 +20,13 @@ public class PaqueteRepositoryImpl implements PaqueteRepository {
     @Override
     public Optional<NovedadEstadoPaquetePaquete> findByIdPaquete(UUID idPaquete) {
         return jpa.findByIdPaquete(idPaquete).map(mapper::toDomain);
+    }
+    @Override
+    public List<NovedadEstadoPaquetePaquete> findAllByIdRuta(UUID idRuta) {
+        return jpa.findAllByIdRuta(idRuta)
+                .stream()
+                .map(mapper::toDomain)
+                .toList();
     }
 
     @Override

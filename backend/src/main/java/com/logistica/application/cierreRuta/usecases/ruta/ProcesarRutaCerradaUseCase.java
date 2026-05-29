@@ -2,6 +2,7 @@ package com.logistica.application.cierreRuta.usecases.ruta;
 
 import com.logistica.application.cierreRuta.dtos.request.RutaCerradaEventDTO;
 import com.logistica.application.cierreRuta.mappers.RutaEventMapper;
+import com.logistica.application.cierreRuta.ports.in.ProcesarRutaCerradaPort;
 import com.logistica.domain.cierreRuta.models.RutaCerrada;
 import com.logistica.domain.cierreRuta.models.TransportistaRuta;
 import com.logistica.domain.cierreRuta.ports.EventPublisher;
@@ -19,7 +20,7 @@ import java.util.UUID;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class ProcesarRutaCerradaUseCase {
+public class ProcesarRutaCerradaUseCase implements ProcesarRutaCerradaPort {
 
     private final RutaRepository rutaRepository;
     private final TransportistaRutaRepository transportistaRepository;

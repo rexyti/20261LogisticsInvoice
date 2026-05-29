@@ -1,261 +1,306 @@
-# Implementation Plan: Registrar modelo de contratación
+# Implementation Plan: Gestión de contratos en Finanzas (Event-Driven)
 
-**Date**: 2026-04-08
+**Fecha**: 2026-05-16
+**Versión**: 3.0 — Migración a arquitectura asíncrona SQS
 **Spec**: [Registrar modelo de contratación.md]
 
-## Summary
+---
 
-Este módulo es el núcleo administrativo del sistema de tarifas. Permite la creación formal y la consulta de los modelos de contratación de los transportistas. Su objetivo principal es garantizar la absoluta integridad de los datos de entrada: previene la duplicidad de identificadores, asegura la coherencia temporal de las fechas de vigencia y aplica reglas de negocio dinámicas como la validación del tipo de precio según el modelo de contrato (precio por parada vs precio fijo por ruta).
+## Resumen del cambio arquitectónico
+
+| Versión | Modelo | Descripción |
+|---|---|---|
+| v1.0 | REST síncrono owner | Finanzas creaba contratos localmente vía `POST /api/contratos` |
+| v2.0 | REST síncrono consumer | Finanzas consumía contratos del Gestor de Tarifas vía Feign |
+| **v3.0** | **Eventos asíncronos** | **Finanzas recibe `CONTRATO_CREADO` por SQS y persiste localmente** |
+
+**Responsabilidad actual de Finanzas**:
+- Consumir eventos de contratos desde SQS.
+- Mantener copia local de contratos para liquidación.
+- Exponer endpoints `GET` de sólo lectura sobre esa copia local.
+
+---
 
 ## Technical Context
 
-**Language/Version**: Java 21 / JavaScript / React 18+
-
-**Primary Dependencies**: Spring Boot (Web, Data JPA, Validation), PostgreSQL Driver, Axios
-
+**Language/Version**: Java 21
+**Framework**: Spring Boot 3.2.4
+**Mensajería**: AWS SQS (`io.awspring.cloud:spring-cloud-aws-starter-sqs`)
 **Storage**: PostgreSQL 15
+**Testing**: JUnit 5, Mockito, Spring Boot Test, Testcontainers + LocalStack
 
-**Testing**: JUnit 5, Mockito, Spring Boot Test / Jest, React Testing Library
+---
 
-**Target Platform**: AWS
-
-**Project Type**: Web application (Backend API + Frontend Dashboard)
-
-**Performance Goals**: Consultas de contratos en menos de 200ms; inserciones con validación en menos de 300ms.
-
-**Constraints**: Restricción UNIQUE en base de datos para el identificador externo del contrato (FR-004). Validación estricta a nivel de API para campos obligatorios, coherencia de fechas (Fecha Final estrictamente mayor a Fecha Inicio) y precio condicional según tipo de contrato.
-
-## Project Structure
-
-### Documentation (this feature)
+## Estructura final del módulo
 
 ```text
-specs/registrar-contrato/
-├── plan.md              # Este archivo
-└── spec.md              # Especificación: Registrar modelo de contratación.md
+backend/src/main/java/com/logistica/
+│
+├── application/contratos/
+│   ├── dtos/
+│   │   ├── event/
+│   │   │   └── ContratoCreadoEvent.java          ← DTO del mensaje SQS
+│   │   └── response/
+│   │       ├── ContratoResponseDTO.java           ← Respuesta GET
+│   │       ├── TransportistaResponseDTO.java
+│   │       └── SeguroResponseDTO.java
+│   │
+│   ├── mappers/
+│   │   ├── ContratoEventMapper.java               ← Event → dominio
+│   │   └── ContratoResponseMapper.java            ← Dominio → response DTO
+│   │
+│   └── usecases/contrato/
+│       ├── ProcesarContratoCreadoUseCase.java     ← Orquesta procesamiento del evento
+│       └── ConsultarContratoUseCase.java          ← Lectura desde DB local
+│
+├── domain/contratos/
+│   ├── models/
+│   │   ├── Contrato.java
+│   │   ├── Transportista.java
+│   │   ├── Seguro.java
+│   │   └── Vehiculo.java
+│   │
+│   ├── repositories/                              ← Puertos de dominio
+│   │   ├── ContratoRepository.java
+│   │   └── TransportistaContratoRepository.java
+│   │
+│   └── exceptions/
+│       └── RecursoNoEncontradoException.java
+│
+└── infrastructure/contratos/
+    ├── adapters/
+    │   └── ContratoMapper.java                   ← Entidad ↔ dominio
+    │
+    ├── messaging/
+    │   └── consumer/
+    │       └── ContratoCreadoConsumer.java        ← @SqsListener
+    │
+    ├── persistence/
+    │   ├── entities/
+    │   │   ├── ContratoEntity.java
+    │   │   ├── TransportistaEntity.java
+    │   │   ├── SeguroEntity.java
+    │   │   └── VehiculoEntity.java
+    │   │
+    │   └── repositories/
+    │       ├── ContratoJpaRepository.java
+    │       ├── ContratoRepositoryImpl.java
+    │       ├── ContratoTransportistaJpaRepository.java   ← Compartido con cierreRuta
+    │       └── TransportistaContratoRepositoryImpl.java
+    │
+    └── web/
+        └── controllers/
+            └── ContratoController.java            ← GET /api/contratos/**
 ```
 
-### Source Code (repository root)
+---
 
-```text
-project/
-├── backend/
-│   ├── src/main/java/com/logistica/
-│   │
-│   │   ├── application/                         # Casos de uso
-│   │   │   ├── usecases/
-│   │   │   │   └── contrato/
-│   │   │   │       ├── CrearContratoUseCase.java
-│   │   │   │       ├── BuscarContratoUseCase.java
-│   │   │   │       └── ListarContratosUseCase.java
-│   │   │   │
-│   │   │   ├── mappers/
-│   │   │   │   └── ContratoResponseMapper.java
-│   │   │   │       
-│   │   │   │    
-│   │   │   ├── validator
-│   │   │   │   ├── FechasContratoValidator.java
-│   │   │   │   ├── ValidFechasContrato.java
-│   │   │   │   ├── ValidPrecioCondicional.java
-│   │   │   │   └── PrecioCondicionalValidator.java
-│   │   │   │
-│   │   │   └── dtos/
-│   │   │       ├── request/
-│   │   │       │   ├── SeguroRequestDTO.java
-│   │   │       │   └── ContratoRequestDTO.java
-│   │   │       └── response/
-│   │   │           ├── SeguroResponseDTO.java
-│   │   │           ├── TransportistaResponseDTO.java
-│   │   │           └── ContratoResponseDTO.java
-│   │   │
-│   │   ├── domain/                              # Núcleo del negocio
-│   │   │   ├── models/
-│   │   │   │   ├── Contrato.java
-│   │   │   │   ├── Transportista.java
-│   │   │   │   ├── Vehiculo.java
-│   │   │   │   └── Seguro.java
-│   │   │   │
-│   │   │   ├── repositories/                    # Interfaces (puertos)
-│   │   │   │   ├── ContratoRepository.java
-│   │   │   │   ├── SeguroRepository.java
-│   │   │   │   ├── TransportistaRepository.java
-│   │   │   │   └── VehiculoRepository.java
-│   │   │   │
-│   │   │   ├── enums/                           # Enumeraciones de dominio
-│   │   │   │   └── TipoVehiculo.java
-│   │   │   │
-│   │   │   └── exceptions/                      # Excepciones de negocio
-│   │   │       ├── ContratoInvalidoException.java
-│   │   │       ├── ContratoNotFoundException.java
-│   │   │       ├── ContratoYaExisteException.java
-│   │   │       ├── DomainException.java
-│   │   │       ├── TransportistaNotFoundException.java
-│   │   │       └── RecursoNoEncontradoException.java
-│   │   │
-│   │   ├── infrastructure/                      # Implementación técnica
-│   │   │   ├── persistence/
-│   │   │   │   ├── entities/                    # Entidades JPA
-│   │   │   │   │   ├── ContratoEntity.java
-│   │   │   │   │   ├── SeguroEntity.java
-│   │   │   │   │   ├── TransportistaEntity.java
-│   │   │   │   │   └── VehiculoEntity.java
-│   │   │   │   │
-│   │   │   │   └── repositories/                # Spring Data JPA
-│   │   │   │       ├── ContratoRepositoryImpl.java
-│   │   │   │       ├── ContratoJpaRepository.java
-│   │   │   │       ├── SeguroRepositoryImpl.java
-│   │   │   │       ├── SeguroJpaRepository.java
-│   │   │   │       ├── TransportistaRepositoryImpl.java
-│   │   │   │       ├── TransportistaJpaRepository.java
-│   │   │   │       ├── VehiculoJpaRepository.java
-│   │   │   │       └── VehiculoRepositoryImpl.java
-│   │   │   │
-│   │   │   ├── web/
-│   │   │   │   ├── controllers/                 # REST Controllers
-│   │   │   │   │   └── ContratoController.java
-│   │   │   │   │
-│   │   │   │   └── handlers/                    # @RestControllerAdvice
-│   │   │   │       ├── ErrorResponse.java
-│   │   │   │       └── GlobalExceptionHandler.java
-│   │   │   │
-│   │   │   ├── adapters/                        # Mappers dominio ↔ DTO
-│   │   │   │   └── ContratoMapper.java
-│   │   │   │
-│   │   │   └── config/                          # Configuración global (CORS, seguridad)
-│   │   │       └── SecurityConfig.java
-│   │   └── shared/
-│   │       ├── utils/
-│   │       └── constants/
-│
-│   └── src/test/java/
-│       ├── unit/                                # Validadores y lógica
-│       └── integration/                         # Persistencia (opcional)
-│
-│
-├── frontend/
-│   ├── src/
-│   │
-│   │   ├── app/                                # Router, config global
-│   │
-│   │   ├── modules/                            # Feature-based
-│   │   │   ├── contratos/
-│   │   │   │   ├── components/                 # Formularios, modales de error
-│   │   │   │   ├── pages/                      # CrearContrato, BuscarContrato
-│   │   │   │   ├── services/                   # Axios calls
-│   │   │   │   └── hooks/                      # Manejo del formulario
-│   │   │
-│   │   ├── shared/                            # Reutilizable
-│   │   │   ├── components/                    # Inputs, botones, modales genéricos
-│   │   │   ├── services/                      # Axios base config
-│   │   │   └── utils/
-│   │
-│   │   ├── assets/
-│   │   └── styles/
-│
-│   └── package.json
+## Flujo de procesamiento
+
+```
+1. Gestor de Tarifas publica ContratoCreadoEvent en SQS
+   └─ cola: ${app.sqs.queue.contrato-creado}
+
+2. ContratoCreadoConsumer (@SqsListener)
+   └─ recibe el mensaje deserializado como ContratoCreadoEvent
+
+3. ProcesarContratoCreadoUseCase
+   ├─ [idempotencia] existePorIdContrato → si existe, ack y retorna
+   ├─ ContratoEventMapper.toDomain(evento) → Contrato
+   ├─ TransportistaContratoRepository.buscarPorId / guardar (upsert)
+   └─ ContratoRepository.guardar(contrato) → DB local
+
+4. Ack manual a SQS si todo OK
+   └─ Si excepción → relanza → SQS reintenta → DLQ tras N intentos
+
+5. GET /api/contratos/** (ContratoController)
+   └─ ConsultarContratoUseCase → ContratoRepository → DB local → ContratoResponseDTO
 ```
 
-**Structure Decision**: Se introduce la carpeta `exceptions/` para centralizar el manejo de errores y garantizar que el frontend reciba mensajes limpios y estandarizados. La carpeta `validators/` dentro de `services/` agrupa los Custom Validators de Bean Validation que no pueden implementarse con anotaciones estándar como `@NotNull`.
+---
+
+## Phase 1: Infraestructura SQS
+
+**Propósito**: Habilitar el consumer de contratos reutilizando la configuración SQS existente.
+
+- [x] T001 Verificar que `SqsConsumerConfig` (en `cierreRuta`) define el bean
+      `defaultSqsListenerContainerFactory` con acknowledgement MANUAL. El consumer de
+      contratos lo usará automáticamente.
+- [x] T002 Agregar propiedad `app.sqs.queue.contrato-creado` en `application-local.yml`
+      (y análogos: `application-docker.yml`, `application-prod.properties`).
+- [x] T003 Verificar que `spring.cloud.aws.sqs.enabled=true` está configurado para
+      los perfiles donde SQS debe estar activo.
+
+**Configuración mínima requerida**:
+```yaml
+app:
+  sqs:
+    queue:
+      ruta-cerrada: ruta-cerrada-queue
+      contrato-creado: contrato-creado-queue
+
+spring:
+  cloud:
+    aws:
+      sqs:
+        enabled: true
+```
 
 ---
 
-## Phase 1: Setup (Shared Infrastructure)
+## Phase 2: Event DTO y Mapper
 
-**Purpose**: Preparar las dependencias de validación y la estructura base del proyecto.
+**Propósito**: Definir el contrato de mensajería y la traducción al modelo de dominio.
 
-- [ ] T001 Añadir `spring-boot-starter-validation` al proyecto Spring Boot para habilitar anotaciones estándar como `@NotNull`, `@NotBlank` y `@FutureOrPresent`, y para permitir la creación de Custom Validators.
-- [ ] T002 Configurar la librería de manejo de formularios en React (ej. React Hook Form o Formik) junto con Yup/Zod para validaciones en el cliente antes de enviar al backend.
-- [ ] T003 Configurar variables de entorno y conexión a PostgreSQL.
+- [x] T004 Implementar `ContratoCreadoEvent` con todos los campos que publica Gestor de Tarifas:
+  - `tipoEvento`, `idContrato`, `tipoContrato`
+  - `transportistaId` (UUID), `nombreTransportista`
+  - `tipoVehiculo` (String → se convierte a `TipoVehiculo` enum en el mapper)
+  - `esPorParada` (Boolean), `precioParadas`, `precio`
+  - `fechaInicio`, `fechaFinal` (LocalDateTime)
+  - `seguro` (inner class `SeguroEventDTO` con `numeroPoliza` y `estado`)
 
----
+- [x] T005 Implementar `ContratoEventMapper.toDomain(ContratoCreadoEvent)` que:
+  - Convierte `tipoVehiculo` String → `TipoVehiculo` enum (falla con `IllegalArgumentException` si inválido).
+  - Genera `UUID.randomUUID()` para `id` del contrato y `idSeguro`.
+  - Construye objetos `Transportista` y `Seguro` del dominio.
 
-## Phase 2: Foundational (Blocking Prerequisites)
-
-**Purpose**: Definir el esquema relacional completo, las entidades, los DTOs de entrada y salida, y el manejo global de errores. Todo debe existir antes de implementar cualquier endpoint.
-
-- [ ] T004 Crear las entidades JPA según las Key Entities del spec con sus relaciones explícitas:
-    - `Usuario`: `idUsuario`, `nombre`
-    - `Vehiculo`: `idVehiculo`, `tipo`, relación `@ManyToOne` con `Usuario`
-    - `Seguro`: `idSeguro`, `estado`, relación `@ManyToOne` con `Usuario`
-    - `Contrato`: `idContrato`, `tipoContrato`, `nombreConductor`, `precioParadas` (nullable), `precio` (nullable), `tipoVehiculo`, `fechaInicio`, `fechaFinal`, relación `@ManyToOne` con `Usuario` y `@ManyToOne` con `Vehiculo`. La restricción `@Column(unique = true)` se aplica sobre `idContrato`.
-
-  La relación entre `Contrato` y las entidades satelitales es: un contrato pertenece a un `Usuario` (el conductor) y está asociado a un `Vehiculo`. El `Seguro` está asociado al `Usuario`, no directamente al `Contrato`.
-
-- [ ] T005 Crear los DTOs de entrada y salida desde esta fase, ya que son necesarios para todos los endpoints:
-    - `ContratoRequestDTO`: campos obligatorios con anotaciones `@NotNull` y `@NotBlank` para los campos estándar. Los campos `precioParadas` y `precio` se validan condicionalmente mediante Custom Validator.
-    - `ContratoResponseDTO`: proyección de los datos del contrato que se expone al frontend, sin exponer campos internos de la entidad JPA.
-
-- [ ] T006 Implementar el `GlobalExceptionHandler` con `@RestControllerAdvice` para capturar y transformar en respuestas HTTP estructuradas:
-    - `MethodArgumentNotValidException` → HTTP 400 con lista de campos faltantes o inválidos (FR-002, edge case campos incompletos).
-    - `DataIntegrityViolationException` → HTTP 409 con mensaje "El contrato con este identificador ya existe" (FR-004).
-    - `EntityNotFoundException` → HTTP 404 con mensaje "Contrato no encontrado".
-
-- [ ] T007 Implementar los `JpaRepository` para `Contrato`, `Usuario`, `Vehiculo` y `Seguro`, incluyendo el método `existsByIdContrato(String idContrato)` en `ContratoRepository` para validación de duplicados en la capa de servicio.
-
-**Checkpoint**: El esquema está creado con todas sus relaciones y restricciones, los DTOs de entrada y salida existen, y el sistema rechaza automáticamente payloads malformados o duplicados con mensajes de error estructurados.
+**Checkpoint**: Con un `ContratoCreadoEvent` de prueba, el mapper produce un `Contrato`
+de dominio con todos los campos correctamente traducidos.
 
 ---
 
-## Phase 3: User Story 1 — Registrar el contrato (Prioridad: P1)
+## Phase 3: Persistencia del evento
 
-**Goal**: Permitir la persistencia segura de un nuevo contrato cumpliendo todas las reglas de negocio: campos obligatorios, coherencia de fechas, precio condicional según tipo de contrato y prevención de duplicados.
+**Propósito**: Guardar el contrato recibido en la base de datos local de Finanzas.
 
-**Independent Test**: Enviar un `POST /api/contratos` con fechas invertidas (fin antes de inicio) y verificar HTTP 400 con el mensaje de error de validación. Enviar un payload válido completo y verificar HTTP 201 con el contrato creado en `ContratoResponseDTO`. Enviar el mismo payload dos veces y verificar HTTP 409 con el mensaje "El contrato con este identificador ya existe".
+- [x] T006 Implementar `TransportistaContratoRepository` (puerto de dominio) con:
+  - `buscarPorId(UUID): Optional<Transportista>`
+  - `guardar(Transportista): Transportista`
 
-### Tests para User Story 1
+- [x] T007 Implementar `TransportistaContratoRepositoryImpl` usando
+      `ContratoTransportistaJpaRepository` (JPA repo compartido con `cierreRuta`).
 
-- [ ] T008 [P] [US1] Test unitario para `FechasContratoValidator`: verificar que lanza error de validación cuando la fecha de fin es igual a la fecha de inicio (fechas iguales no son válidas, ya que el spec exige Fecha Final estrictamente mayor a Fecha Inicio) y cuando la fecha de fin es anterior a la de inicio.
-- [ ] T009 [P] [US1] Test unitario para `PrecioCondicionalValidator`: verificar que cuando `tipoContrato` es "Por Parada" el campo `precioParadas` es obligatorio y `precio` se ignora, y que cuando `tipoContrato` es "Recorrido Completo" el campo `precio` es obligatorio y `precioParadas` se ignora.
-- [ ] T010 [P] [US1] Test de integración verificando que al enviar campos obligatorios faltantes, la respuesta HTTP 400 contiene la lista de los campos específicos que faltan, no solo un mensaje genérico de error (edge case campos incompletos del spec).
-- [ ] T011 [P] [US1] Test de integración verificando que al intentar registrar un contrato duplicado, la respuesta HTTP 409 contiene el mensaje "El contrato con este identificador ya existe" (escenario 3 de la User Story 1).
-- [ ] T012 [P] [US1] Test de integración con payload válido completo: verificar HTTP 201 y que el contrato queda persistido correctamente en base de datos con todas sus relaciones.
+- [x] T008 Actualizar `ContratoRepository` con métodos de escritura:
+  - `guardar(Contrato): Contrato`
+  - `existePorIdContrato(String): boolean`
+  - `buscarPorIdContrato(String): Optional<Contrato>`
+  - `listar(Pageable): Page<Contrato>`
+  - `listarPorTransportista(UUID, Pageable): Page<Contrato>`
 
-### Implementation para User Story 1
+- [x] T009 Actualizar `ContratoRepositoryImpl`:
+  - `guardar()` obtiene `TransportistaEntity` por FK antes de guardar (`orElseThrow`).
+  - Todos los métodos de lectura usan `@Transactional(readOnly = true)`.
 
-- [ ] T013 [P] [US1] Implementar `FechasContratoValidator` como Custom Validator de Bean Validation a nivel de clase en `ContratoRequestDTO`. Valida que `fechaFinal` sea estrictamente mayor a `fechaInicio`.
-- [ ] T014 [P] [US1] Implementar `PrecioCondicionalValidator` como Custom Validator de Bean Validation a nivel de clase en `ContratoRequestDTO`. Valida que el campo de precio correcto esté presente según el `tipoContrato` recibido.
-- [ ] T015 [P] [US1] Implementar `ContratoService.registrarContrato(ContratoRequestDTO dto)` marcado con `@Transactional` para garantizar que la creación del contrato y todas sus asociaciones con `Usuario` y `Vehiculo` ocurran de forma atómica. Si cualquier asociación falla, la operación completa se revierte.
-- [ ] T016 [US1] Crear el endpoint `POST /api/contratos` en `ContratoController`, protegido para el rol `ROLE_GESTOR_TARIFAS`.
-- [ ] T017 [US1] Construir en React el formulario interactivo de "Nuevo Contrato" que: muestra los errores de validación en tiempo real debajo de cada campo, oculta o muestra el campo de precio correcto según el tipo de contrato seleccionado, y despliega el mensaje de error del backend cuando el contrato ya existe.
+- [x] T010 Restaurar `ContratoMapper.toEntity(Contrato, TransportistaEntity)` en
+      `infrastructure/contratos/adapters/`.
 
----
-
-## Phase 4: User Story 2 — Consultar contrato (Prioridad: P3)
-
-**Goal**: Facilitar la búsqueda y visualización de la información contractual registrada, incluyendo sus relaciones con vehículo y seguro, sin problema de N+1 consultas.
-
-**Independent Test**: Consultar un contrato existente vía `GET /api/contratos/{idContrato}` y validar que el JSON de respuesta en `ContratoResponseDTO` contiene todos los campos del contrato. Consultar un identificador inexistente y verificar HTTP 404 con mensaje "Contrato no encontrado".
-
-### Tests para User Story 2
-
-- [ ] T018 [P] [US2] Test de integración para validar la correcta recuperación de un contrato y que el `ContratoResponseDTO` retornado contiene todos los campos esperados según el spec.
-- [ ] T019 [P] [US2] Test unitario verificando que el controlador retorna HTTP 404 con el mensaje "Contrato no encontrado" cuando el identificador no existe en base de datos.
-
-### Implementation para User Story 2
-
-- [ ] T020 [P] [US2] Implementar el método de búsqueda en `ContratoRepository` usando `@EntityGraph` o `JOIN FETCH` para cargar el contrato junto con su `Vehiculo` y `Usuario` en una sola consulta, evitando el problema de N+1 desde el primer día.
-- [ ] T021 [US2] Crear el endpoint `GET /api/contratos/{idContrato}` en `ContratoController`, que retorna el contrato en `ContratoResponseDTO`.
-- [ ] T022 [US2] Desarrollar la vista en React con un campo de búsqueda que consulte la API y muestre la información completa del contrato encontrado, o el mensaje "No se encontraron resultados" cuando el identificador no exista.
+**Checkpoint**: Dado un `Contrato` de dominio con transportista ya existente en DB,
+`ContratoRepository.guardar()` persiste el contrato con FK correcta.
 
 ---
 
-## Phase N: Polish & Cross-Cutting Concerns
+## Phase 4: Consumer SQS
 
-- [ ] T023 Añadir alertas globales (Toast notifications) en React para confirmar "Contrato guardado exitosamente" o mostrar los mensajes de error del backend de forma visible al usuario.
-- [ ] T024 Añadir Swagger / OpenAPI para documentar los endpoints `POST /api/contratos` y `GET /api/contratos/{idContrato}`, facilitando la integración con otros módulos que consuman información de contratos.
+**Propósito**: Conectar la cola SQS con el use case de procesamiento.
+
+- [x] T011 Implementar `ProcesarContratoCreadoUseCase.ejecutar(ContratoCreadoEvent)`:
+  1. Guarda de no ser nulo el evento.
+  2. `existePorIdContrato` → si existe, log de idempotencia y `return`.
+  3. `ContratoEventMapper.toDomain(evento)`.
+  4. Upsert del transportista: `buscarPorId` → si no existe, `guardar`.
+  5. Reconstruye `Contrato` con el transportista resuelto.
+  6. `ContratoRepository.guardar(contrato)`.
+  Todo bajo `@Transactional`.
+
+- [x] T012 Implementar `ContratoCreadoConsumer`:
+  - `@SqsListener("${app.sqs.queue.contrato-creado}")`.
+  - Llama al use case, ack manual si OK.
+  - `IllegalArgumentException` → relanza (no recuperable).
+  - Cualquier otra excepción → relanza (SQS reintenta).
+
+**Checkpoint**: Publicar un evento de prueba en LocalStack. Verificar en DB local
+que el contrato aparece con todos los campos. Publicar el mismo evento dos veces —
+verificar que la segunda vez no crea duplicado.
 
 ---
 
-## Dependencies & Execution Order
+## Phase 5: Endpoints de consulta
 
-**DTOs de entrada y salida desde la Phase 2**: Los `ContratoRequestDTO` y `ContratoResponseDTO` deben existir antes de construir cualquier endpoint. Implementarlos al final como "polish" expone las entidades JPA directamente al frontend durante todo el desarrollo.
+**Propósito**: Exponer los contratos locales para el gestor financiero.
 
-**Custom Validators antes del servicio**: `FechasContratoValidator` y `PrecioCondicionalValidator` deben implementarse y probarse con tests unitarios antes de integrarlos al endpoint. Las anotaciones estándar de Bean Validation no pueden implementar estas reglas condicionales.
+- [x] T013 Implementar `ConsultarContratoUseCase` con:
+  - `buscarPorIdContrato(String)` → `ContratoResponseDTO` o `RecursoNoEncontradoException` (404).
+  - `listar(Pageable)` → `Page<ContratoResponseDTO>`.
+  - `listarPorTransportista(UUID, Pageable)` → `Page<ContratoResponseDTO>`.
+  Todo bajo `@Transactional(readOnly = true)`.
 
-**`@Transactional` en el servicio desde el inicio**: La creación del contrato y sus asociaciones deben ser atómicas desde la primera implementación. Agregarlo después puede dejar registros parciales en base de datos durante el período de desarrollo.
+- [x] T014 Implementar `ContratoResponseMapper.toResponseDTO(Contrato)` que traduce
+      dominio → DTOs de respuesta (`ContratoResponseDTO`, `TransportistaResponseDTO`, `SeguroResponseDTO`).
 
-**Relaciones claras entre entidades**: `Contrato` se asocia a `Usuario` y `Vehiculo`. El `Seguro` está asociado al `Usuario`, no directamente al `Contrato`. Esta distinción debe respetarse al construir las entidades JPA y los DTOs.
+- [x] T015 Implementar `ContratoController` con tres endpoints `GET`:
+  - `GET /api/contratos/{idContrato}` → contrato por ID de negocio.
+  - `GET /api/contratos` → listado paginado (`sort=fechaInicio,DESC`).
+  - `GET /api/contratos/transportista/{idTransportista}` → contratos de un transportista.
+  Todos con `@PreAuthorize("hasRole('GESTOR_FINANCIERO')")`.
 
-**`@EntityGraph` desde el primer endpoint de consulta**: La optimización de consultas con `JOIN FETCH` debe implementarse junto con el endpoint `GET`, no como mejora posterior. En una tabla con miles de contratos, el problema de N+1 aparece desde el primer día en producción.
+**Checkpoint**: Con un contrato en DB, los tres endpoints retornan los datos
+correctamente. Sin contrato, `GET /{idContrato}` retorna 404.
 
-**Frontend al final de cada historia**: React se construye una vez que el backend tiene validado y probado el flujo completo de cada historia de usuario.
+---
+
+## Phase 6: Tests
+
+**Propósito**: Verificar el flujo completo de consumo y consulta.
+
+- [ ] T016 [Unit] Test de `ContratoEventMapper`:
+  - Verifica mapeo correcto de todos los campos.
+  - Verifica que `tipoVehiculo` inválido lanza `IllegalArgumentException`.
+
+- [ ] T017 [Unit] Test de `ProcesarContratoCreadoUseCase`:
+  - Evento válido → llama a `guardar`.
+  - Evento con `idContrato` existente → no llama a `guardar` (idempotencia).
+  - Evento null → lanza `IllegalArgumentException`.
+  - Transportista nuevo → llama a `transportistaRepository.guardar`.
+  - Transportista existente → no llama a `guardar` del transportista.
+
+- [ ] T018 [Integration / LocalStack] Test de `ContratoCreadoConsumer`:
+  - Publica evento en cola de LocalStack.
+  - Verifica que el contrato queda en DB.
+  - Publica el mismo evento → verifica que no hay duplicado.
+
+- [ ] T019 [Integration] Test de `ContratoController`:
+  - `GET /api/contratos/{id}` con contrato existente → 200 con todos los campos.
+  - `GET /api/contratos/{id}` sin contrato → 404 con mensaje.
+  - `GET /api/contratos` → 200 con página.
+  - `GET /api/contratos/transportista/{id}` → 200 con contratos del transportista.
+  - Sin autenticación → 401.
+
+---
+
+## Qué se eliminó y por qué
+
+| Artefacto eliminado | Razón |
+|---|---|
+| `POST /api/contratos` | Finanzas no crea contratos |
+| `CrearContratoUseCase` | Reemplazado por el consumer de eventos |
+| `ContratoRequestDTO`, `SeguroRequestDTO` | DTOs de entrada REST ya no existen |
+| `FechasContratoValidator`, `PrecioCondicionalValidator` | Validación es responsabilidad del Gestor de Tarifas |
+| `Contrato.crear()` (factory method) | Validaciones de negocio pertenecen al owner |
+| `GestorTarifasContratoClient` (Feign) | No hay consumo REST; sólo eventos SQS |
+| `ContratoExternoPort` | El puerto REST no tiene sentido en arquitectura asíncrona |
+| `BuscarContratoUseCase`, `ListarContratosUseCase`, `ListarContratosPorTransportistaUseCase` | Consolidados en `ConsultarContratoUseCase` |
+| `SeguroRepository`, `VehiculoRepository`, `TransportistaRepository` (v1) | Repositorios de escritura que ya no tiene Finanzas |
+| `ContratoYaExisteException`, `ContratoInvalidoException`, `TransportistaNotFoundException` | Excepciones de creación eliminadas |
+| Tests de creación y validación | Tests asociados a funcionalidad eliminada |
+
+---
+
+## Dependencias y orden de ejecución
+
+1. **Phase 1 primero**: sin cola configurada, el consumer no levanta.
+2. **Phase 2 antes de Phase 4**: el mapper debe existir antes del use case.
+3. **Phase 3 antes de Phase 4**: el repositorio debe estar listo para que el use case pueda guardar.
+4. **Phase 4 y Phase 5 son independientes** entre sí (escribir vs leer), pero ambas
+   dependen de que las entidades JPA y el repositorio estén correctos (Phase 3).
+5. **Phase 6 al final**: los tests de integración necesitan el flujo completo.

@@ -6,7 +6,12 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @JsonFormat(shape = JsonFormat.Shape.STRING)
 public enum EstadoParada {
     EXITOSA,
-    FALLIDA;
+    FALLIDA,
+    NOVEDAD,
+    PENDIENTE,
+    SIN_GESTION_CONDUCTOR,
+    EXCLUIDA_DESPACHO;
+
 
     @JsonCreator
     public static EstadoParada fromValue(String value) {

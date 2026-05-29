@@ -1,0 +1,38 @@
+{
+  "tipo_evento": "RUTA_CERRADA",
+  "ruta_id": "770e8400-e29b-41d4-a716-446655440001",
+  "fecha_hora_inicio_transito": "2026-05-19T08:00:00",
+  "fecha_hora_cierre": "2026-05-19T14:30:00",
+  "conductor": {
+    "conductor_id": "550e8400-e29b-41d4-a716-446655440010",
+    "nombre": "Carlos Perez",
+    "modelo_contrato": "Por Parada Realizada"
+  },
+  "vehiculo": {
+    "vehiculo_id": "660e8400-e29b-41d4-a716-446655440020",
+    "tipo": "MOTO"
+  },
+  "paradas": [
+    {
+      "parada_id": "aa0e8400-e29b-41d4-a716-446655440030",
+      "paquete_id": "bb0e8400-e29b-41d4-a716-446655440040",
+      "estado": "EXITOSA",
+      "motivo_no_entrega": null,
+      "fecha_hora_gestion": "2026-05-19T09:15:00"
+    },
+    {
+      "parada_id": "cc0e8400-e29b-41d4-a716-446655440050",
+      "paquete_id": "dd0e8400-e29b-41d4-a716-446655440060",
+      "estado": "FALLIDA",
+      "motivo_no_entrega": "CLIENTE_AUSENTE",
+      "fecha_hora_gestion": "2026-05-19T10:45:00"
+    },
+    {
+      "parada_id": "ee0e8400-e29b-41d4-a716-446655440070",
+      "paquete_id": "ff0e8400-e29b-41d4-a716-446655440080",
+      "estado": "EXITOSA",
+      "motivo_no_entrega": null,
+      "fecha_hora_gestion": "2026-05-19T12:00:00"
+    }
+  ]
+}

@@ -3,6 +3,10 @@ spring:
     url: jdbc:postgresql://localhost:5432/logistica
     username: luis
     password: 123456789
+  sql:
+    init:
+      mode: never
+
   jackson:
     property-naming-strategy: SNAKE_CASE
 
@@ -10,3 +14,35 @@ spring:
     hibernate:
       ddl-auto: validate
     show-sql: true
+
+  cloud:
+    aws:
+      sqs:
+        enabled: true
+        listener:
+          queue-creation-policy: never
+
+      region:
+        static: us-east-2
+
+      credentials:
+        access-key: ${AWS_ACCESS_KEY_ID}
+        secret-key: ${AWS_SECRET_ACCESS_KEY}
+
+app:
+  mock:
+    tarifa:
+      por-parada: 15000
+      recorrido-completo: 80000
+  sqs:
+    queue:
+      ruta-cerrada: logistics-cierre-ruta
+
+  servicios:
+    conductores:
+      base-url: https://6cfdb063-a734-47f4-911b-c0a53a6124c6.mock.pstmn.io
+
+    banco:
+      base-url: https://6cfdb063-a734-47f4-911b-c0a53a6124c6.mock.pstmn.io
+      timeout-segundos: 10
+      api-key: ${POSTMAN_API_KEY}

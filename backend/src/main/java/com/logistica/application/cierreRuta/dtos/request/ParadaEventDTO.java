@@ -9,6 +9,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
@@ -29,9 +30,14 @@ public class ParadaEventDTO {
 
     private String motivoNoEntrega;
 
-    @AssertTrue(message = "Una parada FALLIDA debe tener motivoNoEntrega")
+    private LocalDateTime fechaHoraGestion;
+
+    @AssertTrue(message = "Una parada FALLIDA o NOVEDAD debe tener motivoNoEntrega")
     private boolean isMotivoValido() {
-        return estado != EstadoParada.FALLIDA ||
-                (motivoNoEntrega != null && !motivoNoEntrega.isBlank());
+        if (estado == EstadoParada.FALLIDA || estado == EstadoParada.NOVEDAD) {
+            return motivoNoEntrega != null &&
+                    !motivoNoEntrega.isBlank();
+        }
+        return true;
     }
 }

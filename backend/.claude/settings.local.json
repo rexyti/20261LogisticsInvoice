@@ -60,7 +60,21 @@
       "Bash(grep \" FAILED$\")",
       "Bash(printenv)",
       "PowerShell([System.Environment]::GetEnvironmentVariable\\('DB_URL', 'Machine'\\); [System.Environment]::GetEnvironmentVariable\\('DB_URL', 'User'\\); [System.Environment]::GetEnvironmentVariable\\('SPRING_DATASOURCE_URL', 'Machine'\\))",
-      "Bash(git -C \"C:\\\\Users\\\\LUIS\\\\IdeaProjects\\\\20261LogisticsInvoice\\\\backend\" diff --name-only HEAD)"
+      "Bash(git -C \"C:\\\\Users\\\\LUIS\\\\IdeaProjects\\\\20261LogisticsInvoice\\\\backend\" diff --name-only HEAD)",
+      "Bash(Select-Object FullName)",
+      "Bash(Sort-Object FullName)",
+      "PowerShell(ls -Recurse \"C:\\\\Users\\\\LUIS\\\\IdeaProjects\\\\20261LogisticsInvoice\\\\20261LogisticsInvoice\\\\backend\" | Where-Object { $_.PSIsContainer } | Select-Object FullName | Sort-Object FullName)",
+      "PowerShell(tree \"C:\\\\Users\\\\LUIS\\\\IdeaProjects\\\\20261LogisticsInvoice\\\\20261LogisticsInvoice\\\\backend\" /f)",
+      "Bash(Remove-Item \"C:\\\\Users\\\\LUIS\\\\IdeaProjects\\\\20261LogisticsInvoice\\\\20261LogisticsInvoice\\\\backend\\\\src\\\\main\\\\java\\\\com\\\\logistica\\\\infrastructure\\\\cierreRuta\\\\messaging\\\\consumers\\\\RutaCerradaConsumer.java\" -Force)",
+      "Bash(Remove-Item \"C:\\\\Users\\\\LUIS\\\\IdeaProjects\\\\20261LogisticsInvoice\\\\20261LogisticsInvoice\\\\backend\\\\src\\\\main\\\\java\\\\com\\\\logistica\\\\infrastructure\\\\novedadEstadoPaquete\\\\messaging\\\\consumer\\\\NovedadEstadoPaqueteConsumer.java\" -Force)",
+      "Bash(Remove-Item \"C:\\\\Users\\\\LUIS\\\\IdeaProjects\\\\20261LogisticsInvoice\\\\20261LogisticsInvoice\\\\backend\\\\src\\\\main\\\\java\\\\com\\\\logistica\\\\infrastructure\\\\cierreRuta\\\\messaging\\\\config\\\\SqsConsumerConfig.java\" -Force)",
+      "PowerShell(New-Item *)",
+      "Bash(Remove-Item -Recurse -Force \"C:\\\\Users\\\\LUIS\\\\IdeaProjects\\\\20261LogisticsInvoice\\\\20261LogisticsInvoice\\\\backend\\\\src\\\\main\\\\java\\\\com\\\\logistica\\\\domain\\\\registrarPago\")",
+      "Bash(Remove-Item -Recurse -Force \"C:\\\\Users\\\\LUIS\\\\IdeaProjects\\\\20261LogisticsInvoice\\\\20261LogisticsInvoice\\\\backend\\\\src\\\\main\\\\java\\\\com\\\\logistica\\\\application\\\\registrarPago\")",
+      "Bash(Remove-Item -Recurse -Force \"C:\\\\Users\\\\LUIS\\\\IdeaProjects\\\\20261LogisticsInvoice\\\\20261LogisticsInvoice\\\\backend\\\\src\\\\main\\\\java\\\\com\\\\logistica\\\\infrastructure\\\\registrarPago\")",
+      "Bash(Write-Output \"Eliminados\")",
+      "Bash(git stash *)",
+      "Bash(xargs grep -h 'tests=')"
     ]
   }
 }
