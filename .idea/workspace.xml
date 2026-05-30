@@ -5,7 +5,284 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ed4f215e-f5f1-4072-9c9f-fbc09338f992" name="Changes" comment="Frontend hecho x mi :p">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.claude/settings.local.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gradle/8.14/checksums/checksums.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gradle/8.14/checksums/md5-checksums.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gradle/8.14/checksums/sha1-checksums.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gradle/8.14/executionHistory/executionHistory.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gradle/8.14/executionHistory/executionHistory.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gradle/8.14/fileChanges/last-build.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gradle/8.14/fileHashes/fileHashes.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gradle/8.14/fileHashes/fileHashes.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gradle/8.14/fileHashes/resourceHashesCache.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gradle/8.14/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gradle/8.6/checksums/checksums.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gradle/8.6/checksums/md5-checksums.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gradle/8.6/checksums/sha1-checksums.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gradle/8.6/dependencies-accessors/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gradle/8.6/executionHistory/executionHistory.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gradle/8.6/executionHistory/executionHistory.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gradle/8.6/fileChanges/last-build.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gradle/8.6/fileHashes/fileHashes.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gradle/8.6/fileHashes/fileHashes.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gradle/8.6/fileHashes/resourceHashesCache.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gradle/8.6/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gradle/file-system.probe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.gradle/vcs-1/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__ch_qos_logback_logback_classic_1_4_14.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__ch_qos_logback_logback_core_1_4_14.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__com_fasterxml_classmate_1_6_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_annotations_2_15_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_core_2_15_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_databind_2_15_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__com_fasterxml_jackson_dataformat_jackson_dataformat_toml_2_15_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__com_fasterxml_jackson_dataformat_jackson_dataformat_yaml_2_15_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__com_fasterxml_jackson_datatype_jackson_datatype_jdk8_2_15_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__com_fasterxml_jackson_datatype_jackson_datatype_jsr310_2_15_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__com_fasterxml_jackson_module_jackson_module_parameter_names_2_15_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__com_github_docker_java_docker_java_api_3_3_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__com_github_docker_java_docker_java_transport_3_3_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__com_github_docker_java_docker_java_transport_zerodep_3_3_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__com_google_code_gson_gson_2_10_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__com_jayway_jsonpath_json_path_2_9_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__com_sun_istack_istack_commons_runtime_4_1_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__com_vaadin_external_google_android_json_0_0_20131108_vaadin1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__com_zaxxer_HikariCP_5_0_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__commons_codec_commons_codec_1_16_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__commons_logging_commons_logging_1_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__io_awspring_cloud_spring_cloud_aws_autoconfigure_3_1_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__io_awspring_cloud_spring_cloud_aws_core_3_1_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__io_awspring_cloud_spring_cloud_aws_sqs_3_1_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__io_awspring_cloud_spring_cloud_aws_starter_3_1_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__io_awspring_cloud_spring_cloud_aws_starter_sqs_3_1_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__io_jsonwebtoken_jjwt_api_0_12_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__io_jsonwebtoken_jjwt_impl_0_12_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__io_jsonwebtoken_jjwt_jackson_0_12_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__io_micrometer_micrometer_commons_1_12_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__io_micrometer_micrometer_observation_1_12_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__io_netty_netty_buffer_4_1_107_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__io_netty_netty_codec_4_1_107_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__io_netty_netty_codec_http2_4_1_107_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__io_netty_netty_codec_http_4_1_107_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__io_netty_netty_common_4_1_107_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__io_netty_netty_handler_4_1_107_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__io_netty_netty_resolver_4_1_107_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__io_netty_netty_transport_4_1_107_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__io_netty_netty_transport_classes_epoll_4_1_107_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__io_netty_netty_transport_native_unix_common_4_1_107_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__io_smallrye_jandex_3_1_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__io_swagger_core_v3_swagger_annotations_jakarta_2_2_21.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__io_swagger_core_v3_swagger_core_jakarta_2_2_21.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__io_swagger_core_v3_swagger_models_jakarta_2_2_21.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__jakarta_activation_jakarta_activation_api_2_1_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__jakarta_annotation_jakarta_annotation_api_2_1_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__jakarta_inject_jakarta_inject_api_2_0_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__jakarta_persistence_jakarta_persistence_api_3_1_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__jakarta_transaction_jakarta_transaction_api_2_0_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__jakarta_validation_jakarta_validation_api_3_0_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__jakarta_xml_bind_jakarta_xml_bind_api_4_0_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__junit_junit_4_13_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__net_bytebuddy_byte_buddy_1_14_9.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__net_bytebuddy_byte_buddy_agent_1_14_9.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__net_java_dev_jna_jna_5_13_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__net_minidev_accessors_smart_2_5_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__net_minidev_json_smart_2_5_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_antlr_antlr4_runtime_4_13_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_apache_commons_commons_compress_1_24_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_apache_commons_commons_lang3_3_13_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_apache_httpcomponents_httpclient_4_5_13.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_apache_httpcomponents_httpcore_4_4_16.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_apache_logging_log4j_log4j_api_2_21_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_apache_logging_log4j_log4j_to_slf4j_2_21_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_apache_tomcat_embed_tomcat_embed_core_10_1_19.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_apache_tomcat_embed_tomcat_embed_el_10_1_19.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_apache_tomcat_embed_tomcat_embed_websocket_10_1_19.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_apiguardian_apiguardian_api_1_1_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_aspectj_aspectjweaver_1_9_21.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_assertj_assertj_core_3_24_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_awaitility_awaitility_4_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_checkerframework_checker_qual_3_42_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_eclipse_angus_angus_activation_2_0_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_flywaydb_flyway_core_9_22_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_glassfish_jaxb_jaxb_core_4_0_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_glassfish_jaxb_jaxb_runtime_4_0_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_glassfish_jaxb_txw2_4_0_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_hamcrest_hamcrest_2_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_2_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_hibernate_common_hibernate_commons_annotations_6_0_6_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_hibernate_orm_hibernate_core_6_4_4_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_hibernate_validator_hibernate_validator_8_0_1_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_jboss_logging_jboss_logging_3_5_3_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_jetbrains_annotations_17_0_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_junit_jupiter_junit_jupiter_5_10_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_junit_jupiter_junit_jupiter_api_5_10_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_junit_jupiter_junit_jupiter_engine_5_10_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_junit_jupiter_junit_jupiter_params_5_10_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_junit_platform_junit_platform_commons_1_10_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_junit_platform_junit_platform_engine_1_10_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_junit_platform_junit_platform_launcher_1_10_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_mockito_mockito_core_5_7_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_mockito_mockito_junit_jupiter_5_7_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_objenesis_objenesis_3_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_opentest4j_opentest4j_1_3_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_ow2_asm_asm_9_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_postgresql_postgresql_42_7_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_projectlombok_lombok_1_18_30.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_reactivestreams_reactive_streams_1_0_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_rnorth_duct_tape_duct_tape_1_0_8.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_skyscreamer_jsonassert_1_5_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_slf4j_jul_to_slf4j_2_0_12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_slf4j_slf4j_api_2_0_12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springdoc_springdoc_openapi_starter_common_2_5_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springdoc_springdoc_openapi_starter_webmvc_api_2_5_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springdoc_springdoc_openapi_starter_webmvc_ui_2_5_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springframework_boot_spring_boot_3_2_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springframework_boot_spring_boot_autoconfigure_3_2_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springframework_boot_spring_boot_starter_3_2_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springframework_boot_spring_boot_starter_aop_3_2_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springframework_boot_spring_boot_starter_data_jpa_3_2_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springframework_boot_spring_boot_starter_jdbc_3_2_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springframework_boot_spring_boot_starter_json_3_2_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springframework_boot_spring_boot_starter_logging_3_2_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springframework_boot_spring_boot_starter_security_3_2_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springframework_boot_spring_boot_starter_test_3_2_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springframework_boot_spring_boot_starter_tomcat_3_2_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springframework_boot_spring_boot_starter_validation_3_2_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springframework_boot_spring_boot_starter_web_3_2_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springframework_boot_spring_boot_test_3_2_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springframework_boot_spring_boot_test_autoconfigure_3_2_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springframework_boot_spring_boot_testcontainers_3_2_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springframework_data_spring_data_commons_3_2_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springframework_data_spring_data_jpa_3_2_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springframework_retry_spring_retry_2_0_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springframework_security_spring_security_config_6_2_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springframework_security_spring_security_core_6_2_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springframework_security_spring_security_crypto_6_2_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springframework_security_spring_security_test_6_2_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springframework_security_spring_security_web_6_2_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springframework_spring_aop_6_1_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springframework_spring_aspects_6_1_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springframework_spring_beans_6_1_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springframework_spring_context_6_1_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springframework_spring_core_6_1_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springframework_spring_expression_6_1_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springframework_spring_jcl_6_1_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springframework_spring_jdbc_6_1_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springframework_spring_messaging_6_1_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springframework_spring_orm_6_1_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springframework_spring_test_6_1_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springframework_spring_tx_6_1_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springframework_spring_web_6_1_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_springframework_spring_webmvc_6_1_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_testcontainers_database_commons_1_19_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_testcontainers_jdbc_1_19_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_testcontainers_junit_jupiter_1_19_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_testcontainers_localstack_1_19_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_testcontainers_postgresql_1_19_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_testcontainers_testcontainers_1_19_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_webjars_swagger_ui_5_13_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_xmlunit_xmlunit_core_2_9_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__org_yaml_snakeyaml_2_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__software_amazon_awssdk_annotations_2_21_46.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__software_amazon_awssdk_apache_client_2_21_46.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__software_amazon_awssdk_arns_2_21_46.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__software_amazon_awssdk_auth_2_21_46.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__software_amazon_awssdk_aws_core_2_21_46.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__software_amazon_awssdk_aws_json_protocol_2_21_46.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__software_amazon_awssdk_checksums_2_21_46.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__software_amazon_awssdk_checksums_spi_2_21_46.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__software_amazon_awssdk_endpoints_spi_2_21_46.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__software_amazon_awssdk_http_auth_2_21_46.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__software_amazon_awssdk_http_auth_aws_2_21_46.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__software_amazon_awssdk_http_auth_spi_2_21_46.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__software_amazon_awssdk_http_client_spi_2_21_46.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__software_amazon_awssdk_identity_spi_2_21_46.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__software_amazon_awssdk_json_utils_2_21_46.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__software_amazon_awssdk_metrics_spi_2_21_46.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__software_amazon_awssdk_netty_nio_client_2_21_46.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__software_amazon_awssdk_profiles_2_21_46.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__software_amazon_awssdk_protocol_core_2_21_46.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__software_amazon_awssdk_regions_2_21_46.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__software_amazon_awssdk_sdk_core_2_21_46.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__software_amazon_awssdk_sqs_2_21_46.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__software_amazon_awssdk_third_party_jackson_core_2_21_46.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__software_amazon_awssdk_utils_2_21_46.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/libraries/Gradle__software_amazon_eventstream_eventstream_1_0_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/modules/logistica-backend.main.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/modules/logistica-financiero.main.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/modules/logistica-financiero.test.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_04_2026_4_05_a_m___Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_04_2026_4_05_a_ m__[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_04_2026_4_05_a_ m__[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/classes/java/main/com/logistica/LogisticaApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/resources/main/application-dev.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/resources/main/application-prod.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/resources/main/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/resources/main/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/logistica/LogisticaApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application-dev.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application-docker.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application-local.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application-prod.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/logistica/NovedadEstadoPaquete/enums/EstadoPaqueteTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/logistica/RegistrarEstadoPago/infrastructure/controllers/web/LiquidacionControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/logistica/RegistrarEstadoPago/infrastructure/controllers/web/PagoControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/logistica/RegistrarEstadoPago/infrastructure/controllers/web/WebhookPagoControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/logistica/RegistrarEstadoPago/integration/ActualizacionEstadoPagoIntegrationTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/logistica/RegistrarEstadoPago/integration/EventoPagoAsincronoIntegrationTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/logistica/RegistrarEstadoPago/integration/IdempotenciaEventoPagoIntegrationTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/logistica/RegistrarEstadoPago/integration/RegistroEstadoPagoIntegrationTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/logistica/RegistrarEstadoPago/unit/EstadoPagoDomainServiceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/logistica/RegistrarEstadoPago/unit/EventoPagoProcessorTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/logistica/RegistrarEstadoPago/unit/IdempotenciaEventoPagoServiceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/logistica/RegistrarEstadoPago/unit/PagoMapperTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/logistica/RegistrarEstadoPago/unit/PagoServiceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/logistica/RegistrarEstadoPago/unit/TransicionEstadoPagoServiceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/logistica/VisualizarEstadoPago/application/usecases/pago/ConsultarEstadoPagoUseCaseTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/logistica/VisualizarEstadoPago/infrastructure/web/controllers/PagoControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/logistica/VisualizarEstadoPago/integration/VisualizarEstadoPagoIntegrationTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/logistica/VisualizarLiquidación/application/usecases/BuscarLiquidacionesUseCaseTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/logistica/VisualizarLiquidación/application/usecases/ListarLiquidacionesUseCaseTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/logistica/VisualizarLiquidación/application/usecases/ObtenerDetalleLiquidacionUseCaseTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/logistica/VisualizarLiquidación/infrastructure/web/controllers/LiquidacionControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/logistica/application/dtos/RutaCerradaEventDTOMappingTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/logistica/application/usecases/ProcesarRutaCerradaUseCaseTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/logistica/domain/services/ClasificacionRutaServiceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/logistica/domain/strategies/PorParadaStrategyTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/logistica/infrastructure/persistence/repositories/AbstractRepositoryIT.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/logistica/infrastructure/persistence/repositories/AjusteRepositoryIT.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/logistica/infrastructure/persistence/repositories/LiquidacionRepositoryIT.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/logistica/infrastructure/persistence/repositories/RutaRepositoryIT.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/logistica/infrastructure/web/controllers/EventoControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/logistica/infrastructure/web/controllers/LiquidacionControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/logistica/infrastructure/web/controllers/RutaControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/resources/application-test.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/resources/application-test.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/resources/evento_ruta_cerrada.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,26 +325,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Frontend-implementation&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "devolop",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "to.speed.mode.migration.done": "true"
   }
-}</component>
+}]]></component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="ed4f215e-f5f1-4072-9c9f-fbc09338f992" name="Changes" comment="" />
