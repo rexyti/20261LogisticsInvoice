@@ -37,6 +37,7 @@ app:
   sqs:
     queue:
       ruta-cerrada: logistics-cierre-ruta
+      novedad-estado-paquete: eventos-financieros-paquete-queue
 
   servicios:
     conductores:

@@ -36,8 +36,12 @@ public enum NovedadEstadoPaqueteEstadoPaquete {
                 .replace(' ', '_')
                 .toUpperCase();
 
-        return Arrays.stream(values())
-                .filter(e -> e.name().equals(normalized))
-                .findFirst();
+        return switch (normalized) {
+            case "ENTREGADO" -> Optional.of(ENTREGADO);
+            case "DEVOLUCION_EN_RUTA" -> Optional.of(DEVUELTO);
+            case "DANADO_EN_RUTA" -> Optional.of(DANADO);
+            case "EXTRAVIADO_EN_RUTA" -> Optional.of(EXTRAVIADO);
+            default -> Optional.empty();
+        };
     }
 }

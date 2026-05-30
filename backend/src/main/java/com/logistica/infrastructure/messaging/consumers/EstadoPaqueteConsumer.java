@@ -18,7 +18,7 @@ public class EstadoPaqueteConsumer {
     private final ProcesarEstadoPaquetePort procesarEstadoPaquetePort;
     private final EstadoPaqueteMensajeMapper mapper;
 
-   // @SqsListener("${app.sqs.queue.novedad-estado-paquete}")
+   @SqsListener("https://sqs.us-east-2.amazonaws.com/214654654786/eventos-financieros-paquete-queue")
    public void consumir(JsonNode payload, Acknowledgement ack) {
        try {
 
