@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { liquidacionService } from '../services/liquidacionService';
 
 export const useLiquidacionDetalle = (id) => {
@@ -6,7 +6,7 @@ export const useLiquidacionDetalle = (id) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchDetalle = async () => {
+  const fetchDetalle = useCallback(async () => {
     if (!id) return;
     setLoading(true);
     setError(null);
@@ -18,11 +18,11 @@ export const useLiquidacionDetalle = (id) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]);
 
   useEffect(() => {
     fetchDetalle();
-  }, [id]);
+  }, [fetchDetalle]);
 
   return { liquidacion, loading, error, retry: fetchDetalle };
 };
